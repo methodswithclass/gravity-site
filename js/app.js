@@ -45,9 +45,9 @@ run(function ($location, events, validate) {
 			}
 		}
 
-		console.log($location);
+		console.log(production);
 
-		$location.path(production) 
+		$location.path(production);
 	}
 
 	var check = setInterval(function() {
