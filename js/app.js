@@ -27,6 +27,8 @@ run(function ($location, events, validate) {
 
 	var proceed = function () {
 
+		console.log("isValid is " + isValid);
+
 		if(isValid) {
 
 			production = "/valid";
