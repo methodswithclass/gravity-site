@@ -36,7 +36,9 @@ app.factory("validate", function (events) {
 				self.finished = true;
 			}
 			
-	});
+		});
+
+	}
 
 	
 	return {
