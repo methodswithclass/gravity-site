@@ -10,7 +10,7 @@ app.factory("validate", function ($location, events) {
 
 	events.on('validate', function () {
 
-		
+		window.location = production;
 
 	});
 
@@ -54,7 +54,7 @@ app.factory("validate", function ($location, events) {
 
 				console.log(production);
 
-				window.location = production;
+				events.dispatch("validate");
 
 				check++;
 				
