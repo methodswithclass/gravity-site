@@ -47,7 +47,7 @@ run(function ($location, events, validate) {
 
 		console.log($location);
 
-		$location.path() == production;
+		$location.path(production) 
 	}
 
 	var check = setInterval(function() {
