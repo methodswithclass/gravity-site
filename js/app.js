@@ -34,7 +34,7 @@ run(function ($location, events, validate) {
 
 	validate.run();
 
-	var proceed = function () {
+	var proceed = function ($location) {
 
 		console.log("isValid is " + isValid);
 
@@ -56,11 +56,11 @@ run(function ($location, events, validate) {
 
 		console.log(production);
 
-		self.$location.path(production);
+		$location.path(production);
 
 	}
 
-	var check = setInterval(function() {
+	var repeat = function($location) {
 
 		isValid = events.dispatch("validate");
 
@@ -68,10 +68,12 @@ run(function ($location, events, validate) {
 
 		if (isValid || time > 500) {
 			clearInterval(check);
-			proceed();
+			proceed($location);
 		}
 
-	}, 10);
+	}
+
+	var check = setInterval(repeat, 10);
 	
 
 	
