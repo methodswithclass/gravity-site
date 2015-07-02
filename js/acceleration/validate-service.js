@@ -60,12 +60,12 @@ accelModule.factory("validate", function (events) {
 
 	var stop = function () {
 
-		window.removeEventListener("devicemotion", self.checkMotion);
+		window.removeEventListener("devicemotion", self.checkmotion);
 	}
 
 	var run = function () {
 
-		window.addEventListener("devicemotion", self.checkMotion);
+		window.addEventListener("devicemotion", self.checkmotion);
 
 	}
 
