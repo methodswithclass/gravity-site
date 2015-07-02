@@ -10,7 +10,7 @@ app.factory("validate", function ($location, events) {
 
 	events.on('validate', function () {
 
-		window.location = production;
+		
 
 	});
 
@@ -38,7 +38,7 @@ app.factory("validate", function ($location, events) {
 
 				if(isSupported) {
 
-					production = "/valid";
+					production = "/#/valid";
 				}
 				else {
 
@@ -54,7 +54,7 @@ app.factory("validate", function ($location, events) {
 
 				console.log(production);
 
-				events.dispatch("validate");
+				window.location = production;
 
 				check++;
 				
