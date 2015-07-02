@@ -2,6 +2,8 @@ var app = angular.module("nuplae", ['ngRoute']);
 
 var mobiledebug = false;
 
+
+
 app.config(function($routeProvider) {
     $routeProvider.
       //Display desktop version
@@ -13,9 +15,16 @@ app.config(function($routeProvider) {
       when('/valid', {
         //Template for Mobile based browsers
         templateUrl: 'views/valid.html'
+      }).
+      when('/checking', {
+      	templateUrl: 'views/checking.html'
       })
 }).
 run(function ($location, events, validate) {
+
+	var self = this;
+
+	this.path = "/checking";
 
 	var production;
 
@@ -47,7 +56,7 @@ run(function ($location, events, validate) {
 
 		console.log(production);
 
-		$location.path(production);
+		self.path = production;
 	}
 
 	var check = setInterval(function() {
@@ -63,6 +72,8 @@ run(function ($location, events, validate) {
 
 	}, 10)
 
+
+	$location.path(self.path);
 	
 
 	
