@@ -38,7 +38,7 @@ app.factory("validate", function ($location, events) {
 
 				if(isSupported) {
 
-					production = "#/valid";
+					production = "#valid";
 				}
 				else {
 
