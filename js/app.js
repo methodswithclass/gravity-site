@@ -26,7 +26,7 @@ run(function ($location, validate, events) {
 	var time = 0;
 	this.timer;
 
-	var changePath = $location.path;
+	var changePath = $location;
 
 	var check = function () {
 
@@ -38,12 +38,12 @@ run(function ($location, validate, events) {
 
 			console.log(isValid.done + " " + isValid.route);
 
+			$location.path(isValid.route).replace();
+
 			if (isValid.done || time > 1000) {
 				validate.stop();
 				clearInterval(self.timer);
-
 				console.log($location + " " + isValid.route);
-				$location.path(isValid.route);
 			}
 
 		}, 10);
