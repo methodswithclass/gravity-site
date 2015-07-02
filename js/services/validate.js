@@ -1,4 +1,4 @@
-app.factory("validate", ['events', function (events) {
+app.factory("validate", function (events) {
 
 	var self = this;
 
@@ -45,4 +45,4 @@ app.factory("validate", ['events', function (events) {
 	}
 
 
-}]);
+});
