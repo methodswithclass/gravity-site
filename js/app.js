@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
       	templateUrl:'views/checking.html'
       });
 }).
-run(function ($location, validtate, events) {
+run(function ($location, validate, events) {
 
 	var isValid = {};
 	var time = 0;
