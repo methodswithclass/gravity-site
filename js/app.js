@@ -1,8 +1,6 @@
-var app = angular.module("nuplae", ['ngRoute']);
+var app = angular.module('nuplae', ['shared-module', 'accel-module', 'console-module' 'ngRoute']);
 
 var mobiledebug = false;
-
-
 
 app.config(function($routeProvider) {
     $routeProvider.

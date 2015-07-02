@@ -1,4 +1,4 @@
-app.factory("validate", function ($location, events) {
+accelModule.factory("validate", function ($location, events) {
 
 	var production;
 

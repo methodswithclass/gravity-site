@@ -1,4 +1,4 @@
-app.factory("events", function () {
+sharedModule.factory("events", function () {
 
 	var self = this;
 

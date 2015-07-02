@@ -1,4 +1,4 @@
-app.factory("con", function() {
+consoleModule.factory("con", function() {
 
 	var total = 18;
 	var history = [];

@@ -1,4 +1,4 @@
-app.controller('MainController', ['$document', 'con', function ($document, con) {
+accelModule.controller('MainController', ['$document', 'con', function ($document, con) {
 
 	var self = this;
 

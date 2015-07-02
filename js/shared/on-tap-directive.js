@@ -1,4 +1,4 @@
-app.directive('onTap', function () {
+sharedModule.directive('onTap', function () {
 	return function (scope, element, attrs) {
 		return $(element).hammer({
 			 	prevent_default: false,
