@@ -6,9 +6,11 @@ app.factory("validate", function ($location, events) {
 
 	var isSupported = false;
 
+	var production;
+
 	events.on('validate', function () {
 
-		if (self.finished) return isSupported;
+		$location.path(production);
 
 	});
 
@@ -16,7 +18,7 @@ app.factory("validate", function ($location, events) {
 	var run = function () {
 
 		var check = 0;
-		var production;
+
 
 		window.addEventListener("devicemotion", function (e) {
 
@@ -50,7 +52,8 @@ app.factory("validate", function ($location, events) {
 					}
 				}
 
-				$location.path(production);
+				events.dispatch("validate");
+				
 			}
 
 

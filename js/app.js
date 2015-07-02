@@ -15,9 +15,6 @@ app.config(function($routeProvider) {
       when('/valid', {
         //Template for Mobile based browsers
         templateUrl: 'views/valid.html'
-      }).
-      when('/checking', {
-      	templateUrl: 'views/checking.html'
       })
 }).
 run(function (validate) {
