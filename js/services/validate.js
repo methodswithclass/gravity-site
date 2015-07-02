@@ -36,13 +36,13 @@ app.factory("validate", ['events', function (events) {
 				self.finished = true;
 			}
 			
-		});
+	});
 
 	
-		return {
+	return {
 
-			run:run
-		}
+		run:run
+	}
 
 
 }]);
