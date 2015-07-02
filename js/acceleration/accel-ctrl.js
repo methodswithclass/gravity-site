@@ -5,9 +5,31 @@ accelModule.controller('accel-ctrl', ['$scope', '$location', 'validate', 'events
 	var valid = "/valid";
 	var invalid = "/invalid";
 
+	var isValid = {};
+	var time = 0;
+	this.timer;
+
+	var check = function () {
+
+		self.timer = setInterval(function () {
+
+			time += 10;
+
+			isValid = events.dispatch('validate');
+
+			$scope.production = isValid.route;
+
+			if (isValid.done || time > 1000) {
+				validate.stop();
+				clearInterval(self.timer);
+			}
+
+		}, 10);
+	}
+
 	validate.run();
 
-	$scope.production = events.dispatch('validate');
+	check();
 
 	$scope.$watch(function (scope) {
 

@@ -15,7 +15,7 @@ accelModule.factory("validate", function (events) {
 
 		console.log("route is " + self.production);
 
-		return self.production;
+		return {done:self.finished, route:self.production};
 
 	});
 
@@ -32,8 +32,10 @@ accelModule.factory("validate", function (events) {
 				isSupported = false;
 			}
 			check++;
+
+			self.finished = false;
 		}
-		else if (check == 5) {
+		else {
 
 			if(isSupported) {
 
@@ -50,6 +52,8 @@ accelModule.factory("validate", function (events) {
 					self.production = invalid;
 				}
 			}
+
+			self.finished = true;
 
 			check++;
 			
