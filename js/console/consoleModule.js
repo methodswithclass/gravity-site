@@ -1,1 +1,1 @@
-var consoleModule = angular.module("console-module", ['shared']);
+var consoleModule = angular.module("console-module", ['shared-module']);
