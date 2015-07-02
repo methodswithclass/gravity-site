@@ -43,6 +43,6 @@ app.factory("validate", ['events', function (events) {
 
 			run:run
 		}
-}
 
-});
+
+}]);
