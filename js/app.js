@@ -45,7 +45,7 @@ run(function ($location, events, validate) {
 			}
 		}
 
-		console.log(production);
+		console.log($location);
 
 		$location.path(production);
 	}
