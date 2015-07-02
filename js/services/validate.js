@@ -1,4 +1,4 @@
-app.factory("validate", function (events) {
+app.factory("validate", function ($location, events) {
 
 	var self = this;
 
@@ -16,6 +16,7 @@ app.factory("validate", function (events) {
 	var run = function () {
 
 		var check = 0;
+		var production;
 
 		window.addEventListener("devicemotion", function (e) {
 
@@ -33,8 +34,26 @@ app.factory("validate", function (events) {
 			}
 			else {
 
-				self.finished = true;
+				if(isSupported) {
+
+					production = "/valid";
+				}
+				else {
+
+					console.log("valid is " + isValid);
+
+					if (mobiledebug) {
+						production = "/valid";
+					}
+					else {
+						production = "/invalid";
+					}
+				}
+
+				$location.path(production);
 			}
+
+
 			
 		});
 
