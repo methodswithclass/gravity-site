@@ -3,7 +3,7 @@ accelModule.factory("validate", function (events) {
 	var self = this;
 
 	var valid = "/valid";
-	var invalid = "/invalid"
+	var invalid = "/invalid";
 
 	this.production = invalid;
 	this.finished = false;
@@ -13,9 +13,7 @@ accelModule.factory("validate", function (events) {
 
 	events.on('validate', function () {
 
-		console.log(self.finished + " " + self.production);
-
-		return {done:self.finished,route:self.production};
+		return self.production;
 
 	});
 
@@ -51,9 +49,6 @@ accelModule.factory("validate", function (events) {
 				}
 			}
 
-			//console.log(self.production);
-
-			self.finished = true;
 			check++;
 			
 		}

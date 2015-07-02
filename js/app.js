@@ -20,41 +20,41 @@ app.config(function($routeProvider) {
       	templateUrl:'/views/checking.html'
       });
 }).
-run(function (validate, events, $location) {
+run(function (validate, events) {
 
-	var self = this;
+	// var self = this;
 
-	var time = 0;
+	// var time = 0;
 
-	var hasValidated = {};
+	// var hasValidated = {};
 
-	validate.run();
+	// validate.run();
 
-	var setLocation = function (location, route) {
+	// var setLocation = function (location, route) {
 
-		console.log("route is " + route);
+	// 	console.log("route is " + route);
 
-		$location.path(route);
-	}
+		
+	// }
 
-	var check = function (location) {
+	// var check = function (location) {
 
-		self.timer = setInterval(function () {
+	// 	self.timer = setInterval(function () {
 
-			time += 10;
+	// 		time += 10;
 
-			hasValidated = events.dispatch('validate');
+	// 		hasValidated = events.dispatch('validate');
 
-			if (time > 1000 || hasValidated.done) {
-				clearInterval(self.timer);
-				validate.stop();
-				setLocation(location, hasValidated.route);
-			}
+	// 		if (time > 1000 || hasValidated.done) {
+	// 			clearInterval(self.timer);
+	// 			validate.stop();
+	// 			setLocation(location, hasValidated.route);
+	// 		}
 
-		}, 10);
+	// 	}, 10);
 
-	}
+	// }
 
-	check();
+	// check();
 
 });
