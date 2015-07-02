@@ -30,25 +30,29 @@ run(function (validate, events, $location) {
 
 	validate.run();
 
-	var setLocation = function ($location, route) {
+	var setLocation = function (location, route) {
 
-		$location.path(route);
+		location.path(route);
 	}
 
-	this.repeat = function ($location) {
+	var check = function (location) {
 
-		time += 10;
+		self.timer = setInterval(function () {
 
-		hasValidated = events.dispatch('validate');
+			time += 10;
 
-		if (time > 1000 || hasValidated.done) {
-			clearInterval(self.timer);
-			validate.stop();
-			setLocation($location, hasValidated.route);
-		}
+			hasValidated = events.dispatch('validate');
+
+			if (time > 1000 || hasValidated.done) {
+				clearInterval(self.timer);
+				validate.stop();
+				setLocation(location, hasValidated.route);
+			}
+
+		}, 10);
 
 	}
 
-	this.timer = setInterval(self.repeat, 10);
+	check($location);
 
 });
