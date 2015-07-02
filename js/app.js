@@ -7,17 +7,17 @@ app.config(function($routeProvider) {
 
       when('/invalid', {
       
-        templateUrl: 'views/invalid.html'
+        templateUrl: '/views/invalid.html'
       }).
 
       when('/valid', {
       
-        templateUrl: 'views/valid.html'
+        templateUrl: '/views/valid.html'
       }).
 
       otherwise("/checking",{
 
-      	templateUrl:'views/checking.html'
+      	templateUrl:'/views/checking.html'
       });
 }).
 run(function (validate, events, $location) {
