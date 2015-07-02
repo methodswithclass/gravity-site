@@ -32,6 +32,8 @@ run(function (validate, events, $location) {
 
 	var setLocation = function (location, route) {
 
+		console.log("route is " + route);
+
 		location.path(route);
 	}
 
