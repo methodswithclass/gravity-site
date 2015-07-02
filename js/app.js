@@ -2,8 +2,6 @@ var app = angular.module('nuplae', ['shared-module', 'accel-module', 'console-mo
 
 var mobiledebug = false;
 
-var production = "/invalid";
-
 app.config(function($routeProvider) {
     $routeProvider.
 
@@ -22,28 +20,35 @@ app.config(function($routeProvider) {
       	templateUrl:'/views/checking.html'
       });
 }).
-run(function (validate, events) {
+run(function (validate, events, $location) {
 
-	validate.run();
+	var self = this;
 
 	var time = 0;
 
-	var timer = setInterval(function () {
+	var hasValidated = {};
+
+	validate.run();
+
+	var setLocation = function ($location, route) {
+
+		$location.path(route);
+	}
+
+	this.repeat = function ($location) {
 
 		time += 10;
 
-		var hasValidated = events.dispatch('validate');
+		hasValidated = events.dispatch('validate');
 
 		if (time > 1000 || hasValidated.done) {
-			clearInterval(timer);
+			clearInterval(self.timer);
 			validate.stop();
-			production = hasValidated.route;
+			setLocation($location, hasValidated.route);
 		}
 
-	}, 10);
+	}
 
-}).
-run(function ($location){
+	this.timer = setInterval(self.repeat, 10);
 
-	$location.path(production);
 });
