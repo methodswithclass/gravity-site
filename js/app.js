@@ -39,7 +39,7 @@ run(function ($location, validate, events) {
 			if (isValid.done || time > 1000) {
 				validate.stop();
 				clearInterval(self.timer);
-				changePath(isValid.route);
+				$location.path(isValid.route);
 			}
 
 		}, 10);
