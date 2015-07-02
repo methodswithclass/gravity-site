@@ -13,6 +13,8 @@ accelModule.factory("validate", function (events) {
 
 	events.on('validate', function () {
 
+		console.log(self.finished + " " + self.production);
+
 		return {done:self.finished,route:self.production};
 
 	});
@@ -39,7 +41,7 @@ accelModule.factory("validate", function (events) {
 			}
 			else {
 
-				console.log("valid is " + isSupported);
+				//console.log("valid is " + isSupported);
 
 				if (mobiledebug) {
 					self.production = valid;
@@ -49,7 +51,7 @@ accelModule.factory("validate", function (events) {
 				}
 			}
 
-			console.log(self.production);
+			//console.log(self.production);
 
 			self.finished = true;
 			check++;
