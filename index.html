@@ -1,22 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My Divshot Application</title>
+  <head>
 
-  <style>
-    body{
-      font:500 14px/21px 'Helvetica Neue', Helvetica, Arials;
-      padding:40px;
-    }
-  </style>
+  	<link rel="stylesheet" href="css/museo/museo300.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="css/classes.css">
+    <link rel="stylesheet" href="css/styles.css">
 
-</head>
-<body>
-  <h1>Welcome to Divshot Hosting!</h1>
-  <p>Make something static!</p>
-  <h2>Should there be something here?</h2>
-  <p><a href="mailto:support@divshot.com">Get Help via Email</a> or <a href="http://docs.divshot.com/guides/common-deploy-issues">Common Deploy Issues Documentation</a></p>
-</body>
+    <script src="js/whatdevice.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js"></script>
+    <script src="js/libs/hammer.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.js"></script>
+    <script src="js/libs/jquery.hammer.js"></script>
+
+  </head>
+  <body ng-app="methodswithclass">
+    <div class="min-width-1000 width deselect" id="main" ng-controller="MainController as main">
+      <div ng-view=""></div>
+    </div>
+
+    <console ng-attr-vis="hide"><console>
+
+    <!-- App -->
+    
+    <script src="js/app.js"></script>
+
+    <!-- Services -->
+
+    <script src="js/services/con.js"></script>
+    <script src="js/services/global.js"></script>
+    <script src="js/services/parallaxService.js"></script>
+    <script src="js/services/events.js"></script>
+
+    <!-- Controllers -->
+
+    <script src="js/controllers/MainController.js"></script>
+
+    <!-- Directives -->
+
+    <script src="js/directives/console.js"></script>
+    <script src="js/directives/project.js"></script>
+    <script src="js/directives/contact.js"></script>
+    <script src="js/directives/parallax.js"></script>
+    <script src="js/directives/menu.js"></script>
+    <script src="js/directives/on-tap.js"></script>
+
+  </body>
+
+ 
+
+  
 </html>
