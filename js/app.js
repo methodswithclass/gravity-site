@@ -22,11 +22,13 @@ app.config(function($routeProvider) {
 }).
 run(function ($location, validate, events) {
 
+	var self = this;
+
 	var isValid = {};
 	var time = 0;
 	this.timer;
 
-	var changePath = $location;
+	this.loc = $location;
 
 	var check = function () {
 
@@ -38,7 +40,7 @@ run(function ($location, validate, events) {
 
 			console.log(isValid.done + " " + isValid.route);
 
-			$location.path(isValid.route).replace();
+			self.loc.path(isValid.route).replace();
 
 			if (isValid.done || time > 1000) {
 				validate.stop();
