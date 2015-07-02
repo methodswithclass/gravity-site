@@ -34,7 +34,7 @@ app.factory("validate", function ($location, events) {
 				}
 				check++;
 			}
-			else {
+			else if (check == 5) {
 
 				if(isSupported) {
 
@@ -42,7 +42,7 @@ app.factory("validate", function ($location, events) {
 				}
 				else {
 
-					console.log("valid is " + isValid);
+					console.log("valid is " + isSupported);
 
 					if (mobiledebug) {
 						production = "/valid";
@@ -52,7 +52,11 @@ app.factory("validate", function ($location, events) {
 					}
 				}
 
+				console.log(production);
+
 				events.dispatch("validate");
+
+				check++;
 				
 			}
 
