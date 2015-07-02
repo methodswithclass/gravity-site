@@ -7,54 +7,46 @@ app.config(function($routeProvider) {
 
       when('/invalid', {
       
-        templateUrl: '/views/invalid.html'
+        templateUrl: 'views/invalid.html'
       }).
 
       when('/valid', {
       
-        templateUrl: '/views/valid.html'
+        templateUrl: 'views/valid.html'
       }).
 
       otherwise("/checking",{
 
-      	templateUrl:'/views/checking.html'
+      	templateUrl:'views/checking.html'
       });
 }).
-run(function (validate, events) {
+run(function ($location, validtate, events) {
 
-	// var self = this;
+	var isValid = {};
+	var time = 0;
+	this.timer;
 
-	// var time = 0;
+	var changePath = $location.path;
 
-	// var hasValidated = {};
+	var check = function () {
 
-	// validate.run();
+		self.timer = setInterval(function () {
 
-	// var setLocation = function (location, route) {
+			time += 10;
 
-	// 	console.log("route is " + route);
+			isValid = events.dispatch('validate');
 
-		
-	// }
+			if (isValid.done || time > 1000) {
+				validate.stop();
+				clearInterval(self.timer);
+				changePath(isValid.route);
+			}
 
-	// var check = function (location) {
+		}, 10);
+	}
 
-	// 	self.timer = setInterval(function () {
+	validate.run();
 
-	// 		time += 10;
-
-	// 		hasValidated = events.dispatch('validate');
-
-	// 		if (time > 1000 || hasValidated.done) {
-	// 			clearInterval(self.timer);
-	// 			validate.stop();
-	// 			setLocation(location, hasValidated.route);
-	// 		}
-
-	// 	}, 10);
-
-	// }
-
-	// check();
+	check();
 
 });
