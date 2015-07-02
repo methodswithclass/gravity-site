@@ -1,65 +1,79 @@
-accelModule.factory("validate", function ($location, events) {
+accelModule.factory("validate", function (events) {
 
-	var production;
+	var self = this;
+
+	var valid = "/valid";
+	var invalid = "/invalid"
+
+	this.production = invalid;
+	this.finished = false;
+
+	var check = 0;
+	var isSupported = false;
 
 	events.on('validate', function () {
 
-	 	$location.path(production);
+		return {done:self.finished,route:self.production};
 
 	});
 
+	this.checkmotion = function (e) {
+
+		//console.log(e.accelerationIncludingGravity.x);
+		if (check < 5) {
+			if (e.accelerationIncludingGravity.x || e.acceleration.x) {
+				console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
+				isSupported = true;
+			}
+			else {
+				console.log("DeviceMotion is not supported");
+				isSupported = false;
+			}
+			check++;
+		}
+		else if (check == 5) {
+
+			if(isSupported) {
+
+				self.production = valid;
+			}
+			else {
+
+				console.log("valid is " + isSupported);
+
+				if (mobiledebug) {
+					self.production = valid;
+				}
+				else {
+					self.production = invalid;
+				}
+			}
+
+			console.log(self.production);
+
+			self.finished = true;
+			check++;
+			
+		}
+
+	}
+
+	var stop = function () {
+
+		window.removeEventListener("devicemotion", self.checkMotion);
+	}
+
 	var run = function () {
 
-		var check = 0;
-
-		var isSupported = false;
-
-		window.addEventListener("devicemotion", function (e) {
-
-			//console.log(e.accelerationIncludingGravity.x);
-			if (check < 5) {
-				if (e.accelerationIncludingGravity.x || e.acceleration.x) {
-					console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
-					isSupported = true;
-				}
-				else {
-					console.log("DeviceMotion is not supported");
-					isSupported = false;
-				}
-				check++;
-			}
-			else if (check == 5) {
-
-				if(isSupported) {
-
-					production = "/valid";
-				}
-				else {
-
-					console.log("valid is " + isSupported);
-
-					if (mobiledebug) {
-						production = "/valid";
-					}
-					else {
-						production = "/invalid";
-					}
-				}
-
-				console.log(production);
-
-				events.dispatch("validate");
-
-				check++;
-				
-			}
+		window.addEventListener("devicemotion", self.checkMotion);
 
 	}
 
 	
 	return {
 
-		run:run
+		run:run,
+		stop:stop
 	}
 
 

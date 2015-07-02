@@ -13,10 +13,26 @@ app.config(function($routeProvider) {
       when('/valid', {
         //Template for Mobile based browsers
         templateUrl: 'views/valid.html'
-      }).otherwise("/");
+      }).otherwise("views/checking.html");
 }).
-run(function (validate) {
+run(function (validate, events, $location) {
 
 	validate.run();
+
+	var time = 0;
+
+	var timer = setInterval(function () {
+
+		time += 10;
+
+		var hasValidated = events.dispatch('validate');
+
+		if (time > 1000 || hasValidated.done) {
+			clearInterval(timer);
+			validate.stop();
+			$location.path(hasValidated.route);
+		}
+
+	}, 10);
 
 });
