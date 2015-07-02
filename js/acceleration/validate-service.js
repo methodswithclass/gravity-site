@@ -13,6 +13,8 @@ accelModule.factory("validate", function (events) {
 
 	events.on('validate', function () {
 
+		console.log("route is " + self.production);
+
 		return self.production;
 
 	});
