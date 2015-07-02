@@ -11,7 +11,7 @@ app.factory("events", function () {
 
 	var dispatch = function (name) {
 
-		self.events[name]();
+		return self.events[name]();
 	}
 
 	return {

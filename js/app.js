@@ -1,37 +1,65 @@
-var app = angular.module("methodswithclass", ['ngRoute']);
+var app = angular.module("nuplae", ['ngRoute']);
 
 var mobiledebug = false;
 
 app.config(function($routeProvider) {
     $routeProvider.
       //Display desktop version
-      when('/desktop', {
+      when('/invalid', {
         //Template for Desktop based browsers
-        templateUrl: 'views/desktop.html'
+        templateUrl: 'views/invalid.html'
       }).
       //Display mobile version
-      when('/mobile', {
+      when('/valid', {
         //Template for Mobile based browsers
-        templateUrl: 'views/mobile.html'
+        templateUrl: 'views/valid.html'
       })
 }).
-run(function ($location) {
+run(function ($location, events, validate) {
 
 	var production;
 
-	if(whatDevice() == mobile) {
+	var isValid = false;
 
-		production = "/mobile";
-	}
-	else {
+	var time = 0;
 
-		if (mobiledebug) {
-			production = "/mobile";
+	validate.run();
+
+	var proceed = function () {
+
+		if(isValid) {
+
+			production = "/valid";
 		}
 		else {
-			production = "/desktop";
+
+			console.log("valid is " + isValid);
+
+			if (mobiledebug) {
+				production = "/valid";
+			}
+			else {
+				production = "/invalid";
+			}
 		}
+
+		$location.path(production);
 	}
 
-	$location.path(production);
+	var check = setInterval(function() {
+
+		isValid = events.call("validate");
+
+		time += 10;
+
+		if (isValid || time > 500) {
+			clearInterval(check);
+			proceed();
+		}
+
+	}, 10)
+
+	
+
+	
 });
