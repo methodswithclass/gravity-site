@@ -20,5 +20,5 @@ app.config(function($routeProvider) {
 run(function (validate) {
 
 	validate.run();
-	
+
 });
