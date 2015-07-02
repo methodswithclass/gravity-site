@@ -38,14 +38,17 @@ run(function ($location, validate, events) {
 
 			isValid = events.dispatch('validate');
 
+			console.log(self.loc);
+
 			console.log(isValid.done + " " + isValid.route);
 
 			self.loc.path(isValid.route).replace();
 
-			if (isValid.done || time > 1000) {
+			console.log(self.loc.path());
+
+			if (time > 1000) {
 				validate.stop();
 				clearInterval(self.timer);
-				console.log($location + " " + isValid.route);
 			}
 
 		}, 10);
