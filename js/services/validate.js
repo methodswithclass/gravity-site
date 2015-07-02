@@ -3,7 +3,7 @@ app.factory("validate", function ($location, events) {
 
 	events.on('validate', function () {
 
-	 	$location.path() = production;
+	 	$location.path() == production;
 
 	});
 
