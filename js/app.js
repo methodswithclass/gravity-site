@@ -36,9 +36,13 @@ run(function ($location, validate, events) {
 
 			isValid = events.dispatch('validate');
 
+			console.log(isValid.done + " " + isValid.route);
+
 			if (isValid.done || time > 1000) {
 				validate.stop();
 				clearInterval(self.timer);
+
+				console.log($location + " " + isValid.route);
 				$location.path(isValid.route);
 			}
 
