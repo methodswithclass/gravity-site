@@ -1,17 +1,16 @@
 app.factory("validate", function ($location, events) {
 
+	var production;
 
 	events.on('validate', function () {
 
-	 	$location.path() == production;
+	 	$location.path(production);
 
 	});
 
 	var run = function () {
 
 		var check = 0;
-
-		var production;
 
 		var isSupported = false;
 
