@@ -34,7 +34,7 @@ run(function (validate, events, $location) {
 
 		console.log("route is " + route);
 
-		location.path(route);
+		$location.path(route);
 	}
 
 	var check = function (location) {
@@ -55,6 +55,6 @@ run(function (validate, events, $location) {
 
 	}
 
-	check($location);
+	check();
 
 });
