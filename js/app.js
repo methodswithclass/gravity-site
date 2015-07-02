@@ -26,8 +26,6 @@ run(function ($location, events, validate) {
 
 	this.path = "/checking";
 
-	this.route = $location;
-
 	var production;
 
 	var isValid = false;
@@ -58,7 +56,8 @@ run(function ($location, events, validate) {
 
 		console.log(production);
 
-		self.route.path(production);
+		self.$location.path(production);
+
 	}
 
 	var check = setInterval(function() {
