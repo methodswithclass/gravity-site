@@ -48,7 +48,7 @@ run(function ($location, events, validate) {
 
 	var check = setInterval(function() {
 
-		isValid = events.call("validate");
+		isValid = events.dispatch("validate");
 
 		time += 10;
 
