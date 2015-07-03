@@ -7,6 +7,7 @@ accelModule.factory("validate", function ($q) {
 
 	var check = 0;
 	this.motion = false;
+	this.checkMotion = true;
 
 	var setMotion = function (motion) {
 
@@ -19,6 +20,8 @@ accelModule.factory("validate", function ($q) {
 	}
 
 	var checkSupported = function (resolve, reject) {
+
+		self.checkMotion = true;
 
 		if(isMotion()) {
 
@@ -42,24 +45,23 @@ accelModule.factory("validate", function ($q) {
 
 			window.addEventListener("devicemotion", function (e) {
 
-				//console.log(e.accelerationIncludingGravity.x);
-				if (check < 5) {
+				if (self.checkMotion) {
+
 					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
 						console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
 						setMotion(true);
+						checkSupported(resolve, reject);
 					}
 					else {
 						console.log("DeviceMotion is not supported");
 						setMotion(false);
+						check++;
+
+						if (check > 10) {
+							checkSupported(resolve, reject);
+						}
 					}
-					check++;
-				}
-				else if (check == 5) {
 
-					checkSupported(resolve, reject);
-
-					check++;
-					
 				}
 
 			});
