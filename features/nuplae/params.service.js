@@ -234,9 +234,9 @@ nuplaeModule.factory("params", function (global) {
 
 	home.pages = homeData;
 
-	return {
+	games.unshift(home);
 
-		home:home,
-		games:games
+	return {
+		pages:games
 	}
 });

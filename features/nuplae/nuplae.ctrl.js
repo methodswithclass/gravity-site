@@ -2,7 +2,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 	var self = this;
 
-	self.pages = params;
+	self.pages = params.pages;
 
 	self.parsePages = function (index) {
 
