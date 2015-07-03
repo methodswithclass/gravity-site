@@ -8,18 +8,10 @@ nuplaeModule.directive("page", function () {
 		template:'<div ng-include="getContentUrl()"></div>'
 		link:function ($scope, element, attr) {
 
-			$scope.getContentUrl = function() {
 
-				var view =  $scope.info.page.view;
+			var init = function () {
 
-				console.log(view);
-
-                return 'features/nuplae/' + view;
-            }
-
-            setTimeout(function () {
-            	
-            	var home = $("#pageHome");
+				var home = $("#pageHome");
 
 				var body = $("#body");
 
@@ -32,7 +24,19 @@ nuplaeModule.directive("page", function () {
 					console.log("done");
 				});
 
-			}, 300);
+			}
+
+
+			$scope.getContentUrl = function() {
+
+				init();
+
+				var view =  $scope.info.page.view;
+
+				console.log(view);
+
+                return 'features/nuplae/' + view;
+            }
 
    //          $scope.parseView = function (page) {
 
