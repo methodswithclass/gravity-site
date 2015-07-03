@@ -14,6 +14,10 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + $scope.view;
             }
 
+            var name = $scope.info.name;
+
+            if (name == "Home") nav.open($scope.info, 10);
+
 		}
 
 	}

@@ -12,7 +12,7 @@ nuplaeModule.factory("navigation", function (params) {
 		if (to >= 0) {
 
 			name = params.pages[to].name;
-			console.log("is index" + name);
+			console.log("is index " + name);
 			elem = $("#page" + name);
 		}
 		else if (to.name && to.name.length > 0) {

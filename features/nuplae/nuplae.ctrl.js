@@ -4,42 +4,42 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 	self.pages = params.pages;
 
-	for ( i in self.pages) {
+	// for ( i in self.pages) {
 
-		console.log(self.pages[i].name);
-	}
+	// 	console.log(self.pages[i].name);
+	// }
 
-	var complete = function (elem) {
+	// var complete = function (elem) {
 
-		console.log("loaded");
+	// 	console.log("loaded");
 
-		nav.open(elem, 10);
-	}
+		
+	// }
 
-	var init = function () {
+	// var init = function () {
 
-		var name = self.pages[0].name;
+	// 	var name = self.pages[0].name;
 
-		console.log(name);
+	// 	console.log(name);
 
-		var elem;
+	// 	var elem;
 
-		var timer = setInterval(function () {
+	// 	var timer = setInterval(function () {
 
-			elem = $("#page" + name);
+	// 		elem = $("#page" + name);
 
-			//console.log(elem[0]);
+	// 		//console.log(elem[0]);
 
-			if (elem[0]) {
-				clearInterval(timer);
-				complete(elem);
-			}
+	// 		if (elem[0]) {
+	// 			clearInterval(timer);
+	// 			complete(elem);
+	// 		}
 
-		}, 10);
+	// 	}, 10);
 
-	}
+	// }
 
-	init();
+	//init();
     
 
 	angular.element($document).ready(function () {
