@@ -1,11 +1,9 @@
 nuplaeModule.directive("option", function () {
 
-	var classes = "{'absolute', 'width', 'height30', 'text-center', 'vcenter'}";
-
 	var directive = {
 		restrict:'E',
 		replace:true,
-		template:"{{info.name}}",
+		template:"<div class='absolute width height30 text-center vcenter'>{{info.name}}</div>",
 		scope:{
 			info:'='
 		},
