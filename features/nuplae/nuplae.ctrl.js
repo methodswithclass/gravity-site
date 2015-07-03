@@ -15,12 +15,13 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 		var name = self.pages[0].name;
 
-
 		console.log(name);
 
-		var elem = $("#page" + name);
+		var elem;
 
 		var timer = setInterval(function () {
+
+			elem = $("#page" + name);
 
 			console.log(elem[0]);
 
@@ -29,10 +30,9 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 				complete(elem);
 			}
 
-		}, 100);
+		}, 10);
 
 	}
-
 
 	init();
     
