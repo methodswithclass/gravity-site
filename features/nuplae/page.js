@@ -2,7 +2,6 @@ nuplaeModule.directive("page", function () {
 
 	return {
 		restrict:'E',
-		replace:true,
 		scope:{
 			info:'=',
 			view:'@'
