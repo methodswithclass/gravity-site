@@ -205,7 +205,7 @@ nuplaeModule.factory("params", function (global) {
 
 	var homeData = [];
 
-	for (var i in games) {
+	for (i in games) {
 
 		homeData[homeData.length] = {};
 
