@@ -13,7 +13,12 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 	var init = function () {
 
-		var elem = $("#page" + self.pages[0].name);
+		var name = self.pages[0].name;
+
+
+		console.log(name);
+
+		var elem = $("#page" + name);
 
 		var timer = setInterval(function () {
 
