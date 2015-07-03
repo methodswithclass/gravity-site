@@ -30,6 +30,7 @@ sharedModule.factory('global', ['$sce', '$location', function($sce, $location) {
 			floatIndex:3,
 			enemiesIndex:4,
 			balanceIndex:5,
+			spaceIndex:6
     	},
     	isValid:isValid,
     	renderHtml:function (htmlCode) {

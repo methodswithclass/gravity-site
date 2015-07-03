@@ -2,9 +2,12 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 	var self = this;
 
-	self.home = params.home;
+	self.pages = params;
 
-	self.games = params.games;
+	self.parsePages = function (index) {
+
+		return index == 0 ? 'home.html' : index == 1 || index == 2 ? "setup.html" : "game.html";
+	}
 
 	angular.element($document).ready(function () {
 

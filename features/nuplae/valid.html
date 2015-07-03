@@ -1,25 +1,17 @@
 
-<div class="absolute fill {{main.home.page.back}}">
+
+<div class="absolute nuplaeSize hcenter" id="body">
 
 
-	<div class="absolute inset1 center {{main.home.page.fore}} scrollY touch">
-
-		<div class="absolute width80 height hcenter">
-
-			<div class="relative margin-v-20 width height-100">
-				<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
-			</div>
-
-			<div class="relative top-100 width hcenter">
-
-				<div ng-repeat="game in main.games">
-					<option hm-dir="option" info="game"></option>
+	<div ng-repeat="page in main.pages">
+		<div class="absolute fill {{page.back}}" ng-style="{top:{{page.rect.top}}, left:{{page.rect.left}}}">
+			<div class="absolute inset1 center {{page.fore}} cutoff">
+				<div ng-if="{view:main.parsePages($index)}">
+					<page ng-attr-view:"view" info="page"></page>
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
+		
 
 </div>

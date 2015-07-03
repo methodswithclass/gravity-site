@@ -14,6 +14,10 @@ nuplaeModule.directive("option", function () {
 			$scope.tapped = function (info) {
 
 				console.log("tapped " + info.name);
+
+				var body = ("#body");
+
+				body.animate({top:info.page.rect.top, left:info.page.rect.left}, 300);
 			}
 
 		}
