@@ -24,7 +24,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 			console.log(body[0]);
 
-			body.animate({top:0, left:"25%"},10);
+			body.animate({top:0, left:"-100%"},10);
     	}
 
     	var timer = setInterval(function () {
