@@ -4,6 +4,11 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 	self.pages = params.pages;
 
+	for ( i in self.pages) {
+
+		console.log(self.pages[i].name);
+	}
+
 	var complete = function (elem) {
 
 		console.log("loaded");
