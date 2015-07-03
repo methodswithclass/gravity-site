@@ -2,15 +2,19 @@
 <div class="absolute fill {{main.home.page.back}}">
 
 
-	<div class="absolute margin1 center {{main.home.page.fore}} scrollY touch">
+	<div class="absolute inset1 center {{main.home.page.fore}} scrollY touch">
 
-		<div class="relative margin-20 width height-100">
-			<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
-		</div>
+		<div class="absolute width80 hcenter">
 
-		<div class="relative margin-20" ng-repeat="option in main.pages">
+			<div class="relative margin-20 width height-100">
+				<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
+			</div>
 
-			<option info="option"></option>
+			<div class="relative width margin-20 hcenter" ng-repeat="option in main.pages">
+
+				<option info="option"></option>
+
+			</div>
 
 		</div>
 
