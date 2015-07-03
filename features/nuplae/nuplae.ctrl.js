@@ -8,20 +8,19 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 		con.register($("#consoleContainer"));
 
+	});
 
-		$("#finished" + self.pages[0].name).on("load", function () {
+	angular.element($("#finished" + self.pages[0].name)).on("load", function () {
 
-			var home = $("#pageHome");
+		var home = $("#pageHome");
 
-			var body = $("#body");
+		var body = $("#body");
 
-			console.log(home[0]);
+		console.log(home[0]);
 
-			console.log(body[0]);
+		console.log(body[0]);
 
-			body.scrollTo(home,10);
-
-		});
+		body.scrollTo(home,10);
 
 	});
 
