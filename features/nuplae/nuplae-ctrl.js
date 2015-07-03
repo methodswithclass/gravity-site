@@ -1,8 +1,8 @@
-nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'params', function ($document, con, params) {
+nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'params', function ($document, con, pages) {
 
 	var self = this;
 
-	this.params = params;
+	this.data = pages;
 
 	angular.element($document).ready(function () {
 
