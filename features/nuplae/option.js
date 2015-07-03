@@ -4,7 +4,7 @@ nuplaeModule.directive("option", function () {
 
 	var directive = {
 		restrict:'E',
-		template:"<div ng-class=classes>{{info.name}}</div>",
+		template:"<div>{{info.name}}</div>",
 		scope:{
 			info:'='
 		},
