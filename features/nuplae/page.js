@@ -17,14 +17,22 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + view;
             }
 
-            var home = $("#pageHome");
+            setTimeout(function () {
+            	
+            	var home = $("#pageHome");
 
-			var body = $("#body");
+				var body = $("#body");
 
-			body.scrollTo(home,10, function () {
+				console.log(home[0]);
 
-				console.log("done");
-			});
+				console.log(body[0]);
+
+				body.scrollTo(home,10, function () {
+
+					console.log("done");
+				});
+
+			}, 300);
 
    //          $scope.parseView = function (page) {
 
