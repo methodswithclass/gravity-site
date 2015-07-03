@@ -15,7 +15,7 @@ nuplaeModule.directive("option", ['navigation', function (nav) {
 
 				console.log("tapped " + info.name);
 
-				nav.open(info, 300);
+				nav.open(info, 500);
 			}
 
 		}
