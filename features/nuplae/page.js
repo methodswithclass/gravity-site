@@ -16,7 +16,13 @@ nuplaeModule.directive("page", ['navigation', function (nav) {
 
             var name = $scope.info.name;
 
-            if (name == "Home") nav.open($scope.info, 10);
+            $("#page" + name).on("load", function () {
+
+            	console.log("loaded");
+				 
+				if (name == "Home") nav.open($scope.info, 10);
+			
+			});
 
 		}
 
