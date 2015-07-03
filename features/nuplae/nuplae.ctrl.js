@@ -9,7 +9,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 		con.register($("#consoleContainer"));
 
 
-		$("#finished" self.pages[self.pages.length].name).on("load", function () {
+		$("#finished" + self.pages[0].name).on("load", function () {
 
 			var home = $("#pageHome");
 
