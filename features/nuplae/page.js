@@ -20,7 +20,7 @@ nuplaeModule.directive("page", function () {
 
             var init = function () {
 
-            	if ($scope.info.page.name == "Home") {
+            	if ($scope.info.name == "Home") {
 
 			    	var home;
 
