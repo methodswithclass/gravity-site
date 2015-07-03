@@ -28,7 +28,7 @@ run(function ($location, validate, events) {
 	var time = 0;
 	this.timer;
 
-	this.loc = $location;
+	var changePath = $location.path;
 
 	var check = function () {
 
@@ -38,13 +38,9 @@ run(function ($location, validate, events) {
 
 			isValid = events.dispatch('validate');
 
-			console.log(self.loc);
-
 			console.log(isValid.done + " " + isValid.route);
 
-			self.loc.path(isValid.route).replace();
-
-			console.log(self.loc.path());
+			changePath.apply($location, isValid.route);
 
 			if (time > 1000) {
 				validate.stop();
