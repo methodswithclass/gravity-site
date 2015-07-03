@@ -21,7 +21,7 @@ accelModule.factory("validate", function ($q) {
 
 	var checkSupported = function (resolve, reject) {
 
-		self.checkMotion = true;
+		self.checkMotion = false;
 
 		if(isMotion()) {
 
