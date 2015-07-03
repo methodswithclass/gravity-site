@@ -24,11 +24,11 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 				complete(elem);
 			}
 
-		}, 10);
+		}, 100);
 
 	}
 
-	
+
 	init();
     
 
