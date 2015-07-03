@@ -1,0 +1,19 @@
+
+<div ng-controller="nuplae-ctrl as main" class="absolute fill {{main.home.page.back}}">
+
+
+	<div class="absolute margin1 {{main.home.page.fore}} height scrollY touch">
+
+		<div class="relative margin-20 width height-100">
+			<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
+		</div>
+
+		<div class="relative margin-20" ng-repeat="option in main.pages">
+
+			<option info="option"></option>
+
+		</div>
+
+	</div>
+
+</div>

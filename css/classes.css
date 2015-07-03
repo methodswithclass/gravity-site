@@ -440,14 +440,34 @@ a.blue {
 	background-color:#003;
 }
 
+.blue2-back {
+
+	background-color:#0d6591;
+}
+
+.blue3-back {
+
+	background-color:#706591;
+}
+
 .red-back {
 
 	background-color:#300;
 }
 
+.red2-back {
+
+	background-color:#c3a991;
+}
+
 .green-back {
 
 	background-color:#030;
+}
+
+.green2-back {
+
+	background-color:#0da991;
 }
 
 .purple-back {

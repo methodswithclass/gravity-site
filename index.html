@@ -16,7 +16,7 @@
 
   </head>
   <body ng-app="nuplae">
-    <div class="min-width-1000 width deselect" id="main" ng-controller="accel-ctrl as accel">
+    <div class="min-width-1000 width deselect" id="main">
       <div ng-view=""></div>
     </div>
 
@@ -28,22 +28,29 @@
 
     <!-- Shared -->
 
-    <script src="js/shared/sharedModule.js"></script>
-    <script src="js/shared/on-tap-directive.js"></script>
-    <script src="js/shared/global-service.js"></script>
-    <script src="js/shared/events-service.js"></script>
+    <script src="features/shared/sharedModule.js"></script>
+    <script src="features/shared/on-tap-directive.js"></script>
+    <script src="features/shared/global-service.js"></script>
+    <script src="features/shared/events-service.js"></script>
 
     <!-- Console -->
 
-    <script src="js/console/consoleModule.js"></script>
-    <script src="js/console/console-directive.js"></script>
-    <script src="js/console/console-service.js"></script>
+    <script src="features/console/consoleModule.js"></script>
+    <script src="features/console/console-directive.js"></script>
+    <script src="features/console/console-service.js"></script>
+
+    <!-- Nuplae -->
+
+    <script src="features/nuplae/nuplaeModule.js"></script>
+    <script src="features/nuplae/nuplae-ctrl.js"></script>
+    <script src="features/nuplae/option.js"></script>
+
 
     <!-- Acceleration -->
 
-    <script src="js/acceleration/accelModule.js"></script>
-    <script src="js/acceleration/accel-ctrl.js"></script>
-    <script src="js/acceleration/validate-service.js"></script>
+    <script src="features/acceleration/accelModule.js"></script>
+    <script src="features/acceleration/nuplae-ctrl.js"></script>
+    <script src="features/acceleration/validate-service.js"></script>
 
   </body>
 
