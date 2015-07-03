@@ -13,7 +13,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"-50%",
+				left:0
 			},
 			border:{
 				color:"black",
@@ -47,7 +47,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"50%",
+				left:"200%"
 			},
 			border:{
 				color:"black",
@@ -81,7 +81,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"100%",
+				left:"300%"
 			},
 			border:{
 				color:"black",
@@ -115,7 +115,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:"50%",
-				left:"-50%",
+				left:0
 			},
 			border:{
 				color:"black",
@@ -149,7 +149,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:"50%",
-				left:0,
+				left:"100%"
 			},
 			border:{
 				color:"black",
@@ -183,7 +183,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"white-back",
 			rect:{
 				top:"50%",
-				left:"50%",
+				left:"200%"
 			},
 			border:{
 				color:"green-back",
@@ -230,7 +230,7 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			rect:{
 				top:0,
-				left:0,
+				left:"100%"
 			},
 			border:{
 				color:"black",

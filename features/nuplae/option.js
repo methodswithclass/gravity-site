@@ -15,9 +15,11 @@ nuplaeModule.directive("option", function () {
 
 				console.log("tapped " + info.name);
 
-				var body = ("#body");
+				var body = $("#body");
 
-				body.animate({top:info.rect.top, left:info.rect.left}, 300);
+				var page = $("#page" + info.name);
+
+				body.scrollTo(page, 300);
 			}
 
 		}
