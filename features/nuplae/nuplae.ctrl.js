@@ -1,12 +1,10 @@
-nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($document, con, params) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation' function ($document, con, params, nav) {
 
 	var self = this;
 
 	self.pages = params.pages;
 
 	console.log(self.pages[0].name);
-
-
 
 	var init = function () {
 
@@ -18,13 +16,9 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
     		console.log("loaded");
 
-    		var body = $("#body");
-
 			console.log(home[0]);
 
-			console.log(body[0]);
-
-			body.animate({top:0, left:"-25%"},10);
+			nav.open(0, 10);
     	}
 
     	var timer = setInterval(function () {
