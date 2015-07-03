@@ -4,6 +4,8 @@ nuplaeModule.factory("navigation", function (params) {
 
 	var complete = function () {
 
+		console.log("loaded");
+
 		body = $("#body");
 
 		body.addClass("scroll");
@@ -33,6 +35,8 @@ nuplaeModule.factory("navigation", function (params) {
 		}
 
 		var timer = setInterval(function () {
+
+			console.log("check");
 
 			if (elem[0]) {
 				clearInterval(timer);
