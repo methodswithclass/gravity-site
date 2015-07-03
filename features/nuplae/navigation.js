@@ -1,5 +1,23 @@
 nuplaeModule.factory("navigation", function (params) {
 
+	var body;
+
+	var complete = function () {
+
+		body = $("#body");
+
+		body.addClass("scroll");
+
+		body.scrollTo(elem, {
+			duration:duration,
+			queue:true,
+			onAfter:function(target, settings) {
+				body.removeClass("scroll");
+			}
+		});
+	}
+
+
 	var open = function (to, duration) {
 
 		var elem
@@ -14,17 +32,14 @@ nuplaeModule.factory("navigation", function (params) {
 			elem = to;
 		}
 
-		var body = $("#body");
+		var timer = setInterval(function () {
 
-		body.addClass("scroll");
-
-		body.scrollTo(elem, {
-			duration:duration,
-			queue:true,
-			onAfter:function(target, settings) {
-				body.removeClass("scroll");
+			if (elem[0]) {
+				clearInterval(timer);
+				complete();
 			}
-		});
+
+		}, 10);
 	}
 
 	return {
