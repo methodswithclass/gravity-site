@@ -236,7 +236,7 @@ nuplaeModule.factory("params", function (global) {
 
 	return {
 
-		home:home
+		home:home,
 		games:games
 	}
 });
