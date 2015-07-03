@@ -1,6 +1,7 @@
 nuplaeModule.directive("option", function () {
 
 	return {
+		restrict:'E',
 		scope:{
 			info:'='
 		},
