@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['shared.module', 'console.module', 'nuplae.module', 'accel.module', 'ngRoute']);
+var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
 var mobiledebug = false;
 
