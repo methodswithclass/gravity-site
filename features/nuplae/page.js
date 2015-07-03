@@ -13,47 +13,47 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + attr.view;
             }
 
-            $scope.parseView = function (page) {
+   //          $scope.parseView = function (page) {
 
-				var name = page.name;
+			// 	var name = page.name;
 
-				var view = "home.html";
+			// 	var view = "home.html";
 
-				var test = name == "Home" ? true : false;
+			// 	var test = name == "Home" ? true : false;
 
-				if (test) {
+			// 	if (test) {
 
-					view = "home.html";
+			// 		view = "home.html";
 
-					console.log(view);
+			// 		console.log(view);
 
-					return view;
-				}
-				else {
-					return name == "Calibrate" ? true : false;
-				}
+			// 		return view;
+			// 	}
+			// 	else {
+			// 		return name == "Calibrate" ? true : false;
+			// 	}
 
-				if (test) {
+			// 	if (test) {
 
-					view = "calibrate.html";
+			// 		view = "calibrate.html";
 
-					console.log(view);
+			// 		console.log(view);
 
-					return view
-				}
-				else {
+			// 		return view
+			// 	}
+			// 	else {
 
-					var view = name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
+			// 		var view = name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
 
-					console.log(view);
+			// 		console.log(view);
 
-					return view;
-				}
+			// 		return view;
+			// 	}
 
-				console.log("no return " + view);
+			// 	console.log("no return " + view);
 
-				return view;
-			}
+			// 	return view;
+			// }
 
 
 		}
