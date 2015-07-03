@@ -210,6 +210,7 @@ nuplaeModule.factory("params", function (global) {
 		homeData[i] = {
 			name:games[i].name,
 			index:games[i].index,
+			menu:games[i].page.menu,
 			rect:games[i].page.rect
 		};
 	}

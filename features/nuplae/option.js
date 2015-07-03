@@ -6,7 +6,7 @@ nuplaeModule.directive("option", function () {
 		scope:{
 			info:'='
 		},
-		template:"<div class='relative width80 height-100 margin-v-20 center border pointer {{info.page.menu}}' on-tap='tapped(info)'>" +
+		template:"<div class='relative width80 height-100 margin-v-20 center border pointer {{info.menu}}' on-tap='tapped(info)'>" +
 					"<div class='absolute center font-30 text-center white'>{{info.name}}</div>" + 
 				 "</div>",
 		link:function ($scope, element, attr) {
@@ -17,7 +17,7 @@ nuplaeModule.directive("option", function () {
 
 				var body = ("#body");
 
-				body.animate({top:info.page.rect.top, left:info.page.rect.left}, 300);
+				body.animate({top:info.rect.top, left:info.rect.left}, 300);
 			}
 
 		}
