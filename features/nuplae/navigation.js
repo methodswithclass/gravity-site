@@ -22,15 +22,22 @@ nuplaeModule.factory("navigation", function (params) {
 
 	var open = function (to, duration) {
 
-		var elem
+		var elem;
+
+		console.log(to);
 
 		if (to >= 0) {
+
+			console.log("is index");
 			elem = $("#page" + params.pages[to].name); 
 		}
 		else if (to.name.length > 0) {
+
+			console.log("is page");
 			elem = $("#page" + to.name);
 		}
 		else {
+			console.log("is coord");
 			elem = to;
 		}
 
