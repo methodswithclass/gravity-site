@@ -6,7 +6,7 @@
 
 
 		<div ng-repeat="page in main.pages">
-			<div class="absolute fill {{page.page.back}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }">
+			<div class="absolute width30 height50 cutoff {{page.page.back}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }">
 				<div class="absolute inset1 center {{page.page.fore}} cutoff">
 					<div ng-if="{view:main.parsePages($index)}">
 						<page ng-attr-view:"view" info="page"></page>
