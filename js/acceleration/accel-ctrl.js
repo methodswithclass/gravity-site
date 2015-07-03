@@ -2,42 +2,42 @@ accelModule.controller('accel-ctrl', ['$scope', '$location', 'validate', 'events
 
 	var self = this;
 
-	var valid = "/valid";
-	var invalid = "/invalid";
+	// var valid = "/valid";
+	// var invalid = "/invalid";
 
-	var isValid = {};
-	var time = 0;
-	this.timer;
+	// var isValid = {};
+	// var time = 0;
+	// this.timer;
 
-	var check = function () {
+	// var check = function () {
 
-		self.timer = setInterval(function () {
+	// 	self.timer = setInterval(function () {
 
-			time += 10;
+	// 		time += 10;
 
-			isValid = events.dispatch('validate');
+	// 		isValid = events.dispatch('validate');
 
-			$scope.production = isValid.route;
+	// 		$scope.production = isValid.route;
 
-			if (isValid.done || time > 1000) {
-				validate.stop();
-				clearInterval(self.timer);
-			}
+	// 		if (isValid.done || time > 1000) {
+	// 			validate.stop();
+	// 			clearInterval(self.timer);
+	// 		}
 
-		}, 10);
-	}
+	// 	}, 10);
+	// }
 
-	validate.run();
+	// validate.run();
 
-	check();
+	// check();
 
-	$scope.$watch(function (scope) {
+	// $scope.$watch(function (scope) {
 
-		return scope.production;
-	}, function (newValue, oldValue) {
+	// 	return scope.production;
+	// }, function (newValue, oldValue) {
 
-		$location.path(newValue);
-	});
+	// 	$location.path(newValue);
+	// });
 
 	angular.element($document).ready(function () {
 
