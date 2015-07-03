@@ -8,6 +8,21 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 		con.register($("#consoleContainer"));
 
+
+		$("#finished" self.pages[self.pages.length].name).on("load", function () {
+
+			var home = $("#pageHome");
+
+			var body = $("#body");
+
+			console.log(home[0]);
+
+			console.log(body[0]);
+
+			body.scrollTo(home,10);
+
+		});
+
 	});
 
 }]);
