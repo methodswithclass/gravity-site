@@ -4,7 +4,8 @@ app.directive("option", function () {
 		scope:{
 			info:'='
 		},
-		templateUrl:'features/nuplae/option.html',
+		//templateUrl:'features/nuplae/option.html',
+		template:'<div>{{info.name}}</div>',
 		link:function ($scope, element, attr) {
 
 			$scope.tapped = function (info) {
