@@ -10,7 +10,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 	});
 
-	angular.element($("#finished" + self.pages[0].name)).on("load", function () {
+	angular.element($("#finished" + self.pages[0].name)).bind("load", function () {
 
 		var home = $("#pageHome");
 
