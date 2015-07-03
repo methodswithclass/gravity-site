@@ -30,11 +30,13 @@ nuplaeModule.factory("navigation", function (params) {
 
 		body = $("#body");
 
-		body.addClass("scroll").scrollTo(elem, {
+		body.removeClass("cutoff").addClass("scroll")
+
+		body.scrollTo(elem, {
 			duration:duration,
 			queue:true,
 			onAfter:function(target, settings) {
-				body.removeClass("scroll");
+				body.removeClass("scroll").addClass("cutoff");
 			}
 		});
 	}
