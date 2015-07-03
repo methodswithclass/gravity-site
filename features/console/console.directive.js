@@ -1,4 +1,4 @@
-consoleModule.directive("console", function () {
+console.module.directive("console", function () {
 
 	var link = function ($scope, element, attr) {
 

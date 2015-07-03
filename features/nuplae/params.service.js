@@ -1,4 +1,4 @@
-nuplaeModule.factory("params", function (global) {
+nuplae.module.factory("params", function (global) {
 
 	return {
 

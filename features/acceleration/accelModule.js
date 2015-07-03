@@ -1,1 +1,0 @@
-var accelModule = angular.module('accel-module', ['shared-module']);

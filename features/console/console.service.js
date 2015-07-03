@@ -1,4 +1,4 @@
-consoleModule.factory("con", function() {
+console.module.factory("con", function() {
 
 	var total = 18;
 	var history = [];

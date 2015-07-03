@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", function () {
+nuplae.module.directive("option", function () {
 
 	return {
 		restrict:'E',

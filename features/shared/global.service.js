@@ -1,4 +1,4 @@
-sharedModule.factory('global', ['$sce', '$location', function($sce, $location) {
+shared.module.factory('global', ['$sce', '$location', function($sce, $location) {
 
 
 	var isValid = function () {

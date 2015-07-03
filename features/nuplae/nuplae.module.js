@@ -1,0 +1,1 @@
+var nuplae.module = angular.module("nuplae.module", ['shared.module']);

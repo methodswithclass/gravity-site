@@ -1,0 +1,1 @@
+var shared.module = angular.module('shared.module', []);
