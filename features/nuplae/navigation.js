@@ -23,21 +23,26 @@ nuplaeModule.factory("navigation", function (params) {
 	var open = function (to, duration) {
 
 		var elem;
+		var name;
 
 		console.log(to);
 
 		if (to >= 0) {
 
-			console.log("is index");
-			elem = $("#page" + params.pages[to].name);
+			name = params.pages[to].name;
+			console.log("is index" + name);
+			elem = $("#page" + name);
 		}
 		else if (to.name.length > 0) {
 
-			console.log("is page");
-			elem = $("#page" + to.name);
+			name = to.name;
+
+			console.log("is page " + name);
+			elem = $("#page" + name);
 		}
 		else {
-			console.log("is coord");
+			console.log("is coord ");
+			console.log(to);
 			elem = to;
 		}
 
