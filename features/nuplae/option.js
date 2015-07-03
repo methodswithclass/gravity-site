@@ -4,6 +4,7 @@ nuplaeModule.directive("option", function () {
 
 	var directive = {
 		restrict:'E',
+		replace:true,
 		template:"{{info.name}}",
 		scope:{
 			info:'='
