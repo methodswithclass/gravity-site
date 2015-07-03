@@ -29,7 +29,7 @@ nuplaeModule.factory("navigation", function (params) {
 		if (to >= 0) {
 
 			console.log("is index");
-			elem = $("#page" + params.pages[to].name); 
+			elem = $("#page" + params.pages[to].name);
 		}
 		else if (to.name.length > 0) {
 
@@ -43,7 +43,9 @@ nuplaeModule.factory("navigation", function (params) {
 
 		var timer = setInterval(function () {
 
-			console.log("check");
+			//console.log("check");
+
+			console.log(elem[0]);
 
 			if (elem[0]) {
 				clearInterval(timer);
