@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", function () {
+nuplaeModule.directive("option", function (nav) {
 
 	return {
 		restrict:'E',
@@ -15,11 +15,7 @@ nuplaeModule.directive("option", function () {
 
 				console.log("tapped " + info.name);
 
-				var body = $("#body");
-
-				var page = $("#page" + info.name);
-
-				body.scrollTo(page, 300);
+				nav.open(info, 300);
 			}
 
 		}
