@@ -2,9 +2,9 @@ nuplaeModule.directive("option", function () {
 
 	var directive = {
 		restrict:'E',
-		template:"{{game.name}}",
+		template:"{{info.name}}",
 		scope:{
-			game:'=game'
+			info:'='
 		},
 	};
 
