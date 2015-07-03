@@ -1,18 +1,18 @@
 
-<div class="absolute fill {{main.data.home.page.back}}">
+<div class="absolute fill {{data.home.page.back}}">
 
 
-	<div class="absolute inset1 center {{main.data.home.page.fore}} scrollY touch">
+	<div class="absolute inset1 center {{data.home.page.fore}} scrollY touch">
 
 		<div class="absolute width80 height hcenter border">
 
 			<div class="relative margin-v-20 width border-red height-100">
-				<div class="absolute width vcenter text-center font-40">{{main.data.home.name}}</div>
+				<div class="absolute width vcenter text-center font-40">{{data.home.name}}</div>
 			</div>
 
 			<div class="relative width border-blue hcenter">
 
-				<div class="relative width60 margin-v-20 height-100 hcenter border-red" ng-repeat="game in main.data.pages">
+				<div class="relative width60 margin-v-20 height-100 hcenter border-red" ng-repeat="game in data.pages">
 					<option info="game"></option>
 				</div>
 

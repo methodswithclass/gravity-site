@@ -1,19 +1,12 @@
 nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'params', function ($document, con, params) {
 
-	var self = this;
+	var data = {};
 
-	self.data = {};
+	data.home = params.home;
 
-	self.data.home = params.home;
+	data.pages = params.pages;
 
-	self.data.pages = params.pages;
-
-	console.log(self.data.pages.length);
-
-	for (i in self.data.pages) {
-
-		console.log(self.data.pages[i].name);
-	}
+	$scope.data = data;
 
 	angular.element($document).ready(function () {
 
