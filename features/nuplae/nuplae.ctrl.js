@@ -12,12 +12,14 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 		if (test) {
 			return "home.html";
+		}
 		else {
 			return name == "Calibrate" ? true : false;
 		}
 
 		if (test) {
 			return "calibrate.html";
+		}
 		else {
 			return name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
 		}
