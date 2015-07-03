@@ -4,9 +4,25 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 	self.pages = params.pages;
 
-	self.parsePages = function (index) {
+	self.parsePages = function (page) {
 
-		return index == 0 ? 'home.html' : index == 1 || index == 2 ? "setup.html" : "game.html";
+		var name = page.name;
+
+		var test = name == "Home" ? true : false;
+
+		if (test) {
+			return "home.html";
+		else {
+			return name == "Calibrate" ? true : false;
+		}
+
+		if (test) {
+			return "calibrate.html";
+		else {
+			return name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
+		}
+
+		return "home.html";
 	}
 
 	angular.element($document).ready(function () {

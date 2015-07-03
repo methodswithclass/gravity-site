@@ -8,7 +8,7 @@
 		<div ng-repeat="page in main.pages">
 			<div class="absolute width50 height50 cutoff {{page.page.back}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }">
 				<div class="absolute inset1 center {{page.page.fore}} cutoff">
-					<div ng-if="{view:main.parsePages($index)}">
+					<div ng-if="{view:main.parsePages(page)}">
 						<page ng-attr-view:"view" info="page"></page>
 					</div>
 				</div>
