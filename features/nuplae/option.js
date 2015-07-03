@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", function () {
+app.directive("option", function () {
 
 	return {
 		scope:{
