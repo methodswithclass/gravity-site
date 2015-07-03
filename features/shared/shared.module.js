@@ -1,1 +1,1 @@
-var sharedModule = angular.module('shared.module', []);
+var sharedModule = angular.module('sharedModule', []);
