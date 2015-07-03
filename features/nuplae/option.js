@@ -6,7 +6,7 @@ nuplaeModule.directive("option", function () {
 		scope:{
 			info:'='
 		},
-		template:"<div class='relative width80 height-100 margin-v-20 center border {{info.page.menu}}' on-tap='tapped(info)'>" +
+		template:"<div class='relative width80 height-100 margin-v-20 center border pointer {{info.page.menu}}' on-tap='tapped(info)'>" +
 					"<div class='absolute center font-30 text-center white'>{{info.name}}</div>" + 
 				 "</div>",
 		link:function ($scope, element, attr) {
