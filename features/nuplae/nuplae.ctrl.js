@@ -5,18 +5,34 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 	self.pages = params.pages;
 
 	console.log(self.pages[0].name);
-	
+
 	var init = function () {
 
-    	var home = $("#pageHome");
+    	var home;
 
-		var body = $("#body");
+    	var body;
 
-		console.log(home[0]);
+    	var complete = function () {
 
-		console.log(body[0]);
+    		body = $("#body");
 
-		body.scrollTo(home,10);
+			console.log(home[0]);
+
+			console.log(body[0]);
+
+			body.scrollTo(home,10);
+    	}
+
+    	var timer = setInterval(function () {
+
+    		home = $("#pageHome");
+
+    		if (home[0]) {
+    			clearInterval(timer);
+    			complete();
+    		}
+
+    	}, 10);
     }
 
 
