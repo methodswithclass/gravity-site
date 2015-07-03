@@ -6,13 +6,13 @@
 
 		<div class="absolute width80 height hcenter border">
 
-			<div class="relative margin-v-20 width border-red height-100">
+			<div class="relative margin-v-20 width height-100">
 				<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
 			</div>
 
-			<div class="relative width border-blue hcenter">
+			<div class="relative width hcenter">
 
-				<div class="relative width60 margin-v-20 height-100 hcenter" ng-repeat="game in main.games">
+				<div class="relative" ng-repeat="game in main.games">
 					<option info="game"></option>
 				</div>
 
