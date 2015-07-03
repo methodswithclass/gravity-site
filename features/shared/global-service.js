@@ -35,6 +35,6 @@ sharedModule.factory('global', ['$sce', '$location', function($sce, $location) {
     	renderHtml:function (htmlCode) {
 	        return $sce.trustAsHtml(htmlCode);
 	    }
-    }; 
+    } 
 
 }]);

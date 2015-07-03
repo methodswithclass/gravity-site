@@ -2,11 +2,11 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'params', function (
 
 	var self = this;
 
-	this.data = {};
+	self.data = {};
 
-	this.data.home = params.home;
+	self.data.home = params.home;
 
-	this.data.pages = params.pages;
+	self.data.pages = params.pages;
 
 	console.log(params.pages.length);
 
