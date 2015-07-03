@@ -1,1 +1,1 @@
-var nuplae.module = angular.module("nuplae.module", ['shared.module']);
+var nuplaeModule = angular.module("nuplae.module", ['shared.module']);
