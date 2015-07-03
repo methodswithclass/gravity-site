@@ -9,24 +9,6 @@ nuplaeModule.directive("page", function () {
 		link:function ($scope, element, attr) {
 
 
-			var init = function () {
-
-				var home = $("#pageHome");
-
-				var body = $("#body");
-
-				console.log(home[0]);
-
-				console.log(body[0]);
-
-				body.scrollTo(home,10, function () {
-
-					console.log("done");
-				});
-
-			}
-
-
 			$scope.getContentUrl = function() {
 
 				init();
@@ -38,49 +20,7 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + view;
             }
 
-   //          $scope.parseView = function (page) {
-
-			// 	var name = page.name;
-
-			// 	var view = "home.html";
-
-			// 	var test = name == "Home" ? true : false;
-
-			// 	if (test) {
-
-			// 		view = "home.html";
-
-			// 		console.log(view);
-
-			// 		return view;
-			// 	}
-			// 	else {
-			// 		return name == "Calibrate" ? true : false;
-			// 	}
-
-			// 	if (test) {
-
-			// 		view = "calibrate.html";
-
-			// 		console.log(view);
-
-			// 		return view
-			// 	}
-			// 	else {
-
-			// 		var view = name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
-
-			// 		console.log(view);
-
-			// 		return view;
-			// 	}
-
-			// 	console.log("no return " + view);
-
-			// 	return view;
-			// }
-
-
+            
 		}
 
 	}

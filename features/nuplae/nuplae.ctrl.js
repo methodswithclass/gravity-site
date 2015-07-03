@@ -5,16 +5,10 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 	self.pages = params.pages;
 
 	console.log(self.pages[0].name);
+	
+	var init = function () {
 
-	angular.element($document).ready(function () {
-
-		con.register($("#consoleContainer"));
-
-	});
-
-	$("#finished" + self.pages[0].name).bind("load", function () {
-
-		var home = $("#pageHome");
+    	var home = $("#pageHome");
 
 		var body = $("#body");
 
@@ -23,6 +17,15 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 		console.log(body[0]);
 
 		body.scrollTo(home,10);
+    }
+
+
+    init();
+
+
+	angular.element($document).ready(function () {
+
+		con.register($("#consoleContainer"));
 
 	});
 
