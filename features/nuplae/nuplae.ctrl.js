@@ -4,6 +4,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 	self.pages = params.pages;
 
+	console.log(self.pages[0].name);
+
 	angular.element($document).ready(function () {
 
 		con.register($("#consoleContainer"));
