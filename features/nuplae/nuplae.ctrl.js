@@ -23,7 +23,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 			elem = $("#page" + name);
 
-			console.log(elem[0]);
+			//console.log(elem[0]);
 
 			if (elem[0]) {
 				clearInterval(timer);

@@ -7,7 +7,7 @@ nuplaeModule.factory("navigation", function (params) {
 		var elem;
 		var name;
 
-		console.log(to);
+		//console.log(to);
 
 		if (to >= 0) {
 
@@ -30,9 +30,7 @@ nuplaeModule.factory("navigation", function (params) {
 
 		body = $("#body");
 
-		body.addClass("scroll");
-
-		body.scrollTo(elem, {
+		body.addClass("scroll").scrollTo(elem, {
 			duration:duration,
 			queue:true,
 			onAfter:function(target, settings) {
