@@ -14,7 +14,7 @@ nuplaeModule.factory("params", function (global) {
 				}
 			}
 		},
-		pages:[
+		games:[
 		{
 			name:"Calibrate",
 			index:global.c.calibrateIndex,

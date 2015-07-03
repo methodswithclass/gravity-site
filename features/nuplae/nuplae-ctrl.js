@@ -4,7 +4,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$scope', '$document', 'con', 'params', 
 
 	data.home = params.home;
 
-	data.pages = params.pages;
+	data.games = params.games;
 
 	$scope.data = data;
 
