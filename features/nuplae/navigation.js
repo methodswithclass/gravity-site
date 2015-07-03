@@ -24,10 +24,10 @@ nuplaeModule.factory("navigation", function (params) {
 
 		var elem
 
-		if (typeof to == Number) {
+		if (to >= 0) {
 			elem = $("#page" + params.pages[to].name); 
 		}
-		else if (typeof to.name == String) {
+		else if (to.name.length > 0) {
 			elem = $("#page" + to.name);
 		}
 		else {
