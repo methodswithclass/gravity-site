@@ -2,24 +2,6 @@ nuplaeModule.factory("navigation", function (params) {
 
 	var body;
 
-	var complete = function () {
-
-		console.log("loaded");
-
-		body = $("#body");
-
-		body.addClass("scroll");
-
-		body.scrollTo(elem, {
-			duration:duration,
-			queue:true,
-			onAfter:function(target, settings) {
-				body.removeClass("scroll");
-			}
-		});
-	}
-
-
 	var open = function (to, duration) {
 
 		var elem;
@@ -33,7 +15,7 @@ nuplaeModule.factory("navigation", function (params) {
 			console.log("is index" + name);
 			elem = $("#page" + name);
 		}
-		else if (to.name.length > 0) {
+		else if (to.name && to.name.length > 0) {
 
 			name = to.name;
 
@@ -41,23 +23,22 @@ nuplaeModule.factory("navigation", function (params) {
 			elem = $("#page" + name);
 		}
 		else {
-			console.log("is coord ");
+			console.log("is coord or jquery");
 			console.log(to);
 			elem = to;
 		}
 
-		var timer = setInterval(function () {
+		body = $("#body");
 
-			//console.log("check");
+		body.addClass("scroll");
 
-			console.log(elem[0]);
-
-			if (elem[0]) {
-				clearInterval(timer);
-				complete();
+		body.scrollTo(elem, {
+			duration:duration,
+			queue:true,
+			onAfter:function(target, settings) {
+				body.removeClass("scroll");
 			}
-
-		}, 10);
+		});
 	}
 
 	return {

@@ -3,9 +3,34 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 	var self = this;
 
 	self.pages = params.pages;
-	
 
-    nav.open(0, 10);
+	var complete = function (elem) {
+
+		console.log("loaded");
+
+		nav.open(elem, 10);
+	}
+
+	var init = function () {
+
+		var elem = $("#page" + params.pages[0].name);
+
+		var timer = setInterval(function () {
+
+			console.log(elem[0]);
+
+			if (elem[0]) {
+				clearInterval(timer);
+				complete(elem);
+			}
+
+		}, 10);
+
+	}
+
+	
+	init();
+    
 
 	angular.element($document).ready(function () {
 
