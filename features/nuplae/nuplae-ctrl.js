@@ -1,12 +1,10 @@
 nuplaeModule.controller('nuplae-ctrl', ['$scope', '$document', 'con', 'params', function ($scope, $document, con, params) {
 
-	var data = {};
+	var self = this;
 
-	data.home = params.home;
+	self.home = params.home;
 
-	data.games = params.games;
-
-	$scope.data = data;
+	self.games = params.games;
 
 	angular.element($document).ready(function () {
 
