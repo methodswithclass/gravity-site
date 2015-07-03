@@ -1,18 +1,18 @@
 
-<div class="absolute fill {{main.home.page.back}}">
+<div class="absolute fill {{main.params.home.page.back}}">
 
 
-	<div class="absolute inset1 center {{main.home.page.fore}} scrollY touch">
+	<div class="absolute inset1 center {{main.params.home.page.fore}} scrollY touch">
 
 		<div class="absolute width80 height hcenter border">
 
 			<div class="relative margin-v-20 width border-red height-100">
-				<div class="absolute width vcenter text-center font-40">{{main.home.name}}</div>
+				<div class="absolute width vcenter text-center font-40">{{main.params.home.name}}</div>
 			</div>
 
 			<div class="relative width border-blue hcenter">
 
-				<div class="relative width margin-v-20 border-red" ng-repeat="page in main.pages">
+				<div class="relative width margin-v-20 border-red" ng-repeat="page in main.params.pages">
 					<option hm-dir="option" info="page"></option>
 				</div>
 
