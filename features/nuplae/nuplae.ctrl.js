@@ -8,23 +8,42 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
 		var name = page.name;
 
+		var view = "home.html";
+
 		var test = name == "Home" ? true : false;
 
 		if (test) {
-			return "home.html";
+
+			view = "home.html";
+
+			console.log(view);
+
+			return view;
 		}
 		else {
 			return name == "Calibrate" ? true : false;
 		}
 
 		if (test) {
-			return "calibrate.html";
+
+			view = "calibrate.html";
+
+			console.log(view);
+
+			return view
 		}
 		else {
-			return name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
+
+			var view = name == "Gravity" || name == "Float" ? "setup.html" : "game.html";
+
+			console.log(view);
+
+			return view;
 		}
 
-		return "home.html";
+		console.log("no return " + view);
+
+		return view;
 	}
 
 	angular.element($document).ready(function () {
