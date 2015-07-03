@@ -42,7 +42,7 @@ run(function ($location, validate, events) {
 
 			console.log($location);
 
-			changePath.apply($location, isValid.route);
+			changePath.apply($location, [isValid.route]);
 
 			if (time > 1000) {
 				validate.stop();
