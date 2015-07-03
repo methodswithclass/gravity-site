@@ -40,6 +40,8 @@ run(function ($location, validate, events) {
 
 			console.log(isValid.done + " " + isValid.route);
 
+			console.log($location);
+
 			changePath.apply($location, isValid.route);
 
 			if (time > 1000) {
