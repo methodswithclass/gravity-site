@@ -14,6 +14,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($
 
     	var complete = function () {
 
+    		console.log("loaded");
+
     		body = $("#body");
 
 			console.log(home[0]);

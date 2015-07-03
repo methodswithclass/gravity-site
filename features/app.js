@@ -14,7 +14,7 @@ app.config(function($routeProvider) {
       
         templateUrl: 'features/nuplae/valid.html',
         controller:'nuplaeCtrl',
-        controllerAS:'main'
+        controllerAs:'main'
       }).
       otherwise("/checking", {
 
