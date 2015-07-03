@@ -21,7 +21,10 @@ nuplaeModule.directive("page", function () {
 
 			var body = $("#body");
 
-			body.scrollTo(home,10);
+			body.scrollTo(home,10, function () {
+
+				console.log("done");
+			});
 
    //          $scope.parseView = function (page) {
 
