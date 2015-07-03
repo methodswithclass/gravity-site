@@ -8,6 +8,7 @@ app.config(function($routeProvider) {
       when('/invalid', {
       
         templateUrl: 'views/invalid.html'
+
       }).
 
       when('/valid', {
@@ -20,40 +21,19 @@ app.config(function($routeProvider) {
       	templateUrl:'views/checking.html'
       });
 }).
-run(function ($location, validate, events) {
+run(function ($location, $q, validate) {
 
 	var self = this;
 
-	var isValid = {};
-	var time = 0;
-	this.timer;
+	var isValid = validate.run();
+	
+	isValid.then(	
+	function (path) {
+		$location.path(path);
+	},
+	function (path) {
+		$location.path(path);
+	});
 
-	var changePath = $location.path;
-
-	var check = function () {
-
-		self.timer = setInterval(function () {
-
-			time += 10;
-
-			isValid = events.dispatch('validate');
-
-			console.log(isValid.done + " " + isValid.route);
-
-			console.log($location);
-
-			changePath.apply($location, [isValid.route]);
-
-			if (time > 1000) {
-				validate.stop();
-				clearInterval(self.timer);
-			}
-
-		}, 10);
-	}
-
-	validate.run();
-
-	check();
 
 });
