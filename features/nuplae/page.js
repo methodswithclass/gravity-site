@@ -10,8 +10,8 @@ nuplaeModule.directive("page", function () {
 		link:function ($scope, element, attr) {
 
 			$scope.getContentUrl = function() {
-				console.log(view);
-                return 'features/nuplae/' + view;
+				console.log($scope.view);
+                return 'features/nuplae/' + $scope.view;
             }
 
 		}
