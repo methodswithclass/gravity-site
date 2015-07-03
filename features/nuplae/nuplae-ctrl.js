@@ -8,11 +8,11 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'params', function (
 
 	self.data.pages = params.pages;
 
-	console.log(params.pages.length);
+	console.log(self.data.pages.length);
 
-	for (i in params.pages) {
+	for (i in self.data.pages) {
 
-		console.log(params.pages[i].name);
+		console.log(self.data.pages[i].name);
 	}
 
 	angular.element($document).ready(function () {
