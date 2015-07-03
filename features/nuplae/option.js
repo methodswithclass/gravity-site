@@ -1,13 +1,13 @@
-nuplaeModule.directive("option", function () {
+nuplaeModule.directive("option", ['onTap', function (onTap) {
 
 	return {
 		scope:{
 			info:'='
 		},
-		template:'<div class="relative margin-20 width80 border text-center {{info.page.menu}}" ng-tap="onTap(info)">{{info.name}}</div>',
+		template:'<div class="relative margin-20 width80 border text-center {{info.page.menu}}" ng-tap="tapped(info)">{{info.name}}</div>',
 		link:function ($scope, element, attr) {
 
-			$scope.onTap = function (info) {
+			$scope.tapped = function (info) {
 
 				alert("tapped " + info.name);
 
@@ -16,4 +16,4 @@ nuplaeModule.directive("option", function () {
 		}
 	}
 
-});
+}]);
