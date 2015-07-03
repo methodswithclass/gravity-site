@@ -12,7 +12,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"-100%",
+				left:"-50%",
 			},
 			border:{
 				color:"black",
@@ -45,7 +45,7 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"100%",
+				left:"50%",
 			},
 			border:{
 				color:"black",
@@ -72,13 +72,13 @@ nuplaeModule.factory("params", function (global) {
 		name:"Float", 
 		index:global.c.floatIndex,
 		page:{
-			back:"red2-back",
+			back:"brown-back",
 			fore:"white-back",
 			menu:"brown-back",
 			button:"transparent",
 			rect:{
 				top:0,
-				left:"200%",
+				left:"100%",
 			},
 			border:{
 				color:"black",
@@ -110,8 +110,8 @@ nuplaeModule.factory("params", function (global) {
 			menu:"blue2-back",
 			button:"transparent",
 			rect:{
-				top:"100%",
-				left:"-100%",
+				top:"50%",
+				left:"-50%",
 			},
 			border:{
 				color:"black",
@@ -143,7 +143,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"pink-back",
 			button:"transparent",
 			rect:{
-				top:"100%",
+				top:"50%",
 				left:0,
 			},
 			border:{
@@ -176,8 +176,8 @@ nuplaeModule.factory("params", function (global) {
 			menu:"brown-back",
 			button:"white-back",
 			rect:{
-				top:"100%",
-				left:"100%",
+				top:"50%",
+				left:"50%",
 			},
 			border:{
 				color:"green-back",
@@ -218,6 +218,7 @@ nuplaeModule.factory("params", function (global) {
 	var home = {
 		name:"Home",
 		index:global.c.homeIndex,
+		view:"home.html",
 		page:{
 			back:"blue2-back",
 			fore:"white-back",
