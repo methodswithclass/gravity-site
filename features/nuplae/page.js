@@ -17,6 +17,12 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + view;
             }
 
+            var home = $("#pageHome");
+
+			var body = $("#body");
+
+			body.scrollTo(home,10);
+
    //          $scope.parseView = function (page) {
 
 			// 	var name = page.name;
