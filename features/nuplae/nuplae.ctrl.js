@@ -1,4 +1,4 @@
-nuplaeModule.controller('nuplaeCtrl', ['$scope', '$document', 'con', 'params', function ($scope, $document, con, params) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', function ($document, con, params) {
 
 	var self = this;
 

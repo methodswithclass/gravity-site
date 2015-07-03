@@ -1,12 +1,13 @@
 nuplaeModule.directive("option", function () {
 
-	return {
+	var directive = {
 		restrict:'E',
 		scope:{
 			info:'='
 		},
-		templateUrl:'features/nuplae/option.html'
-		//template:'<div>{{info.name}}</div>'
-	}
+		template:{{info.name}}
+	};
+
+	return directive;
 
 });
