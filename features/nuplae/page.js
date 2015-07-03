@@ -11,8 +11,6 @@ nuplaeModule.directive("page", function () {
 
 			$scope.getContentUrl = function() {
 
-				init();
-
 				var view =  $scope.info.page.view;
 
 				console.log(view);
@@ -20,7 +18,7 @@ nuplaeModule.directive("page", function () {
                 return 'features/nuplae/' + view;
             }
 
-            
+
 		}
 
 	}
