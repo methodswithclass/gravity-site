@@ -36,33 +36,37 @@ accelModule.factory("validate", function ($q) {
 		
 	}
 
-	var run = $q(function (resolve, reject) {
+	var run = function() {
 
-		window.addEventListener("devicemotion", function (e) {
+		return $q(function (resolve, reject) {
 
-			//console.log(e.accelerationIncludingGravity.x);
-			if (check < 5) {
-				if (e.accelerationIncludingGravity.x || e.acceleration.x) {
-					console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
-					setMotion(true);
+			window.addEventListener("devicemotion", function (e) {
+
+				//console.log(e.accelerationIncludingGravity.x);
+				if (check < 5) {
+					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
+						console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
+						setMotion(true);
+					}
+					else {
+						console.log("DeviceMotion is not supported");
+						setMotion(false);
+					}
+					check++;
 				}
-				else {
-					console.log("DeviceMotion is not supported");
-					setMotion(false);
+				else if (check == 5) {
+
+					checkSupported(resolve, reject);
+
+					check++;
+					
 				}
-				check++;
-			}
-			else if (check == 5) {
 
-				checkSupported(resolve, reject);
-
-				check++;
-				
-			}
+			});
 
 		});
 
-	});
+	}
 
 	
 	return {
