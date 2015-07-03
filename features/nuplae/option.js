@@ -4,8 +4,8 @@ nuplaeModule.directive("option", function () {
 		scope:{
 			info:'='
 		},
-		//templateUrl:'features/nuplae/option.html',
-		template:'<div>{{info.name}}</div>'
+		templateUrl:'features/nuplae/option.html'
+		//template:'<div>{{info.name}}</div>'
 	}
 
 });
