@@ -1,4 +1,4 @@
-nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document, con) {
+nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', 'global', function ($document, con, g) {
 
 	var self = this;
 
@@ -18,7 +18,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 	this.pages = [
 	{
 		name:"Calibrate",
-		index:self.calibrateIndex,
+		index:g.c.calibrateIndex,
 		page:{
 			back:"pink-back",
 			fore:"white-back",
@@ -31,7 +31,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 			}	
 		},
 		obj:{
-			shape:this.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -47,7 +47,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 	},
 	{
 		name:"Gravity", 
-		index:self.gravIndex,
+		index:g.c.gravIndex,
 		page:{
 			back:"green2-back",
 			fore:"white-back",
@@ -60,7 +60,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 			}	
 		},
 		obj:{
-			shape:this.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -76,7 +76,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 	},
 	{
 		name:"Float", 
-		index:self.floatIndex,
+		index:g.c.floatIndex,
 		page:{
 			back:"red2-back",
 			fore:"white-back",
@@ -89,7 +89,7 @@ nuplaeModule.controller('nuplae-ctrl', ['$document', 'con', function ($document,
 			}	
 		},
 		obj:{
-			shape:this.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},

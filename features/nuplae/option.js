@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", ['onTap', function (onTap) {
+nuplaeModule.directive("option", function () {
 
 	return {
 		scope:{
@@ -16,4 +16,4 @@ nuplaeModule.directive("option", ['onTap', function (onTap) {
 		}
 	}
 
-}]);
+});
