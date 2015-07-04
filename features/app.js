@@ -43,20 +43,7 @@ app.config(function($routeProvider, $stateProvider) {
 
               var timer = setTimeout(function () {
                   close();
-              }, 1000);
-
-              // var mc = new Hammer($(document)[0]);
-
-              // mc.on("tap", function (e) {
-              //    close();
-              // });
-
-              // $(document).on("keyup", function(e) {
-              //     if(e.keyCode == 27) {
-              //       $(document).off("keyup");
-              //       close();
-              //     }
-              // });
+              }, 2000);
 
           }],
 
