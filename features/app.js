@@ -21,4 +21,8 @@ app.config(function($routeProvider) {
       	templateUrl:'features/nuplae/checking.html',
         controller:'consoleCtrl'
       });
+      
+}).run(function ($location) {
+
+  $location("/checking");
 });

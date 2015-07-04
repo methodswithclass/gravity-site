@@ -14,7 +14,6 @@ consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', '
 	    var valid = "/valid";
 
 	    var isValid;
-	    $location.path(checking);
 
 	    if (!desktopdebug) {
 			console.log("validate");
