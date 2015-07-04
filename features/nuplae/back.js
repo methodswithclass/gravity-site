@@ -17,7 +17,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				text_press:"white",
 				text_save:"white"
 			}, function () {
-				nav.open(0, 500);
+				nav.open(0, 300);
 			});
 		}
 	}
