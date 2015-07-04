@@ -11,19 +11,16 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getimgloc = function (info) {
 
-				var left;
+				var style = {top:0, left:"5%"};
 				var rect = info.page.rect;
 
-				console.log("location " + rect.top + " " + rect.left);
+				//console.log("location " + rect.top + " " + rect.left);
 
 				if (rect.left == 0) {
-					left = 90;
-				}
-				else if (rect.left == "50%" || rect.left == "75%") {
-					left = 10;
+					style = {top:0, right:"5%"};
 				}
 
-				return {top:0, left:left + "%"};
+				return style;
 			}
 
 			$scope.getRotation = function (info) {
@@ -31,9 +28,9 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				var classes = "";
 				var rect = info.page.rect;
 
-				console.log("rotate " + rect.top + " " + rect.left);
+				//console.log("rotate " + rect.top + " " + rect.left);
 
-				if (rect.top == 0 && (rect.left == "50%" || rect.left == "75%")) {
+				if (rect.top == 0 && rect.left == 0) {
 					classes += ' flip-h';
 				}
 				else if (rect.top == "50%") {
