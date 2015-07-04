@@ -37,4 +37,4 @@ consoleModule.contoller("consoleCtrl", ['$document', '$location', 'validate', 'c
 
 	});
 
-})
+}]);
