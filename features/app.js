@@ -1,6 +1,6 @@
 var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
-var desktopdebug = false;
+var desktopdebug = true;
 
 var checking = "/checking";
 var invalid = "/invalid";
