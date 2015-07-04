@@ -2,21 +2,25 @@ var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModu
 
 var desktopdebug = true;
 
+var checking = "/checking";
+var invalid = "/invalid";
+var valid = "/valid";
+
 app.config(function($routeProvider) {
     $routeProvider.
 
-      when('/invalid', {
+      when(invalid, {
       
         templateUrl: 'features/nuplae/invalid.html'
 
       }).
-      when('/valid', {
+      when(valid, {
       
         templateUrl: 'features/nuplae/valid.html',
         controller:'nuplaeCtrl',
         controllerAs:'main'
       }).
-      otherwise("/checking", {
+      when(checking, {
 
       	templateUrl:'features/nuplae/checking.html'
       });
@@ -26,6 +30,9 @@ run(function ($location, validate) {
 	var self = this;
 
   if (!desktopdebug) {
+
+      $location.path(checking);
+
     	var isValid = validate.run();
 
     	isValid.then(	
@@ -37,7 +44,8 @@ run(function ($location, validate) {
     	});
   }
   else {
-      $location.path("/invalid");
+      //$location.path(invalid);
+      $location.path(checking);
   }
 
 });
