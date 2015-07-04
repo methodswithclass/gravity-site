@@ -1,10 +1,12 @@
 nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
 
 	return {
-		scope:true,
+		scope:{
+			game:'='
+		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(info)' ng-style='getimgloc(info)'><img src='/img/back.png' class='absolute width height corner'/></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width height corner'/></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
