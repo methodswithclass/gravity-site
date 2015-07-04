@@ -1,6 +1,9 @@
-consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'con', function ($document, $location, validate, con) {
+consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'events', 'con', function ($document, $location, validate, events, con) {
 
+	events.on("validate", function () {
 
+		
+	});
 
 
 	angular.element($document).ready(function () {
