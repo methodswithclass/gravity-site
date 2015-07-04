@@ -1,11 +1,5 @@
 var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
-var desktopdebug = false;
-
-var checking = "/checking";
-var invalid = "/invalid";
-var valid = "/valid";
-
 app.config(function($routeProvider) {
     $routeProvider.
 
@@ -25,27 +19,8 @@ app.config(function($routeProvider) {
       	templateUrl:'features/nuplae/checking.html'
       });
 }).
-run(function ($location, validate) {
+run(function ($location) {
 
-	var self = this;
-
-  if (!desktopdebug) {
-
-      $location.path(checking);
-
-    	var isValid = validate.run();
-
-    	isValid.then(	
-    	function (path) {
-    		$location.path(path);
-    	},
-    	function (path) {
-    		$location.path(path);
-    	});
-  }
-  else {
-      $location.path(invalid);
-      //$location.path(checking);
-  }
+  $location.path(checking);
 
 });
