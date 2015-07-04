@@ -6,8 +6,8 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 		scope:{
 			info:'='
 		},
-		template:"<div class='relative width90 height-150 margin-v-50 center border pointer white {{info.menu}}'>" +
-					"<div class='absolute center font-50 text-center'>{{info.name}}</div>" + 
+		template:"<div class='relative width90 height-200 margin-v-70 center border pointer white {{info.menu}}'>" +
+					"<div class='absolute center font-60 text-center'>{{info.name}}</div>" + 
 				 "</div>",
 		link:function ($scope, element, attr) {
 
