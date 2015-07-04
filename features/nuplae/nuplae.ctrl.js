@@ -16,7 +16,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 			console.log("loaded");
 
-			nav.open(elem, 10);
+			nav.open(0, 10);
 		}
 
 		var timer = setInterval(function () {
