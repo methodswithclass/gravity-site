@@ -1,10 +1,10 @@
-nuplaeModule.factory("params", function (nuplaeService) {
+nuplaeModule.factory("params", function (global) {
 
 
 	var games = [
 	{
 		name:"Calibrate",
-		index:nuplaeService.c.calibrateIndex,
+		index:global.c.calibrateIndex,
 		page:{
 			view:"setup.html",
 			back:"pink-back",
@@ -22,7 +22,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.circle,
+			shape:global.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -38,7 +38,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 	},
 	{
 		name:"Gravity", 
-		index:nuplaeService.c.gravIndex,
+		index:global.c.gravIndex,
 		page:{
 			view:"setup.html",
 			back:"green2-back",
@@ -56,7 +56,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.circle,
+			shape:global.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -72,7 +72,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 	},
 	{
 		name:"Float", 
-		index:nuplaeService.c.floatIndex,
+		index:global.c.floatIndex,
 		page:{
 			view:"setup.html",
 			back:"brown-back",
@@ -90,7 +90,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.circle,
+			shape:global.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -106,7 +106,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 	},
 	{
 		name:"Enemies", 
-		index:nuplaeService.c.enemiesIndex,
+		index:global.c.enemiesIndex,
 		page:{
 			view:"game.html",
 			back:"blue2-back",
@@ -124,7 +124,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.circle,
+			shape:global.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -140,7 +140,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 	},
 	{
 		name:"Balance", 
-		index:nuplaeService.c.balanceIndex,
+		index:global.c.balanceIndex,
 		page:{
 			view:"game.html",
 			back:"pink-back",
@@ -158,7 +158,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.circle,
+			shape:global.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -174,7 +174,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 	},
 	{
 		name:"Space",
-		index:nuplaeService.c.spaceIndex,
+		index:global.c.spaceIndex,
 		page:{
 			view:"game.html",
 			back:"white-back",
@@ -192,7 +192,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 			}	
 		},
 		obj:{
-			shape:nuplaeService.c.cross,
+			shape:global.c.cross,
 			size:100,
 			color:"red"
 		},
@@ -223,7 +223,7 @@ nuplaeModule.factory("params", function (nuplaeService) {
 
 	var home = {
 		name:"Home",
-		index:nuplaeService.c.homeIndex,
+		index:global.c.homeIndex,
 		page:{
 			view:"home.html",
 			back:"blue2-back",
