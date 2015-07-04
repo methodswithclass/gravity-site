@@ -59,7 +59,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClass(game, game.class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, game.class2)'></i></div>",
+		template:"<div ng-class='getClasses(game, game.class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, game.class2)'></i></div>",
 		link:link
 	}
 
