@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width height corner'/></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width10 height10 corner'/></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
