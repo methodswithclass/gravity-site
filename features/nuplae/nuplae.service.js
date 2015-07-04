@@ -5,7 +5,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		console.log("bind " + info.name);
 
 		var elem = $(el);
-		var inner = elem.find("#title" + info.name);
+		var inner = $("#title" + info.name);
 
 		var mc = new Hammer(elem[0]);
 
