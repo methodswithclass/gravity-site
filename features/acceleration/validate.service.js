@@ -6,6 +6,7 @@ accelModule.factory("validate", function ($q) {
 	var invalid = "/invalid";
 
 	var check = 0;
+	var minCheck = 50;
 	this.motion = false;
 	this.checkMotion = true;
 
@@ -56,8 +57,7 @@ accelModule.factory("validate", function ($q) {
 						setMotion(true);
 						check++;
 
-						if (check > 20) {
-
+						if (check > minCheck) {
 							checkSupported(resolve, reject);
 						}
 					}
@@ -66,7 +66,7 @@ accelModule.factory("validate", function ($q) {
 						setMotion(false);
 						check++;
 
-						if (check > 10) {
+						if (check > minCheck) {
 							checkSupported(resolve, reject);
 						}
 					}
