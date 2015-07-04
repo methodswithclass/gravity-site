@@ -1,10 +1,7 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
-	var buttons = [];
-
 	var buttonTouch = function (el, p, complete) {
 
-		var page = p.page;
 		var name = p.name;
 		var back_press = p.back_press;
 		var back_save = p.back_save;
