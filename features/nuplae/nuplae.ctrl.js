@@ -2,13 +2,6 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 
 	var self = this;
 
-	var desktopdebug = false;
-
-
-	var checking = "/checking";
-	var invalid = "/invalid";
-	var valid = "/valid";
-
 	self.pages = params.pages;
 
 	var init = function () {
@@ -41,9 +34,14 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 
 	}
 
-	init();
-
 	angular.element($document).ready(function () {
+
+		var desktopdebug = false;
+
+
+		var checking = "/checking";
+		var invalid = "/invalid";
+		var valid = "/valid";
 
 		con.register($("#consoleContainer"));
 
@@ -56,6 +54,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 	    	isValid.then(	
 	    	function (path) {
 	    		$location.path(path);
+	    		init();
 	    	},
 	    	function (path) {
 	    		$location.path(path);
