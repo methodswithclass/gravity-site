@@ -31,7 +31,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				//console.log("rotate " + rect.top + " " + rect.left);
 
 				if (rect.top == 0 && rect.left == 0) {
-					classes += ' fa-flip-horizontal';
+					classes += ' flip-h';
 				}
 				else if (rect.top == "50%") {
 					classes += ' rotate-counter-90';
