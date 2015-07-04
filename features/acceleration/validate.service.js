@@ -12,6 +12,8 @@ accelModule.factory("validate", function ($q) {
 
 	var setMotion = function (motion) {
 
+		console.log("validation " + motion);;
+
 		self.motion = motion;
 	}
 
@@ -23,6 +25,8 @@ accelModule.factory("validate", function ($q) {
 	var checkSupported = function (resolve, reject) {
 
 		self.checkMotion = false;
+
+		console.log("finished validating");
 
 
 		if(isMotion()) {
@@ -39,6 +43,8 @@ accelModule.factory("validate", function ($q) {
 
 		check = 0;
 		self.checkMotion = true;
+
+		console.log("validating");
 
 		return $q(function (resolve, reject) {
 
