@@ -34,7 +34,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 					classes += ' flip-h';
 				}
 				else if (rect.top == "50%") {
-					classes += ' rotate-counter-90';
+					classes += ' rotate-clock-90';
 				}
 
 				return classes;
