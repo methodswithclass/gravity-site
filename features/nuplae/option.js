@@ -2,7 +2,6 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 
 	return {
 		restrict:'E',
-		replace:true,
 		scope:{
 			info:'='
 		},
