@@ -26,7 +26,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			$scope.getClasses = function (info) {
 
 
-				var classes = 'fa fa-5x border noedge';
+				var classes = 'fa-5x border noedge';
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
