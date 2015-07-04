@@ -51,7 +51,24 @@ nuplaeModule.factory("nuplaeService", function (params) {
 	}
 
 	return {
-
+		c:{
+			playAsset:"img/play.png",
+			stopAsset:"img/stop.png",
+			backAsset:"img/back.png",
+			loadingAsset:"img/loading.png",
+			landClockwise:"landClockwise",
+			portrait:"portrait",
+			circle:"circle",
+			square:"square",
+			cross:"cross",
+			homeIndex:0,
+			calibrateIndex:1,
+			gravIndex:2,
+			floatIndex:3,
+			enemiesIndex:4,
+			balanceIndex:5,
+			spaceIndex:6
+    	},
 		init:init,
 		parseInput:parseInput
 	}
