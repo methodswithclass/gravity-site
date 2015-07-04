@@ -27,10 +27,10 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				var rect = info.rect;
 
 				if (rect.top == 0 && (rect.left == "50%" || rect.left == "75%")) {
-					classes += ' flip-h');
+					classes += ' flip-h';
 				}
 				else if (rect.top == "50%") {
-					classes += ' rotate-counter-90');
+					classes += ' rotate-counter-90';
 				}
 
 				return {classes};
