@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div class='absolute margin-10 width-50 height-50 pointer white-back ng-class=getRotation(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width height corner'/></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width height corner'/></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -23,9 +23,9 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				return style;
 			}
 
-			$scope.getRotation = function (info) {
+			$scope.getClasses = function (info) {
 
-				var classes = "";
+				var classes = "absolute margin-10 width-50 height-50 pointer white-back";
 				var rect = info.page.rect;
 
 				console.log("rotate " + rect.top + " " + rect.left);
@@ -37,7 +37,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 					classes += ' rotate-counter-90';
 				}
 
-				return classes;
+				return {classes};
 
 			}
 
