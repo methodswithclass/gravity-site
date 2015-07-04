@@ -1,15 +1,27 @@
 nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
 
+	var class1 = {
+		left:'absolute white-back rounded10 border padding-left',
+		right:'absolute white-back rounded10 border padding-right',
+		up:'absolute white-back rounded10 border padding-up'
+	}
+
+	var class2 = {
+		left:'fa fa-5x border fa-chevron-left',
+		right:'fa fa-5x border fa-chevron-right',
+		up:'fa fa-5x border fa-chevron-up'
+	}
+
 	return {
 		scope:{
 			game:'='
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div class='absolute white-back rounded10 border' ng-style='getimgloc(game)'><i ng-class='getClasses(game)'></i></div>",
+		template:"<div ng-class='getClass(game, class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, class2)'></i></div>",
 		link:function ($scope, element, attr) {
 
-			$scope.getimgloc = function (info) {
+			$scope.getimgloc = function (info, class-obj) {
 
 				var style = {top:"10px", left:"10px"};
 				var rect = info.page.rect;
@@ -23,10 +35,9 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				return style;
 			}
 
-			$scope.getClasses = function (info) {
+			$scope.getClasses = function (info, whichClass) {
 
 
-				var classes = 'fa fa-5x border';
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
@@ -34,17 +45,17 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				if (rect.top == 0) {
 
 					if (rect.left == 0) {
-						classes += ' fa-chevron-right padding-right';
+						return whichClass.left;
 					}
 					else {
-						classes += ' fa-chevron-left padding-left'
+						return whichClass.right;
 					}
 				}
 				else if (rect.top == "50%") {
-					classes += ' fa-chevron-up padding-up';
+					return whichClass.up;
 				}
 
-				return classes;
+				return whichClass.left;
 
 			}
 
