@@ -19,3 +19,19 @@
   padding: 15px;
   box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
 }
+
+.padding-left {
+
+    padding:10px 10px 10px 0;
+
+}
+
+.padding-right {
+
+    padding:10px 0 10px 10px 10px;
+}
+
+.padding-up {
+
+    padding:0 10px 10px 10px 10px;
+}
