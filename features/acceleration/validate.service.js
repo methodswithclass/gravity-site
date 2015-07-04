@@ -48,32 +48,47 @@ accelModule.factory("validate", function ($q) {
 
 		return $q(function (resolve, reject) {
 
-			window.addEventListener("devicemotion", function (e) {
+			if (window.DeviceMotionEvent) {
 
-				if (self.checkMotion) {
+				window.addEventListener("devicemotion", function (e) {
 
-					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
-						console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
-						setMotion(true);
-						check++;
+					if (self.checkMotion) {
 
-						if (check > minCheck) {
-							checkSupported(resolve, reject);
+						if (e.accelerationIncludingGavity || e.acceleration) {
+							console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
+							setMotion(true);
+							check++;
+
+							if (check > minCheck) {
+								checkSupported(resolve, reject);
+							}
 						}
-					}
-					else {
-						console.log("DeviceMotion is not supported");
-						setMotion(false);
-						check++;
+						else {
+							console.log("DeviceMotion is not supported");
+							setMotion(false);
+							check++;
 
-						if (check > minCheck) {
-							checkSupported(resolve, reject);
+							if (check > minCheck) {
+								checkSupported(resolve, reject);
+							}
 						}
+
 					}
+				});
 
-				}
+			}
+			else {
 
-			});
+				setMotion(false);
+
+				var wait = setTimeout(function() {
+
+					checkSupported(resolve, reject);
+
+				}, minCheck*2);
+				
+
+			}
 
 		});
 
