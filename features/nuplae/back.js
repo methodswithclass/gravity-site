@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['navigation', function (nav) {
+nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
 
 	return {
 		scope:{
