@@ -25,10 +25,10 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "absolute margin-10 width-50 height-50 pointer white-back rounded20";
+				var classes = "absolute margin-10 width-100 height-100 pointer gray-back rounded20";
 				var rect = info.page.rect;
 
-				console.log("rotate " + rect.top + " " + rect.left);
+				//console.log("rotate " + rect.top + " " + rect.left);
 
 				if (rect.top == 0 && rect.left == 0) {
 					classes += ' flip-h';
@@ -44,7 +44,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			nuServ.buttonTouch(element, {
 				name:"back",
 				back_press:"orange-back",
-				back_save:"white-back",
+				back_save:"gray-back",
 				add_class:"lowered"
 			}, function () {
 				nav.open(0, 300);
