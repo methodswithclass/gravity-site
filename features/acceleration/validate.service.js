@@ -39,7 +39,7 @@ accelModule.factory("validate", function ($q) {
 		
 	}
 
-	var invalidata = function () {
+	var invalidate = function () {
 
 		return $q(function (resolve, reject) {
 			reject(invalid);
