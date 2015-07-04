@@ -1,5 +1,30 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
+	var buttonTouch = function (el, parameters, info, complete) {
+
+		var elem = $(el);
+		var inner = elem.find("#title" + info.name);
+
+		var mc = new Hammer(elem[0]);
+
+		mc.get("press").set({time:1, thresshold:10});
+		
+		mc.on("press", function (e) {
+
+			elem.css({'background-color':'white-back'});
+			inner.css({'color':'black'});
+
+		});
+
+		mc.on("pressup", function (e) {
+
+			elem.css({'background-color':parameters.back_up});
+			inner.css({'color':'white'});
+
+			complete();
+		});
+
+	}
 
 	var checkCoords = function (to, i) {
 
@@ -65,6 +90,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 	}
 
 	return {
+		buttonTouch:buttonTouch,
 		parseInput:parseInput
 	}
 });
