@@ -6,7 +6,7 @@ accelModule.factory("validate", function ($q) {
 	var invalid = "/invalid";
 
 	var check = 0;
-	var minCheck = 50;
+	var minCheck = 20;
 	this.motion = false;
 	this.checkMotion = true;
 
