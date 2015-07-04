@@ -21,7 +21,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		template:"<div ng-class='getClass(game, class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, class2)'></i></div>",
 		link:function ($scope, element, attr) {
 
-			$scope.getimgloc = function (info, class-obj) {
+			$scope.getimgloc = function (info) {
 
 				var style = {top:"10px", left:"10px"};
 				var rect = info.page.rect;
