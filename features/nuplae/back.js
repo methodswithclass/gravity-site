@@ -25,7 +25,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "fa fa-chevron-left fa-4x";
+				var classes = "fa fa-chevron-left fa-4x white-back";
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
@@ -34,7 +34,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 					classes += ' fa-flip-horizontal';
 				}
 				else if (rect.top == "50%") {
-					classes += ' fa-flip-horizontal fa-rotate-90';
+					classes += ' rotate-counter-90';
 				}
 
 				return classes;
@@ -43,9 +43,9 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			nuServ.buttonTouch(element, {
 				name:"back",
-				back_press:"orange-back",
-				back_save:"gray-back",
-				add_class:"lowered"
+				back_press:"white-back",
+				back_save:"white-back",
+				add_class:"fa-inverse"
 			}, function () {
 				nav.open(0, 300);
 			});
