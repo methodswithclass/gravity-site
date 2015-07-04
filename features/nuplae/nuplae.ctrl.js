@@ -4,6 +4,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 
 	var desktopdebug = false;
 
+
 	var checking = "/checking";
 	var invalid = "/invalid";
 	var valid = "/valid";

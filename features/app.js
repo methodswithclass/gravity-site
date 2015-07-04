@@ -1,5 +1,9 @@
 var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
+var checking = "/checking";
+var invalid = "/invalid";
+var valid = "/valid";
+
 app.config(function($routeProvider) {
     $routeProvider.
 
@@ -21,6 +25,6 @@ app.config(function($routeProvider) {
 }).
 run(function ($location) {
 
-  $location.path("/checking");
+  $location.path(checking);
 
 });
