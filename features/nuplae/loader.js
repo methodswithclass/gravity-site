@@ -45,9 +45,14 @@ nuplaeModule.factory("loader", function (params) {
 		console.log("load " + names[5]);
 	}
 
+	// loader[names[6]] = function () {
+
+	// 	console.log("")
+	// }
+
 	var load = function (i) {
 
-		loaders[names[i]]();
+		if (names[i] && loaders[names[i]]) loaders[names[i]]();
 	}
 
 	return {
