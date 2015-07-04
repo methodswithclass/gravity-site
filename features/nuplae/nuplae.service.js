@@ -17,23 +17,17 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 		var changeButton = function () {
 
-			elem.removeClass(back_save).addClass(back_press);
-			elem.removeClass(text_save).addClass(text_press);
+			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
+			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
+			if (add_class) elem.addClass(add_class);
 
-			if (add_class) {
-				elem.addClass(add_class);
-			}
 		}
 
 		var returnButton = function () {
 
-			elem.removeClass(back_press).addClass(back_save);
-			elem.removeClass(text_press).addClass(text_save);
-
-			if (add_class) {
-
-				elem.removeClass(add_class);
-			}
+			if (back_press && back_save) elem.removeClass(back_press).addClass(back_save);
+			if (text_press && text_save) elem.removeClass(text_press).addClass(text_save);
+			if (add_class) elem.removeClass(add_class);
 		}
 
 		mc.get("press").set({time:1, threshold:1});

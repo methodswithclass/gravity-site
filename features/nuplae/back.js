@@ -3,7 +3,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 	return {
 		restrict:'E',
 		replace:true,
-		template:"<img src='/img/back.png' class='absolute width-50 height-auto pointer ng-class=getRotation(info)' ng-style='{getimgloc(info)}'/>",
+		template:"<img src='/img/back.png' class='absolute width-50 height-auto pointer gray-back ng-class=getRotation(info)' ng-style='{getimgloc(info)}'/>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -41,9 +41,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				name:"back",
 				back_press:"orange-back",
 				back_save:"gray_back",
-				add_class:"lowered",
-				text_press:"white",
-				text_save:"white"
+				add_class:"lowered"
 			}, function () {
 				nav.open(0, 300);
 			});
