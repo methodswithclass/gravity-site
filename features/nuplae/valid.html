@@ -7,7 +7,7 @@
 
 			<div ng-repeat="page in main.pages">
 				<div class="absolute width25 height50 cutoff border {{page.page.back}}" id="{{'page' + page.name}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }">
-					<div class="absolute inset5 center {{page.page.fore}} cutoff">
+					<div class="absolute inset1 center {{page.page.fore}} cutoff">
 						<page view="{{page.page.view}}" info="page"></page>
 					</div>
 				</div>
