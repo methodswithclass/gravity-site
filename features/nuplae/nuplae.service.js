@@ -2,6 +2,8 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 	var buttonTouch = function (el, parameters, info, complete) {
 
+		console.log("press button");
+
 		var elem = $(el);
 		var inner = elem.find("#title" + info.name);
 
