@@ -16,6 +16,8 @@ nuplaeModule.factory("navigation", function (nuplaeService, loader) {
 			onAfter:function(target, settings) {
 				body.removeClass("scroll").addClass("cutoff");
 
+				console.log(result.index);
+
 				loader.load(result.index);
 			}
 		});
