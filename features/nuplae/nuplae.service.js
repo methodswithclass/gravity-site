@@ -3,13 +3,14 @@ nuplaeModule.factory("nuplaeService", function (params) {
 	var buttonTouch = function (el, p, complete) {
 
 		var page = p.page;
+		var name = p.name;
 		var back_press = p.back_press;
 		var back_save = p.back_save;
 		var text_press = p.text_press;
 		var text_save = p.text_save;
 		var add_class = p.add_class;
 
-		console.log("bind " + page.name);
+		console.log("bind " + page ? page.name : name);
 
 		var elem = $(el);
 

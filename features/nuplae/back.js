@@ -12,7 +12,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			var info = $scope.info;
 
 			nuServ.buttonTouch(element, {
-				page:info,
+				name:"back",
 				back_press:"pink_back",
 				back_save:"gray_back",
 				add_class:"lowered",
