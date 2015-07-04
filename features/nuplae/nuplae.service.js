@@ -1,6 +1,6 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
-	var buttonTouch = function (el, parameters, info, complete) {
+	var buttonTouch = function (el, info, complete) {
 
 		console.log("press button");
 
@@ -13,15 +13,15 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		
 		mc.on("press", function (e) {
 
-			elem.css({'background-color':'white-back'});
-			inner.css({'color':'black'});
+			elem.removeClass(info.menu).addClass("white-back");
+			inner.removeClass("white").addClass('black');
 
 		});
 
 		mc.on("pressup", function (e) {
 
-			elem.css({'background-color':parameters.back_up});
-			inner.css({'color':'white'});
+			elem.removeClass("white-back").addClass(info.menu);
+			inner.removeClass("black").addClass("white");
 
 			complete();
 		});

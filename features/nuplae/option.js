@@ -15,7 +15,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 
 			console.log(info.name);
 
-			nuServ.buttonTouch(element, {back_up:info.menu}, info, function () {
+			nuServ.buttonTouch(element, info, function () {
 
 				nav.open(info, 500);
 			});
