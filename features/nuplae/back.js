@@ -1,17 +1,14 @@
 nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
 
 	return {
-		scope:{
-			game:'='
-		},
 		restrict:'E',
 		replace:true,
 		template:"<div class='absolute bottom-100 width80 height-100 gray-back hcenter pointer white'><div class='absolute center text-center font-40'>Back</div></div>",
 		link:function ($scope, element, attr) {
 
 			nuServ.buttonTouch(element, {
-				name:game.name,
-				page:game,
+				name:info.name,
+				page:info,
 				back_press:"orange-back",
 				back_save:"gray_back",
 				add_class:"lowered",
