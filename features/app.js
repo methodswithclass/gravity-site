@@ -66,7 +66,9 @@ app.config(function($routeProvider, $stateProvider) {
             "modal": {
               templateUrl: "features/nuplae/valid-modal.html"
             }
-        });
+      }
+      
+      });
 
 }).run(function ($location) {
 
