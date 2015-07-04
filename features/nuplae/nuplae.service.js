@@ -1,7 +1,7 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
 
-	var checkCoors = function (to, i) {
+	var checkCoords = function (to, i) {
 
 		return to.top == params.pages[i].page.rect.top && to.left == params.pages[i].page.rect.left;
 	}
@@ -14,25 +14,25 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 		if (input >= 0) {
 
-			page = params.pages[to];
+			page = params.pages[input];
 			name = page.name;
 			elem = $("#page" + name);
 		}
-		else if (to.name && to.name.length > 0) {
+		else if (input.name && input.name.length > 0) {
 
-			page = to;
-			name = to.name;
+			page = input;
+			name = input.name;
 			elem = $("#page" + name);
 		}
 		else {
 			console.log("is coord or jquery");
-			console.log(to);
-			if (to instanceof jQuery) elem = to;
+			console.log(input);
+			if (input instanceof jQuery) elem = input;
 			else {
 
 				for (i in params.pages) {
 
-					if (checkCoords(to, i)) {
+					if (checkCoords(input, i)) {
 						page = params.pages[i];
 						name = page.name;
 						elem = $("#page" + name); 
