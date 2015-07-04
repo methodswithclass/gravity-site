@@ -1,38 +1,16 @@
-nuplaeModule.factory("navigation", function (params) {
+nuplaeModule.factory("navigation", function (global) {
 
 	var body;
 
 	var open = function (to, duration) {
 
-		var elem;
-		var name;
-
-		//console.log(to);
-
-		if (to >= 0) {
-
-			name = params.pages[to].name;
-			console.log("is index " + name);
-			elem = $("#page" + name);
-		}
-		else if (to.name && to.name.length > 0) {
-
-			name = to.name;
-
-			console.log("is page " + name);
-			elem = $("#page" + name);
-		}
-		else {
-			console.log("is coord or jquery");
-			console.log(to);
-			elem = to;
-		}
+		var result = global.parseInput(to);
 
 		body = $("#body");
 
 		body.removeClass("cutoff").addClass("scroll")
 
-		body.scrollTo(elem, {
+		body.scrollTo(result.elem, {
 			duration:duration,
 			queue:true,
 			onAfter:function(target, settings) {

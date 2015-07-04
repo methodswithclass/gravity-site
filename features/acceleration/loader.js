@@ -1,0 +1,1 @@
+accelModule.factory("")
