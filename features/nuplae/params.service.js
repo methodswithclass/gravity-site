@@ -1,9 +1,9 @@
 nuplaeModule.factory("params", function (global) {
 
 	var class1 = {
-		left:'absolute white-back rounded10 padding-left',
-		right:'absolute white-back rounded10 padding-right',
-		up:'absolute white-back rounded10 padding-up'
+		left:'absolute white-back border rounded10 padding-left',
+		right:'absolute white-back border rounded10 padding-right',
+		up:'absolute white-back border rounded10 padding-up'
 	}
 
 	var class2 = {
