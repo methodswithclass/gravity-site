@@ -1,5 +1,5 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'con', 'params', 'navigation', function ($location, validate, $document, con, params, nav) {
+nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'params', 'navigation', function ($location, validate, $document, params, nav) {
 
 	var self = this;
 
@@ -37,10 +37,6 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 
 	init();
 
-	angular.element($document).ready(function () {
-
-		con.register($("#consoleContainer"));
-
-	});
+	
 
 }]);
