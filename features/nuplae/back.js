@@ -25,7 +25,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "absolute margin-10 width-50 height-50 pointer white-back";
+				var classes = "absolute margin-10 width-50 height-50 pointer white-back rounded20";
 				var rect = info.page.rect;
 
 				console.log("rotate " + rect.top + " " + rect.left);
