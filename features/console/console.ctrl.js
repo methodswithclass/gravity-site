@@ -1,4 +1,4 @@
-consoleModule.contoller("consoleCtrl", ['$document', '$location', 'validate', 'con', function ($document, $location, validate, con) {
+consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'con', function ($document, $location, validate, con) {
 
 
 
