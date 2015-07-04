@@ -45,10 +45,10 @@ nuplaeModule.factory("loader", function (params) {
 		console.log("load " + names[5]);
 	}
 
-	// loader[names[6]] = function () {
+	loaders[names[6]] = function () {
 
-	// 	console.log("")
-	// }
+		console.log("load " + names[6]);
+	}
 
 	var load = function (i) {
 
