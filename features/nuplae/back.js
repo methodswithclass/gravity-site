@@ -28,10 +28,10 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			if (rect.top == 0) {
 
 				if (rect.left == 0) {
-					return whichClass.left;
+					return whichClass.right;
 				}
 				else {
-					return whichClass.right;
+					return whichClass.left;
 				}
 			}
 			else if (rect.top == "50%") {
