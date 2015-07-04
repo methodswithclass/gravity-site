@@ -24,9 +24,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 		var mc = new Hammer(elem[0]);
 
-		mc.get("press").set({time:1, thresshold:10});
-		
-		mc.on("press", function (e) {
+		var changeButton = function () {
 
 			elem.removeClass(back_save).addClass(back_press);
 			elem.removeClass(text_save).addClass(text_press);
@@ -34,10 +32,9 @@ nuplaeModule.factory("nuplaeService", function (params) {
 			if (add_class) {
 				elem.addClass(add_class);
 			}
+		}
 
-		});
-
-		mc.on("pressup tap", function (e) {
+		var returnButton = function () {
 
 			elem.removeClass(back_press).addClass(back_save);
 			elem.removeClass(text_press).addClass(text_save);
@@ -46,9 +43,27 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 				elem.removeClass(add_class);
 			}
+		}
+
+		mc.get("press").set({time:1, thresshold:10});
+		
+		mc.on("press", function (e) {
+
+			changeButton();
+
+		});
+
+		mc.on("pressup tap", function (e) {
+
+			returnButton();
 
 			complete();
 		});
+
+		mc.on("pan", function (e) {
+
+			returnButton();
+		})
 
 	}
 
