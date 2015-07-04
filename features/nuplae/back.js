@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><i class='fa fa-5x'></i></div>",
+		template:"<div class='absolute padding-10 white-back rounded10' ng-style='getimgloc(game)'><i ng-class='getClasses(game)'></i></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -25,7 +25,8 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "absolute padding-10 white-back rounded10";
+
+				var classes = 'fa fa-5x';
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
