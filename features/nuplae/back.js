@@ -37,7 +37,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 					classes += ' rotate-counter-90';
 				}
 
-				return {classes};
+				return classes;
 
 			}
 
