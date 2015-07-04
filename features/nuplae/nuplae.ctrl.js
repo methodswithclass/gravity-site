@@ -1,3 +1,4 @@
+
 nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'con', 'params', 'navigation', function ($location, validate, $document, con, params, nav) {
 
 	var self = this;
@@ -41,16 +42,9 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 	var invalid = "/invalid";
 	var valid = "/valid";
 
-	this.isValid;
+	var isValid;
 
-	this.isValid.then(	
-	function (path) { //valid
-		$location.path(path);
-		init();
-	},
-	function (path) { //invalid
-		$location.path(path);
-	});
+
 
 	angular.element($document).ready(function () {
 
@@ -59,13 +53,26 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 		con.register($("#consoleContainer"));
 
 		if (!desktopdebug) {
-
-			self.isValid = validate.run();
+			console.log("validate");
+			isValid = validate.run();
 		}
 		else {
-			self.isValid = validate.invalidate();
+			isValid = validate.invalidate();
 			//$location.path(checking);
 		}
+
+		isValid.then(	
+		function (path) { //valid
+			console.log(path);
+			$location.path(path);
+			init();
+		},
+		function (path) { //invalid
+			console.log(path);
+			$location.path(path);
+		});
+
+		
 
 	});
 
