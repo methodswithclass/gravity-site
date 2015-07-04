@@ -23,14 +23,14 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getRotation = function (info) {
 
-				var classes = "absolute margin-10 width-50 height-50 pointer white-back";
+				var classes = ['absolute', 'margin-10', 'width-50', 'height-50', 'pointer', 'white-back'];
 				var rect = info.rect;
 
 				if (rect.top == 0 && (rect.left == "50%" || rect.left == "75%")) {
-					classes += " flip-h";
+					classes.push('flip-h');
 				}
 				else if (rect.top == "50%") {
-					classes += " rotate-counter-90";
+					classes.push('rotate-counter-90');
 				}
 
 				return classes;
