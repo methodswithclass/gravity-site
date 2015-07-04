@@ -13,6 +13,8 @@ nuplaeModule.factory("loader", function (params) {
 		}
 	}
 
+	getNames();
+
 	loaders[names[0]] = function () {
 
 		console.log("load " + names[0]);
