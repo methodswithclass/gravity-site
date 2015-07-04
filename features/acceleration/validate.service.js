@@ -30,13 +30,7 @@ accelModule.factory("validate", function ($q) {
 			resolve(valid);
 		}
 		else {
-
-			if (mobiledebug) {
-				resolve(valid);
-			}
-			else {
-				reject(invalid);
-			}
+			reject(invalid);
 		}
 		
 	}
