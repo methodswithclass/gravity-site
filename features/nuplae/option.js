@@ -15,7 +15,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 
 			nuServ.buttonTouch(element, {
 				page:info,
-				back_press:"gray_back",
+				back_press:"gray-back",
 				back_save:info.menu,
 				add_class:"lowered",
 				text_press:"white",

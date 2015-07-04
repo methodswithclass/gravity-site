@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div class='absolute bottom-100 width-100 height-50 gray-back hcenter pointer white'><div class='absolute center text-center font-40'>Back</div></div>",
+		template:"<div class='absolute bottom-100 width80 height-100 gray-back hcenter pointer white'><div class='absolute center text-center font-40'>Back</div></div>",
 		link:function ($scope, element, attr) {
 
 			nuServ.buttonTouch(element, {
