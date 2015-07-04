@@ -12,7 +12,7 @@ nuplaeModule.factory("navigation", function (nuplaeService, loader) {
 
 		body.scrollTo(result.elem, {
 			duration:duration,
-			queue:true,
+			queue:false,
 			onAfter:function(target, settings) {
 				body.removeClass("scroll").addClass("cutoff");
 
