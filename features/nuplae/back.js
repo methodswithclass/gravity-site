@@ -6,18 +6,18 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><i class='fa fa-chevron-left fa-4x'></i></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><i class='fa fa-chevron-left fa-5x'></i></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
 
-				var style = {top:0, left:"5px"};
+				var style = {top:0, left:"10px"};
 				var rect = info.page.rect;
 
 				//console.log("location " + rect.top + " " + rect.left);
 
 				if (rect.left == 0) {
-					style = {top:0, right:"5px"};
+					style = {top:0, right:"10px"};
 				}
 
 				return style;
