@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div class='absolute' ng-style='getimgloc(game)'><i ng-class='getClasses(game)'></i></div>",
+		template:"<div class='absolute white-back' ng-style='getimgloc(game)'><i ng-class='getClasses(game)'></i></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -25,7 +25,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "fa fa-chevron-left fa-4x white-back";
+				var classes = "fa fa-chevron-left fa-4x";
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
@@ -43,7 +43,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			nuServ.buttonTouch(element, {
 				name:"back",
-				back_press:"white-back",
+				back_press:"black-back",
 				back_save:"white-back",
 				add_class:"fa-inverse"
 			}, function () {
