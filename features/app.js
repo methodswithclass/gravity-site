@@ -1,6 +1,6 @@
 var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
-var mobiledebug = false;
+var desktopdebug = true;
 
 app.config(function($routeProvider) {
     $routeProvider.
@@ -25,15 +25,19 @@ run(function ($location, validate) {
 
 	var self = this;
 
-	var isValid = validate.run();
+  if (!desktopdebug) {
+    	var isValid = validate.run();
 
-	isValid.then(	
-	function (path) {
-		$location.path(path);
-	},
-	function (path) {
-		$location.path(path);
-	});
-
+    	isValid.then(	
+    	function (path) {
+    		$location.path(path);
+    	},
+    	function (path) {
+    		$location.path(path);
+    	});
+  }
+  else {
+      $location.path("/invalid");
+  }
 
 });
