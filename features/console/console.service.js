@@ -14,8 +14,6 @@ consoleModule.factory("con", function() {
 
 		conCont = thisConsole;
 		thisCon = conCont.prev();
-
-		thisCon
 	}
 		
 	var refresh = function () {
