@@ -6,7 +6,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><i class='fa fa-chevron-left fa-5x'></i></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><i class='fa fa-5x'></i></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -25,16 +25,22 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "absolute padding-10 white-back rounded10 border";
+				var classes = "absolute padding-10 white-back rounded10";
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
 
-				if (rect.top == 0 && rect.left == 0) {
-					classes += ' flip-h';
+				if (rect.top == 0) {
+
+					if (rect.left == 0) {
+						classes += ' fa-chevron-right';
+					}
+					else {
+						classes += ' fa-chevron-left'
+					}
 				}
 				else if (rect.top == "50%") {
-					classes += ' rotate-clock-90';
+					classes += ' fa-chevron-up';
 				}
 
 				return classes;
