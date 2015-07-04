@@ -21,6 +21,6 @@ app.config(function($routeProvider) {
 }).
 run(function ($location) {
 
-  $location.path(checking);
+  $location.path("/checking");
 
 });
