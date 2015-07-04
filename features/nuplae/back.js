@@ -1,16 +1,6 @@
 nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
 
-	var class1 = {
-		left:'absolute white-back rounded10 border padding-left',
-		right:'absolute white-back rounded10 border padding-right',
-		up:'absolute white-back rounded10 border padding-up'
-	}
 
-	var class2 = {
-		left:'fa fa-5x border fa-chevron-left',
-		right:'fa fa-5x border fa-chevron-right',
-		up:'fa fa-5x border fa-chevron-up'
-	}
 
 	return {
 		scope:{
@@ -20,6 +10,18 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		replace:true,
 		template:"<div ng-class='getClass(game, class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, class2)'></i></div>",
 		link:function ($scope, element, attr) {
+
+			$scope.class1 = {
+				left:'absolute white-back rounded10 border padding-left',
+				right:'absolute white-back rounded10 border padding-right',
+				up:'absolute white-back rounded10 border padding-up'
+			}
+
+			$scope.class2 = {
+				left:'fa fa-5x border fa-chevron-left',
+				right:'fa fa-5x border fa-chevron-right',
+				up:'fa fa-5x border fa-chevron-up'
+			}
 
 			$scope.getimgloc = function (info) {
 
