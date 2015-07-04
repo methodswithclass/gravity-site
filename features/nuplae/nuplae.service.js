@@ -10,7 +10,17 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		var text_save = p.text_save;
 		var add_class = p.add_class;
 
-		console.log("bind " + page ? page.name : name);
+		if (page) {
+			console.log("bind " + page);
+		}
+		else if (name) {
+			console.log("bind " + name);
+		}
+		else {
+			console.log("bind button");
+		}
+
+		
 
 		var elem = $(el);
 
