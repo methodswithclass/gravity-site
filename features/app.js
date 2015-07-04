@@ -41,18 +41,22 @@ app.config(function($routeProvider, $stateProvider) {
                  $state.go("Default");
               }
 
-              var mc = new Hammer($(document)[0]);
+              var timer = setTimeout(function () {
+                  close();
+              }, 1000);
 
-              mc.on("tap", function (e) {
-                 close();
-              });
+              // var mc = new Hammer($(document)[0]);
 
-              $(document).on("keyup", function(e) {
-                  if(e.keyCode == 27) {
-                    $(document).off("keyup");
-                    close();
-                  }
-              });
+              // mc.on("tap", function (e) {
+              //    close();
+              // });
+
+              // $(document).on("keyup", function(e) {
+              //     if(e.keyCode == 27) {
+              //       $(document).off("keyup");
+              //       close();
+              //     }
+              // });
 
           }],
 
