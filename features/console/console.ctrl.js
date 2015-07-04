@@ -1,7 +1,8 @@
-consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'events', 'con', function ($document, $location, validate, events, con) {
+consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'events', 'con', '$state', function ($document, $location, validate, events, con, $state) {
 
-	events.on("validate", function () {
+	events.on("valid", function () {
 
+		$state.go("Modal.valid");
 		
 	});
 
@@ -31,6 +32,7 @@ consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', '
 	    function (path) { //valid
 			console.log(path);
 			$location.path(path);
+			events.dispatch("valid");
 	    },
 	    function (path) { //invalid
 			console.log(path);
