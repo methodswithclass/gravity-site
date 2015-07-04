@@ -1,4 +1,4 @@
-nuplaeModule.directive("page", ['navigation', function (nav) {
+nuplaeModule.directive("page", function () {
 
 	return {
 		restrict:'E',
@@ -17,4 +17,4 @@ nuplaeModule.directive("page", ['navigation', function (nav) {
 		}
 
 	}
-}]);
+});

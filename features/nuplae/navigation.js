@@ -1,10 +1,10 @@
-nuplaeModule.factory("navigation", function (global) {
+nuplaeModule.factory("navigation", function (nuplaeService) {
 
 	var body;
 
 	var open = function (to, duration) {
 
-		var result = global.parseInput(to);
+		var result = nuplaeService.parseInput(to);
 
 		body = $("#body");
 
