@@ -13,8 +13,6 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 
 			var info = $scope.info;
 
-			console.log(info.name);
-
 			nuServ.buttonTouch(element, info, function () {
 
 				nav.open(info, 500);
