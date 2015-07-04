@@ -14,6 +14,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 			var info = $scope.info;
 
 			nuServ.buttonTouch(element, {
+				name:info.name,
 				page:info,
 				back_press:"orange-back",
 				back_save:info.menu,

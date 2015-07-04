@@ -1,5 +1,7 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
+	var buttons = [];
+
 	var buttonTouch = function (el, p, complete) {
 
 		var page = p.page;
@@ -10,15 +12,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		var text_save = p.text_save;
 		var add_class = p.add_class;
 
-		if (page) {
-			console.log("bind " + page.name);
-		}
-		else if (name) {
-			console.log("bind " + name);
-		}
-		else {
-			console.log("bind button");
-		}
+		console.log("bind " + name);
 
 		var elem = $(el);
 
@@ -64,12 +58,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		$(window).on("touchmove", function (e) {
 
 			returnButton();
-		})
-
-		// mc.on("panleft panright panup pandown", function (e) {
-
-		// 	returnButton();
-		// })
+		});
 
 	}
 

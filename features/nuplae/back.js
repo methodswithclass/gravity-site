@@ -2,7 +2,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 	return {
 		scope:{
-			info:'='
+			game:'='
 		},
 		restrict:'E',
 		replace:true,
@@ -10,7 +10,8 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		link:function ($scope, element, attr) {
 
 			nuServ.buttonTouch(element, {
-				name:"back",
+				name:game.name,
+				page:game,
 				back_press:"orange-back",
 				back_save:"gray_back",
 				add_class:"lowered",
