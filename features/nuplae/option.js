@@ -15,10 +15,10 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 
 			nuServ.buttonTouch(element, {
 				page:info,
-				back_press:"white-back",
+				back_press:"orange-back",
 				back_save:info.menu,
 				add_class:"lowered",
-				text_press:"black",
+				text_press:"white",
 				text_save:"white"
 			}, function () {
 				nav.open(info, 500);

@@ -11,10 +11,10 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			nuServ.buttonTouch(element, {
 				name:"back",
-				back_press:"pink-back",
+				back_press:"orange-back",
 				back_save:"gray_back",
 				add_class:"lowered",
-				text_press:"black",
+				text_press:"white",
 				text_save:"white"
 			}, function () {
 				nav.open(0, 500);
