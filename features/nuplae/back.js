@@ -6,13 +6,13 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		},
 		restrict:'E',
 		replace:true,
-		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width10 height10 corner'/></div>",
+		template:"<div ng-class='getClasses(game)' ng-style='getimgloc(game)'><img src='/img/back.png' class='absolute width height corner'/></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
 
 				var left;
-				var rect = info.rect;
+				var rect = info.page.rect;
 
 				console.log("location " + rect.top + " " + rect.left);
 
@@ -29,7 +29,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			$scope.getRotation = function (info) {
 
 				var classes = 'absolute margin-10 width-50 height-50 pointer white-back';
-				var rect = info.rect;
+				var rect = info.page.rect;
 
 				console.log("rotate " + rect.top + " " + rect.left);
 
