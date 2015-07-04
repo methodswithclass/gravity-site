@@ -13,7 +13,7 @@ nuplaeModule.directive("option", ['navigation', function (nav) {
 
 			$scope.tapped = function (info) {
 
-				console.log("tapped " + info.name);
+				//console.log("tapped " + info.name);
 
 				nav.open(info, 500);
 			}

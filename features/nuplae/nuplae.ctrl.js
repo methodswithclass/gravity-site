@@ -8,7 +8,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 		var name = params.pages[0].name;
 
-		console.log(name);
+		//console.log(name);
 
 		var elem;
 
