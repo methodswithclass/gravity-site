@@ -20,6 +20,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 		$scope.getClasses = function (info, whichClass) {
 
+			//classes in params service on data
 
 			var rect = info.page.rect;
 
