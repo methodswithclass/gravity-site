@@ -43,7 +43,7 @@ app.config(function($routeProvider, $stateProvider) {
 
               var timer = setTimeout(function () {
                   close();
-              }, 2000);
+              }, 1500);
 
           }],
 
