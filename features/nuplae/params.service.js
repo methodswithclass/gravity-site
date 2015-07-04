@@ -243,7 +243,7 @@ nuplaeModule.factory("params", function (global) {
 
 	for (i in games) {
 
-		homeData[index] = {
+		homeData[i] = {
 			name:games[i].name,
 			index:games[i].index,
 			menu:games[i].page.menu,
