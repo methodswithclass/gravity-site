@@ -13,7 +13,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				name:"back",
 				back_press:"pink_back",
 				back_save:"gray_back",
-				add_class:"lowered",
+				add_class:"lowered-white",
 				text_press:"black",
 				text_save:"white"
 			}, function () {

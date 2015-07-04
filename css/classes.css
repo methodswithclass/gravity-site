@@ -411,6 +411,10 @@ a.blue {
 	box-shadow: 0 0 10px 0 #424242 inset;		
 }
 
+.lowered-white {
+	box-shadow: 0 0 10px 0 white inset;		
+}
+
 .raised {
 	box-shadow: 5px 5px 10px 0 #424242;	
 	z-index:100;

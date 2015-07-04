@@ -17,7 +17,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 				page:info,
 				back_press:"gray-back",
 				back_save:info.menu,
-				add_class:"lowered",
+				add_class:"lowered-white",
 				text_press:"white",
 				text_save:"white"
 			}, function () {
