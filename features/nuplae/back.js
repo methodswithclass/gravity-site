@@ -11,13 +11,13 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getimgloc = function (info) {
 
-				var style = {top:0, left:"5%"};
+				var style = {top:0, left:0};
 				var rect = info.page.rect;
 
 				//console.log("location " + rect.top + " " + rect.left);
 
 				if (rect.left == 0) {
-					style = {top:0, right:"5%"};
+					style = {top:0, right:0};
 				}
 
 				return style;
