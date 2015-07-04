@@ -45,7 +45,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 			}
 		}
 
-		mc.get("press").set({time:50, thresshold:5});
+		mc.get("press").set({time:50, threshold:10});
 		//mc.get("pan").set({direction: Hammer.DIRECTION_ALL});
 		
 		mc.on("press", function (e) {
