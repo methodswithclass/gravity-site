@@ -7,6 +7,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		var back_save = p.back_save;
 		var text_press = p.text_press;
 		var text_save = p.text_save;
+		var add_class = p.add_class;
 
 		console.log("bind " + page.name);
 
@@ -21,12 +22,21 @@ nuplaeModule.factory("nuplaeService", function (params) {
 			elem.removeClass(back_save).addClass(back_press);
 			elem.removeClass(text_save).addClass(text_press);
 
+			if (add_class) {
+				elem.addClass(add_class);
+			}
+
 		});
 
 		mc.on("pressup", function (e) {
 
 			elem.removeClass(back_press).addClass(back_save);
 			elem.removeClass(text_press).addClass(text_save);
+
+			if (add_class) {
+
+				elem.removeClass(add_class);
+			}
 
 			complete();
 		});

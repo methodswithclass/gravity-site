@@ -407,7 +407,7 @@ a.blue {
 	box-shadow: 0 0 10px 0 #424242;	
 }
 
-.inside {
+.lowered {
 	box-shadow: 0 0 10px 0 #424242 inset;		
 }
 
