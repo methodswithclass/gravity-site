@@ -26,7 +26,7 @@ app.config(function($routeProvider, $stateProvider) {
         controller:'consoleCtrl'
       });
 
-      $stateProvider.state("Default", {}).
+    $stateProvider.state("Default", {}).
       state("Modal", {
           views:{
               "modal": {
@@ -59,13 +59,13 @@ app.config(function($routeProvider, $stateProvider) {
           abstract: true
   
       }).
-      state("Modal.validate", {
+      state("Modal.valid", {
           views:{
               "modal": {
                   templateUrl: "nuplae/valid-modal.html"
               }
           }
-        });
+      });
 
 }).run(function ($location) {
 

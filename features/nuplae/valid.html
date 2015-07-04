@@ -10,6 +10,9 @@
 					<div class="absolute inset1 center {{page.page.fore}} cutoff">
 						<page view="{{page.page.view}}" info="page"></page>
 					</div>
+
+					<div ui-view="modal" ng-show="{{page.name == 'Home'}}" autoscroll="false"></div>
+
 				</div>
 			</div>
 		</div>
