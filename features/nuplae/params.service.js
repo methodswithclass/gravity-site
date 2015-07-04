@@ -1,15 +1,15 @@
 nuplaeModule.factory("params", function (global) {
 
 	var class1 = {
-		left:'absolute white-back rounded10 border padding-left',
-		right:'absolute white-back rounded10 border padding-right',
-		up:'absolute white-back rounded10 border padding-up'
+		left:'absolute white-back rounded10 padding-left',
+		right:'absolute white-back rounded10 padding-right',
+		up:'absolute white-back rounded10 padding-up'
 	}
 
 	var class2 = {
-		left:'fa fa-5x border fa-chevron-left',
-		right:'fa fa-5x border fa-chevron-right',
-		up:'fa fa-5x border fa-chevron-up'
+		left:'fa fa-5x fa-chevron-left',
+		right:'fa fa-5x fa-chevron-right',
+		up:'fa fa-5x fa-chevron-up'
 	}
 
 	var games = [
