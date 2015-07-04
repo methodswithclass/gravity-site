@@ -18,13 +18,13 @@ app.config(function($routeProvider) {
         controller:'nuplaeCtrl',
         controllerAs:'main'
       }).
-      when(checking, {
+      otherwise(checking, {
 
       	templateUrl:'features/nuplae/checking.html'
       });
 }).
 run(function ($location) {
 
-  $location.path(checking);
+  //$location.path(checking);
 
 });
