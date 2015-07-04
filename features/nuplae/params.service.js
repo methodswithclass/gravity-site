@@ -1,5 +1,16 @@
 nuplaeModule.factory("params", function (global) {
 
+	var class1 = {
+		left:'absolute white-back rounded10 border padding-left',
+		right:'absolute white-back rounded10 border padding-right',
+		up:'absolute white-back rounded10 border padding-up'
+	}
+
+	var class2 = {
+		left:'fa fa-5x border fa-chevron-left',
+		right:'fa fa-5x border fa-chevron-right',
+		up:'fa fa-5x border fa-chevron-up'
+	}
 
 	var games = [
 	{
@@ -208,19 +219,6 @@ nuplaeModule.factory("params", function (global) {
 	}
 	];
 
-
-	var homeData = [];
-
-	for (i in games) {
-
-		homeData[i] = {
-			name:games[i].name,
-			index:games[i].index,
-			menu:games[i].page.menu,
-			rect:games[i].page.rect
-		};
-	}
-
 	var home = {
 		name:"Home",
 		index:global.c.homeIndex,
@@ -238,11 +236,31 @@ nuplaeModule.factory("params", function (global) {
 				radius:0
 			}
 		}
+		
 	}
 
-	home.pages = homeData;
+	var homeData = [];
 
-	games.unshift(home);
+	var makeOptions = function (i) {
+
+		homeData[i] = {
+			name:games[i].name,
+			index:games[i].index,
+			menu:games[i].page.menu,
+			rect:games[i].page.rect
+		};
+	}
+
+	games.map(function (value, index) {
+
+		console.log(value.name + " " + index);
+	});
+
+	
+
+	// home.pages = homeData;
+
+	// games.unshift(home);
 
 	return {
 		pages:games
