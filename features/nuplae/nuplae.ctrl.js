@@ -34,7 +34,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'con', 'params', 'navigation
 
 	}
 
-	init();    
+	init();
 
 	angular.element($document).ready(function () {
 

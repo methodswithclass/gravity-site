@@ -20,15 +20,13 @@ nuplaeModule.factory("nuplaeService", function (params) {
 			console.log("bind button");
 		}
 
-		
-
 		var elem = $(el);
 
 		var mc = new Hammer(elem[0]);
 
 		mc.get("press").set({time:1, thresshold:10});
 		
-		mc.on("press", function (e) {
+		mc.on("press tap", function (e) {
 
 			elem.removeClass(back_save).addClass(back_press);
 			elem.removeClass(text_save).addClass(text_press);
