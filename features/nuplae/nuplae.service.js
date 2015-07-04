@@ -26,7 +26,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 		mc.get("press").set({time:1, thresshold:10});
 		
-		mc.on("press tap", function (e) {
+		mc.on("press", function (e) {
 
 			elem.removeClass(back_save).addClass(back_press);
 			elem.removeClass(text_save).addClass(text_press);
@@ -37,7 +37,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 		});
 
-		mc.on("pressup", function (e) {
+		mc.on("pressup tap", function (e) {
 
 			elem.removeClass(back_press).addClass(back_save);
 			elem.removeClass(text_press).addClass(text_save);
