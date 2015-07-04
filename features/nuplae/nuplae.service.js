@@ -1,11 +1,16 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
-	var buttonTouch = function (el, info, complete) {
+	var buttonTouch = function (el, p, complete) {
 
-		console.log("bind " + info.name);
+		var page = p.page;
+		var back_press = p.back_press;
+		var back_save = p.back_save;
+		var text_press = p.text_press;
+		var text_save = p.text_save;
+
+		console.log("bind " + page.name);
 
 		var elem = $(el);
-		var inner = $("#title" + info.name);
 
 		var mc = new Hammer(elem[0]);
 
@@ -13,15 +18,15 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		
 		mc.on("press", function (e) {
 
-			elem.removeClass(info.menu).addClass("white-back");
-			inner.removeClass("white").addClass('black');
+			elem.removeClass(back_save).addClass(back_press);
+			elem.removeClass(text_save).addClass(text_press);
 
 		});
 
 		mc.on("pressup", function (e) {
 
-			elem.removeClass("white-back").addClass(info.menu);
-			inner.removeClass("black").addClass("white");
+			elem.removeClass(back_press).addClass(back_save);
+			elem.removeClass(text_press).addClass(text_save);
 
 			complete();
 		});

@@ -6,15 +6,20 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 		scope:{
 			info:'='
 		},
-		template:"<div class='relative width90 height-150 margin-v-50 center border pointer {{info.menu}}'>" +
-					"<div ng-attr-id='{{'title' + info.name}}' class='absolute center font-50 text-center white'>{{info.name}}</div>" + 
+		template:"<div class='relative width90 height-150 margin-v-50 center border pointer white {{info.menu}}'>" +
+					"<div class='absolute center font-50 text-center'>{{info.name}}</div>" + 
 				 "</div>",
 		link:function ($scope, element, attr) {
 
 			var info = $scope.info;
 
-			nuServ.buttonTouch(element, info, function () {
-
+			nuServ.buttonTouch(element, {
+				page:info,
+				back_press:"white_back",
+				back_save:info.menu,
+				text_press:"black",
+				text_save:"white"
+			}, function () {
 				nav.open(info, 500);
 			});
 
