@@ -250,8 +250,8 @@ nuplaeModule.factory("params", function (global) {
 			rect:value.page.rect
 		};
 
-		value.class1 = class1;
-		value.class2 = class2;
+		games[index].class1 = class1;
+		games[index].class2 = class2;
 
 	});
 
