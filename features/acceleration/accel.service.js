@@ -1,5 +1,0 @@
-accelModule.factory("accelService", function() {
-
-	
-
-});
