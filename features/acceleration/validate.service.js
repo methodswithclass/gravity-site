@@ -104,7 +104,8 @@ accelModule.factory("validate", function ($q) {
 	
 	return {
 
-		run:run
+		run:run,
+		invalidate:invalidate
 	}
 
 
