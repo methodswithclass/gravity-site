@@ -11,7 +11,7 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		var add_class = p.add_class;
 
 		if (page) {
-			console.log("bind " + page);
+			console.log("bind " + page.name);
 		}
 		else if (name) {
 			console.log("bind " + name);
