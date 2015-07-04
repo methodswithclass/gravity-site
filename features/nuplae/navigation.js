@@ -1,4 +1,4 @@
-nuplaeModule.factory("navigation", function (nuplaeService) {
+nuplaeModule.factory("navigation", function (nuplaeService, loader) {
 
 	var body;
 
@@ -15,6 +15,8 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 			queue:true,
 			onAfter:function(target, settings) {
 				body.removeClass("scroll").addClass("cutoff");
+
+				loader.load(result.index);
 			}
 		});
 	}
