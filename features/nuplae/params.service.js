@@ -241,19 +241,19 @@ nuplaeModule.factory("params", function (global) {
 
 	var homeData = [];
 
-	games.map(function (value, index) {
+	for (i in games) {
 
 		homeData[index] = {
-			name:value.name,
-			index:value.index,
-			menu:value.page.menu,
-			rect:value.page.rect
+			name:games[i].name,
+			index:games[i].index,
+			menu:games[i].page.menu,
+			rect:games[i].page.rect
 		};
 
-		games[index].class1 = class1;
-		games[index].class2 = class2;
+		games[i].class1 = class1;
+		games[i].class2 = class2; 
 
-	});
+	};
 
 	home.pages = homeData;
 
