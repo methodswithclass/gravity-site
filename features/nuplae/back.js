@@ -25,7 +25,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getClasses = function (info) {
 
-				var classes = "fa fa-chevron-left fa-4x";
+				var classes = "fa fa-chevron-left fa-4x padding-5";
 				var rect = info.page.rect;
 
 				//console.log("rotate " + rect.top + " " + rect.left);
