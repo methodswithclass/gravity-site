@@ -1,34 +1,5 @@
-nuplaeModule.factory("nuplaeService", function (params, navigation) {
+nuplaeModule.factory("nuplaeService", function (params) {
 
-	var init = function () {
-
-		var name = params.pages[0].name;
-
-		console.log(name);
-
-		var elem;
-
-		var complete = function (elem) {
-
-			console.log("loaded");
-
-			navigation.open(elem, 10);
-		}
-
-		var timer = setInterval(function () {
-
-			elem = $("#page" + name);
-
-			//console.log(elem[0]);
-
-			if (elem[0]) {
-				clearInterval(timer);
-				complete(elem);
-			}
-
-		}, 10);
-
-	}
 
 	var checkCoors = function (to, i) {
 
@@ -84,4 +55,8 @@ nuplaeModule.factory("nuplaeService", function (params, navigation) {
 		init:init,
 		parseInput:parseInput
 	}
-})
+});
+
+
+
+
