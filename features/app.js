@@ -41,7 +41,7 @@ app.config(function($routeProvider, $stateProvider) {
                  $state.go("Default");
               }
 
-              var mc = new Hammer(document);
+              var mc = new Hammer("#body");
 
               mc.on("tap", function (e) {
                  close();
