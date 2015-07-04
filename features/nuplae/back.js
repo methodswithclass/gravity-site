@@ -3,7 +3,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 	return {
 		restrict:'E',
 		replace:true,
-		template:"<img src='/img/back.png' class='absolute width-50 height-auto pointer gray-back ng-class=getRotation(info)' ng-style='{getimgloc(info)}'/>",
+		template:"<div ng-class='getClasses(info)' ng-style='getimgloc(info)'><img src='/img/back.png' class='absolute width height corner'/></div>",
 		link:function ($scope, element, attr) {
 
 			$scope.getimgloc = function (info) {
@@ -23,24 +23,24 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 			$scope.getRotation = function (info) {
 
-				var rotate = "";
+				var classes = "absolute margin-10 width-50 height-50 pointer white-back";
 				var rect = info.rect;
 
 				if (rect.top == 0 && (rect.left == "50%" || rect.left == "75%")) {
-					rotate = "flip-h";
+					classes += " flip-h";
 				}
 				else if (rect.top == "50%") {
-					rotate = "rotate-counter-90";
+					classes += " rotate-counter-90";
 				}
 
-				return rotate;
+				return classes;
 
 			}
 
 			nuServ.buttonTouch(element, {
 				name:"back",
 				back_press:"orange-back",
-				back_save:"gray_back",
+				back_save:"white-back",
 				add_class:"lowered"
 			}, function () {
 				nav.open(0, 300);
