@@ -44,8 +44,8 @@ run(function ($location, validate) {
     	});
   }
   else {
-      $location.path(invalid);
-      //$location.path(checking);
+      //$location.path(invalid);
+      $location.path(checking);
   }
 
 });
