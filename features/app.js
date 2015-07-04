@@ -41,7 +41,7 @@ app.config(function($routeProvider, $stateProvider) {
                  $state.go("Default");
               }
 
-              var mc = new Hammer($("#modal-back")[0]);
+              var mc = new Hammer($(document)[0]);
 
               mc.on("tap", function (e) {
                  close();
