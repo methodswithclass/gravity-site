@@ -30,7 +30,7 @@ app.config(function($routeProvider, $stateProvider) {
       state("Modal", {
           views:{
               "modal": {
-                  templateUrl: "modals/modal.html"
+                  templateUrl: "modal/modal.html"
               }
           },
           onEnter: ["$state", function($state) {
