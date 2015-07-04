@@ -15,6 +15,11 @@ consoleModule.factory("con", function() {
 		conCont = thisConsole;
 		thisCon = conCont.prev();
 	}
+
+	var isVisible = function () {
+
+		return thisCon && thisCon.is(":visible");
+	}
 		
 	var refresh = function () {
 			
@@ -41,7 +46,7 @@ consoleModule.factory("con", function() {
 
 	var log = function (text) {
 		
-		if (thisCon && thisCon.is(":visible")) {
+		if (isVisible()) {
 
 			history[history.length] = count++ + "&nbsp; &nbsp;" + text;
 			
@@ -73,6 +78,7 @@ consoleModule.factory("con", function() {
 
 	return {
 		register:register,
+		isVisible:isVisible,
 		log:log
 	}
 
