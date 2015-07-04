@@ -18,7 +18,7 @@ app.config(function($routeProvider) {
         controller:'nuplaeCtrl',
         controllerAs:'main'
       }).
-      otherwise(checking, {
+      when(checking, {
 
       	templateUrl:'features/nuplae/checking.html'
       });

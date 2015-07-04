@@ -43,12 +43,12 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'co
 		var invalid = "/invalid";
 		var valid = "/valid";
 
+		$location.path(checking);
+
 		con.register($("#consoleContainer"));
 
 		if (!desktopdebug) {
-
-	      $location.path(checking);
-
+			
 	    	var isValid = validate.run();
 
 	    	isValid.then(	
