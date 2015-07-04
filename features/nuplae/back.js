@@ -28,7 +28,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 				var classes = "";
 				var rect = info.page.rect;
 
-				//console.log("rotate " + rect.top + " " + rect.left);
+				console.log("rotate " + rect.top + " " + rect.left);
 
 				if (rect.top == 0 && rect.left == 0) {
 					classes += ' flip-h';
