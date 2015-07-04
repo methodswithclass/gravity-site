@@ -2,7 +2,7 @@ consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', '
 
 	events.on("valid", function () {
 
-		$state.go("Modal.valid");
+		$state.transitionTo("Modal.valid");
 		
 	});
 

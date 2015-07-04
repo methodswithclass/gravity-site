@@ -27,13 +27,14 @@ app.config(function($routeProvider, $stateProvider) {
       });
 
     $stateProvider.state("Default", {}).
-      state("Modal", {
-          views:{
-              "modal": {
-                  templateUrl: "modal/modal.html"
-              }
-          },
-          onEnter: ["$state", function($state) {
+      state({
+        name:"Modal", 
+        views:{
+            "modal": {
+              templateUrl: "features/modal/modal.html"
+            }
+        },
+        onEnter: ["$state", function($state) {
               
               var close = function () {
 
@@ -59,13 +60,13 @@ app.config(function($routeProvider, $stateProvider) {
           abstract: true
   
       }).
-      state("Modal.valid", {
-          views:{
-              "modal": {
-                  templateUrl: "nuplae/valid-modal.html"
-              }
-          }
-      });
+      state({
+        name:"Modal.valid",
+        views:{
+            "modal": {
+              templateUrl: "features/nuplae/valid-modal.html"
+            }
+        });
 
 }).run(function ($location) {
 
