@@ -241,26 +241,23 @@ nuplaeModule.factory("params", function (global) {
 
 	var homeData = [];
 
-	var makeOptions = function (i) {
-
-		homeData[i] = {
-			name:games[i].name,
-			index:games[i].index,
-			menu:games[i].page.menu,
-			rect:games[i].page.rect
-		};
-	}
-
 	games.map(function (value, index) {
 
-		console.log(value.name + " " + index);
+		homeData[index] = {
+			name:value.name,
+			index:value.index,
+			menu:value.page.menu,
+			rect:value.page.rect
+		};
+
+		value.class1 = class1;
+		value.class2 = class2;
+
 	});
 
-	
+	home.pages = homeData;
 
-	// home.pages = homeData;
-
-	// games.unshift(home);
+	games.unshift(home);
 
 	return {
 		pages:games
