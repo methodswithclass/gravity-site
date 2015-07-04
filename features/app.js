@@ -1,6 +1,6 @@
 var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
-var desktopdebug = true;
+var desktopdebug = false;
 
 var checking = "/checking";
 var invalid = "/invalid";
@@ -44,8 +44,8 @@ run(function ($location, validate) {
     	});
   }
   else {
-      //$location.path(invalid);
-      $location.path(checking);
+      $location.path(invalid);
+      //$location.path(checking);
   }
 
 });
