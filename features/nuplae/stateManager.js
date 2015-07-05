@@ -1,6 +1,5 @@
 nuplaeModule.factory("stateManager", function ($stateProvider, validate, $location, $state) {
 
-
 	$stateProvider.state("Default", {}).
       state({
         name:"Modal", 

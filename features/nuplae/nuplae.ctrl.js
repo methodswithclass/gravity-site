@@ -1,5 +1,5 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'params', 'events', 'navigation', function ($location, validate, $document, params, events, nav) {
+nuplaeModule.controller('nuplaeCtrl', ['params', 'navigation', 'stateManager', function (params, nav, stateManager) {
 
 	var self = this;
 
