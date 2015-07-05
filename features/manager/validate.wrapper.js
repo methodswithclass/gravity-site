@@ -5,31 +5,15 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 
 		console.log("run validate wrapper");
 
+		var isValid;
+
+		var desktopdebug = false;
 		var isRegistered = false;
-
-		var timer = setInterval(function () {
-
-			isRegistered = events.dispatch("console");
-
-			console.log(isRegistered);
-
-			if (isRegistered) {
-
-				clearInterval(timer);
-				timer = null;
-			}
-
-
-		}, 10);
-
-		if (isRegistered) {
-
-			var desktopdebug = false;
-			var checking = "/checking";
-			var invalid = "/invalid";
-			var valid = "/valid";
-
-			var isValid;
+		var checking = "/checking";
+		var invalid = "/invalid";
+		var valid = "/valid";
+		
+		var proceed = function () {
 
 			if (!desktopdebug) {
 				console.log("validate");
@@ -42,9 +26,6 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 
 			isValid.then( 
 			function (path) { //valid
-
-
-
 				console.log("is valid");
 				$location.path(path);
 				
@@ -56,6 +37,22 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 			});
 
 		}
+
+		var timer = setInterval(function () {
+
+			isRegistered = events.dispatch("console");
+
+			console.log(isRegistered);
+
+			if (isRegistered) {
+
+				clearInterval(timer);
+				timer = null;
+				proceed();
+			}
+
+
+		}, 10);
 
 	}
 
