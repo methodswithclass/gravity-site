@@ -1,4 +1,4 @@
-managerModule.controller("mangerCtrl", ['routeService', 'stateService', '$location', function (routeService, stateService, $location) {
+managerModule.controller("managerCtrl", ['routeService', 'stateService', function (routeService, stateService) {
 
 	events.on("console", function () {
 

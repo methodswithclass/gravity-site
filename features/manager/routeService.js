@@ -1,31 +1,5 @@
-managerModule.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
-
-
-	var checking = "/checking";
-	var invalid = "/invalid";
-	var valid = "/valid";
-
-
-	var setup = function () {
-
-		 $routeProvider.
-	      when(invalid, {
-	  
-	        templateUrl: 'features/nuplae/invalid.html'
-	      }).
-	      when(valid, {
-	      
-	        templateUrl: 'features/nuplae/valid.html',
-	        controller:'nuplaeCtrl',
-	        controllerAs:'main'
-	      }).
-	      when(checking, {
-
-	      	templateUrl:'features/nuplae/checking.html',
-	        controller:'consoleCtrl'
-	      });
-
-	}
+managerModule.factory("validateService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
+	
 
 	var validate = function () {
 		var isRegistered = false;
