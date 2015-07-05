@@ -1,4 +1,4 @@
-nuplaeModule.factory("stateManager", function ($stateProvider, validate, $location, $state) {
+app.factory("stateService", function ($stateProvider, validate, $location, $state) {
 
 	var setup = function () {
 
@@ -12,7 +12,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	              templateUrl: "features/modal/modal.html"
 	            }
 	        },
-	        onEnter: ["$state", function($state) {
+	        onEnter: function() {
 	              
 	              var close = function () {
 
@@ -23,7 +23,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	                  close();
 	              }, 1000);
 
-	          }],
+	          },
 
 	          
 	          abstract: true
@@ -39,7 +39,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	      }).
 	      state({
 	      	name:"Page",
-	      	onEnter:["$state", function($state) {
+	      	onEnter:function() {
 	              
 	              var close = function () {
 
@@ -50,7 +50,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	                  close();
 	              }, 1000);
 
-	          }],
+	          },
 
 	          abstract:true
 	      }).
@@ -72,56 +72,6 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	      state({
 	      	name:"Page.Space"
 	      });
-
-
-	    var isRegistered = false;
-
-		var timer = setInterval(function () {
-
-			isRegistered = events.dispatch("console");
-
-			console.log(isRegistered);
-
-			if (isRegistered) {
-
-				clearInterval(timer);
-				timer = null;
-			}
-
-
-		}, 10);
-
-		if (isRegistered) {
-
-			var desktopdebug = false;
-			var checking = "/checking";
-			var invalid = "/invalid";
-			var valid = "/valid";
-
-			var isValid;
-
-			if (!desktopdebug) {
-				console.log("validate");
-				isValid = validate.run();
-			}
-			else {
-				isValid = validate.invalidate();
-				//$location.path(checking);
-			}
-
-			isValid.then( 
-			function (path) { //valid
-				console.log(path);
-				$location.path(path);
-				
-				$state.transitionTo("Modal.valid");
-			},
-			function (path) { //invalid
-				console.log(path);
-				$location.path(path);
-			});
-
-		}
 
 	}
 
