@@ -26,7 +26,7 @@ managerModule.factory("states", ['$state', function ($state) {
 
 	var define = function () {
 
-		console.log("setup");
+		console.log("define states");
 
 		managerModule.stateProvider.state("Default", {}).
 	      state({
