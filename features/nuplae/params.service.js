@@ -23,9 +23,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"pink-back",
 			button:"transparent",
 			backButton:{
-				loc:function () {
-					return {top:"10px", right:"10px"}
-				},
+				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
 				icon:'fa-chevron-right'
 			},
