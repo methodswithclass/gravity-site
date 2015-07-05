@@ -1,4 +1,4 @@
-managerModule.factory("validate.wrapper", ['validate.service', '$location', '$state', 'events', function ($locator, $state, events, validate) {
+managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'validate.service', function ($locator, $state, events, validate) {
 
 
 	var run = function () {
