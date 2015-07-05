@@ -5,8 +5,16 @@ consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', '
 
 		con.register($("#consoleContainer"));
 
-		events.dispatch("valid");
-		
+		while (true) {
+
+			try {
+				events.dispatch("valid");
+				break;
+			}	
+			catch (e) {
+
+			}	
+		}
 	});
 
 }]);

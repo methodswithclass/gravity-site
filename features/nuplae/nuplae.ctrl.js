@@ -68,6 +68,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$location', 'validate', '$document', 'pa
 			console.log(path);
 			$location.path(path);
 	    });
+
+	    return true;
 		
 		
 	});
