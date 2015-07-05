@@ -4,7 +4,7 @@ var checking = "/checking";
 var invalid = "/invalid";
 var valid = "/valid";
 
-app.run(function ($route) {
+app.config(function ($route) {
 
 
 });
