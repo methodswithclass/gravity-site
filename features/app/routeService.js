@@ -5,10 +5,7 @@ app.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 
 	var invalid = "/invalid";
 	var valid = "/valid";
 
-
-	var setup = function () {
-
-		 $routeProvider.
+	$routeProvider.
 	      when(invalid, {
 	  
 	        templateUrl: 'features/nuplae/invalid.html'
@@ -24,8 +21,6 @@ app.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 
 	      	templateUrl:'features/nuplae/checking.html',
 	        controller:'consoleCtrl'
 	      });
-
-	}
 
 	var validate = function () {
 		var isRegistered = false;
@@ -80,7 +75,6 @@ app.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 
 	}
 
 	return {
-		setup:setup,
 		validate:validate
 	}
 

@@ -6,10 +6,6 @@ var valid = "/valid";
 
 app.run(function ($location, routeService, stateManager) {
 
-    routeService.setup();
-
-    stateService.setup();
-
     $location.path(checking);
 
     routeService.validate();
