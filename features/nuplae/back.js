@@ -3,45 +3,35 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 	var link = function ($scope, element, attr) {
 
+		// $scope.getClasses = function (info, whichClass) {
 
-		$scope.getimgloc = function (info) {
+		// 	//classes in params service on data
 
-			var style = {top:"10px", left:"10px"};
-			var rect = info.page.rect;
+		// 	var rect = info.page.rect;
 
-			//console.log("location " + rect.top + " " + rect.left);
+		// 	//console.log("rotate " + rect.top + " " + rect.left);
 
-			if (rect.left == 0) {
-				style = {top:"10px", right:"10px"};
-			}
+		// 	if (rect.top == 0) {
 
-			return style;
-		}
+		// 		if (rect.left == 0) {
+		// 			return whichClass.right;
+		// 		}
+		// 		else {
+		// 			return whichClass.left;
+		// 		}
+		// 	}
+		// 	else if (rect.top == "50%") {
+		// 		return whichClass.up;
+		// 	}
 
-		$scope.getClasses = function (info, whichClass) {
+		// 	return whichClass.left;
 
-			//classes in params service on data
+		// }
 
-			var rect = info.page.rect;
+		var game = $scope.game;
 
-			//console.log("rotate " + rect.top + " " + rect.left);
-
-			if (rect.top == 0) {
-
-				if (rect.left == 0) {
-					return whichClass.right;
-				}
-				else {
-					return whichClass.left;
-				}
-			}
-			else if (rect.top == "50%") {
-				return whichClass.up;
-			}
-
-			return whichClass.left;
-
-		}
+		element.find("#outer" + game.name).addClass(game.padding);
+		element.find("#icon" + game.name).addClass(game.icon);
 
 		nuServ.buttonTouch(element, {
 			name:"back",
@@ -59,8 +49,7 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 			game:'='
 		},
 		restrict:'E',
-		replace:true,
-		template:"<div ng-class='getClasses(game, game.class1)' ng-style='getimgloc(game)'><i ng-class='getClasses(game, game.class2)'></i></div>",
+		templateUrl:"features/nuplae/back.html",
 		link:link
 	}
 

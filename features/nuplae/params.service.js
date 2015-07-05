@@ -1,15 +1,15 @@
 nuplaeModule.factory("params", function (global) {
 
 	var class1 = {
-		left:'absolute white-back border rounded10 padding-left',
-		right:'absolute white-back border rounded10 padding-right',
+		left:' padding-left',
+		right:'absolute white-back border rounded10 ',
 		up:'absolute white-back border rounded10 padding-up'
 	}
 
 	var class2 = {
-		left:'fa fa-5x fa-chevron-left',
+		left:'',
 		right:'fa fa-5x fa-chevron-right',
-		up:'fa fa-5x fa-chevron-up'
+		up:'fa fa-5x '
 	}
 
 	var games = [
@@ -22,6 +22,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			menu:"pink-back",
 			button:"transparent",
+			backButton:{
+				loc:{top:"10px", right:"10px"},
+				padding:'padding-right',
+				icon:'fa-chevron-right'
+			},
 			rect:{
 				top:0,
 				left:0
@@ -56,6 +61,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			menu:"green2-back",
 			button:"transparent",
+			backButton:{
+				loc:{top:"10px", left:"10px"},
+				padding:'padding-left',
+				icon:'fa-chevron-left'
+			},
 			rect:{
 				top:0,
 				left:"50%"
@@ -90,6 +100,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			menu:"brown-back",
 			button:"transparent",
+			backButton:{
+				loc:{top:"10px", left:"10px"},
+				padding:'padding-left',
+				icon:'fa-chevron-left'
+			},
 			rect:{
 				top:0,
 				left:"75%"
@@ -124,6 +139,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			menu:"blue2-back",
 			button:"transparent",
+			backButton:{
+				loc:{top:"10px", right:"10px"},
+				padding:'padding-right',
+				icon:'fa-chevron-up'
+			},
 			rect:{
 				top:"50%",
 				left:0
@@ -158,6 +178,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"white-back",
 			menu:"pink-back",
 			button:"transparent",
+			backButton:{
+				loc:{top:"10px", left:"10px"},
+				padding:'padding-left',
+				icon:'fa-chevron-up'
+			},
 			rect:{
 				top:"50%",
 				left:"25%"
@@ -192,6 +217,11 @@ nuplaeModule.factory("params", function (global) {
 			fore:"black-back",
 			menu:"brown-back",
 			button:"white-back",
+			backButton:{
+				loc:{top:"10px", left:"10px"},
+				padding:'padding-left',
+				icon:'fa-chevron-up'
+			},
 			rect:{
 				top:"50%",
 				left:"50%"
@@ -249,9 +279,6 @@ nuplaeModule.factory("params", function (global) {
 			menu:games[i].page.menu,
 			rect:games[i].page.rect
 		};
-
-		games[i].class1 = class1;
-		games[i].class2 = class2; 
 
 	};
 
