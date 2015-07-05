@@ -75,6 +75,8 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 
 		validate = events.dispatch("console");
 
+		console.log(validate);
+
 		if (validate) {
 
 			clearInterval(timer);
