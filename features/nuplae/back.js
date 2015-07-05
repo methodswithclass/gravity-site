@@ -30,9 +30,9 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 
 		var game = $scope.game;
 
-		angular.element(element).ready(function() {
+		angular.element(document).ready(function() {
 
-			
+
 			element.find("#outer" + game.name).addClass(game.padding);
 			element.find("#icon" + game.name).addClass(game.icon);
 		});
