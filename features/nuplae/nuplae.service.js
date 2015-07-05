@@ -1,5 +1,7 @@
 nuplaeModule.factory("nuplaeService", function (params) {
 
+	var dist = 0;
+
 	var buttonTouch = function (el, p, complete) {
 
 		var name = p.name;
@@ -35,20 +37,34 @@ nuplaeModule.factory("nuplaeService", function (params) {
 		
 		mc.on("press", function (e) {
 
+			dist = 0;
+
 			changeButton();
 
 		});
 
 		mc.on("pressup tap", function (e) {
 
+			dist = 0;
+
 			returnButton();
 
 			complete();
 		});
 
+		// mc.on("panup pandown", function (e) {
+
+		// 	if (e.y > 10) returnButton();
+
+		// });
+
+		
+
 		$(window).on("touchmove", function (e) {
 
-			returnButton();
+			dist++;
+
+			if (dist > 10) returnButton();
 		});
 
 	}

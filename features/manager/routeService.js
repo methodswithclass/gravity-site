@@ -1,4 +1,4 @@
-app.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
+managerModule.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
 
 
 	var checking = "/checking";

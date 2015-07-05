@@ -1,21 +1,29 @@
-var app = angular.module('nuplae', ['sharedModule', 'nuplaeModule', 'consoleModule', 'accelModule', 'ngRoute', 'ui.router']);
+var app = angular.module('nuplae', ['sharedModule', 'managerModule', 'nuplaeModule', 'consoleModule', 'accelModule','ngRoute', 'ui.router']);
 
 var checking = "/checking";
 var invalid = "/invalid";
 var valid = "/valid";
 
-app.config(function ($route) {
 
+app.config(function ($routeProvider) {
 
-});
+    $routeProvider.
+        when(invalid, {
+    
+          templateUrl: 'features/nuplae/invalid.html'
+        }).
+        when(valid, {
+        
+          templateUrl: 'features/nuplae/valid.html',
+          controller:'nuplaeCtrl',
+          controllerAs:'main'
+        }).
+        when(checking, {
 
-app.run(function ($location, routeService, stateManager) {
-
-    routeService.setup();
-
-    stateService.setup();
+          templateUrl:'features/nuplae/checking.html',
+          controller:'managerCtrl'
+        });
+}).run(function ($location) {
 
     $location.path(checking);
-
-    routeService.validate();
 });

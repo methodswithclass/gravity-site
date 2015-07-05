@@ -1,0 +1,1 @@
+var managerModule = angular.module("managerModule", ['sharedModule', 'nuplaeModule', 'consoleModule', 'accelModule', 'ngRoute', 'ui.router']);
