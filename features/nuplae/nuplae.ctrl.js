@@ -37,4 +37,6 @@ nuplaeModule.controller('nuplaeCtrl', ['params', 'navigation', 'stateManager', f
 
 	init();
 
+	stateManager.setup();
+
 }]);
