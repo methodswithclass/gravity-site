@@ -1,4 +1,4 @@
-managerModule.controller("managerCtrl", ['$document', 'validate', 'states', 'events', 'con', function ($document, validate, states, events, con) {
+managerModule.controller("managerCtrl", ['$document', 'validate.wrapper', 'states', 'events', 'con', function ($document, checkDevice, states, events, con) {
 
 	events.on("console", function () {
 
@@ -13,6 +13,6 @@ managerModule.controller("managerCtrl", ['$document', 'validate', 'states', 'eve
 
 	states.define();
 
-	validate.run();
+	checkDevice.run();
 
 }]);

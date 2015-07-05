@@ -1,4 +1,4 @@
-managerModule.factory("states", function ($stateProvider, validate, $location, $state) {
+managerModule.factory("states", function ($stateProvider, $state) {
 
 	var states = [
 	{
