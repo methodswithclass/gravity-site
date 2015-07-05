@@ -7,12 +7,12 @@ var valid = "/valid";
 
 
 app.config(function($routeProvider) {
+    
+
     $routeProvider.
-
       when(invalid, {
-      
+  
         templateUrl: 'features/nuplae/invalid.html'
-
       }).
       when(valid, {
       

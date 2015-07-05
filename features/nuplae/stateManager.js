@@ -1,4 +1,5 @@
-nuplaeModule.factory("stateManager", function ($stateProvider) {
+nuplaeModule.factory("stateManager", function ($stateProvider, validate, $location, $state) {
+
 
 	$stateProvider.state("Default", {}).
       state({
@@ -67,6 +68,57 @@ nuplaeModule.factory("stateManager", function ($stateProvider) {
       }).
       state({
       	name:"Page.Space"
-      }).
+      });
+
+    var validate = false;
+
+	var timer = setInterval(function () {
+
+		validate = events.dispatch("console");
+
+		if (validate) {
+
+			clearInterval(timer);
+			timer = null;
+		}
+
+
+	}, 10);
+
+	if (validate) {
+
+		var desktopdebug = false;
+		var checking = "/checking";
+		var invalid = "/invalid";
+		var valid = "/valid";
+
+		var isValid;
+
+		if (!desktopdebug) {
+			console.log("validate");
+			isValid = validate.run();
+		}
+		else {
+			isValid = validate.invalidate();
+			//$location.path(checking);
+		}
+
+		isValid.then( 
+		function (path) { //valid
+			console.log(path);
+			$location.path(path);
+			
+			$state.transitionTo("Modal.valid");
+		},
+		function (path) { //invalid
+			console.log(path);
+			$location.path(path);
+		});
+
+	}
+
+
+
+
 
 });

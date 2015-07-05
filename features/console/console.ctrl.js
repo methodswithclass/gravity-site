@@ -1,20 +1,14 @@
-consoleModule.controller("consoleCtrl", ['$document', '$location', 'validate', 'events', 'con', '$state', function ($document, $location, validate, events, con, $state) {
+consoleModule.controller("consoleCtrl", ['$document', 'events', 'con', function ($document, events, con) {
 
+	events.on("console", function () {
+
+		return con.isRegistered();
+	})
 
 	angular.element($document).ready(function () {
 
 		con.register($("#consoleContainer"));
-
-		while (true) {
-
-			try {
-				events.dispatch("valid");
-				break;
-			}	
-			catch (e) {
-
-			}	
-		}
+	
 	});
 
 }]);

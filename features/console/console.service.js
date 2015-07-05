@@ -5,6 +5,8 @@ consoleModule.factory("con", function() {
 
 	var count = 0;
 
+	var registered = false;
+
 	var conCont;
 	var thisCon;
 
@@ -12,8 +14,15 @@ consoleModule.factory("con", function() {
 
 		console.log("register");
 
+		registered = true;
+
 		conCont = thisConsole;
 		thisCon = conCont.prev();
+	}
+
+	var isRegistered = function () {
+
+		return registered;
 	}
 
 	var isVisible = function () {
@@ -78,6 +87,7 @@ consoleModule.factory("con", function() {
 
 	return {
 		register:register,
+		isRegistered:isRegistered,
 		isVisible:isVisible,
 		log:log
 	}
