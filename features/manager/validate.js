@@ -1,7 +1,7 @@
-managerModule.factory("validateService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
-	
+managerModule.factory("validate", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
 
-	var validate = function () {
+
+	var run = function () {
 		var isRegistered = false;
 
 		var timer = setInterval(function () {
@@ -54,8 +54,7 @@ managerModule.factory("validateService", ['$routeProvider', '$location', '$state
 	}
 
 	return {
-		setup:setup,
-		validate:validate
+		run:run
 	}
 
 }]);

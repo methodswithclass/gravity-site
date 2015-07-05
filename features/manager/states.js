@@ -1,4 +1,4 @@
-managerModule.factory("stateService", function ($stateProvider, validate, $location, $state) {
+managerModule.factory("states", function ($stateProvider, validate, $location, $state) {
 
 	var states = [
 	{
@@ -24,7 +24,7 @@ managerModule.factory("stateService", function ($stateProvider, validate, $locat
 	}
 	];
 
-	var setup = function () {
+	var define = function () {
 
 		console.log("setup");
 
@@ -148,14 +148,14 @@ managerModule.factory("stateService", function ($stateProvider, validate, $locat
 
 	}
 
-	var gotoState = function (index) {
+	var changeTo = function (index) {
 
 		$state.go(states[index].state);
 	}
 
 	return {
-		setup:setup,
-		gotoState:gotoState
+		define:define,
+		changeTo:changeTo
 	}
 
 
