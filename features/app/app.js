@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['sharedModule', 'managerModule', 'nuplaeModule', 'consoleModule', 'accelModule','ngRoute', 'ui.router']);
+var app = angular.module('nuplae', ['managerModule']);
 
 var checking = "/checking";
 var invalid = "/invalid";
