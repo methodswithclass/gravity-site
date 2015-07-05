@@ -1,1 +1,1 @@
-var nuplaeModule = angular.module("nuplaeModule", ['sharedModule', 'accelModule']);
+var nuplaeModule = angular.module("nuplaeModule", ['sharedModule', 'accelModule', 'ui.router']);

@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nuServ) {
+nuplaeModule.directive("back", ['navigation', 'nuplaeService', '$state', function (nav, nuServ, $state) {
 
 
 	var link = function ($scope, element, attr) {
@@ -31,7 +31,6 @@ nuplaeModule.directive("back", ['navigation', 'nuplaeService', function (nav, nu
 		var game = $scope.game;
 
 		angular.element(document).ready(function() {
-
 
 			element.find("#outer" + game.name).addClass(game.padding);
 			element.find("#icon" + game.name).addClass(game.icon);

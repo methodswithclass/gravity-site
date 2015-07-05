@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute', 'ui.router']);
+var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
 
 
 var checking = "/checking";
@@ -6,7 +6,7 @@ var invalid = "/invalid";
 var valid = "/valid";
 
 
-app.config(function($routeProvider, $stateProvider) {
+app.config(function($routeProvider) {
     $routeProvider.
 
       when(invalid, {
@@ -26,40 +26,7 @@ app.config(function($routeProvider, $stateProvider) {
         controller:'consoleCtrl'
       });
 
-    $stateProvider.state("Default", {}).
-      state({
-        name:"Modal", 
-        views:{
-            "modal": {
-              templateUrl: "features/modal/modal.html"
-            }
-        },
-        onEnter: ["$state", function($state) {
-              
-              var close = function () {
-
-                 $state.go("Default");
-              }
-
-              var timer = setTimeout(function () {
-                  close();
-              }, 1000);
-
-          }],
-
-          
-          abstract: true
-  
-      }).
-      state({
-        name:"Modal.valid",
-        views:{
-            "modal": {
-              templateUrl: "features/nuplae/valid-modal.html"
-            }
-      }
-      
-      });
+    
 
 }).run(function ($location) {
 
