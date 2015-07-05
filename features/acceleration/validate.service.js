@@ -51,7 +51,7 @@ accelModule.factory("validate.service", function ($q) {
 		check = 0;
 		self.checkMotion = true;
 
-		console.log("validating");
+		console.log("run validate service");
 
 		return $q(function (resolve, reject) {
 

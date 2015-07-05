@@ -7,6 +7,8 @@ var valid = "/valid";
 
 app.config(function ($routeProvider) {
 
+  console.log("define routes");
+
     $routeProvider.
         when(invalid, {
     
@@ -24,6 +26,8 @@ app.config(function ($routeProvider) {
           controller:'managerCtrl'
         });
 }).run(function ($location) {
+
+    console.log("location checking");
 
     $location.path(checking);
 });

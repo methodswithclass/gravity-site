@@ -59,7 +59,16 @@ managerModule.factory("states", ['$stateProvider', '$state', function ($statePro
 	            "modal": {
 	              templateUrl: "features/nuplae/valid-modal.html"
 	            }
-	      	}
+	      	},
+	      	onEnter:function() {
+	             
+	             console.log("show modal valid");
+
+	        },
+	        onExit:function() {
+	              
+	        	 console.log("close modal valid");
+	        },
 	      }).
 	      state({
 	      	name:"Page",

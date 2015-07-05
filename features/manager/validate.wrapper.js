@@ -2,6 +2,9 @@ managerModule.factory("validate.wrapper", ['validate.service', '$location', '$st
 
 
 	var run = function () {
+
+		console.log("run validate wrapper");
+
 		var isRegistered = false;
 
 		var timer = setInterval(function () {
@@ -39,13 +42,16 @@ managerModule.factory("validate.wrapper", ['validate.service', '$location', '$st
 
 			isValid.then( 
 			function (path) { //valid
-				console.log(path);
+
+
+
+				console.log("is valid");
 				$location.path(path);
 				
 				$state.transitionTo("Modal.valid");
 			},
 			function (path) { //invalid
-				console.log(path);
+				console.log("is invalid");
 				$location.path(path);
 			});
 
