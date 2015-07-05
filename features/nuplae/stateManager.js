@@ -2,6 +2,8 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 
 	var setup = function () {
 
+		console.log("setup");
+
 		$stateProvider.state("Default", {}).
 	      state({
 	        name:"Modal", 
@@ -70,6 +72,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	      state({
 	      	name:"Page.Space"
 	      });
+
 
 	    var isRegistered = false;
 
