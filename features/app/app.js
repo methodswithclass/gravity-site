@@ -5,11 +5,13 @@ var invalid = "/invalid";
 var valid = "/valid";
 
 
-app.config(function ($routeProvider) {
+app.config(['$routeProvider', '$stateProvider', function (routeProvider, stateProvider) {
 
   console.log("define routes");
 
-    $routeProvider.
+    managerModule.stateProvider = stateProvider;
+
+    routeProvider.
         when(invalid, {
     
           templateUrl: 'features/nuplae/invalid.html'
@@ -25,7 +27,7 @@ app.config(function ($routeProvider) {
           templateUrl:'features/nuplae/checking.html',
           controller:'managerCtrl'
         });
-}).run(function ($location) {
+}]).run(function ($location) {
 
     console.log("location checking");
 

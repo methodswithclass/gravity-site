@@ -1,4 +1,4 @@
-managerModule.factory("states", ['$stateProvider', '$state', function ($stateProvider, $state) {
+managerModule.factory("states", ['$state', function ($state) {
 
 	var states = [
 	{
@@ -28,7 +28,7 @@ managerModule.factory("states", ['$stateProvider', '$state', function ($statePro
 
 		console.log("setup");
 
-		$stateProvider.state("Default", {}).
+		managerModule.stateProvider.state("Default", {}).
 	      state({
 	        name:"Modal", 
 	        views:{
