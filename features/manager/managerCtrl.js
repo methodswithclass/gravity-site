@@ -1,9 +1,9 @@
-managerModule.controller("managerCtrl", ['$document', 'routeService', 'stateService', 'events', 'con', function ($document, routeService, stateService, events, con) {
+managerModule.controller("managerCtrl", ['$document', 'validate', 'states', 'events', 'con', function ($document, validate, states, events, con) {
 
 	events.on("console", function () {
 
 		return con.isRegistered();
-	})
+	});
 
 	angular.element($document).ready(function () {
 
@@ -11,8 +11,8 @@ managerModule.controller("managerCtrl", ['$document', 'routeService', 'stateServ
 	
 	});
 
-	stateService.setup();
+	states.define();
 
-	routeService.validate();
+	validate.run();
 
 }]);
