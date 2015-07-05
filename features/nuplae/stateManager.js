@@ -71,15 +71,15 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 	      	name:"Page.Space"
 	      });
 
-	    var validate = false;
+	    var isRegistered = false;
 
 		var timer = setInterval(function () {
 
-			validate = events.dispatch("console");
+			isRegistered = events.dispatch("console");
 
-			console.log(validate);
+			console.log(isRegistered);
 
-			if (validate) {
+			if (isRegistered) {
 
 				clearInterval(timer);
 				timer = null;
@@ -88,7 +88,7 @@ nuplaeModule.factory("stateManager", function ($stateProvider, validate, $locati
 
 		}, 10);
 
-		if (validate) {
+		if (isRegistered) {
 
 			var desktopdebug = false;
 			var checking = "/checking";
