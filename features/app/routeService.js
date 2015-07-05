@@ -1,4 +1,4 @@
-app.factory("routeService", function ($routeProvider, events, validate, $location, $state) {
+app.factory("routeService", ['$routeProvider', '$location', '$state', 'events', 'validate', function ($routeProvider, $locator, $state, events, validate) {
 
 
 	var checking = "/checking";
@@ -84,4 +84,4 @@ app.factory("routeService", function ($routeProvider, events, validate, $locatio
 		validate:validate
 	}
 
-});
+}]);
