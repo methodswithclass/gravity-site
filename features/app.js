@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['sharedModule', 'consoleModule', 'nuplaeModule', 'accelModule', 'ngRoute']);
+var app = angular.module('nuplae', ['sharedModule', 'nuplaeModule', 'consoleModule', 'accelModule', 'ngRoute']);
 
 
 var checking = "/checking";
