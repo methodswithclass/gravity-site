@@ -1,4 +1,4 @@
-managerModule.factory("states", function ($stateProvider, $state) {
+managerModule.factory("states", ['$stateProvider', '$state', function ($stateProvider, $state) {
 
 	var states = [
 	{
@@ -161,4 +161,4 @@ managerModule.factory("states", function ($stateProvider, $state) {
 
 
 
-});
+}]);
