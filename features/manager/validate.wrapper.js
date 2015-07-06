@@ -1,4 +1,4 @@
-managerModule.factory("validate.wrapper", ['$q', 'validate.service', function ($q, validate) {
+managerModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', function ($q, validate, events) {
 
 
 	var run = function () {
