@@ -174,7 +174,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 				elem:elem
 			});
 
-		}
+		});
 
 
 	}

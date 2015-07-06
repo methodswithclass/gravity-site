@@ -52,7 +52,7 @@ managerModule.factory("validate.wrapper", ['$q', 'validate.service', function ($
 
 		}, 10);
 
-	}
+	});
 
 	return {
 		run:run
