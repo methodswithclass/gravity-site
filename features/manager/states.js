@@ -180,7 +180,7 @@ managerModule.factory("states", ['$state', 'navigation', function ($state, nav) 
 
 	return {
 		define:define,
-		gotoPage:togoPage,
+		gotoPage:gotoPage,
 		showModal:showModal
 	}
 
