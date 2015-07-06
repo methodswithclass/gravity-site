@@ -5,6 +5,11 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 	self.pages = params.pages;
 
+	for (i in self.pages) {
+
+		console.log(self.pages[i].name);
+	}
+
 
 	console.log("open nuplae controller");
 
