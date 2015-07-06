@@ -77,6 +77,8 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 	      state({
 	      	name:"Page",
 	      	onEnter:function() {
+
+	      		console.log("go to current index: " + self.currentIndex);
 	              
 	            nav.open(self.currentIndex, 500);
 
