@@ -76,10 +76,10 @@ consoleModule.factory("con", function() {
 	}
 
 	var attachToConsole = function () {
-	    var oldLog = window.console.log;
-	    window.console.log = function (message) {
+	    var oldLog = console.log;
+	    console.log = function (message) {
 	       	log(message);
-	        oldLog.apply(window.console, arguments);
+	        oldLog.apply(console, arguments);
 	    };
 	}
 
