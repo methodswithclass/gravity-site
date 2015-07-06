@@ -5,8 +5,8 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 
 		var game = $scope.game;
 
-		element.find("#outer" + game.name).addClass(game.padding);
-		element.find("#icon" + game.name).addClass(game.icon);
+		$(element[0].querySelector("#outer" + game.name)).addClass(game.padding);
+		$(element[0].querySelector("#icon" + game.name)).addClass(game.icon);
 
 		nuServ.buttonTouch(element, {
 			name:"back",
