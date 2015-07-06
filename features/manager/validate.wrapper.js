@@ -5,6 +5,8 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 
 		console.log("run validate wrapper");
 
+		var locator = managerModule.locator;
+
 		var isValid;
 
 		var desktopdebug = false;
@@ -27,13 +29,13 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 			isValid.then( 
 			function (path) { //valid
 				console.log("is valid");
-				$location.path(path);
+				location.path(path);
 				
 				$state.transitionTo("Modal.valid");
 			},
 			function (path) { //invalid
 				console.log("is invalid");
-				$location.path(path);
+				location.path(path);
 			});
 
 		}
