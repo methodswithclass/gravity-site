@@ -76,23 +76,27 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	var parseInput = function (input) {
 
+		
+
 		return $q(function (resolve, reject) {
 
-			var name;
-			var page;
-			var elem;
-			var index;
+			var self = this;
+
+			this.name;
+			this.page;
+			this.elem;
+			this.index;
 
 			var isIndex = function (input) {
 
-				index = input;
-				page = params.pages[input];
-				name = page.name;
+				self.index = input;
+				self.page = params.pages[input];
+				self.name = self.page.name;
 
 				console.log("name is " + name);
-				elem = $("#page" + name);
+				self.elem = $("#page" + name);
 
-				console.log(elem[0]);
+				console.log(self.elem[0]);
 				
 			}
 
@@ -100,13 +104,13 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 				for (i in params.pages) {
 					if (input.name == params.pages[i].name) {
-						index = i;
+						self.index = i;
 					}
 				}
 
-				page = input;
-				name = input.name;
-				elem = $("#page" + name);
+				self.page = input;
+				self.name = input.name;
+				self.elem = $("#page" + self.name);
 
 			}
 
@@ -116,20 +120,20 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 				console.log(input);
 				if (input instanceof jQuery) {
 
-					index = -1;
-					name = null;
-					page = null;
-					elem = input;
+					self.index = -1;
+					self.name = null;
+					self.page = null;
+					self.elem = input;
 				}
 				else {
 
 					for (i in params.pages) {
 
 						if (checkCoords(input, i)) {
-							index = i;
-							page = params.pages[i];
-							name = page.name;
-							elem = $("#page" + name);
+							sekf.index = i;
+							self.page = params.pages[i];
+							self.name = page.name;
+							self.elem = $("#page" + self.name);
 						}
 					}
 				}
@@ -144,10 +148,6 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 				}
 
 				var time = 0;
-
-				//console.log(result.index);
-
-				//resolve(result);
 
 				var timer = setInterval(function () {
 
@@ -181,11 +181,12 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 
 			proceed({
-				index:index,
-				name:name,
-				page:page,
-				elem:elem
+				index:self.index,
+				name:self.name,
+				page:self.page,
+				elem:self.elem
 			});
+			
 
 		});
 

@@ -34,16 +34,18 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		console.log("loaded event dispatch");
 
-		var result = nuplaeService.parseInput(0);
+		states.gotoPage(0);
 
-		result.then(
-		function (output) {
-			console.log("go to home");
-			states.gotoPage(output.index);
-		},
-		function (message) {
-			console.log(message);
-		});
+		//var result = nuplaeService.parseInput(0);
+
+		// result.then(
+		// function (output) {
+		// 	console.log("go to home");
+		// 	states.gotoPage(0);
+		// },
+		// function (message) {
+		// 	console.log(message);
+		// });
 	})
 
 	states.define();
