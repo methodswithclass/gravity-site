@@ -145,6 +145,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 					time += 10;
 
+					console.log(result.elem[0]);
+
 					if (result.elem[0]) {
 						clear();
 						resolve(result);
