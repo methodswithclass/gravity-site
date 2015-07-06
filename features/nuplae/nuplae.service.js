@@ -91,6 +91,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 				console.log("name is " + name);
 				elem = $("#page" + name);
+
+				console.log(elem[0]);
 				
 			}
 
