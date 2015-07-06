@@ -13,7 +13,7 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 		result.then(
 			function (output) {
 
-				console.log(output.elem);
+				console.log(output.elem[0]);
 
 				body.removeClass("cutoff").addClass("scroll");
 
