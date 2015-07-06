@@ -1,10 +1,14 @@
-nuplaeModule.directive("repeat", ['events', function (events) {
+nuplaeModule.directive("repeat", ['events', 'params', function (events, params) {
 
 	return function (scope, element, attr) {
 		
 		if(scope.$last) {
 
-			events.dispatch("loaded");
+			//if ($("#page" params.pages[params.pages.length].name)[0]) {
+
+				events.dispatch("loaded");
+
+			//}
 		}
 	}
 }]);

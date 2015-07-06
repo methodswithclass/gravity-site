@@ -88,6 +88,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 				index = input;
 				page = params.pages[input];
 				name = page.name;
+
+				console.log("name is " + name);
 				elem = $("#page" + name);
 				
 			}
