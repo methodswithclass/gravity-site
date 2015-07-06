@@ -1,24 +1,30 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['params', 'nuplaeService', 'states', function (params, nuplaeService, states) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'nuplaeService', 'states', function (params, nuplaeService, states) {
 
 	var self = this;
 
 	self.pages = params.pages;
 
+	angular.element($document).ready(function () {
 
-	var result = nuplaeService.parseInput(0);
+		var result = nuplaeService.parseInput(0);
 
-	result.then(
+		result.then(
 		function (output) {
 			states.gotoPage(output.index);
 		},
 		function (message) {
 			console.log(message);
-		});
+		});	
 
+	});
 
 
 	
+
+
+
+
 
 	// var init = function () {
 
