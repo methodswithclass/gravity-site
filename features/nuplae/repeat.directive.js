@@ -7,4 +7,4 @@ nuplaeModule.directive("repeat", ['events', function (events) {
 			events.dispatch("loaded");
 		}
 	}
-})
+}]);
