@@ -5,7 +5,7 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 
 		console.log("run validate wrapper");
 
-		var locator = managerModule.locator;
+		var location = managerModule.location;
 
 		var isValid;
 

@@ -5,11 +5,12 @@ var invalid = "/invalid";
 var valid = "/valid";
 
 
-app.config(['$routeProvider', '$stateProvider', function (routeProvider, stateProvider) {
+app.config(['$routeProvider', '$stateProvider', function (routeProvider, stateProvider, location) {
 
   console.log("define routes");
 
     managerModule.stateProvider = stateProvider;
+    managerModule.location = location;
 
     routeProvider.
         when(invalid, {
