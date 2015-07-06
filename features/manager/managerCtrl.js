@@ -19,9 +19,9 @@ managerModule.controller("managerCtrl", ['$document', 'validate.wrapper', '$loca
 
 	states.define();
 
-	checkDevice.run();
+	var result = checkDevice.run();
 
-	checkDevice.then( 
+	result.then( 
 	function (path) { //valid
 		console.log("change location to " + path);
 		$location.path(path);
