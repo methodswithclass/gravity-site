@@ -1,4 +1,4 @@
-managerModule.controller("managerCtrl", ['$document', 'validate.wrapper', 'states', 'events', 'con', function ($document, checkDevice, states, events, con) {
+managerModule.controller("managerCtrl", ['$document', 'validate.wrapper', '$location', 'states', 'events', 'con', function ($document, checkDevice, $location, states, events, con) {
 
 	console.log("open manager controller");
 
@@ -20,5 +20,17 @@ managerModule.controller("managerCtrl", ['$document', 'validate.wrapper', 'state
 	states.define();
 
 	checkDevice.run();
+
+	checkDevice.then( 
+	function (path) { //valid
+		console.log("change location to " + path);
+		$location.path(path);
+		
+		states.showModal("valid");
+	},
+	function (path) { //invalid
+		console.log("change location to " + path);
+		$location.path(path);
+	});
 
 }]);

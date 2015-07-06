@@ -1,4 +1,8 @@
-managerModule.factory("states", ['$state', function ($state) {
+managerModule.factory("states", ['$state', 'navigation', function ($state, nav) {
+
+	var self = this;
+
+	this.currentIndex = 0;
 
 	var states = [
 	{
@@ -23,6 +27,8 @@ managerModule.factory("states", ['$state', function ($state) {
 		state:"Page.Space"
 	}
 	];
+
+
 
 	var define = function () {
 
@@ -74,6 +80,7 @@ managerModule.factory("states", ['$state', function ($state) {
 	      	name:"Page",
 	      	onEnter:function() {
 	              
+	            nav.open(self.currentIndex, 500);
 
 	        },
 	        onExit:function() {
@@ -146,7 +153,8 @@ managerModule.factory("states", ['$state', function ($state) {
 	      state({
 	      	name:states[6].state,
 	      	onEnter:function() {
-	              
+	             
+
 
 	        },
 	        onExit:function() {
@@ -157,14 +165,23 @@ managerModule.factory("states", ['$state', function ($state) {
 
 	}
 
-	var changeTo = function (index) {
+	var showModal = function (modal) {
+
+		$state.go("Modal." + modal);
+	}
+
+	var gotoPage = function (index) {
+
+		self.currentIndex = index;
 
 		$state.go(states[index].state);
+
 	}
 
 	return {
 		define:define,
-		changeTo:changeTo
+		gotoPage:togoPage,
+		showModal:showModal
 	}
 
 

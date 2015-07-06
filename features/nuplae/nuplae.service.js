@@ -1,4 +1,4 @@
-nuplaeModule.factory("nuplaeService", function (params) {
+nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	var dist = 0;
 
@@ -76,60 +76,107 @@ nuplaeModule.factory("nuplaeService", function (params) {
 
 	var parseInput = function (input) {
 
-		var name;
-		var page;
-		var elem;
-		var index;
+		return $q(function (resolve, reject) {
 
-		if (input >= 0) {
+			var name;
+			var page;
+			var elem;
+			var index;
 
-			index = input;
-			page = params.pages[input];
-			name = page.name;
-			elem = $("#page" + name);
-		}
-		else if (input.name && input.name.length > 0) {
+			var isIndex = function (input) {
 
-			for (i in params.pages) {
-				if (input.name == params.pages[i].name) {
-					index = i;
-				}
+				index = input;
+				page = params.pages[input];
+				name = page.name;
+				elem = $("#page" + name);
+				
 			}
 
-			page = input;
-			name = input.name;
-			elem = $("#page" + name);
-		}
-		else {
-			console.log("is coord or jquery");
-			console.log(input);
-			if (input instanceof jQuery) {
-				index = -1;
-				elem = input;
-				page = null;
-				name = null;
-			}
-			else {
+			var isPage = function (input) {
 
 				for (i in params.pages) {
-
-					if (checkCoords(input, i)) {
+					if (input.name == params.pages[i].name) {
 						index = i;
-						page = params.pages[i];
-						name = page.name;
-						elem = $("#page" + name); 
+					}
+				}
+
+				page = input;
+				name = input.name;
+				elem = $("#page" + name);
+
+			}
+
+			var isJqueryCoord = function () {
+
+				console.log("is coord or jquery");
+				console.log(input);
+				if (input instanceof jQuery) {
+
+					index = -1;
+					name = null;
+					page = null;
+					elem = input;
+				}
+				else {
+
+					for (i in params.pages) {
+
+						if (checkCoords(input, i)) {
+							index = i;
+							page = params.pages[i];
+							name = page.name;
+							elem = $("#page" + name);
+						}
 					}
 				}
 			}
-			
+
+
+			var proceed = function (result) {
+
+				var clear = function () {
+					clearInterval(timer);
+					timer = null;
+				}
+
+				var timer = setInterval(function () {
+
+					time += 10;
+
+					if (result.elem[0]) {
+						clear();
+						resolve(result);
+					}
+
+					if (time > 1000) {
+						clear();
+						reject("element does not exist");
+					}
+
+				}, 10);
+			}
+
+			if (input >= 0) {
+				isIndex(input);
+			}
+			else if (input.name && input.name.length > 0) {
+				isPage(input);
+			}
+			else {
+				isJqueryCoord(input);
+			}
+
+
+			proceed({
+				index:index,
+				name:name,
+				page:page,
+				elem:elem
+			});
+
 		}
 
-		return {
-			index:index,
-			name:name,
-			page:page,
-			elem:elem
-		}
+
 	}
 
 	return {

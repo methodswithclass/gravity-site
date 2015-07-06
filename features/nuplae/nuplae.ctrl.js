@@ -1,42 +1,55 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['params', 'navigation', 'stateManager', function (params, nav, stateManager) {
+nuplaeModule.controller('nuplaeCtrl', ['params', 'nuplaeService', 'states', function (params, nuplaeService, states) {
 
 	var self = this;
 
 	self.pages = params.pages;
 
-	var init = function () {
 
-		var name = params.pages[0].name;
+	var result = nuplaeService.parseInput(0);
 
-		//console.log(name);
+	result.then(
+		function (output) {
+			states.gotoPage(output.index);
+		},
+		function (message) {
+			console.log(message);
+		});
 
-		var elem;
 
-		var complete = function (elem) {
 
-			console.log("loaded");
+	
 
-			nav.open(0, 10);
-		}
+	// var init = function () {
 
-		var timer = setInterval(function () {
+	// 	var name = params.pages[0].name;
 
-			elem = $("#page" + name);
+	// 	//console.log(name);
 
-			//console.log(elem[0]);
+	// 	var elem;
 
-			if (elem[0]) {
-				clearInterval(timer);
-				complete(elem);
-			}
+	// 	var complete = function (elem) {
 
-		}, 10);
+	// 		console.log("loaded");
 
-	}
+			
+	// 	}
 
-	init();
+	// 	var timer = setInterval(function () {
 
-	stateManager.setup();
+	// 		elem = $("#page" + name);
+
+	// 		//console.log(elem[0]);
+
+	// 		if (elem[0]) {
+	// 			clearInterval(timer);
+	// 			complete(elem);
+	// 		}
+
+	// 	}, 10);
+
+	// }
+
+	
 
 }]);

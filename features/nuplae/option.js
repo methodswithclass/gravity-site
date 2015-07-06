@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuServ, nav) {
+nuplaeModule.directive("option", ['nuplaeService', 'states', function (nuServ, states) {
 
 	return {
 		restrict:'E',
@@ -21,7 +21,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'navigation', function (nuSer
 				text_press:"white",
 				text_save:"white"
 			}, function () {
-				nav.open(info, 300);
+				states.gotoPage(info.index);
 			});
 
 		}

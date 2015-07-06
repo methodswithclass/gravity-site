@@ -1,11 +1,9 @@
-managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'validate.service', function ($locator, $state, events, validate) {
+managerModule.factory("validate.wrapper", ['$q', 'validate.service', function ($q, validate) {
 
 
-	var run = function () {
+	var run = $q(function (resolve, reject) {
 
 		console.log("run validate wrapper");
-
-		var location = managerModule.location;
 
 		var isValid;
 
@@ -29,13 +27,11 @@ managerModule.factory("validate.wrapper", ['$location', '$state', 'events', 'val
 			isValid.then( 
 			function (path) { //valid
 				console.log("is valid");
-				location.path(path);
-				
-				$state.transitionTo("Modal.valid");
+				resolve(path);
 			},
 			function (path) { //invalid
 				console.log("is invalid");
-				location.path(path);
+				reject(path);
 			});
 
 		}
