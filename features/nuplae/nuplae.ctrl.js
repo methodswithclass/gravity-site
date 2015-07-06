@@ -1,12 +1,12 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'nuplaeService', 'states', '$location', function ($documnet, params, checkDevice, nuplaeService, states, $location) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'nuplaeService', 'states', 'events', '$location', function ($documnet, params, checkDevice, nuplaeService, states, events, $location) {
 
 	var self = this;
 
 	self.pages = params.pages;
 
 
-	console.log("open manager controller");
+	console.log("open nuplae controller");
 
 	events.on("console", function () {
 
