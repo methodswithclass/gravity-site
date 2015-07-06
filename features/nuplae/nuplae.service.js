@@ -145,14 +145,16 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 					time += 10;
 
-					console.log($(result.elem)[0]);
+					var element = $(result.elem);
 
-					if ($(result.elem)[0]) {
+					console.log(element[0]);
+
+					if (element[0]) {
 						clear();
 						resolve(result);
 					}
 
-					if (time > 1000) {
+					if (time > 2000) {
 						clear();
 						reject("element does not exist");
 					}
