@@ -34,7 +34,7 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 
 		console.log("define states");
 
-		managerModule.stateProvider.state("Default", {}).
+		nuplaeModule.stateProvider.state("Default", {}).
 	      state({
 	        name:"Modal", 
 	        views:{

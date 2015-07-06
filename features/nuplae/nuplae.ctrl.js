@@ -1,5 +1,5 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'nuplaeService', 'states', function ($documnet, params, nuplaeService, states) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'nuplaeService', 'states', '$location', function ($documnet, params, checkDevice, nuplaeService, states, $location) {
 
 	var self = this;
 

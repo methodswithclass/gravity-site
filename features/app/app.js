@@ -9,8 +9,7 @@ app.config(['$routeProvider', '$stateProvider', function (routeProvider, statePr
 
   console.log("define routes");
 
-    managerModule.stateProvider = stateProvider;
-    managerModule.location = location;
+    nuplaeModule.stateProvider = stateProvider;
 
     routeProvider.
         when(invalid, {
