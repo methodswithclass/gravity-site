@@ -1,4 +1,4 @@
-accelModule.factory("validate.service", function ($q) {
+validateModule.factory("validate.service", function ($q) {
 
 	var self = this;
 

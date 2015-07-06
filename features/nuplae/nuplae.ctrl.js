@@ -1,60 +1,55 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'nuplaeService', 'states', function ($document, params, nuplaeService, states) {
+nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'nuplaeService', 'states', function ($documnet, params, nuplaeService, states) {
 
 	var self = this;
 
 	self.pages = params.pages;
 
-	angular.element($document).ready(function () {
 
-		var result = nuplaeService.parseInput(0);
+	console.log("open manager controller");
 
-		result.then(
-		function (output) {
-			states.gotoPage(output.index);
-		},
-		function (message) {
-			console.log(message);
-		});	
+	events.on("console", function () {
 
+		console.log("console event dispatch");
+
+		return con.isRegistered();
 	});
 
 
+
+	angular.element($document).ready(function () {
+
+		console.log("document ready");
+
+		con.register($("#consoleContainer"));
 	
+	});
 
+	states.define();
 
+	var result = checkDevice.run();
 
+	result.then( 
+	function (path) { //valid
+		console.log("change location to " + path);
+		$location.path(path);
+		
+		states.showModal("valid");
+	},
+	function (path) { //invalid
+		console.log("change location to " + path);
+		$location.path(path);
+	});
 
+	var result = nuplaeService.parseInput(0);
 
-	// var init = function () {
-
-	// 	var name = params.pages[0].name;
-
-	// 	//console.log(name);
-
-	// 	var elem;
-
-	// 	var complete = function (elem) {
-
-	// 		console.log("loaded");
-
-			
-	// 	}
-
-	// 	var timer = setInterval(function () {
-
-	// 		elem = $("#page" + name);
-
-	// 		//console.log(elem[0]);
-
-	// 		if (elem[0]) {
-	// 			clearInterval(timer);
-	// 			complete(elem);
-	// 		}
-
-	// 	}, 10);
-
-	// }
+	result.then(
+	function (output) {
+		states.gotoPage(output.index);
+	},
+	function (message) {
+		console.log(message);
+	});
 
 	
 

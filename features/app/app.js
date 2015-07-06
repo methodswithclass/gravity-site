@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['managerModule']);
+var app = angular.module('nuplae', ['sharedModule', 'validateModule', 'nuplaeModule', 'consoleModule', 'accelModule', 'ngRoute', 'ui.router']);
 
 var checking = "/checking";
 var invalid = "/invalid";
@@ -20,13 +20,10 @@ app.config(['$routeProvider', '$stateProvider', function (routeProvider, statePr
         when(valid, {
         
           templateUrl: 'features/nuplae/valid.html',
-          controller:'nuplaeCtrl',
-          controllerAs:'main'
         }).
         when(checking, {
 
           templateUrl:'features/nuplae/checking.html',
-          controller:'managerCtrl'
         });
 }]).run(function ($location) {
 

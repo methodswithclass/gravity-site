@@ -1,4 +1,4 @@
-managerModule.factory("states", ['$state', 'navigation', function ($state, nav) {
+nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 
 	var self = this;
 

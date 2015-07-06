@@ -1,0 +1,1 @@
+var validateModule = angular.module("validateModule", ['sharedModule']);
