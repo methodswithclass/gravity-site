@@ -141,29 +141,28 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 				var time = 0;
 
-				console.log(result.index);
+				//console.log(result.index);
 
-				resolve(result);
+				//resolve(result);
 
-				// var timer = setInterval(function () {
+				var timer = setInterval(function () {
 
-				// 	time += 10;
+					time += 10;
 
-				// 	var element = $(result.elem);
+					var element = $(result.elem);
 
-				// 	console.log(element[0]);
+					console.log(element[0]);
 
-				// 	if (element[0]) {
-				// 		clear();
-				// 		resolve(result);
-				// 	}
+					if (element[0]) {
+						clear();
+						resolve(result);
+					}
+					else if (time > 2000) {
+						clear();
+						reject("element does not exist");
+					}
 
-				// 	if (time > 2000) {
-				// 		clear();
-				// 		reject("element does not exist");
-				// 	}
-
-				// }, 10);
+				}, 10);
 			}
 
 			if (input >= 0) {
