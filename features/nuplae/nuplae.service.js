@@ -141,6 +141,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 				var time = 0;
 
+				console.log(result.index);
+
 				resolve(result);
 
 				// var timer = setInterval(function () {
