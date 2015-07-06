@@ -67,8 +67,6 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 	            }
 	      	},
 	      	onEnter:function() {
-	             
-	             console.log("show modal valid");
 
 	        },
 	        onExit:function() {
@@ -167,10 +165,14 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 
 	var showModal = function (modal) {
 
+		console.log("show modal " + modal);
+
 		$state.go("Modal." + modal);
 	}
 
 	var gotoPage = function (index) {
+
+		console.log("go to state " + index);
 
 		self.currentIndex = index;
 
