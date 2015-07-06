@@ -83,7 +83,7 @@ consoleModule.factory("con", function() {
 	    };
 	}
 
-	attachToConsole();
+	//attachToConsole();
 
 	return {
 		register:register,
