@@ -4,13 +4,16 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 
 	var open = function (to, duration) {
 
+		console.log("nav to " + to);
+
 		var result = nuplaeService.parseInput(to);
+
+		body = $("#body");
 
 		result.then(
 			function (output) {
-				body = $("#body");
 
-				body.removeClass("cutoff").addClass("scroll")
+				body.removeClass("cutoff").addClass("scroll");
 
 				body.scrollTo(output.elem, {
 					duration:duration,
@@ -24,7 +27,7 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 				console.log(message);
 			}
 		);
-		
+
 	}
 
 	return {
