@@ -104,6 +104,7 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 	      	name:states[1].state,
 	      	onEnter:function() {
 	              
+	              console.log("enter state 1");
 
 	        },
 	        onExit:function() {
