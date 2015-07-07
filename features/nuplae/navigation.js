@@ -6,29 +6,31 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 
 		console.log("nav to " + to);
 
-		var result = nuplaeService.parseInput(to);
-
+		//var result = nuplaeService.parseInput(to);
+		
 		body = $("#body");
 
-		result.then(
-			function (output) {
+		body.removeClass("cutoff").addClass("scroll");
 
-				console.log(output.elem[0]);
-
-				body.removeClass("cutoff").addClass("scroll");
-
-				body.scrollTo(output.elem, {
-					duration:duration,
-					queue:false,
-					onAfter:function(target, settings) {
-						body.removeClass("scroll").addClass("cutoff");
-					}
-				});
-			}, 
-			function (message) {
-				console.log(message);
+		body.scrollTo(output.elem, {
+			duration:duration,
+			queue:false,
+			onAfter:function(target, settings) {
+				body.removeClass("scroll").addClass("cutoff");
 			}
-		);
+		});
+
+		// result.then(
+		// 	function (output) {
+
+		// 		console.log(output.elem[0]);
+
+				
+		// 	}, 
+		// 	function (message) {
+		// 		console.log(message);
+		// 	}
+		// );
 
 	}
 
