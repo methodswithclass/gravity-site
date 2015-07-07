@@ -1,8 +1,11 @@
-nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootScope) {
+nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($state, $rootScope, params) {
 
 	var self = this;
 
 	this.currentIndex = 0;
+	var body;
+
+	var doesNavigate = false;
 
 	var states = [
 	{
@@ -28,17 +31,58 @@ nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootS
 	}
 	];
 
+	var openHome = function () {
+
+		doesNavigate = false;
+
+		navigate(0, 10, function () {
+
+			$state.go(states[0].state);
+
+			doesNavigate = true;
+
+		});
+
+		
+	}
+
+
+	var navigate = function (index, duration, complete) {
+
+		body = $("#body");
+
+		//var result = nuplaeService.parseInput(to);
+
+		var name = params.pages[index].name;
+		var elem = $("#page" + name);
+
+		body.removeClass("cutoff").addClass("scroll");
+
+		body.scrollTo(elem, {
+			duration:duration,
+			queue:false,
+			onAfter:function(target, settings) {
+				body.removeClass("scroll").addClass("cutoff");
+				if (complete) complete();
+			}
+		});
+	}
+
 
 	$rootScope.$on('$stateChangeStart', 
-	function(event, toState, toParams, fromState, fromParams){ 
+	function(event, toState, toParams, fromState, fromParams){
 
 		console.log(toState);	   	
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
-	   		console.log("go to current index: " + self.currentIndex);      
-	    	//nav.open(self.currentIndex, 500);
+	   		if (doesNavigate) {
+
+	   			console.log("go to current index: " + self.currentIndex);    
+	    		navigate(self.currentIndex, 700);
+			}
 		}
+
 	});
 
 
@@ -46,8 +90,6 @@ nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootS
 
 		self.currentIndex = current;
 	}
-
-
 
 	var define = function () {
 
@@ -111,7 +153,6 @@ nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootS
 	      	name:states[0].state,
 	      	onEnter:function() {
 	              
-
 	        },
 	        onExit:function() {
 
@@ -203,7 +244,8 @@ nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootS
 	return {
 		define:define,
 		gotoPage:gotoPage,
-		showModal:showModal
+		showModal:showModal,
+		openHome:openHome
 	}
 
 

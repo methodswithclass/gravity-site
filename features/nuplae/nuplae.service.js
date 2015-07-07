@@ -1,6 +1,7 @@
 nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	var dist = 0;
+	var down = false;
 
 	var buttonTouch = function (el, p, complete) {
 
@@ -41,11 +42,14 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 			changeButton();
 
+			down = true;
+
 		});
 
 		mc.on("pressup tap", function (e) {
 
 			dist = 0;
+			down = false;
 
 			returnButton();
 
@@ -62,9 +66,16 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 		$(window).on("touchmove", function (e) {
 
-			dist++;
+			if (down) {
+				dist++;
 
-			if (dist > 10) returnButton();
+				if (dist > 10) {
+					returnButton();
+					dist = 0;
+					down = false;
+				}
+			}
+
 		});
 
 	}

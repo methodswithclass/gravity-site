@@ -47,6 +47,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 		console.log("change location to " + path);
 		$location.path(path);
 		
+		states.openHome();
+
 		states.showModal("valid");
 	},
 	function (path) { //invalid
