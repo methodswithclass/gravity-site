@@ -38,11 +38,15 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 		body = $("#body");
 
-		console.log("navigate to " + index);
+		setCurrent(index);
+
+		
 
 		//var result = nuplaeService.parseInput(to);
 
 		var name = params.pages[index].name;
+
+		console.log("navigate to " + name);
 		var elem = $("#page" + name);
 
 		body.removeClass("cutoff").addClass("scroll");
@@ -239,7 +243,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 		console.log("go to state " + index);
 
-		self.currentIndex = index;
+		setCurrent(index);
 
 		$state.go(states[index].state);
 
