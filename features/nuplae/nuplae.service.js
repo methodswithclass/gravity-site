@@ -200,8 +200,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 		var elem;
 		var index;
 
-		var isIndex = function (input) {
-
+		if (input >= 0) {
 			index = input;
 			page = params.pages[input];
 			name = page.name;
@@ -210,11 +209,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 			elem = $("#page" + name);
 
 			console.log(elem[0]);
-			
 		}
-
-		this.isPage = function (input) {
-
+		else if (input.name && input.name.length > 0) {
 			for (i in params.pages) {
 				if (input.name == params.pages[i].name) {
 					index = i;
@@ -224,11 +220,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 			page = input;
 			name = input.name;
 			elem = $("#page" + name);
-
 		}
-
-		var isJqueryCoord = function () {
-
+		else {
 			console.log("is coord or jquery");
 			console.log(input);
 			if (input instanceof jQuery) {
@@ -250,16 +243,6 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 					}
 				}
 			}
-		}
-
-		if (input >= 0) {
-			isIndex(input);
-		}
-		else if (input.name && input.name.length > 0) {
-			isPage(input);
-		}
-		else {
-			isJqueryCoord(input);
 		}
 
 
