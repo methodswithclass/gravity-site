@@ -5,8 +5,39 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 
 		var game = $scope.game;
 
-		$(element[0].querySelector("#outer" + game.name)).addClass(game.padding);
-		$(element[0].querySelector("#icon" + game.name)).addClass(game.icon);
+		var addCLass = function (_class) {
+
+			element.find("i").addClass(_class)
+		}
+
+		switch(game.name) {
+			
+			case "Calibrate":
+				addClas("padding-right");
+			break;
+
+			case "Gravity":
+				addClas("padding-left");
+			break;
+
+			case "Float":
+				addClas("padding-left");
+			break;
+
+			case "Enemies":
+				addClas("padding-up");
+			break;
+
+			case "Balance":
+				addClas("padding-up");
+			break;
+
+			case "Space":
+				addClas("padding-up");
+			break;
+		}
+
+		
 
 		nuServ.buttonTouch(element, {
 			name:"back",
