@@ -6,13 +6,17 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 
 		console.log("nav to " + to);
 
+		body = $("#body");
+
 		var result = nuplaeService.parseInput(to);
 
 		var elem = $("#page" + result.name);
 
 		console.log("#page" + result.name);
 
-		body = $("#body");
+		console.log(elem[0]);
+
+		console.log(result.elem[0]);
 
 		console.log(body[0]);
 
