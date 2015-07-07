@@ -195,6 +195,8 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	var parseInput2 = function (input) {
 
+		console.log("parse input 2");
+
 		var name;
 		var page;
 		var elem;
