@@ -12,6 +12,8 @@ nuplaeModule.factory("params", function (global) {
 		up:'fa fa-5x '
 	}
 
+	var iconSize = "font-70";
+
 	var games = [
 	{
 		name:"Calibrate",
@@ -25,7 +27,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
-				icon:'fa-chevron-right'
+				icon:"right"
 			},
 			rect:{
 				top:0,
@@ -64,7 +66,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-left',
-				icon:'fa-chevron-left'
+				icon:"left"
 			},
 			rect:{
 				top:0,
@@ -103,7 +105,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-left',
-				icon:'fa-chevron-left'
+				icon:"left"
 			},
 			rect:{
 				top:0,
@@ -142,7 +144,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
-				icon:'fa-chevron-up'
+				icon:"up"
 			},
 			rect:{
 				top:"50%",
@@ -181,7 +183,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-left',
-				icon:'fa-chevron-up'
+				icon:"up"
 			},
 			rect:{
 				top:"50%",
@@ -220,7 +222,7 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-left',
-				icon:'fa-chevron-up'
+				icon:'up'
 			},
 			rect:{
 				top:"50%",
