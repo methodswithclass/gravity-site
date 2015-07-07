@@ -4,7 +4,7 @@ nuplaeModule.directive("body", ['send', function (send) {
 
 		link:function ($scope, element, attr) {
 
-			send.accum({name"body", id:"body", data:element});
+			send.accum({name:"body", id:"body", data:element});
 
 		}
 	}
