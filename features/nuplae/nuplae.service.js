@@ -195,38 +195,35 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	var parseInput2 = function (input) {
 
-
-		var self = this;
-
-		this.name;
-		this.page;
-		this.elem;
-		this.index;
+		var name;
+		var page;
+		var elem;
+		var index;
 
 		var isIndex = function (input) {
 
-			self.index = input;
-			self.page = params.pages[input];
-			self.name = self.page.name;
+			index = input;
+			page = params.pages[input];
+			name = page.name;
 
-			console.log("name is " + self.name);
-			self.elem = $("#page" + self.name);
+			console.log("name is " + name);
+			elem = $("#page" + name);
 
-			console.log(self.elem[0]);
+			console.log(elem[0]);
 			
 		}
 
-		var isPage = function (input) {
+		this.isPage = function (input) {
 
 			for (i in params.pages) {
 				if (input.name == params.pages[i].name) {
-					self.index = i;
+					index = i;
 				}
 			}
 
-			self.page = input;
-			self.name = input.name;
-			self.elem = $("#page" + self.name);
+			page = input;
+			name = input.name;
+			elem = $("#page" + name);
 
 		}
 
@@ -236,10 +233,10 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 			console.log(input);
 			if (input instanceof jQuery) {
 
-				self.index = -1;
-				self.name = null;
-				self.page = null;
-				self.elem = input;
+				index = -1;
+				name = null;
+				page = null;
+				elem = input;
 			}
 			else {
 
@@ -247,9 +244,9 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 					if (checkCoords(input, i)) {
 						sekf.index = i;
-						self.page = params.pages[i];
-						self.name = page.name;
-						self.elem = $("#page" + self.name);
+						page = params.pages[i];
+						name = page.name;
+						elem = $("#page" + name);
 					}
 				}
 			}
@@ -267,10 +264,10 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 
 		return {
-			index:self.index,
-			name:self.name,
-			page:self.page,
-			elem:self.elem
+			index:index,
+			name:name,
+			page:page,
+			elem:elem
 		};
 
 	}
