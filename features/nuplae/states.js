@@ -90,7 +90,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		setNavigate(false);
 
-		navigate(0, 100, function () {
+		navigate(0, 10, function () {
 
 			console.log("nav complete");
 
