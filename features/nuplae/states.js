@@ -1,4 +1,4 @@
-nuplaeModule.factory("states", ['$state', 'navigation', '$rootScope', function ($state, nav, $rootScope) {
+nuplaeModule.factory("states", ['$state', '$rootScope', function ($state, $rootScope) {
 
 	var self = this;
 
@@ -37,7 +37,7 @@ nuplaeModule.factory("states", ['$state', 'navigation', '$rootScope', function (
 	   	if (toState.name.split(".")[0] == "Page") {
 
 	   		console.log("go to current index: " + self.currentIndex);      
-	    	nav.open(self.currentIndex, 500);
+	    	/nav.open(self.currentIndex, 500);
 		}
 	});
 
