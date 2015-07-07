@@ -183,7 +183,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	              
 	        	 console.log("close modal valid");
 
-	        	 $states.go(states[0].state);
+	        	 $state.go(states[0].state);
 	        },
 	      }).
 	      state({
