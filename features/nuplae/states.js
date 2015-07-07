@@ -79,7 +79,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', f
 		//body.removeClass("cutoff").addClass("scroll");
 
 		console.log("navigate to " + name);
-		console.log(elem);
+		console.log(elem[0]);
 
 		body.scrollTo(elem, {
 			duration:duration,
