@@ -180,16 +180,22 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        },
 	        onEnter: function() {
 	              
-	              var close = function () {
+	        	var prevName = prevState.name;
 
-	                 $state.go(prevState.name);
-	              }
+	        	if (prevName == "" || prevName.split(".")[0] == "Modal") {
+	        		prevName = states[0].state;
+	        	}
 
-	              //console.log(getModalTime());
+				var close = function () {
 
-	              var timer = setTimeout(function () {
-	                  close();
-	              }, getModalTime());
+					$state.go(prevName);	
+				}
+
+				//console.log(getModalTime());
+
+				var timer = setTimeout(function () {
+				  close();
+				}, getModalTime());
 
 	          },
 
