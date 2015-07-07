@@ -31,20 +31,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 	}
 	];
 
-	var openHome = function () {
-
-		doesNavigate = false;
-
-		navigate(0, 10, function () {
-
-			$state.go(states[0].state);
-
-			doesNavigate = true;
-
-		});
-
-		
-	}
+	
 
 
 	var navigate = function (index, duration, complete) {
@@ -66,6 +53,21 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 				if (complete) complete();
 			}
 		});
+	}
+
+	var openHome = function () {
+
+		doesNavigate = false;
+
+		navigate(0, 10, function () {
+
+			$state.go(states[0].state);
+
+			doesNavigate = true;
+
+		});
+
+		
 	}
 
 
