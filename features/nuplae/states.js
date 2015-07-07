@@ -1,4 +1,4 @@
-nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($state, $rootScope, params) {
+nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', function ($document, $state, $rootScope, params) {
 
 	var currentIndex = 0;
 	var body;
@@ -63,23 +63,23 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 		}
 		else {
 			complete = function () {
-				
+
 			}
 		}
 
-		body = $("#body");
+		body = $document.find("#body");
 
 		setCurrent(index);
 
 		//var result = nuplaeService.parseInput(to);
 
 		var name = params.pages[index].name;
-		var elem = $("#page" + name);
+		var elem = $document.find("#page" + name);
 
 		//body.removeClass("cutoff").addClass("scroll");
 
 		console.log("navigate to " + name);
-		console.log(elem[0]);
+		console.log(elem);
 
 		body.scrollTo(elem, {
 			duration:duration,
