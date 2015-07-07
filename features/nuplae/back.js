@@ -11,29 +11,29 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 		}
 
 		switch(game.name) {
-			
+
 			case "Calibrate":
-				addClas("padding-right");
+				addClass("padding-right");
 			break;
 
 			case "Gravity":
-				addClas("padding-left");
+				addClass("padding-left");
 			break;
 
 			case "Float":
-				addClas("padding-left");
+				addClass("padding-left");
 			break;
 
 			case "Enemies":
-				addClas("padding-up");
+				addClass("padding-up");
 			break;
 
 			case "Balance":
-				addClas("padding-up");
+				addClass("padding-up");
 			break;
 
 			case "Space":
-				addClas("padding-up");
+				addClass("padding-up");
 			break;
 		}
 
