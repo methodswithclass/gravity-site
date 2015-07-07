@@ -25,8 +25,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"pink-back",
 			button:"transparent",
 			backButton:{
-				loc:{top:"10px", right:"10px"},
-				padding:'padding-right',
+				loc:{top:"10px", right:"10px", padding:"10px 0 10px 10px"},
 				icon:"right"
 			},
 			rect:{
@@ -64,8 +63,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"green2-back",
 			button:"transparent",
 			backButton:{
-				loc:{top:"10px", left:"10px"},
-				padding:'padding-left',
+				loc:{top:"10px", left:"10px", padding:"10px 10px 10px 0"},
 				icon:"left"
 			},
 			rect:{
@@ -103,8 +101,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"brown-back",
 			button:"transparent",
 			backButton:{
-				loc:{top:"10px", left:"10px"},
-				padding:'padding-left',
+				loc:{top:"10px", left:"10px", padding:"10px 10px 10px 0"},
 				icon:"left"
 			},
 			rect:{
@@ -142,8 +139,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"blue2-back",
 			button:"transparent",
 			backButton:{
-				loc:{top:"10px", right:"10px"},
-				padding:'padding-right',
+				loc:{top:"10px", right:"10px", padding:"0 10px 10px 10px"},
 				icon:"up"
 			},
 			rect:{
@@ -181,8 +177,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"pink-back",
 			button:"transparent",
 			backButton:{
-				loc:{top:"10px", left:"10px"},
-				padding:'padding-left',
+				loc:{top:"10px", left:"10px", padding:"0 10px 10px 10px"},
 				icon:"up"
 			},
 			rect:{
@@ -220,8 +215,7 @@ nuplaeModule.factory("params", function (global) {
 			menu:"brown-back",
 			button:"white-back",
 			backButton:{
-				loc:{top:"10px", left:"10px"},
-				padding:'padding-left',
+				loc:{top:"10px", left:"10px", padding:"0 10px 10px 10px"},
 				icon:'up'
 			},
 			rect:{
