@@ -5,7 +5,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 	this.currentIndex = 0;
 	var body;
 
-	var doesNavigate = false;
+	this.doesNavigate = false;
 
 	var states = [
 	{
@@ -57,13 +57,13 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	var openHome = function () {
 
-		doesNavigate = false;
+		self.doesNavigate = false;
 
 		navigate(0, 10, function () {
 
 			$state.go(states[0].state);
 
-			doesNavigate = true;
+			self.doesNavigate = true;
 
 		});
 
@@ -78,7 +78,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
-	   		if (doesNavigate) {
+	   		if (self.doesNavigate) {
 
 	   			console.log("go to current index: " + self.currentIndex);    
 	    		navigate(self.currentIndex, 700);
