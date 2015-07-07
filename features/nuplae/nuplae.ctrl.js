@@ -33,7 +33,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 	function (path) { //invalid
 		console.log("change location to " + path);
 		$location.path(path);
-		showModal("invalid");
+		showModal({modal:"invalid", time:1500});
 	});
 
 

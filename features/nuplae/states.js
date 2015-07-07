@@ -6,6 +6,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var doesNavigate = false;
 
+	var modalTime = 1000;
+
 	var body = {};
 	var elements = {};
 
@@ -53,6 +55,16 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		return doesNavigate;
 	}
+
+	var setModalTime = function (_time) {
+
+		modalTime = _time;
+	}
+
+	var getModalTime = function () {
+
+		return modalTime;
+	}
 	
 
 
@@ -94,7 +106,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 			console.log("nav complete");
 
-			showModal("valid");
+			showModal({modal:"valid", time:1500});
 
 			setNavigate(true);
 
@@ -149,7 +161,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	              var timer = setTimeout(function () {
 	                  close();
-	              }, 1000);
+	              }, getModalTime());
 
 	          },
 
@@ -170,6 +182,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        onExit:function() {
 	              
 	        	 console.log("close modal valid");
+
+	        	 $states.go(states[0].state);
 	        },
 	      }).
 	      state({
@@ -276,11 +290,13 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	}
 
-	var showModal = function (modal) {
+	var showModal = function (params) {
 
-		console.log("show modal " + modal);
+		console.log("show modal " + params.modal);
 
-		$state.go("Modal." + modal);
+		setModalTime(params.time);
+
+		$state.go("Modal." + params.modal);
 	}
 
 	var gotoPage = function (index) {
