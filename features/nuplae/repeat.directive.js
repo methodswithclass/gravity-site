@@ -1,6 +1,8 @@
-nuplaeModule.directive("repeat", ['events', function (events) {
+nuplaeModule.directive("repeat", ['events', 'send', function (events, send) {
 
 	return function (scope, element, attr) {
+
+		send.accum({name:"load", id:attr.id, data:element})
 		
 		if(scope.$last) {
 
