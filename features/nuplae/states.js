@@ -61,11 +61,12 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 		//var result = nuplaeService.parseInput(to);
 
 		var name = params.pages[index].name;
-
-		console.log("navigate to " + name);
 		var elem = $("#page" + name);
 
 		body.removeClass("cutoff").addClass("scroll");
+
+		console.log("navigate to " + name);
+		console.log(elem[0]);
 
 		body.scrollTo(elem, {
 			duration:duration,
@@ -102,7 +103,11 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
+	   		console.log("inside page");
+
 	   		if (getNavigate()) {
+
+	   			console.log("inside navigate");
 
 	   			console.log("go to current index: " + getCurrent());    
 	    		navigate(getCurrent(), 700);
