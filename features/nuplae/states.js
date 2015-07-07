@@ -11,7 +11,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	var body = {};
 	var elements = {};
 	var bodyElem;
-	var elem
+	var elem;
+
+	var prevState;
 
 	var states = [
 	{
@@ -103,8 +105,6 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var openHome = function () {
 
-		setNavigate(false);
-
 		bodyElem = $(body["body"]);
 
 		bodyElem.removeClass("cutoff").addClass("scroll");
@@ -126,7 +126,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	$rootScope.$on('$stateChangeStart', 
 	function(event, toState, toParams, fromState, fromParams){
 
-		console.log(toState);	   	
+		console.log(toState);	  
+
+		prevState = fromState; 	
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
@@ -178,7 +180,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	              
 	              var close = function () {
 
-	                 $state.go("Default");
+	                 $state.go(prevState.name);
 	              }
 
 	              //console.log(getModalTime());
@@ -209,7 +211,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	        	 setNavigate(false);
 
-	        	 $state.go(states[0].state);
+	        	 //$state.go(states[0].state);
 	        },
 	      }).
 	      state({
