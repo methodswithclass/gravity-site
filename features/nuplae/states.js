@@ -1,11 +1,9 @@
 nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($state, $rootScope, params) {
 
-	var self = this;
-
-	this.currentIndex = 0;
+	var currentIndex = 0;
 	var body;
 
-	this.doesNavigate = false;
+	var doesNavigate = false;
 
 	var states = [
 	{
@@ -31,6 +29,26 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 	}
 	];
 
+	var setCurrent = function (_current) {
+
+		currentIndex = _current;
+	}
+
+	var getCurrent = function () {
+
+		return currentIndex;
+	}
+
+
+	var setNavigate = function (_navigate) {
+
+		doesNavigate = _navigate;
+	}
+
+	var getNavigate = function () {
+
+		return doesNavigate;
+	}
 	
 
 
@@ -39,8 +57,6 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 		body = $("#body");
 
 		setCurrent(index);
-
-		
 
 		//var result = nuplaeService.parseInput(to);
 
@@ -63,13 +79,15 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	var openHome = function () {
 
-		self.doesNavigate = false;
+		setNavigate(false);
 
 		navigate(0, 10, function () {
 
+			console.log("nav complete");
+
 			$state.go(states[0].state);
 
-			self.doesNavigate = true;
+			setNavigate(true);
 
 		});
 
@@ -84,20 +102,14 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
-	   		if (self.doesNavigate) {
+	   		if (getNavigate()) {
 
-	   			console.log("go to current index: " + self.currentIndex);    
-	    		navigate(self.currentIndex, 700);
+	   			console.log("go to current index: " + getCurrent());    
+	    		navigate(getCurrent(), 700);
 			}
 		}
 
 	});
-
-
-	var setCurrent = function (current) {
-
-		self.currentIndex = current;
-	}
 
 	var define = function () {
 
