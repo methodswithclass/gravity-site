@@ -55,7 +55,17 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	var navigate = function (index, duration, _complete) {
 
-		complete = _complete;
+		var complete;
+
+		if (_complete) {
+
+			complete = _complete;
+		}
+		else {
+			complete = function () {
+				
+			}
+		}
 
 		body = $("#body");
 
@@ -66,7 +76,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 		var name = params.pages[index].name;
 		var elem = $("#page" + name);
 
-		body.removeClass("cutoff").addClass("scroll");
+		//body.removeClass("cutoff").addClass("scroll");
 
 		console.log("navigate to " + name);
 		console.log(elem[0]);
@@ -74,11 +84,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 		body.scrollTo(elem, {
 			duration:duration,
 			queue:false,
-			onAfter:function(target, settings) {
-				body.removeClass("scroll").addClass("cutoff");
-				console.log("complete " + body);
-				if (complete) complete();
-			}
+			onAfter:complete
 		});
 	}
 
