@@ -2,6 +2,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 	var currentIndex = 0;
 	var body;
+	var complete;
 
 	var doesNavigate = false;
 
@@ -52,7 +53,9 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 	
 
 
-	var navigate = function (index, duration, complete) {
+	var navigate = function (index, duration, _complete) {
+
+		complete = _complete;
 
 		body = $("#body");
 
