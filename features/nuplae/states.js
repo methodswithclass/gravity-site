@@ -1,4 +1,4 @@
-nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send' function ($document, $state, $rootScope, params, send) {
+nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send', function ($document, $state, $rootScope, params, send) {
 
 	var currentIndex = 0;
 	

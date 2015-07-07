@@ -2,7 +2,7 @@ sharedModule.factory("send", function () {
 
 	var receivers = {};
 
-	var send = function (params) {
+	var accum = function (params) {
 
 		receivers[params.name][params.id] = params.data;
 
@@ -15,7 +15,7 @@ sharedModule.factory("send", function () {
 
 	return {
 
-		send:send,
+		accum:accum,
 		receiver:receiver
 	}
 
