@@ -31,10 +31,11 @@ nuplaeModule.factory("states", ['$state', 'navigation', '$rootScope', function (
 
 	$rootScope.$on('$stateChangeStart', 
 	function(event, toState, toParams, fromState, fromParams){ 
-	   	
+
+		console.log(toState);	   	
 
 	   	if (toState.split(".")[0] == "Page") {
-	   		
+
 	   		console.log("go to current index: " + self.currentIndex);      
 	    	nav.open(self.currentIndex, 500);
 		}
