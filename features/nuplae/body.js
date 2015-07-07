@@ -9,4 +9,4 @@ nuplaeModule.directive("body", ['send', function (send) {
 		}
 	}
 
-});
+}]);
