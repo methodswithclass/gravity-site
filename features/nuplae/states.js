@@ -128,7 +128,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		console.log(toState);	  
 
-		prevState = fromState; 	
+		prevState = fromState; 
+
+		console.log(prevState);
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
@@ -209,7 +211,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	              
 	        	 console.log("close modal valid");
 
-	        	 setNavigate(false);
+	        	 //setNavigate(false);
 
 	        	 //$state.go(states[0].state);
 	        },
