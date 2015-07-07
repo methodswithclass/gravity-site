@@ -34,7 +34,7 @@ nuplaeModule.factory("states", ['$state', 'navigation', '$rootScope', function (
 
 		console.log(toState);	   	
 
-	   	if (toState.split(".")[0] == "Page") {
+	   	if (toState.name.split(".")[0] == "Page") {
 
 	   		console.log("go to current index: " + self.currentIndex);      
 	    	nav.open(self.currentIndex, 500);
