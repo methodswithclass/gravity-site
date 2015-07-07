@@ -6,13 +6,13 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 
 		console.log("nav to " + to);
 
-		//var result = nuplaeService.parseInput(to);
+		var result = nuplaeService.parseInput(to);
 		
 		body = $("#body");
 
 		body.removeClass("cutoff").addClass("scroll");
 
-		body.scrollTo(output.elem, {
+		body.scrollTo(result.elem, {
 			duration:duration,
 			queue:false,
 			onAfter:function(target, settings) {

@@ -193,9 +193,91 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 
 	}
 
+	var parseInput2 = function (input) {
+
+
+		var self = this;
+
+		this.name;
+		this.page;
+		this.elem;
+		this.index;
+
+		var isIndex = function (input) {
+
+			self.index = input;
+			self.page = params.pages[input];
+			self.name = self.page.name;
+
+			console.log("name is " + name);
+			self.elem = $("#page" + name);
+
+			console.log(self.elem[0]);
+			
+		}
+
+		var isPage = function (input) {
+
+			for (i in params.pages) {
+				if (input.name == params.pages[i].name) {
+					self.index = i;
+				}
+			}
+
+			self.page = input;
+			self.name = input.name;
+			self.elem = $("#page" + self.name);
+
+		}
+
+		var isJqueryCoord = function () {
+
+			console.log("is coord or jquery");
+			console.log(input);
+			if (input instanceof jQuery) {
+
+				self.index = -1;
+				self.name = null;
+				self.page = null;
+				self.elem = input;
+			}
+			else {
+
+				for (i in params.pages) {
+
+					if (checkCoords(input, i)) {
+						sekf.index = i;
+						self.page = params.pages[i];
+						self.name = page.name;
+						self.elem = $("#page" + self.name);
+					}
+				}
+			}
+		}
+
+		if (input >= 0) {
+			isIndex(input);
+		}
+		else if (input.name && input.name.length > 0) {
+			isPage(input);
+		}
+		else {
+			isJqueryCoord(input);
+		}
+
+
+		return {
+			index:self.index,
+			name:self.name,
+			page:self.page,
+			elem:self.elem
+		};
+
+	}
+
 	return {
 		buttonTouch:buttonTouch,
-		parseInput:parseInput
+		parseInput:parseInput2
 	}
 });
 
