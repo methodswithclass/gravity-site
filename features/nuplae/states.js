@@ -159,6 +159,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	                 $state.go("Default");
 	              }
 
+	              console.log(getModalTime());
+
 	              var timer = setTimeout(function () {
 	                  close();
 	              }, getModalTime());
