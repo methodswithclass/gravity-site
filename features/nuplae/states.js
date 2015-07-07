@@ -38,6 +38,8 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 
 		body = $("#body");
 
+		console.log("navigate to " + index);
+
 		//var result = nuplaeService.parseInput(to);
 
 		var name = params.pages[index].name;
