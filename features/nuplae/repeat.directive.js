@@ -1,4 +1,4 @@
-nuplaeModule.directive("repeat", ['events', 'params', function (events, params) {
+nuplaeModule.directive("repeat", ['events', function (events) {
 
 	return function (scope, element, attr) {
 		
