@@ -1,6 +1,11 @@
 
+<div class="absolute width25 height50 cutoff border {{page.page.back}}" id="{{'page' + info.name}}" ng-style="{top:'' + info.page.rect.top, left:'' + info.page.rect.left }">
+	<div class="absolute inset1 center {{info.page.fore}} cutoff">
 
-<div class="absolute top-10 width text-center font-60">{{info.name}}</div>
+		<div class="absolute top-10 width text-center font-60">{{info.name}}</div>
+		
+		<back game="info"></back>
 
+	</div>
 
-<back game="info"></back>
+</div>

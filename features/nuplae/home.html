@@ -1,18 +1,23 @@
 
+<div class="absolute width25 height50 cutoff border {{page.page.back}}" id="{{'page' + info.name}}" ng-style="{top:'' + info.page.rect.top, left:'' + info.page.rect.left }">
+	<div class="absolute inset1 center {{info.page.fore}} cutoff">
 
 
-<div class="absolute width height scrollY touch" id="home">
+		<div class="absolute width height scrollY touch" id="home">
 
-	<div class="relative margin-v-20 width height-100">
-		<div class="absolute width vcenter text-center font-70">{{info.name}}</div>
-	</div>
+			<div class="relative margin-v-20 width height-100">
+				<div class="absolute width vcenter text-center font-70">{{info.name}}</div>
+			</div>
 
-	<div class="relative top-100 width">
+			<div class="relative top-100 width">
 
-		<div class="relative" ng-repeat="game in info.pages">
-			<option info="game"></option>
+				<div class="relative" ng-repeat="game in info.pages">
+					<option info="game"></option>
+				</div>
+
+			</div>
+
 		</div>
 
 	</div>
-
 </div>
