@@ -11,7 +11,7 @@ nuplaeModule.directive("repeat", ['events', 'send', function (events, send) {
 			var wait = setTimeout(function () {
 
 				events.dispatch("loaded");
-			}, 500);
+			}, 300);
 			
 		}
 	}
