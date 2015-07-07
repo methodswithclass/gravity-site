@@ -21,11 +21,13 @@ sharedModule.factory("send", function () {
 
 		var bin = receivers[name];
 
-		if (bin.length == 0) {
+		if (bin || bin.length > 0) {
+
+			bin[bin.length] = params.receiver;
+		}
+		else {
 			bin = [];
 		}
-
-		bin[bin.length] = params.receiver;
 
 		receivers[name] = bin;
 	}
