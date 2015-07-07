@@ -94,7 +94,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 			console.log("nav complete");
 
-			$state.go(states[0].state);
+			showModal("valid");
 
 			setNavigate(true);
 
@@ -162,6 +162,21 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        views:{
 	            "modal": {
 	              templateUrl: "features/nuplae/valid-modal.html"
+	            }
+	      	},
+	      	onEnter:function() {
+
+	        },
+	        onExit:function() {
+	              
+	        	 console.log("close modal valid");
+	        },
+	      }).
+	      state({
+	        name:"Modal.invalid",
+	        views:{
+	            "modal": {
+	              templateUrl: "features/nuplae/invalid-modal.html"
 	            }
 	      	},
 	      	onEnter:function() {

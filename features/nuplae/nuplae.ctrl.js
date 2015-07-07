@@ -29,12 +29,11 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 	function (path) { //valid
 		console.log("change location to " + path);
 		$location.path(path);
-
-		states.showModal("valid");
 	},
 	function (path) { //invalid
 		console.log("change location to " + path);
 		$location.path(path);
+		showModal("invalid");
 	});
 
 
