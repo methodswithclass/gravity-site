@@ -10,6 +10,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var body = {};
 	var elements = {};
+	var bodyElem;
+	var elem
 
 	var states = [
 	{
@@ -84,14 +86,15 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		setCurrent(index);
 		var name = params.pages[index].name;
-
 		var id = "page" + name;
 
-		console.log("navigate to " + name);
-		console.log(elements[id]);
-		console.log(body["body"]);
+		elem = $(elements[id]);
 
-		$(body["body"]).scrollTo(elements[id], {
+		console.log("navigate to " + name);
+		console.log(elem[0]);
+		console.log(bodyElem[0]);
+
+		bodyElem.scrollTo(elem[0], {
 			duration:duration,
 			queue:false,
 			onAfter:complete
@@ -102,13 +105,17 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		setNavigate(false);
 
+		bodyElem = $(body["body"]);
+
+		bodyElem.removeClass("cutoff").addClass("scroll");
+
 		navigate(0, 10, function () {
 
 			console.log("nav complete");
 
-			showModal({modal:"valid", time:1500});
+			bodyElem.removeClass("scroll").addClass("cutoff");
 
-			setNavigate(true);
+			showModal({modal:"valid", time:1500});
 
 		});
 
@@ -123,14 +130,29 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	   	if (toState.name.split(".")[0] == "Page") {
 
-	   		console.log("inside page");
+	   		console.log("inside page, navigate: " + getNavigate());
 
 	   		if (getNavigate()) {
 
-	   			console.log("inside navigate");
+	   			console.log("inside navigation");
 
 	   			console.log("go to current index: " + getCurrent());    
-	    		navigate(getCurrent(), 700);
+	    		
+
+	    		bodyElem = $(body["body"]);
+
+				bodyElem.removeClass("cutoff").addClass("scroll");
+
+				navigate(getCurrent(), 700, function () {
+
+					console.log("nav complete");
+
+					bodyElem.removeClass("scroll").addClass("cutoff");
+
+				});
+			}
+			else {
+				setNavigate(true);
 			}
 		}
 
@@ -159,7 +181,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	                 $state.go("Default");
 	              }
 
-	              console.log(getModalTime());
+	              //console.log(getModalTime());
 
 	              var timer = setTimeout(function () {
 	                  close();
@@ -185,6 +207,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	              
 	        	 console.log("close modal valid");
 
+	        	 setNavigate(false);
+
 	        	 $state.go(states[0].state);
 	        },
 	      }).
@@ -200,7 +224,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        },
 	        onExit:function() {
 	              
-	        	 console.log("close modal valid");
+	        	 console.log("close modal invalid");
 	        },
 	      }).
 	      state({
@@ -229,8 +253,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	      state({
 	      	name:states[1].state,
 	      	onEnter:function() {
-	              
-	              console.log("enter state 1");
+	            
 
 	        },
 	        onExit:function() {
