@@ -76,7 +76,7 @@ nuplaeModule.factory("states", ['$state', '$rootScope', 'params', function ($sta
 			queue:false,
 			onAfter:function(target, settings) {
 				body.removeClass("scroll").addClass("cutoff");
-				console.log("complete " + complete);
+				console.log("complete " + body);
 				if (complete) complete();
 			}
 		});
