@@ -7,7 +7,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 	var options = {};
 	var backs = {};
 
-	semd.receiver({name:"body", receiver:body});
+	send.receiver({name:"body", receiver:body});
 	send.receiver({name:"options", receiver:options});
 	send.receiver({name:"backs", receiver:backs});
 
