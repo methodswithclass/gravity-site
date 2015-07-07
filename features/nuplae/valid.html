@@ -6,7 +6,7 @@
 		<div class="absolute corner nuplaeSize">
 
 			<div ng-repeat="page in main.pages">
-				<div class="absolute width25 height50 cutoff border {{page.page.back}}" ng-attr-id="{{'page' + page.name}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" repeat>
+				<div class="absolute width25 height50 cutoff border {{page.page.back}}" ng-attr-id="{{'page' + page.name}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
 					<div class="absolute inset1 center {{page.page.fore}} cutoff">
 						<page view="{{page.page.view}}" info="page"></page>
 					</div>

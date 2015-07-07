@@ -13,15 +13,17 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', function (nuServ, s
 
 			var info = $scope.info;
 
-			nuServ.buttonTouch(element, {
-				name:info.name,
+			nuServ.buttonTouch({
+				type:"option",
+				name:"option" + info.name,
 				back_press:"orange-back",
 				back_save:info.menu,
 				add_class:"lowered",
 				text_press:"white",
-				text_save:"white"
-			}, function () {
-				states.gotoPage(info.index);
+				text_save:"white",
+				complete:function () {
+					states.gotoPage(info.index);
+				}
 			});
 
 		}

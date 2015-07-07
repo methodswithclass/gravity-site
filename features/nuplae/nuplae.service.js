@@ -1,22 +1,48 @@
-nuplaeModule.factory("nuplaeService", function ($q, params) {
+nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 
 	var dist = 0;
 	var down = false;
 
-	var buttonTouch = function (el, p, complete) {
+	var body = {};
+	var options = {};
+	var backs = {};
 
+	semd.receiver({name:"body", receiver:body});
+	send.receiver({name:"options", receiver:options});
+	send.receiver({name:"backs", receiver:backs});
+
+	var buttonTouch = function (p) {
+
+		var type = p.type;
 		var name = p.name;
 		var back_press = p.back_press;
 		var back_save = p.back_save;
 		var text_press = p.text_press;
 		var text_save = p.text_save;
 		var add_class = p.add_class;
+		var complete = p.complete;
 
 		console.log("bind " + name);
 
-		var elem = $(el);
+		var element;
+
+		switch (type) {
+
+			case "option":
+				element = options;
+			break;
+
+			case "back":
+				element = back;
+			break;
+		}
+
+
+		var elem = $(element[name]);
+		var bodyElem = $(body["body"]);
 
 		var mc = new Hammer(elem[0]);
+		var bodyMc = new Hammer(bodyElem[0]);
 
 		var changeButton = function () {
 
@@ -38,45 +64,25 @@ nuplaeModule.factory("nuplaeService", function ($q, params) {
 		
 		mc.on("press", function (e) {
 
-			dist = 0;
-
 			changeButton();
-
-			down = true;
 
 		});
 
 		mc.on("pressup tap", function (e) {
-
-			dist = 0;
-			down = false;
 
 			returnButton();
 
 			complete();
 		});
 
-		// mc.on("panup pandown", function (e) {
+		bodyMc.on("panup panDown", function (e) {
 
-		// 	if (e.y > 10) returnButton();
-
-		// });
+			if (Math.abs(e.y) > 10) {
+				returnButton();
+			}
+		});
 
 		
-
-		$(window).on("touchmove", function (e) {
-
-			if (down) {
-				dist++;
-
-				if (dist > 10) {
-					returnButton();
-					dist = 0;
-					down = false;
-				}
-			}
-
-		});
 
 	}
 

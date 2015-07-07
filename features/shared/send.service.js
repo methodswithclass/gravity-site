@@ -4,13 +4,30 @@ sharedModule.factory("send", function () {
 
 	var accum = function (params) {
 
-		receivers[params.name][params.id] = params.data;
-	
+		var name = params.name;
+		var id = params.id;
+
+		var bin = receivers[name];
+
+		for (i in bin) {
+			bin[i][id] = params.data;
+		}
+
 	}
 
 	var receiver = function (params) {
 
-		receivers[params.name] = params.receiver;
+		var name = params.name;
+
+		var bin = receivers[name];
+
+		if (bin.length == 0) {
+			bin = [];
+		}
+
+		bin[bin.length] = params.receiver;
+
+		receivers[name] = bin;
 	}
 
 	return {

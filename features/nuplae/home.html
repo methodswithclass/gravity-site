@@ -9,7 +9,7 @@
 	<div class="relative top-100 width">
 
 		<div class="relative" ng-repeat="game in info.pages">
-			<option info="game"></option>
+			<option info="game" ng-attr-id="{{'option' + info.name}}" ng-attr-dir="options" repeat></option>
 		</div>
 
 	</div>
