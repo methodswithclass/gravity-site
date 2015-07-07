@@ -10,7 +10,7 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 
 		var elem = $("#page" + result.name);
 
-		console.log(elem[0]);
+		console.log("#page" + result.name);
 
 		body = $("#body");
 
