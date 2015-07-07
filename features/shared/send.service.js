@@ -4,14 +4,8 @@ sharedModule.factory("send", function () {
 
 	var accum = function (params) {
 
-		if (params.multiple) {
-
-			receivers[params.name][params.id] = params.data;
-
-		}
-		else {
-			receivers[params.name] = params.data;
-		}
+		receivers[params.name][params.id] = params.data;
+	
 	}
 
 	var receiver = function (params) {
