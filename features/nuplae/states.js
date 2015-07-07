@@ -79,7 +79,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 		console.log(elements[id]);
 		console.log(body["body"]);
 
-		$(body["body"]).scrollTo($(elements[id]), {
+		$(body["body"]).scrollTo(elements[id], {
 			duration:duration,
 			queue:false,
 			onAfter:complete
