@@ -125,9 +125,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var define = function () {
 
-		send.receiver({name:"body", reciever:body});
+		send.receiver({name:"body", receiver:body});
 
-		send.receiver({name:"pages", reciever:elements});
+		send.receiver({name:"pages", receiver:elements});
 
 		console.log("define states");
 
