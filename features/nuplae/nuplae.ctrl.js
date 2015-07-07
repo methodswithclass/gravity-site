@@ -21,7 +21,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		states.openHome();
 
-	})
+	});
 
 	var result = checkDevice.run();
 
