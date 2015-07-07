@@ -1,4 +1,4 @@
-nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
+nuplaeModule.factory("states", ['$state', 'navigation', '$rootScope', function ($state, nav, $rootScope) {
 
 	var self = this;
 
@@ -27,6 +27,24 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 		state:"Page.Space"
 	}
 	];
+
+
+	$rootScope.$on('$stateChangeStart', 
+	function(event, toState, toParams, fromState, fromParams){ 
+	   	
+
+	   	if (toState.split(".")[0] == "Page") {
+	   		
+	   		console.log("go to current index: " + self.currentIndex);      
+	    	nav.open(self.currentIndex, 500);
+		}
+	});
+
+
+	var setCurrent = function (current) {
+
+		self.currentIndex = current;
+	}
 
 
 
@@ -78,9 +96,7 @@ nuplaeModule.factory("states", ['$state', 'navigation', function ($state, nav) {
 	      	name:"Page",
 	      	onEnter:function() {
 
-	      		console.log("go to current index: " + self.currentIndex);
-	              
-	            nav.open(self.currentIndex, 500);
+	      		
 
 	        },
 	        onExit:function() {

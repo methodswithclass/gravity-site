@@ -36,16 +36,6 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		states.gotoPage(0);
 
-		//var result = nuplaeService.parseInput(0);
-
-		// result.then(
-		// function (output) {
-		// 	console.log("go to home");
-		// 	states.gotoPage(0);
-		// },
-		// function (message) {
-		// 	console.log(message);
-		// });
 	})
 
 	states.define();
