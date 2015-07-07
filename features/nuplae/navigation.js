@@ -7,12 +7,16 @@ nuplaeModule.factory("navigation", function (nuplaeService) {
 		console.log("nav to " + to);
 
 		var result = nuplaeService.parseInput(to);
-		
+
+		var elem = $("#page" + result.name);
+
+		console.log(elem[0]);
+
 		body = $("#body");
 
 		body.removeClass("cutoff").addClass("scroll");
 
-		body.scrollTo(result.elem, {
+		body.scrollTo(elem, {
 			duration:duration,
 			queue:false,
 			onAfter:function(target, settings) {
