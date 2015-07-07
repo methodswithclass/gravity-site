@@ -34,7 +34,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		console.log("loaded event dispatch");
 
-		states.gotoPage(0);
+		states.openHome();
 
 	})
 
@@ -46,8 +46,6 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 	function (path) { //valid
 		console.log("change location to " + path);
 		$location.path(path);
-		
-		states.openHome();
 
 		states.showModal("valid");
 	},
