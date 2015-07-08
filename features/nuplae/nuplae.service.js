@@ -1,4 +1,4 @@
-nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states', function ($q, params, send, g, states) {
+nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootScope', 'states', function ($q, params, send, g, $rootScope, states) {
 
 	var dist = 0;
 	var down = false;
@@ -30,6 +30,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 		var add_class = p.add_class;
 		var complete = p.complete;
 
+		var top;
+
 		console.log("bind type:" + type + " of:" + name);
 
 		switch (type) {
@@ -45,24 +47,22 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 
 
 		var elem;
-		var bodyElem;
 
 		var mc;
-		var bocyMc;
 
 		try {
 
 			elem = $(element[name]);
-			bodyElem = $(body[g.c.body]);
 
 			mc = new Hammer(elem[0]);
-			bodyMc = new Hammer(bodyElem[0]);
 		}
 		catch(e) {
 			return false;
 		}
 
 		var changeButton = function () {
+
+			top = elem.css("top");
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -78,7 +78,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 		}
 
 		mc.get("press").set({time:1, threshold:1});
-		bodyMc.get("pan").set({direction: Hammer.DIRECTION_VERTICAL});
 		
 		mc.on("press", function (e) {
 
@@ -93,14 +92,18 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 			complete();
 		});
 
-		bodyMc.on("panup pandown", function (e) {
+		$rootScope.$watch(function () {
 
-			console.log(e.deltaY);
+			return elem.css("top");
+		},
+		function (newValue, oldValue) {
 
-			if (Math.abs(e.deltaY) > 10) {
+			console.log("newVaue:" + newValue + " top:" + top);
+
+			if (Math.abs(newValue - top) > 10) {
 				returnButton();
 			}
-		});
+		})
 
 
 		return true;
