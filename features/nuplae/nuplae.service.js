@@ -94,16 +94,37 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 	
 	var bindBackButtons = function () {
 
-		buttonTouch({
-			type:"back",
-			name:"back" + game.name,
-			back_press:"black-back",
-			back_save:"white-back",
-			add_class:"fa-inverse",
-			complete:function () {
-				states.gotoPage(0);
+		var data = params.pages;
+
+		var i = 0;
+
+		var game;
+
+		var interval = setInterval(function () {
+
+			game = data[i];
+
+			buttonTouch({
+				type:"back",
+				name:"back" + game.name,
+				back_press:"black-back",
+				back_save:"white-back",
+				add_class:"fa-inverse",
+				complete:function () {
+					states.gotoPage(0);
+				}
+			});
+
+			if (i == data.length - 1) {
+
+				clearInterval(interval);
+				interval = null
 			}
-		});
+			else {
+				i++;
+			}
+
+		}, 300);
 	}
 
 	var checkCoords = function (to, i) {
