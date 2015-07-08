@@ -60,11 +60,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			elem = $(element[name]);
 
-			mc = new Hammer(elem[0], {
-
-				tap:auto,
-				press:auto
-			});
+			mc = new Hammer(elem[0]);
 		}
 		catch(e) {
 			return false;
@@ -74,7 +70,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			//top = elem.offset().top;
 
-			console.log("change button");
+			console.log(elem[0]);
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -95,8 +91,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 		mc.on("press", function (e) {
 
-			e.preventDefault();
-
 			console.log(e.type + " type:" + type + " name: " + name);
 
 			changeButton();
@@ -104,8 +98,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		});
 
 		mc.on("tap", function (e) {
-
-			e.preventDefault();
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
