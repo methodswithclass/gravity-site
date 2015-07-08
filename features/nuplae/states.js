@@ -97,6 +97,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 			}
 		}
 
+		index = index > params.pages.length ? 0 : index;
+
 		var name = params.pages[index].name;
 		var id = "page" + name;
 
