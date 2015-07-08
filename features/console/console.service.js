@@ -71,10 +71,6 @@ consoleModule.factory("con", function() {
 		
 	}
 
-	window.onerror = function (msg, url, linenumber) {
-		log("Error: " + msg + ", in " + url + " at " + linenumber);
-	}
-
 	var attachToConsole = function () {
 	    var oldLog = console.log;
 	    console.log = function (message) {
@@ -85,7 +81,14 @@ consoleModule.factory("con", function() {
 
 	var attach = function () {
 
-		if (isVisible()) attachToConsole();
+		if (isVisible()) { 
+
+			attachToConsole();
+		
+			window.onerror = function (msg, url, linenumber) {
+				log("Error: " + msg + ", in " + url + " at " + linenumber);
+			}
+		}
 	}
 
 	return {
