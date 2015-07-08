@@ -14,7 +14,7 @@ consoleModule.directive("console", function () {
 	}
 
 	return {
-		template:"<div class='console' id='consoleInner'></div><div class='console' id='consoleContainer'></div>",
+		template:"<div class='console scrollY touch' id='consoleInner'></div><div class='console' id='consoleContainer'></div>",
 		link:link
 	}
 });
