@@ -124,7 +124,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		var stateName = toState.name.split(".");
 
-	   	if (statName[0] == "Page") {
+	   	if (stateName[0] == "Page") {
 
    			var index = getIndex(stateName);
 
