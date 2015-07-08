@@ -54,9 +54,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			elem = $(element[name]);
 
-			mc = new Hammer(elem[0], {
-                touchAction: auto
-            });
+			mc = new Hammer(elem[0]);
 		}
 		catch(e) {
 			return false;
@@ -93,7 +91,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		});
 
-		mc.on("pressup", function (e) {
+		mc.on("pressup tap", function (e) {
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
