@@ -5,6 +5,8 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 
 		var game = $scope.game;
 
+		send.accum({name:attr.dir, id:attr.id, data:element[0]})
+
 		var addClass = function (_class) {
 
 			element.find("i").addClass(_class)
