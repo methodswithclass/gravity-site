@@ -97,8 +97,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			console.log("tap type:" + type + " name:" + name);
 
 			returnButton();
-
-			complete();
 		});
 
 		mcTap.on("tap", function (e) {
