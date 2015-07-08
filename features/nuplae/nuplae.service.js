@@ -9,6 +9,10 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 	var element;
 
+	var game;
+
+	var bindObj;
+
 
 	var setupReceivers = function () { 
 
@@ -134,9 +138,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			game = params.pages[i];
 
-			//console.log("bind back button for:" + game.name);
-
-			result = buttonTouch({
+			bindObj = {
+				index:i,
 				type:"back",
 				name:"back" + game.name,
 				back_press:"black-back",
@@ -146,51 +149,75 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 					console.log("go back");
 					states.gotoPage(0);
 				}
-			});
+			}
 
-			if (result) resolve({index:i, name:"back" + game.name, result:result});
-			else reject({index:i, name:"back" + game.name, result:result});
+			//console.log("bind back button for:" + game.name);
+
+			result = buttonTouch(bindObj);
+
+			bindObj.result = result;
+
+			if (result) resolve(bindObj);
+			else reject(bindObj);
 
 		});
 	}
 
 	var bindBackButtons = function () {
 
-		bindInner(1).then(function (output) {
+		bindInner(1)
+
+		.then(
+		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
-		}).then(function (output) {
+		})
+
+		.then(
+		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
-		}).then(function (output) {
+		})
+
+		.then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
-		}).then(function (output) {
+		})
+
+		.then(
+		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
-		}).then(function (output) {
+		})
+
+		.then(
+		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-		}).then(function (output) {
+			return output;
+		})
+
+		.then(
+		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 		}, 
 		function (output) {
