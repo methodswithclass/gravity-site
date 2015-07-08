@@ -105,16 +105,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		
 
 	}
-	
-	var bindBackButton = function () {
-
-		bindInner(1).then(function (result) {
-			return if (result) bindInner(2);
-		}, 
-		function (result) {
-			console.log("");
-		}).then(function (result))
-	}
 
 	var bindInner = function (i) {
 
@@ -145,39 +135,38 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 		bindInner(1).then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return if (output.result) bindInner(output.index + 1);
+			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
 		}).then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return if (output.result) bindInner(output.index + 1);
+			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
 		}).then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return if (output.result) bindInner(output.index + 1);
+			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
 		}).then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return if (output.result) bindInner(output.index + 1);
+			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
 			return output;
 		}).then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return if (output.result) bindInner(output.index + 1);
+			if (output.result) return bindInner(output.index + 1);
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
 		});
 	}
 
