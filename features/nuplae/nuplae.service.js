@@ -55,7 +55,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			elem = $(element[name]);
 
 			mc = new Hammer(elem[0], {
-                touchAction: touchAction
+                touchAction: auto
             });
 		}
 		catch(e) {
