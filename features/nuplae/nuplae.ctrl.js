@@ -15,6 +15,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 	states.define();
 
+	nuplaeService.setupReceivers();
+
 	events.on("loaded", function () {
 
 		console.log("loaded event dispatch");
