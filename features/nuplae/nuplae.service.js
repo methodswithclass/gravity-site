@@ -119,7 +119,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 				}
 			});
 
-			index = index + 1;
+			index++;
 
 			if (index == data.length) {
 
