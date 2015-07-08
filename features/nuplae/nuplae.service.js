@@ -98,10 +98,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		},
 		function (newValue, oldValue) {
 
-			console.log("newVaue:" + newValue + " top:" + top);
+			if (top) {
+				console.log("newVaue:" + newValue + " top:" + top);
 
-			if (Math.abs(newValue - top) > 10) {
-				returnButton();
+				if (Math.abs(newValue - top) > 10) {
+					returnButton();
+				}
 			}
 		})
 
