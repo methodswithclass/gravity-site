@@ -167,6 +167,11 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
+		}).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
 		});
 	}
 
