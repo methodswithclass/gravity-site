@@ -84,7 +84,8 @@ sharedModule.factory('global', ['$sce', '$location', 'events', function($sce, $l
 			spaceIndex:6,
 			back:"back",
 			body:"body",
-			option:"option"
+			option:"option",
+			home:"home"
     	},
     	isValid:isValid,
     	renderHtml:function (htmlCode) {

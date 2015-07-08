@@ -6,6 +6,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 	var body = {};
 	var options = {};
 	var backs = {};
+	var home = {};
 
 	var element;
 
@@ -23,6 +24,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		send.receiver({name:g.c.body, receiver:body});
 		send.receiver({name:g.c.option, receiver:options});
 		send.receiver({name:g.c.back, receiver:backs});
+		send.receiver({name:g.c.home, receiver:home});
 	}
 
 	var buttonTouch = function (p) {
@@ -88,7 +90,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			//top = elem.offset().top;
 
-			console.log(elem[0]);
+			console.log("change button");
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -109,8 +111,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			console.log(e.type + " type:" + type + " name: " + name);
 
-			console.log("pan " + e.deltaY);
-
 			changeButton();
 
 		});
@@ -123,6 +123,9 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			complete();
 		});
+
+
+		
 
 		// mcBody.on("pan", function (e) {
 
@@ -139,18 +142,18 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		// 	complete();
 		// });
 
-		// $rootScope.$watch(function () {
+		$rootScope.$watch(function () {
 
-		// 	return elem.offset().top;
-		// },
-		// function (newValue, oldValue) {
+			return $(home[g.c.home]).scrollTop();
+		},
+		function (newValue, oldValue) {
 
-		// 	console.log("newVaue:" + newValue + " oldValue:" + oldValue);
+			console.log("newVaue:" + newValue + " oldValue:" + oldValue);
 
-		// 	if (Math.abs(newValue - oldValue) > 10) {
-		// 		returnButton();
-		// 	}
-		// })
+			if (Math.abs(newValue - oldValue) > 10) {
+				returnButton();
+			}
+		})
 
 
 		return true;
