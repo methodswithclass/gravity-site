@@ -117,18 +117,18 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		// 	complete();
 		// });
 
-		$rootScope.$watch(function () {
+		// $rootScope.$watch(function () {
 
-			return elem.offset().top;
-		},
-		function (newValue, oldValue) {
+		// 	return elem.offset().top;
+		// },
+		// function (newValue, oldValue) {
 
-			console.log("newVaue:" + newValue + " oldValue:" + oldValue);
+		// 	console.log("newVaue:" + newValue + " oldValue:" + oldValue);
 
-			if (Math.abs(newValue - oldValue) > 10) {
-				returnButton();
-			}
-		})
+		// 	if (Math.abs(newValue - oldValue) > 10) {
+		// 		returnButton();
+		// 	}
+		// })
 
 
 		return true;
