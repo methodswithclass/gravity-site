@@ -64,7 +64,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			//top = elem.offset().top;
 
-			//console.log("top in change:" + top);
+			console.log(elem[0]);
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -73,6 +73,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		}
 
 		var returnButton = function () {
+
+			console.log(elem[0]);
 
 			if (back_press && back_save) elem.removeClass(back_press).addClass(back_save);
 			if (text_press && text_save) elem.removeClass(text_press).addClass(text_save);
@@ -83,11 +85,15 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 		mc.on("press", function (e) {
 
+			console.log("press type:" + type " name: " + name);
+
 			changeButton();
 
 		});
 
 		mc.on("pressup tap", function (e) {
+
+			console.log("tap type:" + type + " name:" + name);
 
 			returnButton();
 
@@ -128,6 +134,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 				back_save:"white-back",
 				add_class:"fa-inverse",
 				complete:function () {
+					console.log("go back");
 					states.gotoPage(0);
 				}
 			});
