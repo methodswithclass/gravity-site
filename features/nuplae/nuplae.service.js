@@ -95,6 +95,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 		mc.on("press", function (e) {
 
+			e.preventDefault();
+
 			console.log(e.type + " type:" + type + " name: " + name);
 
 			changeButton();
@@ -102,6 +104,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		});
 
 		mc.on("tap", function (e) {
+
+			e.preventDefault();
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
