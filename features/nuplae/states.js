@@ -91,6 +91,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 		var id = "page" + name;
 
 		elem = $(elements[id]);
+		bodyElem = $(body["body"]);
 
 		console.log("navigate to " + name);
 		console.log(elem[0]);
