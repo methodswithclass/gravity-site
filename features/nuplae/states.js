@@ -143,6 +143,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
    				else if (index == 0) {
    					setDuration(backDuration);
    				}
+   				else {
+   					setDuration(openDuration);
+   				}
 
 	    		bodyElem = $(body["body"]);
 
