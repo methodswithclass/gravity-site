@@ -62,9 +62,9 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		var changeButton = function () {
 
-			top = elem.offset().top;
+			//top = elem.offset().top;
 
-			console.log("top in change:" + top);
+			//console.log("top in change:" + top);
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -100,12 +100,10 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		},
 		function (newValue, oldValue) {
 
-			if (top) {
-				console.log("newVaue:" + newValue + " top:" + top);
+			console.log("newVaue:" + newValue + " oldValue:" + oldValue);
 
-				if (Math.abs(newValue - top) > 10) {
-					returnButton();
-				}
+			if (Math.abs(newValue - oldValue) > 10) {
+				returnButton();
 			}
 		})
 
