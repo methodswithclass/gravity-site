@@ -60,7 +60,13 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			elem = $(element[name]);
 
-			mc = new Hammer(elem[0]);
+			// mc = new Hammer(elem[0]);
+		
+			mc = new Hammer.Manager(elem[0], {
+			    recognizers: [
+			        [Hammer.Press, { time: 1, threshold:10 }]
+			    ]
+			});
 		}
 		catch(e) {
 			return false;
@@ -86,8 +92,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			if (text_press && text_save) elem.removeClass(text_press).addClass(text_save);
 			if (add_class) elem.removeClass(add_class);
 		}
-
-		mc.get("press").set({time:1, threshold:10});
 		
 		mc.on("press", function (e) {
 
@@ -97,7 +101,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		});
 
-		mc.on("pressup tap", function (e) {
+		mc.on("pressup", function (e) {
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
