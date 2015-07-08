@@ -5,7 +5,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 		scope:{
 			info:'='
 		},
-		template:'<div ng-include="getContentUrl()"></div>',
+		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
 			$scope.getContentUrl = function() {
