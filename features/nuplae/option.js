@@ -3,7 +3,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 	return {
 		restrict:'E',
 		scope:{
-			option:'='
+			info:'='
 		},
 		template:'<div ng-include="getContentUrl()"></div>',
 		link:function ($scope, element, attr) {
@@ -13,7 +13,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
                 return "features/nuplae/views/option.html"
             }
 
-			var info = $scope.option;
+			var info = $scope.info;
 
 			// nuServ.buttonTouch({
 			// 	type:"option",
