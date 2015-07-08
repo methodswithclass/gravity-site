@@ -16,7 +16,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		
 		send.receiver({name:g.c.body, receiver:body});
 		send.receiver({name:g.c.option, receiver:options});
-		send.receiver({name:g.c.option, receiver:backs});
+		send.receiver({name:g.c.back, receiver:backs});
 	}
 
 	var buttonTouch = function (p) {
@@ -104,7 +104,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 			game = data[i++];
 
-			console.log("bind back button for:" + game.name);
+			//console.log("bind back button for:" + game.name);
 
 			buttonTouch({
 				type:"back",
