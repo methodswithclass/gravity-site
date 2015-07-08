@@ -55,6 +55,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			elem = $(element[name]);
 
 			mc = new Hammer(elem[0]);
+			mcTap = new Hammer(elem[0]);
 		}
 		catch(e) {
 			return false;
@@ -96,6 +97,13 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			console.log("tap type:" + type + " name:" + name);
 
 			returnButton();
+
+			complete();
+		});
+
+		mcTap.on("tap", function (e) {
+
+			console.log("tap type:" + type + " name:" + name);
 
 			complete();
 		});
