@@ -68,6 +68,8 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var getIndex = function (stateName) {
 
+		console.log("check name:" + stateName);
+
 		for (i in states) {
 
 			if (stateName == states[i].state) {
@@ -126,7 +128,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	   	if (stateName[0] == "Page") {
 
-   			var index = getIndex(stateName);
+   			var index = getIndex(toState.name);
 
    			if (index == -1) {
    				console.log("state not found");
@@ -329,13 +331,13 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	}
 
-	var openHome = function () {
+	var openInitial = function () {
 
 		bodyElem = $(body["body"]);
 
 		bodyElem.removeClass("cutoff").addClass("scroll");
 
-		navigate(0, 10, function () {
+		navigate(7, 10, function () {
 
 			console.log("nav complete");
 
@@ -367,7 +369,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 		define:define,
 		gotoPage:gotoPage,
 		showModal:showModal,
-		openHome:openHome
+		openHome:openInitial
 	}
 
 
