@@ -26,8 +26,8 @@ sharedModule.factory("send", function () {
 
 		for (i in bin) {
 
-			console.log("accum: " + name + " id: " + id + " i: " + i + " data:");
-			console.log(params.data); 
+			console.log("accum: " + name + " id: " + id + " i: " + i + " data:" + params.data);
+			//console.log(params.data); 
 
 			bin[i][id] = params.data;
 		}
