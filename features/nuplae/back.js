@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, states) {
+nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuServ, states, send) {
 
 
 	var link = function ($scope, element, attr) {
