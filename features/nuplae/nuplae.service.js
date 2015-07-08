@@ -78,7 +78,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 		}
 
 		mc.get("press").set({time:1, threshold:1});
-		//mc.get("pan").set({direction: Hammer.DIRECTION_ALL});
+		bodyMc.get("pan").set({direction: Hammer.DIRECTION_VERTICAL});
 		
 		mc.on("press", function (e) {
 
