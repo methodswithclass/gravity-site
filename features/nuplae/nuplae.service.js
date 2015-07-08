@@ -105,17 +105,13 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			if (add_class) elem.removeClass(add_class);
 		}
 		
-		mc.on("press pan", function (e) {
+		mc.on("press", function (e) {
 
 			console.log(e.type + " type:" + type + " name: " + name);
 
-			changeButton();
-
 			console.log("pan " + e.deltaY);
 
-			if (Math.abs(e.deltaY) > 10) {
-				returnButton();
-			} 
+			changeButton();
 
 		});
 
