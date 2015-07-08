@@ -6,9 +6,9 @@
 		<div class="absolute width vcenter text-center font-70">{{info.name}}</div>
 	</div>
 
-	<div class="relative top-100 width">
+	<div class="relative top-100 width height">
 
-		<div class="relative" ng-repeat="game in info.pages">
+		<div class="absolute width height" ng-repeat="game in info.pages">
 			<div class="relative"  ng-attr-id="{{'option' + game.name}}" ng-attr-dir="options" repeat>
 				<option option="game"></option>
 			</div>
