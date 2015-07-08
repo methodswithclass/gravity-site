@@ -1,4 +1,4 @@
-nuplaeModule.factory("nuplaeService", function ($q, params, send) {
+nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', function ($q, params, send, g) {
 
 	var dist = 0;
 	var down = false;
@@ -14,9 +14,9 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 
 		console.log("setup receivers");
 		
-		send.receiver({name:"body", receiver:body});
-		send.receiver({name:"options", receiver:options});
-		send.receiver({name:"backs", receiver:backs});
+		send.receiver({name:g.c.body, receiver:body});
+		send.receiver({name:g.c.option, receiver:options});
+		send.receiver({name:g.c.option, receiver:backs});
 	}
 
 	var buttonTouch = function (p) {
@@ -34,18 +34,18 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 
 		switch (type) {
 
-			case "option":
+			case g.c.option:
 				element = options;
 			break;
 
-			case "back":
+			case g.c.back:
 				element = backs;
 			break;
 		}
 
 
 		var elem = $(element[name]);
-		var bodyElem = $(body["body"]);
+		var bodyElem = $(body[g.c.body]);
 
 		var mc = new Hammer(elem[0]);
 		var bodyMc = new Hammer(bodyElem[0]);
@@ -339,7 +339,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 		buttonTouch:buttonTouch,
 		parseInput:parseInput2
 	}
-});
+}]);
 
 
 

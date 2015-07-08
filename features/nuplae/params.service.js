@@ -1,4 +1,4 @@
-nuplaeModule.factory("params", function (global) {
+nuplaeModule.factory("params", ['global', function (g) {
 
 	var class1 = {
 		left:' padding-left',
@@ -17,7 +17,7 @@ nuplaeModule.factory("params", function (global) {
 	var games = [
 	{
 		name:"Calibrate",
-		index:global.c.calibrateIndex,
+		index:g.c.calibrateIndex,
 		page:{
 			view:"setup.html",
 			back:"pink-back",
@@ -27,7 +27,8 @@ nuplaeModule.factory("params", function (global) {
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
-				icon:"right"
+				icon:"right",
+				directive:g.c.back
 			},
 			rect:{
 				top:0,
@@ -40,7 +41,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -56,7 +57,7 @@ nuplaeModule.factory("params", function (global) {
 	},
 	{
 		name:"Gravity", 
-		index:global.c.gravIndex,
+		index:g.c.gravIndex,
 		page:{
 			view:"setup.html",
 			back:"green2-back",
@@ -65,7 +66,8 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"left"
+				icon:"left",
+				directive:g.c.back
 			},
 			rect:{
 				top:0,
@@ -78,7 +80,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -94,7 +96,7 @@ nuplaeModule.factory("params", function (global) {
 	},
 	{
 		name:"Float", 
-		index:global.c.floatIndex,
+		index:g.c.floatIndex,
 		page:{
 			view:"setup.html",
 			back:"brown-back",
@@ -103,7 +105,8 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"left"
+				icon:"left",
+				directive:g.c.back
 			},
 			rect:{
 				top:0,
@@ -116,7 +119,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -132,7 +135,7 @@ nuplaeModule.factory("params", function (global) {
 	},
 	{
 		name:"Enemies", 
-		index:global.c.enemiesIndex,
+		index:g.c.enemiesIndex,
 		page:{
 			view:"game.html",
 			back:"blue2-back",
@@ -141,7 +144,8 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", right:"10px"},
-				icon:"up"
+				icon:"up",
+				directive:g.c.back
 			},
 			rect:{
 				top:"50%",
@@ -154,7 +158,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -170,7 +174,7 @@ nuplaeModule.factory("params", function (global) {
 	},
 	{
 		name:"Balance", 
-		index:global.c.balanceIndex,
+		index:g.c.balanceIndex,
 		page:{
 			view:"game.html",
 			back:"pink-back",
@@ -179,7 +183,8 @@ nuplaeModule.factory("params", function (global) {
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"up"
+				icon:"up",
+				directive:g.c.back
 			},
 			rect:{
 				top:"50%",
@@ -192,7 +197,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.circle,
+			shape:g.c.circle,
 			size:50,
 			color:"black"
 		},
@@ -208,7 +213,7 @@ nuplaeModule.factory("params", function (global) {
 	},
 	{
 		name:"Space",
-		index:global.c.spaceIndex,
+		index:g.c.spaceIndex,
 		page:{
 			view:"game.html",
 			back:"white-back",
@@ -217,7 +222,8 @@ nuplaeModule.factory("params", function (global) {
 			button:"white-back",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:'up'
+				icon:'up',
+				directive:g.c.back
 			},
 			rect:{
 				top:"50%",
@@ -230,7 +236,7 @@ nuplaeModule.factory("params", function (global) {
 			}	
 		},
 		obj:{
-			shape:global.c.cross,
+			shape:g.c.cross,
 			size:100,
 			color:"red"
 		},
@@ -248,7 +254,7 @@ nuplaeModule.factory("params", function (global) {
 
 	var home = {
 		name:"Home",
-		index:global.c.homeIndex,
+		index:g.c.homeIndex,
 		page:{
 			view:"home.html",
 			back:"blue2-back",
@@ -274,7 +280,8 @@ nuplaeModule.factory("params", function (global) {
 			name:games[i].name,
 			index:games[i].index,
 			menu:games[i].page.menu,
-			rect:games[i].page.rect
+			rect:games[i].page.rect,
+			directive:g.c.option
 		};
 
 	};
@@ -284,6 +291,7 @@ nuplaeModule.factory("params", function (global) {
 	games.unshift(home);
 
 	return {
+		bodyDir:g.c.body,
 		pages:games
 	}
-});
+}]);

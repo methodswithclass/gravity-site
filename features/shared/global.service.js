@@ -81,7 +81,10 @@ sharedModule.factory('global', ['$sce', '$location', 'events', function($sce, $l
 			floatIndex:3,
 			enemiesIndex:4,
 			balanceIndex:5,
-			spaceIndex:6
+			spaceIndex:6,
+			back:"back",
+			body:"body",
+			option:"option"
     	},
     	isValid:isValid,
     	renderHtml:function (htmlCode) {
