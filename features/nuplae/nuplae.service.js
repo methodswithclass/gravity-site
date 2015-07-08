@@ -128,6 +128,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 	var bindInner = function (i) {
 
+		console.log("bind inner " + i);
+
 		return $q(function (resolve, reject) {
 
 			game = params.pages[i];
@@ -146,8 +148,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 				}
 			});
 
-			if (result) resolve({index:i, name:game.name, result:result});
-			else reject({index:i, name:game.name, result:result});
+			if (result) resolve({index:i, name:"back" + game.name, result:result});
+			else reject({index:i, name:"back" + game.name, result:result});
 
 		});
 	}
