@@ -13,7 +13,7 @@ nuplaeModule.directive("page", function () {
 
 			$scope.getContentUrl = function() {
 				//console.log($scope.view);
-                return 'features/nuplae/' + $scope.view;
+                return 'features/nuplae/views/' + $scope.view;
             }
 
 		}

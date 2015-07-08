@@ -59,7 +59,7 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 			game:'='
 		},
 		restrict:'E',
-		templateUrl:"features/nuplae/back.html",
+		templateUrl:"features/nuplae/views/back.html",
 		link:link
 	}
 

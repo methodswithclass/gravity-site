@@ -14,15 +14,15 @@ app.config(['$routeProvider', '$stateProvider', function (routeProvider, statePr
     routeProvider.
         when(invalid, {
     
-          templateUrl: 'features/nuplae/invalid.html'
+          templateUrl: 'features/nuplae/views/invalid.html'
         }).
         when(valid, {
         
-          templateUrl: 'features/nuplae/valid.html',
+          templateUrl: 'features/nuplae/views/valid.html',
         }).
         when(checking, {
 
-          templateUrl:'features/nuplae/checking.html',
+          templateUrl:'features/nuplae/views/checking.html',
         });
 }]).run(function ($location) {
 

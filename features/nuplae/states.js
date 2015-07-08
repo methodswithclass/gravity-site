@@ -175,7 +175,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        name:"Modal", 
 	        views:{
 	            "modal": {
-	              templateUrl: "features/modal/modal.html"
+	              templateUrl: "features/nuplae/views/modal/modal.html"
 	            }
 	        },
 	        onEnter: function() {
@@ -207,7 +207,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        name:"Modal.valid",
 	        views:{
 	            "modal": {
-	              templateUrl: "features/nuplae/valid-modal.html"
+	              templateUrl: "features/nuplae/views/modal/valid-modal.html"
 	            }
 	      	},
 	      	onEnter:function() {
@@ -226,7 +226,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        name:"Modal.invalid",
 	        views:{
 	            "modal": {
-	              templateUrl: "features/nuplae/invalid-modal.html"
+	              templateUrl: "features/nuplae/views/modal/invalid-modal.html"
 	            }
 	      	},
 	      	onEnter:function() {
