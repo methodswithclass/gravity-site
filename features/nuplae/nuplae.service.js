@@ -102,6 +102,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 		var interval = setInterval(function () {
 
+			console.log("index " + i);
+
 			game = data[i++];
 
 			//console.log("bind back button for:" + game.name);
