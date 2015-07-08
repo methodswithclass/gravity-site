@@ -7,9 +7,13 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 	var options = {};
 	var backs = {};
 
-	send.receiver({name:"body", receiver:body});
-	send.receiver({name:"options", receiver:options});
-	send.receiver({name:"backs", receiver:backs});
+
+	var setupReceivers = function () { 
+		
+		send.receiver({name:"body", receiver:body});
+		send.receiver({name:"options", receiver:options});
+		send.receiver({name:"backs", receiver:backs});
+	}
 
 	var buttonTouch = function (p) {
 
@@ -329,6 +333,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 	}
 
 	return {
+		setupReceivers:setupReceivers,
 		buttonTouch:buttonTouch,
 		parseInput:parseInput2
 	}
