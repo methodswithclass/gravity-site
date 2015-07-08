@@ -104,6 +104,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 			game = data[i];
 
+			console.log("bind back button for:" + game.name);
+
 			buttonTouch({
 				type:"back",
 				name:"back" + game.name,
