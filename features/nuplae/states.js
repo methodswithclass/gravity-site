@@ -76,9 +76,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 				return i;
 			}
-
-			return -1;
 		}
+
+		return -1;
 	}
 	
 
