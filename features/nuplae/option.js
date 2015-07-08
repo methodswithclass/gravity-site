@@ -1,14 +1,11 @@
-nuplaeModule.directive("option", ['nuplaeService', 'states', function (nuServ, states) {
+nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function (nuServ, states, events) {
 
 	return {
 		restrict:'E',
-		replace:true,
 		scope:{
 			info:'='
 		},
-		template:"<div class='relative width90 height-200 margin-v-70 center border pointer white {{info.menu}}'>" +
-					"<div class='absolute center font-60 text-center'>{{info.name}}</div>" + 
-				 "</div>",
+		templateUrl:"features/nuplae/option.html",
 		link:function ($scope, element, attr) {
 
 			var info = $scope.info;
