@@ -62,7 +62,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		var changeButton = function () {
 
-			top = elem.css("top");
+			top = elem.offset().top;
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -94,7 +94,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		$rootScope.$watch(function () {
 
-			return elem.css("top");
+			return elem.offset().top;
 		},
 		function (newValue, oldValue) {
 
