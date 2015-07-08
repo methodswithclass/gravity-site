@@ -17,12 +17,23 @@ sharedModule.factory("send", function () {
 		return false;
 	}
 
+	var isArray = function (array) {
+
+		if( Object.prototype.toString.call( array ) === '[object Array]' ) {
+		   return true;
+		}
+
+		return false;
+	}
+
 	var accum = function (params) {
 
 		var name = params.name;
 		var id = params.id;
 
 		var bin = receivers[name];
+
+		console.log("bin length " + bin.length);
 
 		for (i in bin) {
 
