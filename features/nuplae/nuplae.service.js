@@ -64,16 +64,17 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			// mc = new Hammer(elem[0]);
 
-			mcBody = new Hammer.Manager($(body["body"])[0], {
+			// mcBody = new Hammer.Manager($(body["body"])[0], {
 
-				recognizers: [
-					[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
-				]
-			});
+			// 	recognizers: [
+			// 		[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
+			// 	]
+			// });
 		
 			mc = new Hammer.Manager(elem[0], {
 			    recognizers: [
-			        [Hammer.Press, { time: 1, threshold:10 }]
+			        [Hammer.Press, { time: 1, threshold:10 }],
+			        [Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
 			    ]
 			});
 
@@ -104,11 +105,17 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			if (add_class) elem.removeClass(add_class);
 		}
 		
-		mc.on("press", function (e) {
+		mc.on("press pan", function (e) {
 
 			console.log(e.type + " type:" + type + " name: " + name);
 
 			changeButton();
+
+			console.log("pan " + e.deltaY);
+
+			if (Math.abs(e.deltaY) > 10) {
+				returnButton();
+			} 
 
 		});
 
@@ -121,13 +128,13 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			complete();
 		});
 
-		mcBody.on("pan", function (e) {
+		// mcBody.on("pan", function (e) {
 
-			if (Math.abs(e.deltaY) > 10) {
+		// 	if (Math.abs(e.deltaY) > 10) {
 
-				returnButton();
-			}
-		})
+		// 		returnButton();
+		// 	}
+		// })
 
 		// mcTap.on("tap", function (e) {
 
