@@ -86,7 +86,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 		mc.on("press", function (e) {
 
-			console.log("press type:" + type + " name: " + name);
+			console.log(e.type + " type:" + type + " name: " + name);
 
 			changeButton();
 
@@ -94,14 +94,14 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		mc.on("pressup", function (e) {
 
-			console.log("tap type:" + type + " name:" + name);
+			console.log(e.type " type:" + type + " name:" + name);
 
 			returnButton();
 		});
 
 		mcTap.on("tap", function (e) {
 
-			console.log("tap type:" + type + " name:" + name);
+			console.log(e.type + " type:" + type + " name:" + name);
 
 			complete();
 		});
