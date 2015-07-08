@@ -95,9 +95,9 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states
 
 		bodyMc.on("panup pandown", function (e) {
 
-			console.log(e.y);
+			console.log(e.deltaY);
 
-			if (Math.abs(e.y) > 10) {
+			if (Math.abs(e.deltaY) > 10) {
 				returnButton();
 			}
 		});
