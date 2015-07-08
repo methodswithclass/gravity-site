@@ -2,13 +2,14 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 	return {
 		restrict:'E',
+		replace:true,
 		scope:{
 			info:'='
 		},
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
-			
+
 			var info = $scope.info;
 
 			// nuServ.buttonTouch({

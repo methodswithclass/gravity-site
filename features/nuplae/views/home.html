@@ -8,7 +8,7 @@
 
 	<div class="relative top-100 width height">
 
-		<div class="relative width height" ng-repeat="game in info.pages">
+		<div ng-repeat="game in info.pages">
 			<div class='relative height-200 width90 hcenter margin-v-70 border pointer {{game.menu}}' ng-attr-id="{{'option' + game.name}}" ng-attr-dir="options" repeat>
 				<option info="game"></option>
 			</div>
