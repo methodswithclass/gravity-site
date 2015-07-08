@@ -83,12 +83,16 @@ consoleModule.factory("con", function() {
 	    };
 	}
 
-	if (isVisible()) attachToConsole();
+	var attach = function () {
+
+		if (isVisible()) attachToConsole();
+	}
 
 	return {
 		register:register,
 		isRegistered:isRegistered,
 		isVisible:isVisible,
+		attach:attach,
 		log:log
 	}
 

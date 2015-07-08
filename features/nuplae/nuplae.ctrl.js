@@ -66,6 +66,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 		//console.log("document ready");
 
 		con.register($("#consoleContainer"));
+
+		con.attach();
 	
 	});
 
