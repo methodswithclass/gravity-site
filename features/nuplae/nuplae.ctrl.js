@@ -27,6 +27,8 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		//console.log("loaded event dispatch");
 
+		nuplaeService.bindBackButtons();
+
 		states.openHome();
 
 	});

@@ -91,6 +91,20 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		
 
 	}
+	
+	var bindBackButtons = function () {
+
+		buttonTouch({
+			type:"back",
+			name:"back" + game.name,
+			back_press:"black-back",
+			back_save:"white-back",
+			add_class:"fa-inverse",
+			complete:function () {
+				states.gotoPage(0);
+			}
+		});
+	}
 
 	var checkCoords = function (to, i) {
 
@@ -337,6 +351,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 	return {
 		setupReceivers:setupReceivers,
 		buttonTouch:buttonTouch,
+		bindBackButtons:bindBackButtons,
 		parseInput:parseInput2
 	}
 }]);
