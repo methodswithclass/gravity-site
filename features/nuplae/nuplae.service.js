@@ -75,7 +75,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 			mc = new Hammer.Manager(elem[0], {
 			    recognizers: [
-			        [Hammer.Press, { time: 1, threshold:10 }],
+			        [Hammer.Press, { time:1, threshold:500}],
 			        [Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
 			    ]
 			});
@@ -125,35 +125,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		});
 
 
-		
-
-		// mcBody.on("pan", function (e) {
-
-		// 	if (Math.abs(e.deltaY) > 10) {
-
-		// 		returnButton();
-		// 	}
-		// })
-
-		// mcTap.on("tap", function (e) {
-
-		// 	console.log(e.type + " type:" + type + " name:" + name);
-
-		// 	complete();
-		// });
-
-		$rootScope.$watch(function () {
-
-			return $(home[g.c.home]).scrollTop();
-		},
-		function (newValue, oldValue) {
-
-			console.log("newVaue:" + newValue + " oldValue:" + oldValue);
-
-			if (Math.abs(newValue - oldValue) > 10) {
-				returnButton();
-			}
-		})
 
 
 		return true;
