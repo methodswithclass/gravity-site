@@ -13,6 +13,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 	var bindObj;
 
+	var result;
+
 
 	var setupReceivers = function () { 
 
