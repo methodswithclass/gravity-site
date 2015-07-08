@@ -62,7 +62,7 @@ validateModule.factory("validate.service", function ($q) {
 					if (self.checkMotion) {
 
 						if (e.accelerationIncludingGavity || e.acceleration) {
-							console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
+							//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
 							setMotion(true);
 							check++;
 
@@ -71,7 +71,7 @@ validateModule.factory("validate.service", function ($q) {
 							}
 						}
 						else {
-							console.log("DeviceMotion is not supported");
+							//console.log("DeviceMotion is not supported");
 							setMotion(false);
 							check++;
 

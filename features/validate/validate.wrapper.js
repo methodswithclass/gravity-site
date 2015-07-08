@@ -5,7 +5,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 		return $q(function (resolve, reject) {
 
-			console.log("run validate wrapper");
+			//console.log("run validate wrapper");
 
 			var isValid;
 
@@ -18,7 +18,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 			var proceed = function () {
 
 				if (!desktopdebug) {
-					console.log("validate");
+					//console.log("validate");
 					isValid = validate.run();
 				}
 				else {
@@ -28,11 +28,11 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 				isValid.then( 
 				function (path) { //valid
-					console.log("is valid");
+					//console.log("is valid");
 					resolve(path);
 				},
 				function (path) { //invalid
-					console.log("is invalid");
+					//console.log("is invalid");
 					reject(path);
 				});
 
@@ -42,7 +42,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 				isRegistered = events.dispatch("console");
 
-				console.log(isRegistered);
+				//console.log(isRegistered);
 
 				if (isRegistered) {
 
