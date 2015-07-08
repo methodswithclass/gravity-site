@@ -96,15 +96,15 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 		var data = params.pages;
 
-		var i = 0;
+		var index = 0;
 
 		var game;
 
 		var interval = setInterval(function () {
 
-			console.log("index " + i);
+			console.log("index " + index);
 
-			game = data[++i];
+			game = data[index];
 
 			//console.log("bind back button for:" + game.name);
 
@@ -119,13 +119,15 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 				}
 			});
 
-			if (i == data.length) {
+			index = index + 1;
+
+			if (index == data.length) {
 
 				clearInterval(interval);
 				interval = null
 			}
 
-		}, 500);
+		}, 100);
 	}
 
 	var checkCoords = function (to, i) {
