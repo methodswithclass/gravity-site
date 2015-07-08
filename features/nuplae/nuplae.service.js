@@ -56,17 +56,28 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		var mc;
 
+		var mcBody;
+
 		try {
 
 			elem = $(element[name]);
 
 			// mc = new Hammer(elem[0]);
+
+			mcBody = new Hammer.Manager($(window)[0], {
+
+				recognizer: [
+					[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}];
+				]
+			});
 		
 			mc = new Hammer.Manager(elem[0], {
 			    recognizers: [
 			        [Hammer.Press, { time: 1, threshold:10 }]
 			    ]
 			});
+
+
 		}
 		catch(e) {
 			return false;
@@ -109,6 +120,14 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			complete();
 		});
+
+		mcBody.on("pan", function (e) {
+
+			if (Math.abs(e.deltaY) > 10) {
+
+				returnButton();
+			}
+		})
 
 		// mcTap.on("tap", function (e) {
 
