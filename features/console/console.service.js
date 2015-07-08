@@ -38,19 +38,26 @@ consoleModule.factory("con", function() {
 		
 		history.splice(history.length-1, 1);
 	}
+
+	var setHTML = function (html) {
+
+		$(thisCon).html(html);
+
+		$(thisCon).scrollTop($(thisCon).height());
+	}
 		
 	var print = function () {
 
 		var string = "";
 		
-		thisCon[0].innerHTML = string;
+		setHTML(string);
 		
 		for (i in history) {
 
 			string += history[i] + "<br>";	
 		}
 
-		thisCon[0].innerHTML = string;
+		setHTML(string);
 	}
 
 	var log = function (text) {
