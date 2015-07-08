@@ -7,8 +7,12 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 	var options = {};
 	var backs = {};
 
+	var element;
+
 
 	var setupReceivers = function () { 
+
+		console.log("setup receivers");
 		
 		send.receiver({name:"body", receiver:body});
 		send.receiver({name:"options", receiver:options});
@@ -26,9 +30,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 		var add_class = p.add_class;
 		var complete = p.complete;
 
-		console.log("bind " + name);
-
-		var element;
+		console.log("bind type: " + type + " of: " + name);
 
 		switch (type) {
 

@@ -55,6 +55,8 @@ sharedModule.factory("send", function () {
 		bin[bin.length] = params.receiver;
 
 		receivers[name] = bin; //reassign bin to receiver
+
+		names[names.length] = name;
 	}
 
 	return {
