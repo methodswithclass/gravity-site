@@ -15,18 +15,18 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 			var info = $scope.info;
 
-			nuServ.buttonTouch({
-				type:"option",
-				name:"option" + info.name,
-				back_press:"orange-back",
-				back_save:info.menu,
-				add_class:"lowered",
-				text_press:"white",
-				text_save:"white",
-				complete:function () {
-					states.gotoPage(info.index);
-				}
-			});
+			// nuServ.buttonTouch({
+			// 	type:"option",
+			// 	name:"option" + info.name,
+			// 	back_press:"orange-back",
+			// 	back_save:info.menu,
+			// 	add_class:"lowered",
+			// 	text_press:"white",
+			// 	text_save:"white",
+			// 	complete:function () {
+			// 		states.gotoPage(info.index);
+			// 	}
+			// });
 
 		}
 	}

@@ -39,16 +39,16 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', function (nuServ, sta
 
 		
 
-		nuServ.buttonTouch({
-			type:"back",
-			name:"back" + game.name,
-			back_press:"black-back",
-			back_save:"white-back",
-			add_class:"fa-inverse",
-			complete:function () {
-				states.gotoPage(0);
-			}
-		});
+		// nuServ.buttonTouch({
+		// 	type:"back",
+		// 	name:"back" + game.name,
+		// 	back_press:"black-back",
+		// 	back_save:"white-back",
+		// 	add_class:"fa-inverse",
+		// 	complete:function () {
+		// 		states.gotoPage(0);
+		// 	}
+		// });
 
 		
 	}
