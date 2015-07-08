@@ -1,6 +1,6 @@
 consoleModule.factory("con", function() {
 
-	var total = 18;
+	var total = 1000;
 	var history = [];
 
 	var count = 0;
