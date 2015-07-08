@@ -33,12 +33,11 @@ sharedModule.factory("send", function () {
 
 		var bin = receivers[name];
 
+		console.log("accum: " + name + " id: " + id);
+
 		console.log("bin length " + bin.length);
 
 		for (i in bin) {
-
-			console.log("accum: " + name + " id: " + id + " i: " + i + " data:" + params.data);
-			//console.log(params.data); 
 
 			bin[i][id] = params.data;
 		}
