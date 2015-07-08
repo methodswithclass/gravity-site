@@ -108,16 +108,20 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 			//console.log("bind back button for:" + game.name);
 
-			buttonTouch({
-				type:"back",
-				name:"back" + game.name,
-				back_press:"black-back",
-				back_save:"white-back",
-				add_class:"fa-inverse",
-				complete:function () {
-					states.gotoPage(0);
-				}
-			});
+			if (game.name != "Home") {
+
+				buttonTouch({
+					type:"back",
+					name:"back" + game.name,
+					back_press:"black-back",
+					back_save:"white-back",
+					add_class:"fa-inverse",
+					complete:function () {
+						states.gotoPage(0);
+					}
+				});
+
+			}
 
 			if (index == data.length) {
 
