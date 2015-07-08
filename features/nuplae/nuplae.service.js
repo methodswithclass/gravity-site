@@ -60,7 +60,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			elem = $(element[name]);
 
-			mc = new Hammer(elem);
+			mc = new Hammer(elem[0]);
 		}
 		catch(e) {
 			return false;
@@ -160,16 +160,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			bindObj.result = result;
 
 			if (result) resolve(bindObj);
-			else {
-
-				var index = bindObj.index;
-
-				index++;
-
-				bindObj.index = index;
-
-				reject(bindObj);
-			}
+			else reject(bindObj);
 
 		});
 	}
