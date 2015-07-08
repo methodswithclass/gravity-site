@@ -85,7 +85,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		
 		mc.on("press", function (e) {
 
-			console.log("press type:" + type " name: " + name);
+			console.log("press type:" + type + " name: " + name);
 
 			changeButton();
 
