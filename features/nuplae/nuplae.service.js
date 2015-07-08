@@ -172,7 +172,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		.then(
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) return bindInner(output.index + 1);
+			if (output.result) {
+				return bindInner(output.index + 1);
+			}
+			else{
+				return output;
+			}
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
@@ -182,7 +187,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		.then(
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) return bindInner(output.index + 1);
+			if (output.result) {
+				return bindInner(output.index + 1);
+			}
+			else{
+				return output;
+			}
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
@@ -191,7 +201,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		.then(function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) return bindInner(output.index + 1);
+			if (output.result) {
+				return bindInner(output.index + 1);
+			}
+			else{
+				return output;
+			}
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
@@ -201,7 +216,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		.then(
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) return bindInner(output.index + 1);
+			if (output.result) {
+				return bindInner(output.index + 1);
+			}
+			else{
+				return output;
+			}
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
@@ -211,7 +231,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		.then(
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) return bindInner(output.index + 1);
+			if (output.result) {
+				return bindInner(output.index + 1);
+			}
+			else{
+				return output;
+			}
 		}, 
 		function (output) {
 			console.log("bind for:" + output.name + " was " + output.result);
