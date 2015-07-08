@@ -64,6 +64,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			top = elem.offset().top;
 
+			console.log("top in change:" + top);
+
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
 			if (add_class) elem.addClass(add_class);
