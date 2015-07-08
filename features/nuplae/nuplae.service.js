@@ -60,7 +60,11 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			elem = $(element[name]);
 
-			mc = new Hammer(elem[0]);
+			mc = new Hammer(elem[0], {
+
+				tap:auto,
+				press:auto
+			});
 		}
 		catch(e) {
 			return false;
