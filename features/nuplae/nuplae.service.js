@@ -92,7 +92,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		});
 
-		mc.on("tap", function (e) {
+		mc.on("pressup", function (e) {
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
