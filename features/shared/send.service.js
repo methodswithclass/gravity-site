@@ -2,6 +2,21 @@ sharedModule.factory("send", function () {
 
 	var receivers = {};
 
+	var names = [];
+
+	var checkName = function (_name) {
+
+		for (i in names) {
+
+			if (_name == names[i]) {
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	var accum = function (params) {
 
 		var name = params.name;
@@ -19,17 +34,21 @@ sharedModule.factory("send", function () {
 
 		var name = params.name;
 
-		var bin = receivers[name];
+		var doesExist = checkName(name);
 
-		if (bin && bin.length > 0) {
+		var bin;
 
-			bin[bin.length] = params.receiver;
+		if (!doesExist) {
+
+			bin = []; //create new receiver array for this name
 		}
 		else {
-			bin = [];
+			bin = receivers[name]; // retrieve existing receiver array for this name
 		}
 
-		receivers[name] = bin;
+		bin[bin.length] = params.receiver;
+
+		receivers[name] = bin; //reassign bin to receiver
 	}
 
 	return {
