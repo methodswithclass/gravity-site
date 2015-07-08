@@ -33,7 +33,7 @@ nuplaeModule.factory("nuplaeService", function ($q, params, send) {
 			break;
 
 			case "back":
-				element = back;
+				element = backs;
 			break;
 		}
 
