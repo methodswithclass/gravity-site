@@ -65,7 +65,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			//top = elem.offset().top;
 
-			console.log(elem[0]);
+			console.log("change button");
 
 			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
 			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
@@ -75,7 +75,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		var returnButton = function () {
 
-			console.log(elem[0]);
+			console.log("return button");
 
 			if (back_press && back_save) elem.removeClass(back_press).addClass(back_save);
 			if (text_press && text_save) elem.removeClass(text_press).addClass(text_save);
