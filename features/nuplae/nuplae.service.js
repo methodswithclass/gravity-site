@@ -123,7 +123,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 				interval = null
 			}
 
-		}, 300);
+		}, 500);
 	}
 
 	var checkCoords = function (to, i) {
