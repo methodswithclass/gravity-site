@@ -117,13 +117,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 				}
 			});
 
-			if (i == data.length - 1) {
+			i++;
+
+			if (i == data.length) {
 
 				clearInterval(interval);
 				interval = null
-			}
-			else {
-				i++;
 			}
 
 		}, 300);
