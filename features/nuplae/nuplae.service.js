@@ -1,4 +1,4 @@
-nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', function ($q, params, send, g) {
+nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', 'states', function ($q, params, send, g, states) {
 
 	var dist = 0;
 	var down = false;
