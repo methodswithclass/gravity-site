@@ -162,7 +162,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			if (result) resolve(bindObj);
 			else {
 
-				bindObj.index++;
+				bindObj.index = i + 1;
 
 				reject(bindObj);
 			}
