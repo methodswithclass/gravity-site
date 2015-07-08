@@ -44,11 +44,23 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		}
 
 
-		var elem = $(element[name]);
-		var bodyElem = $(body[g.c.body]);
+		var elem;
+		var bodyElem;
 
-		var mc = new Hammer(elem[0]);
-		var bodyMc = new Hammer(bodyElem[0]);
+		var mc;
+		var bocyMc;
+
+		try {
+
+			elem = $(element[name]);
+			bodyElem = $(body[g.c.body]);
+
+			mc = new Hammer(elem[0]);
+			bodyMc = new Hammer(bodyElem[0]);
+		}
+		catch(e) {
+			return false;
+		}
 
 		var changeButton = function () {
 
@@ -88,48 +100,85 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 			}
 		});
 
+
+		return true;
 		
 
 	}
 	
-	var bindBackButtons = function () {
+	var bindBackButton = function () {
 
-		var data = params.pages;
+		bindInner(1).then(function (result) {
+			return if (result) bindInner(2);
+		}, 
+		function (result) {
+			console.log("");
+		}).then(function (result))
+	}
 
-		var index = 0;
+	var bindInner = function (i) {
 
-		var game;
+		return $q(function (resolve, reject) {
 
-		var interval = setInterval(function () {
-
-			console.log("index " + index);
-
-			game = data[index++];
+			game = params.pages[i];
 
 			//console.log("bind back button for:" + game.name);
 
-			if (game.name != "Home") {
+			result = buttonTouch({
+				type:"back",
+				name:"back" + game.name,
+				back_press:"black-back",
+				back_save:"white-back",
+				add_class:"fa-inverse",
+				complete:function () {
+					states.gotoPage(0);
+				}
+			});
 
-				buttonTouch({
-					type:"back",
-					name:"back" + game.name,
-					back_press:"black-back",
-					back_save:"white-back",
-					add_class:"fa-inverse",
-					complete:function () {
-						states.gotoPage(0);
-					}
-				});
+			if (result) resolve({index:i, name:game.name, result:result});
+			else reject({index:i, name:game.name, result:result});
 
-			}
+		});
+	}
 
-			if (index == data.length) {
+	var bindBackButtons = function () {
 
-				clearInterval(interval);
-				interval = null
-			}
-
-		}, 100);
+		bindInner(1).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return if (output.result) bindInner(output.index + 1);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return output;
+		}).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return if (output.result) bindInner(output.index + 1);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return output;
+		}).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return if (output.result) bindInner(output.index + 1);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return output;
+		}).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return if (output.result) bindInner(output.index + 1);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return output;
+		}).then(function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return if (output.result) bindInner(output.index + 1);
+		}, 
+		function (output) {
+			console.log("bind for:" + output.name + " was " + output.result);
+			return output;
+		});
 	}
 
 	var checkCoords = function (to, i) {
