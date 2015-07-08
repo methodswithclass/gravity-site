@@ -43,7 +43,7 @@ consoleModule.factory("con", function() {
 
 		$(thisCon).html(html);
 
-		$(thisCon).scrollTop($(thisCon).height());
+		$(thisCon).scrollTop($($(thisCon).html()).height());
 	}
 		
 	var print = function () {
