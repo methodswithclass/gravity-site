@@ -92,19 +92,21 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		});
 
-		mc.on("pressup", function (e) {
+		mc.on("tap", function (e) {
 
 			console.log(e.type + " type:" + type + " name:" + name);
 
 			returnButton();
-		});
-
-		mcTap.on("tap", function (e) {
-
-			console.log(e.type + " type:" + type + " name:" + name);
 
 			complete();
 		});
+
+		// mcTap.on("tap", function (e) {
+
+		// 	console.log(e.type + " type:" + type + " name:" + name);
+
+		// 	complete();
+		// });
 
 		$rootScope.$watch(function () {
 
