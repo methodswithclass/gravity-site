@@ -8,8 +8,10 @@
 
 	<div class="relative top-100 width">
 
-		<div class="relative" ng-repeat="game in info.pages">
-			<option info="game" ng-attr-id="{{'option' + info.name}}" ng-attr-dir="options" repeat></option>
+		<div class="relative" ng-repeat="page in info.pages">
+			<div class="relative"  ng-attr-id="{{'option' + page.name}}" ng-attr-dir="options" repeat>
+				<option info="page"></option>
+			</div>
 		</div>
 
 	</div>
