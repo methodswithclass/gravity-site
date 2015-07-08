@@ -30,7 +30,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 		var add_class = p.add_class;
 		var complete = p.complete;
 
-		console.log("bind type: " + type + " of: " + name);
+		console.log("bind type:" + type + " of:" + name);
 
 		switch (type) {
 
