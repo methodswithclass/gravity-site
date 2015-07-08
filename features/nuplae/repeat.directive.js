@@ -6,7 +6,7 @@ nuplaeModule.directive("repeat", ['events', 'send', function (events, send) {
 
 		send.accum({name:attr.dir, id:attr.id, data:element[0]})
 		
-		if(scope.$last) {
+		if(scope.$last && attr.dir == "pages") {
 
 			var wait = setTimeout(function () {
 
