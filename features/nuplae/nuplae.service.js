@@ -102,7 +102,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 
 		var interval = setInterval(function () {
 
-			game = data[i];
+			game = data[i++];
 
 			console.log("bind back button for:" + game.name);
 
@@ -116,8 +116,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', functio
 					states.gotoPage(0);
 				}
 			});
-
-			i++;
 
 			if (i == data.length) {
 
