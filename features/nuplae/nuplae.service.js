@@ -82,7 +82,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			if (add_class) elem.removeClass(add_class);
 		}
 
-		mc.get("press").set({time:1, threshold:10});
+		mc.get("press").set({time:2, threshold:10});
 		
 		mc.on("press", function (e) {
 
