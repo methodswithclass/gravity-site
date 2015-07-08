@@ -67,7 +67,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			mcBody = new Hammer.Manager($(window)[0], {
 
 				recognizer: [
-					[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}];
+					[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
 				]
 			});
 		
