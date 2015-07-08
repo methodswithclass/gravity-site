@@ -1,12 +1,13 @@
 nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send', function ($document, $state, $rootScope, params, send) {
-
-	var currentIndex = 0;
 	
 	var complete;
 
-	var doesNavigate = false;
-
 	var modalTime = 1000;
+	var duration = 700;
+
+	var openDuration = 700;
+	var backDuration = 300;
+	var initalDuration = 10;
 
 	var body = {};
 	var elements = {};
@@ -17,47 +18,41 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 	var states = [
 	{
-		state:"Page.Home"
+		state:"Page.Home",
+		index:0
 	},
 	{
-		state:"Page.Calibrate"
+		state:"Page.Calibrate",
+		index:1
 	},
 	{
-		state:"Page.Gravity"
+		state:"Page.Gravity",
+		index:2
 	},
 	{
-		state:"Page.Float"
+		state:"Page.Float",
+		index:3
 	},
 	{
-		state:"Page.Enemies"
+		state:"Page.Enemies",
+		index:4
 	},
 	{
-		state:"Page.Balance"
+		state:"Page.Balance",
+		index:5
 	},
 	{
-		state:"Page.Space"
+		state:"Page.Space",
+		index:6
+	},
+	{
+		state:"Page.Initial",
+		index:0
 	}
 	];
 
-	var setCurrent = function (_current) {
-
-		currentIndex = _current;
-	}
-
-	var getCurrent = function () {
-
-		return currentIndex;
-	}
-
-
-	var setNavigate = function (_navigate) {
-
-		doesNavigate = _navigate;
-	}
-
-	var getNavigate = function () {
-
-		return doesNavigate;
+	var setDuration = function (_duration) {
+		duration = _duration;
 	}
 
 	var setModalTime = function (_time) {
@@ -68,6 +63,20 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	var getModalTime = function () {
 
 		return modalTime;
+	}
+
+
+	var getIndex = function (stateName) {
+
+		for (i in states) {
+
+			if (stateName == states[i].state) {
+
+				return i;
+			}
+
+			return -1;
+		}
 	}
 	
 
@@ -86,7 +95,6 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 			}
 		}
 
-		setCurrent(index);
 		var name = params.pages[index].name;
 		var id = "page" + name;
 
@@ -104,25 +112,6 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 		});
 	}
 
-	var openHome = function () {
-
-		bodyElem = $(body["body"]);
-
-		bodyElem.removeClass("cutoff").addClass("scroll");
-
-		navigate(0, 10, function () {
-
-			console.log("nav complete");
-
-			bodyElem.removeClass("scroll").addClass("cutoff");
-
-			showModal({modal:"valid", time:1500});
-
-		});
-
-		
-	}
-
 
 	$rootScope.$on('$stateChangeStart', 
 	function(event, toState, toParams, fromState, fromParams){
@@ -133,33 +122,38 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		console.log(prevState);
 
-	   	if (toState.name.split(".")[0] == "Page") {
+		var stateName = toState.name.split(".");
 
-	   		console.log("inside page, navigate: " + getNavigate());
+	   	if (statName[0] == "Page") {
 
-	   		if (getNavigate()) {
+   			var index = getIndex(stateName);
 
-	   			console.log("inside navigation");
+   			if (index == -1) {
+   				console.log("state not found");
+   			}
+   			else {
 
-	   			console.log("go to current index: " + getCurrent());    
-	    		
+   				if (index == 7) {
+   					setDuration(initialDuration);
+   				}
+   				else if (index == 0) {
+   					setDuration(backDuration);
+   				}
 
 	    		bodyElem = $(body["body"]);
 
 				bodyElem.removeClass("cutoff").addClass("scroll");
 
-				navigate(getCurrent(), 700, function () {
+				navigate(index, duration, function () {
 
 					console.log("nav complete");
 
 					bodyElem.removeClass("scroll").addClass("cutoff");
 
 				});
-			}
-			else {
-				setNavigate(true);
-			}
-		}
+
+   			}
+	   	}
 
 	});
 
@@ -322,8 +316,34 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        	
 
 	        }
+	      }).
+	      state({
+	      	name:states[7].state,
+	      	onEnter:function() {
+	              
+	        },
+	        onExit:function() {
+
+	        }
 	      });
 
+	}
+
+	var openHome = function () {
+
+		bodyElem = $(body["body"]);
+
+		bodyElem.removeClass("cutoff").addClass("scroll");
+
+		navigate(0, 10, function () {
+
+			console.log("nav complete");
+
+			bodyElem.removeClass("scroll").addClass("cutoff");
+
+			showModal({modal:"valid", time:1500});
+
+		});
 	}
 
 	var showModal = function (params) {
@@ -338,8 +358,6 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	var gotoPage = function (index) {
 
 		console.log("go to state " + index);
-
-		setCurrent(index);
 
 		$state.go(states[index].state);
 
