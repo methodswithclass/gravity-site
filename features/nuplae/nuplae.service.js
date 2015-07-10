@@ -44,7 +44,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		console.log(name);
 
-		this.option = options[name];
+		this.option = $(options[name]);
 		this.obj = objs[name];
 
 		console.log(this.option[0]);
