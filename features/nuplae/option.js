@@ -3,6 +3,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 	return {
 		restrict:'E',
 		scope:true,
+		replace:true,
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
