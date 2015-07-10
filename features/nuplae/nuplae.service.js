@@ -4,6 +4,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 	var down = false;
 
 	var home = {};
+	var options = {};
+	var objs = {};
 
 
 	var setupReceivers = function () { 
@@ -11,19 +13,21 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		console.log("setup receivers");
 		
 		send.receiver({name:g.c.home, receiver:home});
+		send.receiver({name:g.c.option, receiver:options});
+		send.receiver({name:"optionObj", receiver:objs});
 	}
 
 	var changeButton = function (elem, p) {
 
-			//top = elem.offset().top;
+		//top = elem.offset().top;
 
-			console.log("change button");
+		console.log("change button");
 
-			if (p.back_press && p.back_save) elem.removeClass(p.back_save).addClass(p.back_press);
-			if (p.text_press && p.text_save) elem.removeClass(p.text_save).addClass(p.text_press);
-			if (p.add_class) elem.addClass(p.add_class);
+		if (p.back_press && p.back_save) elem.removeClass(p.back_save).addClass(p.back_press);
+		if (p.text_press && p.text_save) elem.removeClass(p.text_save).addClass(p.text_press);
+		if (p.add_class) elem.addClass(p.add_class);
 
-		}
+	}
 
 	var returnButton = function (elem, p) {
 
@@ -33,6 +37,52 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		if (p.text_press && p.text_save) elem.removeClass(p.text_press).addClass(p.text_save);
 		if (p.add_class) elem.removeClass(p.add_class);
 	}
+
+	var bindScroll = function (name) {
+
+		var option = options[name];
+		var obj = objs[name];
+
+		var homeElem = $(home["home"]);
+
+		var start = 0;
+		var down = false;
+
+		homeElem.on("touchStart", function (e) {
+
+			start = e.pageY;
+			down = true;
+		}
+
+		homeElem.on("touchmove", function (e) {
+
+			if (down) {
+				if (Math.abs(e.pageY - start) > 10) {
+					returnButton(option, obj);
+				}
+			}
+
+		});
+
+		homeElem.on("touchend", function (e) {
+
+			down = false;
+		})
+
+	}
+
+	var onScroll = function () {
+
+		var pages = params.pages;
+
+		for (i in pages) {
+
+			bindScroll("options" + pages[i].name);
+
+		}
+
+
+	} 
 
 	var checkCoords = function (to, i) {
 
@@ -280,7 +330,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		setupReceivers:setupReceivers,
 		parseInput:parseInput2,
 		changeButton:changeButton,
-		returnButton:returnButton
+		returnButton:returnButton,
+		onScroll:onScroll
 	}
 }]);
 

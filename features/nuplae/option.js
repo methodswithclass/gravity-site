@@ -7,7 +7,6 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
-
 			var info = $scope.game;
 
 			var obj = {
@@ -22,6 +21,9 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 					states.gotoPage(info.index);
 				}
 			}
+
+			send.accum({name:attr.dir, id:attr.id, data:element[0]});
+			send.accum({name:"optionObj", id:attr.id, data:obj});
 
 			$scope.onPress = function () {
 
