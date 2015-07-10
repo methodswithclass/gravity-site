@@ -44,8 +44,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		console.log(name);
 
-		var option = options[name];
-		var obj = objs[name];
+		this.option = options[name];
+		this.obj = objs[name];
 
 		//var homeElem = $(home["home"]);
 
@@ -66,7 +66,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 			console.log("move" + self.start + " " + self.e.pageY);
 			if (Math.abs(self.e.pageY - self.start) > 10) {
 				console.log("return");
-				returnButton(option, obj);
+				returnButton(self.option, self.obj);
 			}
 
 		});
