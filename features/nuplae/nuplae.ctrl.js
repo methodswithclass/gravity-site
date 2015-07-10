@@ -33,11 +33,6 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 	});
 
-	events.on("loaded", function () {
-
-		console.log("second loaded");
-	})
-
 	events.on("console", function () {
 
 		//console.log("console event dispatch");

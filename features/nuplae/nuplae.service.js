@@ -385,7 +385,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		changeButton:changeButton,
 		returnButton:returnButton,
 		onScroll:onScroll,
-		returnAllButton:returnAllButton
+		returnAllButtons:returnAllButtons
 	}
 }]);
 
