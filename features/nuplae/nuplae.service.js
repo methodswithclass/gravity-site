@@ -57,17 +57,12 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		$(window).on("touchmove", function (e) {
 
-			console.log("move");
+			console.log("move" + self.start + " " + e.pageY);
 			if (Math.abs(e.pageY - self.start) > 10) {
 				console.log("return");
 				returnButton(option, obj);
 			}
 
-		});
-
-		$(window).on("touchend", function (e) {
-
-			down = false;
 		});
 
 	}
