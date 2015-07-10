@@ -2,7 +2,6 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 	return {
 		restrict:'E',
-		replace:true,
 		scope:{
 			info:'='
 		},
