@@ -7,7 +7,7 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 
 		console.log(attr.dir + " " + attr.id)
 
-		send.accum({name:attr.dir, id:attr.id, data:element[0]});
+		//send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
 		var obj = {
 			type:"back",
