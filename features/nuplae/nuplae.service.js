@@ -42,6 +42,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		var self = this;
 
+		console.log(name);
+
 		var option = options[name];
 		var obj = objs[name];
 
@@ -77,7 +79,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		for (i in pages) {
 
-			bindScroll("options" + pages[i].name);
+			bindScroll("option" + pages[i].name);
 
 		}
 
