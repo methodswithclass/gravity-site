@@ -6,6 +6,8 @@ sharedModule.directive('onPress', function () {
 			})
 			 .bind("press", function (ev) {
 			   return scope.$apply(attrs['onPress']);
+			 }).bind("pressup", function (ev) {
+			 	return scope.$apply(attrs["onPressUp"]);
 			 });
 	};
 });

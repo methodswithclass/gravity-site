@@ -3,253 +3,35 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 	var dist = 0;
 	var down = false;
 
-	var body = {};
-	var options = {};
-	var backs = {};
 	var home = {};
-
-	var element;
-
-	var game;
-
-	var bindObj;
-
-	var result;
 
 
 	var setupReceivers = function () { 
 
 		console.log("setup receivers");
 		
-		send.receiver({name:g.c.body, receiver:body});
-		send.receiver({name:g.c.option, receiver:options});
-		send.receiver({name:g.c.back, receiver:backs});
 		send.receiver({name:g.c.home, receiver:home});
 	}
 
-	var buttonTouch = function (p) {
-
-		var type = p.type;
-		var name = p.name;
-		var back_press = p.back_press;
-		var back_save = p.back_save;
-		var text_press = p.text_press;
-		var text_save = p.text_save;
-		var add_class = p.add_class;
-		var complete = p.complete;
-
-		var top;
-
-		console.log("bind type:" + type + " of:" + name);
-
-		switch (type) {
-
-			case g.c.option:
-				element = options;
-			break;
-
-			case g.c.back:
-				element = backs;
-			break;
-		}
-
-
-		var elem;
-
-		var mc;
-
-		var mcBody;
-
-		try {
-
-			elem = $(element[name]);
-
-			// mc = new Hammer(elem[0]);
-
-			// mcBody = new Hammer.Manager($(body["body"])[0], {
-
-			// 	recognizers: [
-			// 		[Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
-			// 	]
-			// });
-		
-			mc = new Hammer.Manager(elem[0], {
-			    recognizers: [
-			        [Hammer.Press, { time:1, threshold:500}],
-			        [Hammer.Pan, { direction: Hammer.DIRECTION_VIRTICAL}]
-			    ]
-			});
-
-
-		}
-		catch(e) {
-			return false;
-		}
-
-		var changeButton = function () {
+	var changeButton = function (elem, p) {
 
 			//top = elem.offset().top;
 
 			console.log("change button");
 
-			if (back_press && back_save) elem.removeClass(back_save).addClass(back_press);
-			if (text_press && text_save) elem.removeClass(text_save).addClass(text_press);
-			if (add_class) elem.addClass(add_class);
+			if (p.back_press && p.back_save) elem.removeClass(p.back_save).addClass(p.back_press);
+			if (p.text_press && p.text_save) elem.removeClass(p.text_save).addClass(p.text_press);
+			if (p.add_class) elem.addClass(p.add_class);
 
 		}
 
-		var returnButton = function () {
+	var returnButton = function (elem, p) {
 
-			console.log("return button");
+		console.log("return button");
 
-			if (back_press && back_save) elem.removeClass(back_press).addClass(back_save);
-			if (text_press && text_save) elem.removeClass(text_press).addClass(text_save);
-			if (add_class) elem.removeClass(add_class);
-		}
-		
-		mc.on("press", function (e) {
-
-			console.log(e.type + " type:" + type + " name: " + name);
-
-			changeButton();
-
-		});
-
-		mc.on("pressup tap", function (e) {
-
-			console.log(e.type + " type:" + type + " name:" + name);
-
-			returnButton();
-
-			complete();
-		});
-
-
-
-
-		return true;
-		
-
-	}
-
-	var bindInner = function (i) {
-
-		console.log("bind inner " + i);
-
-		return $q(function (resolve, reject) {
-
-			game = params.pages[i];
-
-			bindObj = {
-				index:i,
-				type:"back",
-				name:"back" + game.name,
-				back_press:"black-back",
-				back_save:"white-back",
-				add_class:"fa-inverse",
-				complete:function () {
-					console.log("go back");
-					states.gotoPage(0);
-				}
-			}
-
-			//console.log("bind back button for:" + game.name);
-
-			result = buttonTouch(bindObj);
-
-			bindObj.result = result;
-
-			if (result) resolve(bindObj);
-			else reject(bindObj);
-
-		});
-	}
-
-	var bindBackButtons = function () {
-
-		bindInner(1)
-
-		.then(
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) {
-				return bindInner(output.index + 1);
-			}
-			else{
-				return output;
-			}
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
-		})
-
-		.then(
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) {
-				return bindInner(output.index + 1);
-			}
-			else{
-				return output;
-			}
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
-		})
-
-		.then(function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) {
-				return bindInner(output.index + 1);
-			}
-			else{
-				return output;
-			}
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
-		})
-
-		.then(
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) {
-				return bindInner(output.index + 1);
-			}
-			else{
-				return output;
-			}
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
-		})
-
-		.then(
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			if (output.result) {
-				return bindInner(output.index + 1);
-			}
-			else{
-				return output;
-			}
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-			return output;
-		})
-
-		.then(
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-		}, 
-		function (output) {
-			console.log("bind for:" + output.name + " was " + output.result);
-		});
+		if (p.back_press && p.back_save) elem.removeClass(p.back_press).addClass(p.back_save);
+		if (p.text_press && p.text_save) elem.removeClass(p.text_press).addClass(p.text_save);
+		if (p.add_class) elem.removeClass(p.add_class);
 	}
 
 	var checkCoords = function (to, i) {
@@ -496,9 +278,9 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 	return {
 		setupReceivers:setupReceivers,
-		buttonTouch:buttonTouch,
-		bindBackButtons:bindBackButtons,
-		parseInput:parseInput2
+		parseInput:parseInput2,
+		changeButton:changeButton,
+		returnButton:returnButton
 	}
 }]);
 

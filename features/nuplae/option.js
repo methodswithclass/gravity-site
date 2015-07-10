@@ -12,7 +12,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 			var info = $scope.info;
 
-			nuServ.buttonTouch({
+			var obj = {
 				type:"option",
 				name:"option" + info.name,
 				back_press:"orange-back",
@@ -23,7 +23,19 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 				complete:function () {
 					states.gotoPage(info.index);
 				}
-			});
+			}
+
+			$scope.onPress = function () {
+
+				nuServ.changeButton(element, obj);
+			}
+
+			$scope.onPressup = function () {
+
+				nuServ.returnButton(element, obj);
+
+				obj.complete();
+			}
 
 		}
 	}
