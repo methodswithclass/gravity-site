@@ -27,10 +27,14 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 			$scope.onPress = function () {
 
+				console.log("change");
+
 				nuServ.changeButton(element, obj);
 			}
 
 			$scope.onPressup = function () {
+
+				console.log("return");
 
 				nuServ.returnButton(element, obj);
 
