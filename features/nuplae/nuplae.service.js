@@ -47,7 +47,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		this.option = options[name];
 		this.obj = objs[name];
 
-		//var homeElem = $(home["home"]);
+		console.log(this.option[0]);
+		console.log(this.obj);
 
 		this.start = 0;
 		this.e;
