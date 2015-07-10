@@ -52,7 +52,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			start = e.pageY;
 			down = true;
-		}
+		});
 
 		homeElem.on("touchmove", function (e) {
 
@@ -67,7 +67,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		homeElem.on("touchend", function (e) {
 
 			down = false;
-		})
+		});
 
 	}
 
