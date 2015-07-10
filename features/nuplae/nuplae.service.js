@@ -53,16 +53,16 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		this.start = 0;
 		this.e;
 
-		$(window).on("touchStart", function (ev) {
+		var onDown = function (ev) {
 
-			self.e = ev.originalEvent.touches[0];
+			self.e = ev.originalEvent;
 			console.log("down");
 			self.start = self.e.pageY;
-		});
+		}
 
-		$(window).on("touchmove", function (ev) {
+		var onMove = function (ev) {
 
-			self.e = ev.originalEvent.touches[0];
+			self.e = ev.originalEvent;
 
 			console.log("move" + self.start + " " + self.e.pageY);
 			if (Math.abs(self.e.pageY - self.start) > 10) {
@@ -70,7 +70,15 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 				returnButton(self.option, self.obj);
 			}
 
-		});
+		}
+
+		$(window).on("touchstart", onDown);
+
+		$(window).on("touchmove", onMove);
+
+		$(window).on("mousedown", onDown);
+
+		$(window).on("mousemove", onMove);
 
 	}
 
