@@ -48,21 +48,21 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		//var homeElem = $(home["home"]);
 
 		this.start = 0;
-		var e;
+		this.e;
 
 		$(window).on("touchStart", function (ev) {
 
-			e = ev.originalEvent.touches[0];
+			self.e = ev.originalEvent.touches[0];
 			console.log("down");
-			self.start = e.pageY;
+			self.start = self.e.pageY;
 		});
 
 		$(window).on("touchmove", function (ev) {
 
-			e = ev.originalEvent.touches[0];
+			self.e = ev.originalEvent.touches[0];
 
-			console.log("move" + self.start + " " + e.pageY);
-			if (Math.abs(e.pageY - self.start) > 10) {
+			console.log("move" + self.start + " " + self.e.pageY);
+			if (Math.abs(self.e.pageY - self.start) > 10) {
 				console.log("return");
 				returnButton(option, obj);
 			}
