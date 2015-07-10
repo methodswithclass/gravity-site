@@ -6,12 +6,10 @@ sharedModule.directive('onPress', function () {
 			}).bind("press", function (ev) {
 			   return scope.$apply(attrs['onPress']);
 			 });
-			
+
 		$(element).data("hammer").get("press").set({time:1, thresshold:10});
 
 		return mc;
-			 
-
-			 
+				 
 	};
 });
