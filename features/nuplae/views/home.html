@@ -10,7 +10,7 @@
 		<div class="relative top-100 width height">
 
 			<div ng-repeat="game in info.pages">
-				<div class='relative height-200 width90 hcenter margin-v-70 border pointer {{game.menu}}' repeat>
+				<div class='relative height-200 width90 hcenter margin-v-70 border pointer {{game.menu}}' ng-attr-id="{{'option' + game.name}}" ng-attr-dir="{{game.directive}}" repeat>
 					<option info="game" on-press="onPress()" on-press-up="onPressup()"></option>
 				</div>
 			</div>
