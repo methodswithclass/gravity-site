@@ -71,7 +71,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 			self.e = ev.originalEvent;
 
-
 			console.log("move" + self.start + " " + self.e.pageY);
 			if (self.down && Math.abs(self.e.pageY - self.start) > 10) {
 				console.log("return");
