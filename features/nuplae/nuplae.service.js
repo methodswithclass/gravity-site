@@ -50,14 +50,19 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		homeElem.on("touchStart", function (e) {
 
+			console.log("down");
 			start = e.pageY;
 			down = true;
 		});
 
 		homeElem.on("touchmove", function (e) {
 
+			console.log("move");
+
 			if (down) {
+				console.log("is down");
 				if (Math.abs(e.pageY - start) > 10) {
+					console.log("return");
 					returnButton(option, obj);
 				}
 			}
