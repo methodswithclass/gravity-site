@@ -48,11 +48,9 @@ sharedModule.factory("send", function () {
 
 		var name = params.name;
 
-		var doesExist = checkName(name);
-
 		var bin;
 
-		if (!doesExist) {
+		if (!checkName(name)) {
 
 			bin = []; //create new receiver array for this name
 		}

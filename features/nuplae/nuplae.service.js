@@ -7,7 +7,6 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 	var options = {};
 	var objs = {};
 
-
 	var setupReceivers = function () { 
 
 		console.log("setup receivers");
@@ -23,9 +22,15 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		console.log("change button");
 
-		if (p.back_press && p.back_save) elem.removeClass(p.back_save).addClass(p.back_press);
-		if (p.text_press && p.text_save) elem.removeClass(p.text_save).addClass(p.text_press);
-		if (p.add_class) elem.addClass(p.add_class);
+		if (p) {
+
+			console.log("change has object");
+
+			if (p.back_press && p.back_save) elem.removeClass(p.back_save).addClass(p.back_press);
+			if (p.text_press && p.text_save) elem.removeClass(p.text_save).addClass(p.text_press);
+			if (p.add_class) elem.addClass(p.add_class);
+
+		}
 
 	}
 
@@ -37,9 +42,14 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		console.log(p);
 
-		if (p.back_press && p.back_save) elem.removeClass(p.back_press).addClass(p.back_save);
-		if (p.text_press && p.text_save) elem.removeClass(p.text_press).addClass(p.text_save);
-		if (p.add_class) elem.removeClass(p.add_class);
+		if (p) {
+
+			console.log("return has object");
+
+			if (p.back_press && p.back_save) elem.removeClass(p.back_press).addClass(p.back_save);
+			if (p.text_press && p.text_save) elem.removeClass(p.text_press).addClass(p.text_save);
+			if (p.add_class) elem.removeClass(p.add_class);
+		}
 	}
 
 	var bindScroll = function (name) {
@@ -101,7 +111,31 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		}
 
 
-	} 
+	}
+
+	var returnAllButtons = function () {
+
+		var pages = params.pages;
+
+		var option;
+		var obj;
+		var name;
+
+		for (i in pages) {
+
+			name = "option" + pages[i].name;
+			
+			if (options.length > 0 && objs.length > 0) {
+
+				option = $(options[name]);
+				obj = objs[name];
+
+				returnButton(option, obj);
+
+			}
+
+		}
+	}
 
 	var checkCoords = function (to, i) {
 
@@ -350,7 +384,8 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		parseInput:parseInput2,
 		changeButton:changeButton,
 		returnButton:returnButton,
-		onScroll:onScroll
+		onScroll:onScroll,
+		returnAllButton:returnAllButton
 	}
 }]);
 

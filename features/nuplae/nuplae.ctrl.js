@@ -25,13 +25,18 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 	events.on("loaded", function () {
 
-		//console.log("loaded event dispatch");
+		console.log("loaded event dispatch");
 
 		//nuplaeService.onScroll();
 
 		states.openHome();
 
 	});
+
+	events.on("loaded", function () {
+
+		console.log("second loaded");
+	})
 
 	events.on("console", function () {
 
