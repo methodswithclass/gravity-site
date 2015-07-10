@@ -2,14 +2,12 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'events', function 
 
 	return {
 		restrict:'E',
-		scope:{
-			info:'='
-		},
+		scope:true,
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
 
-			var info = $scope.info;
+			var info = $scope.game;
 
 			var obj = {
 				type:"option",
