@@ -33,6 +33,10 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		console.log("return button");
 
+		console.log(elem[0]);
+
+		console.log(p);
+
 		if (p.back_press && p.back_save) elem.removeClass(p.back_press).addClass(p.back_save);
 		if (p.text_press && p.text_save) elem.removeClass(p.text_press).addClass(p.text_save);
 		if (p.add_class) elem.removeClass(p.add_class);
