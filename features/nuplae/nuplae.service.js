@@ -40,31 +40,27 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 	var bindScroll = function (name) {
 
+		var self = this;
+
 		var option = options[name];
 		var obj = objs[name];
 
 		var homeElem = $(home["home"]);
 
-		var start = 0;
-		var down = false;
+		this.start = 0;
 
 		homeElem.on("touchStart", function (e) {
 
 			console.log("down");
-			start = e.pageY;
-			down = true;
+			self.start = e.pageY;
 		});
 
 		homeElem.on("touchmove", function (e) {
 
 			console.log("move");
-
-			if (down) {
-				console.log("is down");
-				if (Math.abs(e.pageY - start) > 10) {
-					console.log("return");
-					returnButton(option, obj);
-				}
+			if (Math.abs(e.pageY - self.start) > 10) {
+				console.log("return");
+				returnButton(option, obj);
 			}
 
 		});
