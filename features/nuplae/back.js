@@ -3,7 +3,7 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 
 	var link = function ($scope, element, attr) {
 
-		var game = $scope.game;
+		var game = $scope.info;
 
 		//console.log(attr.dir + " " + attr.id)
 
