@@ -45,17 +45,17 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		var option = options[name];
 		var obj = objs[name];
 
-		var homeElem = $(home["home"]);
+		//var homeElem = $(home["home"]);
 
 		this.start = 0;
 
-		homeElem.on("touchStart", function (e) {
+		$(window).on("touchStart", function (e) {
 
 			console.log("down");
 			self.start = e.pageY;
 		});
 
-		homeElem.on("touchmove", function (e) {
+		$(window).on("touchmove", function (e) {
 
 			console.log("move");
 			if (Math.abs(e.pageY - self.start) > 10) {
@@ -65,7 +65,7 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		});
 
-		homeElem.on("touchend", function (e) {
+		$(window).on("touchend", function (e) {
 
 			down = false;
 		});
