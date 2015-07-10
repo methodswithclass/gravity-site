@@ -56,22 +56,27 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 
 		this.start = 0;
 		this.e;
+		this.down = false;
 
 		var onDown = function (ev) {
 
 			self.e = ev.originalEvent;
 			console.log("down");
 			self.start = self.e.pageY;
+			self.down = true;
+
 		}
 
 		var onMove = function (ev) {
 
 			self.e = ev.originalEvent;
 
+
 			console.log("move" + self.start + " " + self.e.pageY);
-			if (Math.abs(self.e.pageY - self.start) > 10) {
+			if (self.down && Math.abs(self.e.pageY - self.start) > 10) {
 				console.log("return");
 				returnButton(self.option, self.obj);
+				self.down = false;
 			}
 
 		}
