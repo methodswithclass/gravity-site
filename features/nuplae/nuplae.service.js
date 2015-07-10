@@ -48,14 +48,18 @@ nuplaeModule.factory("nuplaeService", ['$q', 'params', 'send', 'global', '$rootS
 		//var homeElem = $(home["home"]);
 
 		this.start = 0;
+		var e;
 
-		$(window).on("touchStart", function (e) {
+		$(window).on("touchStart", function (ev) {
 
+			e = ev.originalEvent.touches[0];
 			console.log("down");
 			self.start = e.pageY;
 		});
 
-		$(window).on("touchmove", function (e) {
+		$(window).on("touchmove", function (ev) {
+
+			e = ev.originalEvent.touches[0];
 
 			console.log("move" + self.start + " " + e.pageY);
 			if (Math.abs(e.pageY - self.start) > 10) {
