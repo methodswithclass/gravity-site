@@ -70,9 +70,8 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 
 
 	return {
-		scope:{
-			game:'='
-		},
+		scope:false,
+		replace:true,
 		restrict:'E',
 		templateUrl:"features/nuplae/views/back.html",
 		link:link
