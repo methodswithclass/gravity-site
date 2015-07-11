@@ -46,7 +46,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 			}
 
-			this.home = events.dispatch("home");
+			this.home = $(events.dispatch("home"));
 
 			self.home.on("scroll", scrollFunc);
 
