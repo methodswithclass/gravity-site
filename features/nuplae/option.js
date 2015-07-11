@@ -28,9 +28,12 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 				}
 			}
 
+
 			send.receiver({name:g.c.home, receiver:home});
 			send.accum({name:attr.dir, id:attr.id, data:element[0]});
 			send.accum({name:"optionObj", id:attr.id, data:obj});
+
+			events.dispatch("home");
 
 			var scrollFunc = function () {
 

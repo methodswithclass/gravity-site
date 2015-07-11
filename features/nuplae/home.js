@@ -2,7 +2,13 @@ nuplaeModule.directive("home", ['nuplaeService', 'send', 'events', function (nuS
 	
 	return function ($scope, element, attr) {
 
-		send.accum({name:attr.dir, id:attr.id, data:element[0]});
+		events.on("home", function () {
+
+			send.accum({name:attr.dir, id:attr.id, data:element[0]});
+				
+		});
+
+		
 
 	}
 
