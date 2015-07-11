@@ -1,4 +1,4 @@
-nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', function (params, send, g, states) {
+nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'events', function (params, send, g, states, events) {
 
 
 	var home;

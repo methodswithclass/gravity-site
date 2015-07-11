@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['buttonService', 'states', 'send', function (buttons, states, send) {
+nuplaeModule.directive("back", ['buttonService', 'send', function (buttons, send) {
 
 
 	var link = function ($scope, element, attr) {

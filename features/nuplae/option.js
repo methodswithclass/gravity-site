@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", ['buttonService', 'states', 'send', 'events', 'global', function (buttons, states, send, events, g) {
+nuplaeModule.directive("option", ['buttonService', 'send', function (buttons, send) {
 
 	return {
 		restrict:'E',
