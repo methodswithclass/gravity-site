@@ -7,7 +7,7 @@ nuplaeModule.directive("home", ['nuplaeService', 'send', function (nuServ, send)
 
 		$scope.scrollTop = function () {
 
-			return $(element).offset().top;
+			return element.offset().top;
 		}
 
 		$scope.$watch($scope.scrollTop,
