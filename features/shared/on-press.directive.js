@@ -7,7 +7,7 @@ sharedModule.directive('onPress', function () {
 			   return scope.$apply(attrs['onPress']);
 			 });
 
-		$(element).data("hammer").get("press").set({time:1, thresshold:10});
+		$(element).data("hammer").get("press").set({time:1, threshold:10});
 
 		return mc;
 				 
