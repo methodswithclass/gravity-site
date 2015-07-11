@@ -147,6 +147,8 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', fun
 				obj = getThing("object", name).complete();
 			}
 
+		}
+
 	}
 
 	var callChange = function (name) {
@@ -185,6 +187,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', fun
 		setupCheckScroll:setupCheckScroll
 
 	}
+
 }]);
 
 
