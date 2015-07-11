@@ -39,7 +39,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 					console.log("return from scroll");
 
 					nuServ.returnButton(element, obj);
-					home["home"].off("scroll", scrollFunc);
+					$(home["home"]).off("scroll", scrollFunc);
 				}
 
 			}
@@ -52,7 +52,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				nuServ.changeButton(element, obj);
 
-				home["home"].on("scroll", scrollFunc);
+				$(home["home"]).on("scroll", scrollFunc);
 				
 			}
 
