@@ -34,7 +34,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		send.receiver({name:g.c.back, receiver:backs});
 	}
 
-	var getOptionObj = function (name) {
+	var getOptionObject = function (name) {
 
 		var index = getIndexByName(name);
 
@@ -54,7 +54,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var getBackObj = function (name) {
+	var getBackObject = function (name) {
 
 		var index = getIndexByName(name);
 
@@ -89,7 +89,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 				return getOptionObject(name);
 			}
 			
-			return getBackObj(name);
+			return getBackObject(name);
 		}
 	}
 
@@ -131,23 +131,14 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var callReturn = function (except_name) {
 
-		down = false;
-		var index = getIndexByName(except_name);
 		var pages = params.pages;
-		var name;
-		var obj;
+		down = false;
 
 		for (i in pages) {
-
-			name = pages[i].name;
-			if (i != index)	{
-				returnButton(name);
-			}
-			else if (i >= 0) {
-				obj = getThing("object", name).complete();
-			}
-
+			returnButton(pages[i].name);
 		}
+		
+		if (except_name) getThing("object", except_name).complete();
 
 	}
 
