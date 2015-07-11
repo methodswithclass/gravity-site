@@ -9,7 +9,9 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
-			var start;
+			var self = this;
+
+			this.start = 0;
 
 			var info = $scope.game;
 
@@ -34,7 +36,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("scroll");
 
-				if (element.scrollTop() - start > 10) {
+				if (element.scrollTop() - self.start > 10) {
 
 					console.log("return from scroll");
 
@@ -48,7 +50,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("change");
 
-				start = element.scrollTop();
+				self.start = element.scrollTop();
 
 				nuServ.changeButton(element, obj);
 
