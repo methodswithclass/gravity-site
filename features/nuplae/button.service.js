@@ -87,7 +87,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 			name = id;
 			which = "option";
 		}
-		
+
 		if (type == "element") {
 
 			if (which == "option") {
@@ -148,7 +148,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		down = false;
 
 		for (i in pages) {
-			returnButton(pages[i].name, false);
+			returnButton(pages[i].name, "", false);
 		}
 		
 		if (except_name) getThing("object", except_name, true).complete();
