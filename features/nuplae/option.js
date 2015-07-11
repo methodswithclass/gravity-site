@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', function (nuServ, states, send, events) {
+nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', 'global', function (nuServ, states, send, events, g) {
 
 	var home = {};
 
