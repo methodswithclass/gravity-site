@@ -13,6 +13,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 			this.start = 0;
 			this.homeElem;
+			this.scrollThreshold = 2;
 
 			var info = $scope.game;
 
@@ -40,7 +41,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("scroll " + self.start);
 
-				if (Math.abs(self.homeElem.scrollTop() - self.start) > 10) {
+				if (Math.abs(self.homeElem.scrollTop() - self.start) > self.scrollThreshold) {
 
 					console.log("return from scroll");
 
