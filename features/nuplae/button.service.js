@@ -100,7 +100,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		console.log("change button");
 
 		var p = getThing("object", name);
-		var elem = getThing("element", name);
+		var elem = $(getThing("element", name));
 
 		if (p && elem) {
 
@@ -119,7 +119,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		console.log("return button");
 
 		var p = getThing("object", name);
-		var elem = getThing("element", name);
+		var elem = $(getThing("element", name));
 
 		if (p && elem) {
 
