@@ -40,7 +40,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("scroll " + self.start);
 
-				if (Math.abs(self.homeElem.scrollTop() - self.start) > 20) {
+				if (Math.abs(self.homeElem.scrollTop() - self.start) > 10) {
 
 					console.log("return from scroll");
 
@@ -54,13 +54,11 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("change");
 
-				self.start = element.scrollTop();
-
-				nuServ.changeButton(element, obj);
-
 				self.homeElem = $(home["home"]);
 
-				console.log(homeElem[0]);
+				self.start = self.homeElem.scrollTop();
+
+				nuServ.changeButton(element, obj);
 
 				self.homeElem.on("scroll", scrollFunc);
 				
