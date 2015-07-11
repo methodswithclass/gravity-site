@@ -5,12 +5,7 @@ nuplaeModule.directive("home", ['nuplaeService', 'send', function (nuServ, send)
 
 		send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
-		$scope.scrollTop = function () {
-
-			return element.offset().top;
-		}
-
-		$scope.$watch($scope.scrollTop,
+		$scope.$watch(element.offset().top,
 			function (newvalue, oldvalue) {
 
 				console.log("newvalue " + newvalue + " oldvalue " + oldvalue);
