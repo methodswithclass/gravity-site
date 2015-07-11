@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuServ, states, send) {
+nuplaeModule.directive("back", ['buttonService', 'states', 'send', function (buttons, states, send) {
 
 
 	var link = function ($scope, element, attr) {
@@ -6,19 +6,19 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 		var game = $scope.info;
 
 		send.accum({name:attr.dir, id:attr.id, data:element[0]});
-		
+
 		$scope.onPress = function () {
 
 			console.log("on press");
 
-			nuServ.callChange();
+			buttons.callChange();
 		}
 
 		$scope.onPressup = function () {
 
 			console.log("on pressup");
 
-			nuServ.callReturn();
+			buttons.callReturn();
 		}
 
 		var addClass = function (_class) {

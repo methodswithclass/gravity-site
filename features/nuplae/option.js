@@ -1,4 +1,4 @@
-nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', 'global', function (nuServ, states, send, events, g) {
+nuplaeModule.directive("option", ['buttonService', 'states', 'send', 'events', 'global', function (buttons, states, send, events, g) {
 
 	return {
 		restrict:'E',
@@ -17,7 +17,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				sconsole.log("change");
 
-				nuServ.callChange();
+				buttons.callChange();
 				
 			}
 
@@ -25,10 +25,8 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				console.log("return");
 
-				nuServ.callReturn();
+				buttons.callReturn();
 			}
-
-			
 
 		}
 	}

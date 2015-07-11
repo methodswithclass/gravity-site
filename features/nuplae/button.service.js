@@ -56,7 +56,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', fun
 
 	var getBackObj = function (name) {
 
-		var getIndexByName(name);
+		var index = getIndexByName(name);
 
 		var page = params.pages[index];
 
