@@ -15,7 +15,7 @@ nuplaeModule.directive("option", ['buttonService', 'send', function (buttons, se
 
 			$scope.onPress = function () {
 
-				console.log("change");
+				console.log("change " + attr.id);
 
 				buttons.callChange(attr.id);
 				
