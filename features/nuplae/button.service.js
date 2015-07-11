@@ -73,16 +73,18 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var getThing = function (type, name) {
+	var getThing = function (type, id) {
 
-		var nameArray = name.split(".");
+		var nameArray = id.split(".");
+		var element = nameArray[0];
+		var name = nameArray[1];
 
 		if (type == "element") {
 			if (nameArray[0] == "option") {
-				return options[name];
+				return options[id];
 			}
 			
-			return backs[name];
+			return backs[id];
 		}
 		else if (type == "object") {
 			if (nameArray[0] == "option") {
