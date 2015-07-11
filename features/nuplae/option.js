@@ -57,7 +57,11 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				nuServ.changeButton(element, obj);
 
-				$(home["home"]).on("scroll", scrollFunc);
+				var homeElem = $(home["home"]);
+
+				console.log(homeElem[0]);
+
+				homeElem.on("scroll", scrollFunc);
 				
 			}
 
