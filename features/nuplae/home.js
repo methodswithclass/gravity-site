@@ -5,14 +5,12 @@ nuplaeModule.directive("home", ['nuplaeService', 'send', function (nuServ, send)
 
 		send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
-		$scope.scrollTop = $(element).scrollTop();
+		$scope.scrollTop = function () {
 
+			return $(element).scrollTop();
+		}
 
-		$scope.$watch(
-			function ($scope) {
-
-				return $scope.scrollTop;
-			},
+		$scope.$watch($scope.scrollTop,
 			function (newvalue, oldvalue) {
 
 				console.log("newvalue " + newvalue + " oldvalue " + oldvalue);
@@ -24,7 +22,6 @@ nuplaeModule.directive("home", ['nuplaeService', 'send', function (nuServ, send)
 
 			});
 
-		
 	}
 
 
