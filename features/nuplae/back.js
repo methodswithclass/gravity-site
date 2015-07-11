@@ -5,36 +5,20 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 
 		var game = $scope.info;
 
-		//console.log(attr.dir + " " + attr.id)
-
-		//send.accum({name:attr.dir, id:attr.id, data:element[0]});
-
-		var obj = {
-			type:"back",
-			name:"back" + game.name,
-			back_press:"black-back",
-			back_save:"white-back",
-			add_class:"fa-inverse",
-			complete:function () {
-				console.log("go back");
-				states.gotoPage(0);
-			}
-		}
-
+		send.accum({name:attr.dir, id:attr.id, data:element[0]});
+		
 		$scope.onPress = function () {
 
 			console.log("on press");
 
-			nuServ.changeButton(element, obj);
+			nuServ.callChange();
 		}
 
 		$scope.onPressup = function () {
 
 			console.log("on pressup");
 
-			nuServ.returnButton(element, obj);
-
-			obj.complete();
+			nuServ.callReturn();
 		}
 
 		var addClass = function (_class) {
