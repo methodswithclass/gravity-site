@@ -73,21 +73,32 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var getThing = function (type, id) {
+	var getThing = function (type, id, isId) {
 
 		var nameArray = id.split(".");
-		var element = nameArray[0];
-		var name = nameArray[1];
+		var name;
+		var which;
 
+		if (isId) { 
+			name = nameArray[1];
+			which = nameArray[0];
+		} 
+		else { 
+			name = id;
+			which = "option";
+		}
+		
 		if (type == "element") {
-			if (nameArray[0] == "option") {
+
+			if (which == "option") {
 				return options[id];
 			}
 			
 			return backs[id];
 		}
 		else if (type == "object") {
-			if (nameArray[0] == "option") {
+
+			if (which == "option") {
 				return getOptionObject(name);
 			}
 			
@@ -99,8 +110,8 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		console.log("change button");
 
-		var p = getThing("object", name);
-		var elem = $(getThing("element", name));
+		var p = getThing("object", name, true);
+		var elem = $(getThing("element", name, true));
 
 		if (p && elem) {
 
@@ -114,12 +125,12 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	}
 
-	var returnButton = function (name) {
+	var returnButton = function (name, isId) {
 
 		console.log("return button");
 
-		var p = getThing("object", name);
-		var elem = $(getThing("element", name));
+		var p = getThing("object", name, isId);
+		var elem = $(getThing("element", name, isId));
 
 		if (p && elem) {
 
@@ -131,20 +142,20 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var callReturn = function (except_name) {
+	var callReturn = function (which, except_name) {
 
 		var pages = params.pages;
 		down = false;
 
 		for (i in pages) {
-			returnButton(pages[i].name);
+			returnButton(pages[i].name, false);
 		}
 		
-		if (except_name) getThing("object", except_name).complete();
+		if (except_name) getThing("object", except_name, true).complete();
 
 	}
 
-	var callChange = function (name) {
+	var callChange = function (which, name) {
 
 		start = home.scrollTop();
 		down = true;
