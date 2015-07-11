@@ -142,20 +142,20 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var callReturn = function (which, except_name) {
+	var callReturn = function (except_name) {
 
 		var pages = params.pages;
 		down = false;
 
 		for (i in pages) {
-			returnButton(pages[i].name, ".", false);
+			returnButton(pages[i].name, false);
 		}
 		
 		if (except_name) getThing("object", except_name, true).complete();
 
 	}
 
-	var callChange = function (which, name) {
+	var callChange = function (name) {
 
 		start = home.scrollTop();
 		down = true;
