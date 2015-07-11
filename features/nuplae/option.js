@@ -1,5 +1,7 @@
 nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', function (nuServ, states, send, events) {
 
+	var home = {};
+
 	return {
 		restrict:'E',
 		scope:false,
@@ -7,7 +9,6 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
-			var press = false;
 			var start;
 
 			var info = $scope.game;
@@ -25,18 +26,33 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 				}
 			}
 
+			send.receiver({name:g.c.home, receiver:home});
 			send.accum({name:attr.dir, id:attr.id, data:element[0]});
 			send.accum({name:"optionObj", id:attr.id, data:obj});
+
+			var scrollFunc = function () {
+
+				console.log("scroll");
+
+				if (element.scrollTop() - start > 10) {
+
+					console.log("return from scroll");
+
+					nuServ.returnButton(element, obj);
+					home["home"].off("scroll", scrollFunc);
+				}
+
+			}
 
 			$scope.onPress = function () {
 
 				console.log("change");
 
-				press = true;
-
 				start = element.scrollTop();
 
 				nuServ.changeButton(element, obj);
+
+				home["home"].on("scroll", scrollFunc);
 				
 			}
 
@@ -44,33 +60,12 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 
 				console.log("return");
 
-				press = false;
-
 				nuServ.returnButton(element, obj);
 
 				obj.complete();
 			}
 
-			element.on("scroll", function () {
-
-				console.log("scroll");
-
-				if (press) {
-
-					console.log("press");
-
-					if (element.scrollTop() - start > 10) {
-
-						console.log("return from scroll");
-
-						nuServ.returnButton(element, obj);
-						press = false;
-					}
-
-				}
-
-
-			});
+			
 
 		}
 	}
