@@ -12,6 +12,7 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 			var self = this;
 
 			this.start = 0;
+			this.homeElem;
 
 			var info = $scope.game;
 
@@ -37,14 +38,14 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 			var scrollFunc = function () {
 
-				console.log("scroll");
+				console.log("scroll " + self.start);
 
-				if (element.scrollTop() - self.start > 10) {
+				if (Math.abs(self.homeElem.scrollTop() - self.start) > 20) {
 
 					console.log("return from scroll");
 
 					nuServ.returnButton(element, obj);
-					$(home["home"]).off("scroll", scrollFunc);
+					self.homeElem.off("scroll", scrollFunc);
 				}
 
 			}
@@ -57,11 +58,11 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 
 				nuServ.changeButton(element, obj);
 
-				var homeElem = $(home["home"]);
+				self.homeElem = $(home["home"]);
 
 				console.log(homeElem[0]);
 
-				homeElem.on("scroll", scrollFunc);
+				self.homeElem.on("scroll", scrollFunc);
 				
 			}
 
