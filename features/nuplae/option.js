@@ -53,9 +53,16 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 
 			element.on("scroll", function () {
 
+				console.log("scroll");
+
 				if (press) {
 
+					console.log("press");
+
 					if (element.scrollTop() - start > 10) {
+
+						console.log("return from scroll");
+
 						nuServ.returnButton(element, obj);
 						press = false;
 					}
