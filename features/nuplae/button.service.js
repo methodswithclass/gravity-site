@@ -180,7 +180,6 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', fun
 
 	return {
 		setupReceivers:setupReceivers,
-		changeButton:changeButton,
 		callReturn:callReturn,
 		callChange:callChange,
 		setupCheckScroll:setupCheckScroll
