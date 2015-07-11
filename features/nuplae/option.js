@@ -1,7 +1,5 @@
 nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', 'global', function (nuServ, states, send, events, g) {
 
-	var home = {};
-
 	return {
 		restrict:'E',
 		scope:false,
@@ -12,8 +10,8 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 			var self = this;
 
 			this.start = 0;
-			this.homeElem;
 			this.scrollThreshold = 2;
+			this.down = false;
 
 			var info = $scope.game;
 
@@ -30,44 +28,45 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', '
 				}
 			}
 
-
-			send.receiver({name:g.c.home, receiver:home});
 			send.accum({name:attr.dir, id:attr.id, data:element[0]});
 			send.accum({name:"optionObj", id:attr.id, data:obj});
 
-			events.dispatch("home");
-
 			var scrollFunc = function () {
 
-				console.log("scroll " + self.start);
+				console.log("scroll");
 
-				if (Math.abs(self.homeElem.scrollTop() - self.start) > self.scrollThreshold) {
+				if (self.down) {
 
-					console.log("return from scroll");
+					if (Math.abs(self.home.scrollTop() - self.start) > self.scrollThreshold) {
 
-					nuServ.returnButton(element, obj);
-					self.homeElem.off("scroll", scrollFunc);
+						nuServ.returnButton(element, obj);
+						self.down = false;
+					}
 				}
 
 			}
+
+			this.home = events.dispatch("home");
+
+			self.home.on("scroll", scrollFunc);
 
 			$scope.onPress = function () {
 
 				console.log("change");
 
-				self.homeElem = $(home["home"]);
-
-				self.start = self.homeElem.scrollTop();
+				self.start = self.home.scrollTop();
 
 				nuServ.changeButton(element, obj);
 
-				self.homeElem.on("scroll", scrollFunc);
+				self.down = true;
 				
 			}
 
 			$scope.onPressup = function () {
 
 				console.log("return");
+
+				self.down = false;
 
 				nuServ.returnButton(element, obj);
 

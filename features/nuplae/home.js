@@ -1,10 +1,10 @@
-nuplaeModule.directive("home", ['nuplaeService', 'send', 'events', function (nuServ, send, events) {
+nuplaeModule.directive("home", ['nuplaeService', 'events', function (nuServ, events) {
 	
 	return function ($scope, element, attr) {
 
 		events.on("home", function () {
 
-			send.accum({name:attr.dir, id:attr.id, data:element[0]});
+			return element[0];
 				
 		});
 
