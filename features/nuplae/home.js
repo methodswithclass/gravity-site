@@ -1,4 +1,4 @@
-nuplaeModule.directive("home", ['nuplaeService', 'events', function (nuServ, events) {
+nuplaeModule.directive("home", ['events', function (events) {
 	
 	return function ($scope, element, attr) {
 
