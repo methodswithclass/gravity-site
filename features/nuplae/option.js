@@ -7,6 +7,9 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 		templateUrl:"features/nuplae/views/option.html",
 		link:function ($scope, element, attr) {
 
+			var press = false;
+			var start;
+
 			var info = $scope.game;
 
 			var obj = {
@@ -29,17 +32,38 @@ nuplaeModule.directive("option", ['nuplaeService', 'states', 'send', 'events', f
 
 				console.log("change");
 
+				press = true;
+
+				start = element.scrollTop();
+
 				nuServ.changeButton(element, obj);
+				
 			}
 
 			$scope.onPressup = function () {
 
 				console.log("return");
 
+				press = false;
+
 				nuServ.returnButton(element, obj);
 
 				obj.complete();
 			}
+
+			element.on("scroll", function () {
+
+				if (press) {
+
+					if (element.scrollTop() - start > 10) {
+						nuServ.returnButton(element, obj);
+						press = false;
+					}
+
+				}
+
+
+			});
 
 		}
 	}
