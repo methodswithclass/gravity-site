@@ -23,10 +23,14 @@ nuplaeModule.directive("back", ['nuplaeService', 'states', 'send', function (nuS
 
 		$scope.onPress = function () {
 
+			console.log("on press");
+
 			nuServ.changeButton(element, obj);
 		}
 
 		$scope.onPressup = function () {
+
+			console.log("on pressup");
 
 			nuServ.returnButton(element, obj);
 
