@@ -21,11 +21,22 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 	var parseId = function (args) {
 
 		var array = args.name.split(".");
+		var returnObj;
 
-		return {
-			element:array[0],
-			name:array[1]
+		if (array.length > 0) {
+			returnObj = {
+				element:array[0],
+				name:array[1]
+			}
 		}
+		else {
+			returnObj = {
+				name:args.name;
+			}
+		}
+
+
+		return returnObj;
 
 	}
 
@@ -129,7 +140,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		var elem = $(getThing("element", args));
 
 		console.log(p);
-		console.log(elem);
+		console.log(elem[0]);
 
 		if (p && elem) {
 
