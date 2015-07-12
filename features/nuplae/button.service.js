@@ -23,7 +23,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		var array = args.name.split(".");
 		var returnObj;
 
-		console.log(array);
+		//console.log(array);
 
 		if (array.length > 1) {
 			returnObj = {
@@ -37,7 +37,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 			}
 		}
 
-		console.log(returnObj);
+		//console.log(returnObj);
 
 
 		return returnObj;
@@ -143,8 +143,8 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		var p = getThing("object", args);
 		var elem = $(getThing("element", args));
 
-		//console.log(p);
-		//console.log(elem[0]);
+		console.log(p);
+		console.log(elem[0]);
 
 		if (p && elem) {
 
