@@ -113,6 +113,9 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		var p = getThing("object", name, true);
 		var elem = $(getThing("element", name, true));
 
+		console.log(p);
+		console.log(elem);
+
 		if (p && elem) {
 
 			console.log("change has object");
