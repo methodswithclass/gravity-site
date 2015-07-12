@@ -44,7 +44,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 			type:"option",
 			name:"option" + page.name,
 			back_press:"orange-back",
-			back_save:page.menu,
+			back_save:page.page.menu,
 			add_class:"lowered",
 			text_press:"white",
 			text_save:"white",
