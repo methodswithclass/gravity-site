@@ -233,7 +233,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		self.home = events.dispatch("home");
 
-		self.home.addeventListener("scroll", self.scrollFunc);
+		self.home.addEventListener("scroll", self.scrollFunc);
 	}
 
 	return {
