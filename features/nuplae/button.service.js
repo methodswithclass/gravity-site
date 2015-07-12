@@ -217,7 +217,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var scrollFunc = function () {
 
-		console.log("scroll");
+		console.log("scroll " + down);
 
 		if (down && Math.abs(home.scrollTop() - start) > scrollThreshold) {
 
