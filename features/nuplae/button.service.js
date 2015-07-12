@@ -9,22 +9,6 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 	var scrollThreshold = 2;
 	var down = false;
 
-	var getIndexByName = function (params) {
-
-		var pages = params.pages;
-
-		if (params.name) {
-			for (i in pages) {
-
-				if (params.name == pages[i].name) {
-					return i;
-				}
-			}
-		}
-
-		return -1;
-	}
-
 	var setupReceivers = function () { 
 
 		console.log("setup receivers");
@@ -34,9 +18,25 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		send.receiver({name:g.c.back, receiver:backs});
 	}
 
-	var getOptionObject = function (params) {
+	var getIndexByName = function (args) {
 
-		var index = getIndexByName(params.name);
+		var pages = params.pages;
+
+		if (args.name) {
+			for (i in pages) {
+
+				if (args.name == pages[i].name) {
+					return i;
+				}
+			}
+		}
+
+		return -1;
+	}
+
+	var getOptionObject = function (args) {
+
+		var index = getIndexByName(args.name);
 
 		var page = params.pages[index];
 
@@ -54,9 +54,9 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var getBackObject = function (params) {
+	var getBackObject = function (args) {
 
-		var index = getIndexByName(params.name);
+		var index = getIndexByName(args.name);
 
 		var page = params.pages[index];
 
@@ -73,45 +73,45 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var getThing = function (type, params) {
+	var getThing = function (type, args) {
 
-		var nameArray = params.name.split(".");
+		var nameArray = args.name.split(".");
 		var name;
 		var which;
 
-		if (params.isId) { 
+		if (args.isId) { 
 			name = nameArray[1];
 			which = nameArray[0];
 		} 
 		else { 
-			name = params.name;
+			name = args.name;
 			which = "option";
 		}
 
 		if (type == "element") {
 
 			if (which == "option") {
-				return options[params.name];
+				return options[args.name];
 			}
 			
-			return backs[params.name];
+			return backs[args.name];
 		}
 		else if (type == "object") {
 
 			if (which == "option") {
-				return getOptionObject(params.name);
+				return getOptionObject(args.name);
 			}
 			
-			return getBackObject(params.name);
+			return getBackObject(args.name);
 		}
 	}
 
-	var changeButton = function (params) {
+	var changeButton = function (args) {
 
 		console.log("change button");
 
-		var p = getThing("object", params);
-		var elem = $(getThing("element", params));
+		var p = getThing("object", args);
+		var elem = $(getThing("element", args));
 
 		console.log(p);
 		console.log(elem);
@@ -128,12 +128,12 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	}
 
-	var returnButton = function (params) {
+	var returnButton = function (args) {
 
 		console.log("return button");
 
-		var p = getThing("object", params);
-		var elem = $(getThing("element", params));
+		var p = getThing("object", args);
+		var elem = $(getThing("element", args));
 
 		if (p && elem) {
 
@@ -145,43 +145,43 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var callReturn = function (params) {
+	var callReturn = function (args) {
 
 		var index;
 		var pages;
 		down = false;
 
-		var otherParams
+		var otherParams;
 
-		if (params.others) {
-			index = getIndexByName(params);
+		if (args.others) {
+			index = getIndexByName(args);
 			pages = params.pages;
 
 			for (i in pages) {
 
-				otherParams = {
+				otherArgs = {
 					name:pages[i].name,
 					isId:false
 				}
 
-				if (i != index) returnButton(otherParams);
+				if (i != index) returnButton(otherArgs);
 			}
 		}
 		else {
-			returnButton(params);
-			getThing("object", params).complete();
+			returnButton(args);
+			getThing("object", args).complete();
 		}
 
 	}
 
-	var callChange = function (params) {
+	var callChange = function (args) {
 
 		start = home.scrollTop();
 		down = true;
 
-		changeButton(params);
+		changeButton(args);
 
-		callReturn(params);
+		callReturn(args);
 
 	}
 
