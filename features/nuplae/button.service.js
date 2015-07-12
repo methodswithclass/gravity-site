@@ -190,7 +190,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 					isId:false
 				}
 
-				if (i != index) returnButton(otherArgs);
+				if (i != 0 && i != index) returnButton(otherArgs);
 			}
 		}
 		else {
