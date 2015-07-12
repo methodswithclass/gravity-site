@@ -18,17 +18,29 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		send.receiver({name:g.c.back, receiver:backs});
 	}
 
+	var parseId = function (args) {
+
+		var array = args.name.split(".");
+
+		return {
+			element:array[0],
+			name:array[1]
+		}
+
+	}
+
 	var getIndexByName = function (args) {
 
 		var pages = params.pages;
+		var names = parseId(args);
 
 		console.log(args);
 		console.log(args.name);
 
-		if (args && args.name) {
+		if (names.name) {
 			for (i in pages) {
 
-				if (args.name == pages[i].name) {
+				if (names.name == pages[i].name) {
 					return i;
 				}
 			}
@@ -78,13 +90,13 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var getThing = function (type, args) {
 
-		var nameArray = args.name.split(".");
+		var names = parseId(args);
 		var name;
 		var which;
 
 		if (args.isId) { 
-			name = nameArray[1];
-			which = nameArray[0];
+			name = names.name;
+			which = names.element;
 		} 
 		else { 
 			name = args.name;
