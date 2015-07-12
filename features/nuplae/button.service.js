@@ -18,6 +18,16 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		send.receiver({name:g.c.back, receiver:backs});
 	}
 
+	var setDown = function (_down) {
+
+		down = _down;
+	}
+
+	var getDown = function () {
+
+		return down;
+	}
+
 	var parseId = function (args) {
 
 		var array = args.name.split(".");
@@ -207,7 +217,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 	var callChange = function (args) {
 
 		start = home.scrollTop();
-		down = true;
+		setDown(true);
 
 		changeButton(args);
 
@@ -217,11 +227,12 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var scrollFunc = function () {
 
-		console.log("scroll " + down);
+		console.log("scroll " );
 
-		if (down && Math.abs(home.scrollTop() - start) > scrollThreshold) {
-
+		if (getDown() && Math.abs(home.scrollTop() - start) > scrollThreshold) {
+			setDown(false);
 			callReturn({others:true});
+			
 		}
 
 	}
