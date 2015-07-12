@@ -151,14 +151,14 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		if (all) {
 			index = getIndexByName(except_name);
 			pages = params.pages;
-			
+
 			for (i in pages) {
 				if (i != index) returnButton(pages[i].name, false);
 			}
 		}
 		else {
 			returnButton(except_name, true);
-			getThing("option", except_name, true).complete();
+			getThing("object", except_name, true).complete();
 		}
 
 	}
