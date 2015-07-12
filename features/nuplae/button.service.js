@@ -49,8 +49,8 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		var pages = params.pages;
 		var names = parseId(args);
 
-		console.log(args);
-		console.log(args.name);
+		//console.log(args);
+		//console.log(args.name);
 
 		if (names.name) {
 			for (i in pages) {
