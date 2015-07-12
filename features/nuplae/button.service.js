@@ -211,7 +211,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		changeButton(args);
 
-		callReturn(args);
+		if(args.others) callReturn(args);
 
 	}
 

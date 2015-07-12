@@ -23,7 +23,7 @@ nuplaeModule.directive("back", ['buttonService', 'send', function (buttons, send
 
 		var addClass = function (_class) {
 
-			element.find("i").addClass(_class)
+			element.find("i").addClass(_class);
 		}
 
 		switch(game.name) {
