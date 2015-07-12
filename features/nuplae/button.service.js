@@ -217,30 +217,28 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	}
 
-	this.scrollFunc = function () {
-
-		console.log("scroll " + self.down);
-
-		if (self.down && Math.abs($(self.home).scrollTop() - self.start) > self.scrollThreshold) {
-			self.down = false;
-			callReturn({others:true});
-			
-		}
-
-	}
-
-	var setupCheckScroll = function () {
+	this.setupCheckScroll = function () {
 
 		self.home = events.dispatch("home");
 
-		self.home.addEventListener("scroll", self.scrollFunc);
+		self.home.addEventListener("scroll", function () {
+
+			console.log("scroll " + self.down);
+
+			if (self.down && Math.abs($(self.home).scrollTop() - self.start) > self.scrollThreshold) {
+				self.down = false;
+				callReturn({others:true});
+				
+			}
+
+		});
 	}
 
 	return {
 		setupReceivers:setupReceivers,
 		callReturn:callReturn,
 		callChange:callChange,
-		setupCheckScroll:setupCheckScroll
+		setupCheckScroll:self.setupCheckScroll
 
 	}
 
