@@ -17,7 +17,7 @@ nuplaeModule.directive("option", ['buttonService', 'send', function (buttons, se
 
 				console.log("change " + attr.id);
 
-				buttons.callChange({id:attr.id, others:true, idId:true});
+				buttons.callChange({name:attr.id, others:true, idId:true});
 				
 			}
 
@@ -25,7 +25,7 @@ nuplaeModule.directive("option", ['buttonService', 'send', function (buttons, se
 
 				console.log("return");
 
-				buttons.callReturn({id:attr.id, others:false, isId:true});
+				buttons.callReturn({name:attr.id, others:false, isId:true});
 			}
 
 		}

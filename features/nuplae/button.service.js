@@ -191,7 +191,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		if (down && Math.abs(home.scrollTop() - start) > scrollThreshold) {
 
-			callReturn();
+			callReturn({others:true});
 		}
 
 	}
