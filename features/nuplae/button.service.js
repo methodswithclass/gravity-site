@@ -99,10 +99,10 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		else if (type == "object") {
 
 			if (which == "option") {
-				return getOptionObject(args.name);
+				return getOptionObject(args);
 			}
 			
-			return getBackObject(args.name);
+			return getBackObject(args);
 		}
 	}
 
