@@ -231,9 +231,9 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var setupCheckScroll = function () {
 
-		self.home = $(events.dispatch("home"));
+		self.home = events.dispatch("home");
 
-		self.home.on("scroll", self.scrollFunc);
+		self.home.addeventListener("scroll", self.scrollFunc);
 	}
 
 	return {
