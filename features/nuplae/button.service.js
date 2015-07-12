@@ -142,27 +142,35 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 	}
 
-	var callReturn = function (except_name) {
+	var callReturn = function (except_name, all) {
 
-		var pages = params.pages;
+		var index;
+		var pages;
 		down = false;
 
-		for (i in pages) {
-			returnButton(pages[i].name, false);
+		if (all) {
+			index = getIndexByName(except_name);
+			pages = params.pages;
+			
+			for (i in pages) {
+				if (i != index) returnButton(pages[i].name, false);
+			}
 		}
-		
-		if (except_name) getThing("object", except_name, true).complete();
+		else {
+			returnButton(except_name, true);
+			getThing("option", except_name, true).complete();
+		}
 
 	}
 
-	var callChange = function (name) {
+	var callChange = function (name, all) {
 
 		start = home.scrollTop();
 		down = true;
 
 		changeButton(name);
 
-		callReturn(name);
+		callReturn(name, all);
 
 	}
 
