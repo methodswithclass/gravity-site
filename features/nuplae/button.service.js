@@ -208,7 +208,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var callChange = function (args) {
 
-		self.start = self.home.scrollTop();
+		self.start = $(self.home).scrollTop();
 		self.down = true;
 
 		changeButton(args);
@@ -221,7 +221,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		console.log("scroll " + self.down);
 
-		if (self.down && Math.abs(self.home.scrollTop() - self.start) > self.scrollThreshold) {
+		if (self.down && Math.abs($(self.home).scrollTop() - self.start) > self.scrollThreshold) {
 			self.down = false;
 			callReturn({others:true});
 			
