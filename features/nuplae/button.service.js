@@ -25,7 +25,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		console.log(array);
 
-		if (array.length > 0) {
+		if (array.length > 1) {
 			returnObj = {
 				element:array[0],
 				name:array[1]
