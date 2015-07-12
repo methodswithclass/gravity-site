@@ -181,7 +181,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		var index;
 		var pages;
-		down = false;
+		self.down = false;
 
 		var otherParams;
 
@@ -217,7 +217,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	}
 
-	var scrollFunc = function () {
+	this.scrollFunc = function () {
 
 		console.log("scroll " + self.down);
 
@@ -233,7 +233,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		self.home = $(events.dispatch("home"));
 
-		self.home.on("scroll", scrollFunc);
+		self.home.on("scroll", self.scrollFunc);
 	}
 
 	return {
