@@ -1,13 +1,15 @@
 nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'events', function (params, send, g, states, events) {
 
+	var self = this;
 
-	var home;
+	
 	var options = {};
 	var backs = {};
 
-	var start = 0;
-	var scrollThreshold = 2;
-	var down = false;
+	this.home;
+	this.start = 0;
+	this.scrollThreshold = 2;
+	this.down = false;
 
 	var setupReceivers = function () { 
 
@@ -16,16 +18,6 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		//send.receiver({name:g.c.home, receiver:home});
 		send.receiver({name:g.c.option, receiver:options});
 		send.receiver({name:g.c.back, receiver:backs});
-	}
-
-	var setDown = function (_down) {
-
-		down = _down;
-	}
-
-	var getDown = function () {
-
-		return down;
 	}
 
 	var parseId = function (args) {
@@ -148,7 +140,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var changeButton = function (args) {
 
-		console.log("change button");
+		console.log("change " + args.name);
 
 		var p = getThing("object", args);
 		var elem = $(getThing("element", args));
@@ -170,7 +162,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var returnButton = function (args) {
 
-		console.log("return button");
+		console.log("return " + args.name);
 
 		var p = getThing("object", args);
 		var elem = $(getThing("element", args));
@@ -216,8 +208,8 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var callChange = function (args) {
 
-		start = home.scrollTop();
-		setDown(true);
+		self.start = self.home.scrollTop();
+		self.down = true;
 
 		changeButton(args);
 
@@ -227,10 +219,10 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var scrollFunc = function () {
 
-		console.log("scroll " + getDown());
+		console.log("scroll " + self.down);
 
-		if (getDown() && Math.abs(home.scrollTop() - start) > scrollThreshold) {
-			setDown(false);
+		if (self.down && Math.abs(self.home.scrollTop() - self.start) > self.scrollThreshold) {
+			self.down = false;
 			callReturn({others:true});
 			
 		}
@@ -239,9 +231,9 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 	var setupCheckScroll = function () {
 
-		home = $(events.dispatch("home"));
+		self.home = $(events.dispatch("home"));
 
-		home.on("scroll", scrollFunc);
+		self.home.on("scroll", scrollFunc);
 	}
 
 	return {
