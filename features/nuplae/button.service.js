@@ -31,7 +31,7 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 		}
 		else {
 			returnObj = {
-				name:args.name;
+				name:args.name
 			}
 		}
 
