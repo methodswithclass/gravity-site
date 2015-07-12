@@ -11,14 +11,14 @@ nuplaeModule.directive("back", ['buttonService', 'send', function (buttons, send
 
 			console.log("on press");
 
-			buttons.callChange(attr.id, false);
+			buttons.callChange({name:attr.id, others:false, isId:true});
 		}
 
 		$scope.onPressup = function () {
 
 			console.log("on pressup");
 
-			buttons.callReturn(attr.id, false);
+			buttons.callReturn({name:attr.id, others:false, isId:true});
 		}
 
 		var addClass = function (_class) {
