@@ -22,7 +22,10 @@ nuplaeModule.factory("buttonService", ['params', 'send', 'global', 'states', 'ev
 
 		var pages = params.pages;
 
-		if (args.name) {
+		console.log(args);
+		console.log(args.name);
+
+		if (args && args.name) {
 			for (i in pages) {
 
 				if (args.name == pages[i].name) {
