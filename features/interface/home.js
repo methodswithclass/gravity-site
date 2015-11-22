@@ -1,4 +1,4 @@
-nuplaeModule.directive("home", ['events', function (events) {
+uiModule.directive("home", ['events', function (events) {
 	
 	return function ($scope, element, attr) {
 

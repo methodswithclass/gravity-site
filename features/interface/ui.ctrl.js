@@ -1,5 +1,5 @@
 
-nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', function ($document, params, checkDevice, buttons, states, events, con,  $location) {
+uiModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', function ($document, params, checkDevice, buttons, states, events, con,  $location) {
 
 	console.log("open nuplae controller");
 
@@ -27,7 +27,7 @@ nuplaeModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper'
 
 		console.log("loaded event dispatch");
 
-		buttons.setupCheckScroll();
+		//buttons.setupCheckScroll();
 
 		states.openHome();
 

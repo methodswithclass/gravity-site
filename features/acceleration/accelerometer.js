@@ -1,93 +1,77 @@
-accelModule.factory("accel", function(Vector) {
+accelModule.factory("accelerometer", ["vector", "global", "utility", function (vector, globals, utility) {
 
-
-	var Accelerometer = function (params, obj) {
+	var accel = function (input) {
 
 		var self = this;
-		
-		var interval = params.interval;
 
-		var printCount = 0;
+		var p = input.params;
 
-		this.xMax = 100;
-		this.yMax = 100;
-		
-		this.getBounds = function () {
-		
-			self.xMax = obj.getXBound();
-			self.yMax = obj.getYBound();
-			
-		}
-		
-		window.addEventListener("orient", this.getBounds);
-		
-		this.getBounds();
-			
+		var obj = input.element;
+
 		var filterBucket = [];
-		var filterSize = params.filterSize;
 
 		var factor;
 		var xDir;
 		var yDir;
 		var threshold;
+		var interval;
+
+		var filterSize;
+		var mu;
+		var damp;
 
 
-		this.raw = {x:0, y:0, z:0};
-		this.down = 0;
-		var unfiltered = new Vector(0,0,0);
-		var accel1 = new Vector(0,0,0);
-		var accel0 = new Vector(0,0,0);
-		var vel0 = new Vector(0,0,0);
-		var vel1 = new Vector(0,0,0);
-		var pos0 = new Vector(0,0,0);
-		var pos1 = new Vector(0,0,0);
+		var unfiltered = new vector(0,0,0);
+		var accel1 = new vector(0,0,0);
+		var accel0 = new vector(0,0,0);
+		var vel0 = new vector(0,0,0);
+		var vel1 = new vector(0,0,0);
+		var pos0 = new vector(0,0,0);
+		var pos1 = new vector(0,0,0);
 		var startTime = 0;
-		
+
 		var position = {x:pos0.x, y:pos0.y};
 		var velocity = {x:vel0.x, y:vel0.y};
-		
-		var mu = params.mu;
-		var damp = params.damp;
 
-		var running = false;
-		var timer;
-
-		var logOnInterval = function () {
-			
-			if (accel1.len() > 0) {
-				console.log("accel: " + accel1.printValues() + " len: " + accel1.len());
-				//self.log("vel: " + self.vel1.printValues());
-				console.log("pos: " + pos1.printValues());
-				
-				console.log(" ");
-			}
-		}
+		var xMax = 100;
+		var yMax = 100;
 
 		var setValues = function () {
 
-			factor = globals.factor*params.factor;
+			factor = globals.factor*p.factor;
 			xDir = globals.xDir;
 			yDir = globals.yDir;
 			threshold = factor*0.5;
+			filterSize = p.filterSize;
+			mu = p.mu;
+			damp = p.damp;
+			interval = p.interval;
 
 		}
+
+		var getBounds = function () {
 		
+			xMax = obj.getXBound();
+			yMax = obj.getYBound();
+			
+		}
+
 		var bounce = function () {
 
-			self.getBounds();
+			getBounds();
 			
 			var sideX = pos1.x/Math.abs(pos1.x);
 			
 			var minVel = 12*(Math.abs(accel1.y)+Math.abs(accel1.x));
 
-			//console.log(sideX + " " + self.xMax)
+			//console.log(sideX + " " + xMax)
 			
-			if (Math.abs(pos1.x) >= self.xMax) {
+			if (Math.abs(pos1.x) >= xMax) {
 
 				//console.log("bounce x");
-				pos1.x	= sideX*self.xMax;
+				pos1.x	= sideX*xMax;
 				vel1.x = -(1-damp)*vel1.x;
-				if ((Math.abs(vel1.x) < minVel && params.gravity) || !params.bounce) {
+				if ((Math.abs(vel1.x) < minVel && p.gravity) || !p.bounce) {
 					vel1.x = 0;	
 				}
 			}
@@ -95,28 +79,28 @@ accelModule.factory("accel", function(Vector) {
 			
 			var sideY = pos1.y/Math.abs(pos1.y);
 			
-			//console.log(sideY + " " + self.yMax);
+			//console.log(sideY + " " + yMax);
 
-			if (Math.abs(pos1.y) >= self.yMax) {
+			if (Math.abs(pos1.y) >= yMax) {
 				//console.log("bounce y");
-				pos1.y	= sideY*self.yMax;
+				pos1.y	= sideY*yMax;
 				vel1.y = -(1-damp)*vel1.y;
-				if ((Math.abs(vel1.y) < minVel && params.gravity) || !params.bounce) {
+				if ((Math.abs(vel1.y) < minVel && p.gravity) || !p.bounce) {
 					vel1.y = 0;
 				}
 			}
 				
 		}
-		
+
 		var friction = function () {
-			
+				
 			if (accel1.len() == 0) {
 				vel1 = vel1.multiply(1-mu);	
 			}
 		}
 
 		var updateMotion = function (pos, vel, acc) {
-			
+				
 			//con.log("update " + xPos + " " + yPos);
 			
 			var evt = new CustomEvent("accel", {detail:{pos:pos, vel:vel, acc:acc}, bubbles:true, cancelable:false});
@@ -126,13 +110,13 @@ accelModule.factory("accel", function(Vector) {
 		}
 
 		var integrate = function (accelArray) {
-			
+				
 			accel1.set(utility.average(accelArray));
 
 			//console.log("accel1 " + accel1.printValues());
 			
 			if (accel1.len() < threshold) {
-				accel1.set(new Vector(0,0,accel1.time));
+				accel1.set(new vector(0,0,accel1.time));
 			}
 			
 			var timeInterval = 1000*interval*filterSize;
@@ -161,39 +145,29 @@ accelModule.factory("accel", function(Vector) {
 			
 		}
 
-		this.setinitial = function (x, y) {
+		self.setinitial = function (x, y) {
 
-			pos0.set(new Vector(x,y,pos0.time));
+			pos0.set(new vector(x,y,pos0.time));
 		}
 
-		this.motion = function (e) {
+		self.motion = function (e) {
 			
 			if (running) {
 
-				if (params.gravity) {
-					unfiltered.set(new Vector(xDir*factor*e.accelerationIncludingGravity.x, yDir*factor*e.accelerationIncludingGravity.y, (e.timeStamp - startTime)/1000));
+				if (p.gravity) {
+					unfiltered.set(new vector(xDir*factor*e.accelerationIncludingGravity.x, yDir*factor*e.accelerationIncludingGravity.y, (e.timeStamp - startTime)/1000));
 				}
 				else {
-					unfiltered.set(new Vector(xDir*factor*e.acceleration.x, yDir*factor*e.acceleration.y, (e.timeStamp - startTime)/1000));
+					unfiltered.set(new vector(xDir*factor*e.acceleration.x, yDir*factor*e.acceleration.y, (e.timeStamp - startTime)/1000));
 				}
 
 				//console.log("unfiltered " + unfiltered.printValues());
 			}
 		}
 
-
-		this.getRaw = function (e) {
-
-			self.raw = e.accelerationIncludingGravity;
-
-			self.down = utility.len(self.raw);
-
-			//console.log(self.down);
-		}
-		
-		this.start = function () {
-			
-			console.log("running");
+		self.start = function () {
+				
+			console.log("start accel");
 
 			setValues();
 			
@@ -215,9 +189,9 @@ accelModule.factory("accel", function(Vector) {
 			}, 1000*interval);
 		}
 		
-		this.stop = function () {
+		self.stop = function () {
 			
-			con.log("stopped");
+			con.log("stop accel");
 			
 			running = false;
 			
@@ -225,23 +199,23 @@ accelModule.factory("accel", function(Vector) {
 				clearInterval(timer);	
 			}
 			
-			//self.reset();
+			//reset();
 		}
 
-		this.reset = function () {
+		self.reset = function () {
 			
 			filterBucket = [];
 			
-			unfiltered = new Vector(0,0,0);
-			accel0 = new Vector(0,0,0);
-			vel0 = new Vector(0,0,0);
-			pos0 = new Vector(0,0,0);
+			unfiltered = new vector(0,0,0);
+			accel0 = new vector(0,0,0);
+			vel0 = new vector(0,0,0);
+			pos0 = new vector(0,0,0);
 			startTime = 0;
 			
 			updateMotion(pos0, vel0, accel0);	
 		}
 		
-		this.getMotion = function (func) {
+		self.getMotion = function (func) {
 			
 			window.addEventListener("accel", function (e) {
 				func(e.detail.pos, e.detail.vel, e.detail.acc);
@@ -249,14 +223,10 @@ accelModule.factory("accel", function(Vector) {
 				
 		}
 
-		this.getAccel = function () {
-
-			return accel1;
-		}
-			
 	}
 
-	return Accelerometer;
-		
 
-});
+	return accel;
+
+
+}]);

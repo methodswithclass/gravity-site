@@ -1,11 +1,11 @@
-nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send', function ($document, $state, $rootScope, params, send) {
+uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send', 'manager', function ($document, $state, $rootScope, params, send, manager) {
 	
 	var complete;
 
 	var modalTime = 1000;
 	var duration = 700;
 
-	var openDuration = 700;
+	var openDuration = 300;
 	var backDuration = 300;
 	var initalDuration = 10;
 
@@ -105,9 +105,9 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 		elem = $(elements[id]);
 		bodyElem = $(body["body"]);
 
-		console.log("navigate to " + name);
-		console.log(elem[0]);
-		console.log(bodyElem[0]);
+		//console.log("navigate to " + name);
+		//console.log(elem[0]);
+		//console.log(bodyElem[0]);
 
 		bodyElem.scrollTo(elem[0], {
 			duration:duration,
@@ -124,7 +124,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		prevState = fromState; 
 
-		console.log(prevState);
+		//console.log(prevState);
 
 		var stateName = toState.name.split(".");
 
@@ -172,12 +172,12 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 
 		console.log("define states");
 
-		nuplaeModule.stateProvider.state("Default", {}).
+		uiModule.stateProvider.state("Default", {}).
 	      state({
 	        name:"Modal", 
 	        views:{
 	            "modal": {
-	              templateUrl: "features/nuplae/views/modal/modal.html"
+	              templateUrl: "features/interface/views/modal/modal.html"
 	            }
 	        },
 	        onEnter: function() {
@@ -209,7 +209,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        name:"Modal.valid",
 	        views:{
 	            "modal": {
-	              templateUrl: "features/nuplae/views/modal/valid-modal.html"
+	              templateUrl: "features/interface/views/modal/valid-modal.html"
 	            }
 	      	},
 	      	onEnter:function() {
@@ -228,7 +228,7 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	        name:"Modal.invalid",
 	        views:{
 	            "modal": {
-	              templateUrl: "features/nuplae/views/modal/invalid-modal.html"
+	              templateUrl: "features/interface/views/modal/invalid-modal.html"
 	            }
 	      	},
 	      	onEnter:function() {
@@ -276,10 +276,10 @@ nuplaeModule.factory("states", ['$document', '$state', '$rootScope', 'params', '
 	      	name:states[2].state,
 	      	onEnter:function() {
 	              
-
+	      		manager.createInstance();
 	        },
 	        onExit:function() {
-	        	
+	        	manager.destroyInstance();
 	        }
 	      }).
 	      state({

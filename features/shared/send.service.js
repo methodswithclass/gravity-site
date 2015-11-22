@@ -33,9 +33,9 @@ sharedModule.factory("send", function () {
 
 		var bin = receivers[name];
 
-		console.log("accum: " + name + " id: " + id);
+		//console.log("accum: " + name + " id: " + id);
 
-		console.log("bin length " + bin.length);
+		//console.log("bin length " + bin.length);
 
 		for (i in bin) {
 
@@ -58,7 +58,7 @@ sharedModule.factory("send", function () {
 			bin = receivers[name]; // retrieve existing receiver array for this name
 		}
 
-		console.log("receive " + name + " bin size: " + bin.length);
+		//console.log("receive " + name + " bin size: " + bin.length);
 
 		bin[bin.length] = params.receiver;
 

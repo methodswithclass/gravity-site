@@ -1,4 +1,4 @@
-nuplaeModule.directive("back", ['buttonService', 'send', function (buttons, send) {
+uiModule.directive("back", ['buttonService', 'send', function (buttons, send) {
 
 
 	var link = function ($scope, element, attr) {
@@ -61,7 +61,7 @@ nuplaeModule.directive("back", ['buttonService', 'send', function (buttons, send
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"features/nuplae/views/back.html",
+		templateUrl:"features/interface/views/back.html",
 		link:link
 	}
 

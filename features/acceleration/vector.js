@@ -1,4 +1,4 @@
-accelModule.factory("Vector", function () {
+accelModule.factory("vector", function () {
 
 
 	var Vector = function (x,y,time) {

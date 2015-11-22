@@ -1,4 +1,4 @@
-nuplaeModule.directive("body", ['send', function (send) {
+uiModule.directive("body", ['send', function (send) {
 
 	return function ($scope, element, attr) {
 

@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['sharedModule', 'validateModule', 'nuplaeModule', 'consoleModule', 'accelModule', 'ngRoute', 'ui.router']);
+var app = angular.module('nuplae', ['sharedModule', 'uiModule', 'consoleModule', 'ngRoute', 'ui.router']);
 
 var checking = "/checking";
 var invalid = "/invalid";
@@ -9,20 +9,20 @@ app.config(['$routeProvider', '$stateProvider', function (routeProvider, statePr
 
   console.log("define routes");
 
-    nuplaeModule.stateProvider = stateProvider;
+    uiModule.stateProvider = stateProvider;
 
     routeProvider.
         when(invalid, {
     
-          templateUrl: 'features/nuplae/views/invalid.html'
+          templateUrl: 'features/interface/views/invalid.html'
         }).
         when(valid, {
         
-          templateUrl: 'features/nuplae/views/valid.html',
+          templateUrl: 'features/interface/views/valid.html',
         }).
         when(checking, {
 
-          templateUrl:'features/nuplae/views/checking.html',
+          templateUrl:'features/interface/views/checking.html',
         });
 }]).run(function ($location) {
 

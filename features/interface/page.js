@@ -1,4 +1,4 @@
-nuplaeModule.directive("page", function () {
+uiModule.directive("page", function () {
 
 	return {
 		restrict:'E',
@@ -13,7 +13,7 @@ nuplaeModule.directive("page", function () {
 
 			$scope.getContentUrl = function() {
 				//console.log($scope.view);
-                return 'features/nuplae/views/' + $scope.view;
+                return 'features/interface/views/' + $scope.view;
             }
 
 		}

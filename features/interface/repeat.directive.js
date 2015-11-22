@@ -1,4 +1,4 @@
-nuplaeModule.directive("repeat", ['events', 'send', function (events, send) {
+uiModule.directive("repeat", ['events', 'send', function (events, send) {
 
 	return function (scope, element, attr) {
 

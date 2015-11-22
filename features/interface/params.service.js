@@ -1,4 +1,4 @@
-nuplaeModule.factory("params", ['global', function (g) {
+uiModule.factory("params", ['global', function (g) {
 
 	var class1 = {
 		left:' padding-left',
@@ -19,7 +19,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Calibrate",
 		index:g.c.calibrateIndex,
 		page:{
-			view:"setup.html",
+			game:false,
+			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
 			menu:"pink-back",
@@ -59,7 +60,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Gravity", 
 		index:g.c.gravIndex,
 		page:{
-			view:"setup.html",
+			game:false,
+			view:"page.html",
 			back:"green2-back",
 			fore:"white-back",
 			menu:"green2-back",
@@ -98,7 +100,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Float", 
 		index:g.c.floatIndex,
 		page:{
-			view:"setup.html",
+			game:false,
+			view:"page.html",
 			back:"brown-back",
 			fore:"white-back",
 			menu:"brown-back",
@@ -137,7 +140,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Enemies", 
 		index:g.c.enemiesIndex,
 		page:{
-			view:"game.html",
+			game:true,
+			view:"page.html",
 			back:"blue2-back",
 			fore:"white-back",
 			menu:"blue2-back",
@@ -176,7 +180,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Balance", 
 		index:g.c.balanceIndex,
 		page:{
-			view:"game.html",
+			game:true,
+			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
 			menu:"pink-back",
@@ -215,7 +220,8 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Space",
 		index:g.c.spaceIndex,
 		page:{
-			view:"game.html",
+			game:true,
+			view:"page.html",
 			back:"white-back",
 			fore:"black-back",
 			menu:"brown-back",
@@ -256,6 +262,7 @@ nuplaeModule.factory("params", ['global', function (g) {
 		name:"Home",
 		index:g.c.homeIndex,
 		page:{
+			game:false,
 			view:"home.html",
 			back:"blue2-back",
 			fore:"white-back",

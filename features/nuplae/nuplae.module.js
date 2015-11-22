@@ -1,1 +1,0 @@
-var nuplaeModule = angular.module("nuplaeModule", ['sharedModule', 'accelModule', 'validateModule']);
