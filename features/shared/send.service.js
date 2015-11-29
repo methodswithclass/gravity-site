@@ -34,7 +34,7 @@ sharedModule.factory("send", function () {
 		var bin = receivers[name];
 
 		//console.log("accum: " + name + " id: " + id);
-
+		//console.log(params.data);
 		//console.log("bin length " + bin.length);
 
 		for (i in bin) {

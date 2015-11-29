@@ -1,16 +1,58 @@
 
-uiModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', function ($document, params, checkDevice, buttons, states, events, con,  $location) {
+uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', 'global', 'manager', function ($document, data, checkDevice, buttons, states, events, con,  $location, g, manager) {
 
 	console.log("open nuplae controller");
 
 	var self = this;
 
-
-
 	// ===================== DATA ======================
 
-	self.pages = params.pages;
+	self.pages = data.pages;
 
+	var makeHomeData = function () {
+
+		var home = {
+			name:"Home",
+			index:g.c.homeIndex,
+			page:{
+				game:false,
+				view:"home.html",
+				back:"blue2-back",
+				fore:"white-back",
+				rect:{
+					top:0,
+					left:"25%"
+				},
+				border:{
+					color:"black",
+					width:1,
+					radius:0
+				}
+			}
+			
+		}
+
+		var options = [];
+
+		for (i in self.pages) {
+
+			options[i] = {
+				name:self.pages[i].name,
+				index:self.pages[i].index,
+				menu:self.pages[i].page.menu,
+				rect:self.pages[i].page.rect,
+				directive:g.c.option
+			};
+
+		};
+
+		home.pages = options;
+
+		self.pages.unshift(home);
+
+	}
+
+	makeHomeData();
 
 
 	// ===================== SETUP ======================
@@ -18,6 +60,8 @@ uiModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'b
 	states.define();
 
 	buttons.setupReceivers();
+
+	manager.setupReceivers();
 
 
 
@@ -29,7 +73,7 @@ uiModule.controller('nuplaeCtrl', ['$document', 'params', 'validate.wrapper', 'b
 
 		//buttons.setupCheckScroll();
 
-		states.openHome();
+		states.gotoPage(1);
 
 	});
 

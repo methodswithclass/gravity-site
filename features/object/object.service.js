@@ -7,10 +7,10 @@ objectModule.factory("object.service", ["utility", function (utility) {
 		var self = this;
 
 		var p = input.parent;
-		var container = input.element;
+		var container = input.object;
 
-		var xMax = 100;
-		var yMax = 100;
+		self.xMax = 100;
+		self.yMax = 100;
 
 		var relPos = {x:0, y:0};
 		
@@ -24,26 +24,27 @@ objectModule.factory("object.service", ["utility", function (utility) {
 		}
 
 		self.getXBound = function () {
-			xMax = $(p).width()/2 - $(self.el()).width()/2;
+			self.xMax = $(p).width()/2 - $(self.el()).width()/2;
 
 			//console.log("get x bound " + xMax);
 		
-			return xMax;
+			return self.xMax;
 		}
 		
 		self.getYBound = function () {
-			yMax = $(p).height()/2 - $(self.el()).height()/2;
+			self.yMax = $(p).height()/2 - $(self.el()).height()/2;
 
-			//console.log("get y  bound " + yMax);
+			//console.log(p);
+			//console.log("get y  bound " + self.yMax);
 		
-			return yMax;
+			return self.yMax;
 		}
 
 		self.setPosition = function (pos) {
 
 			relPos = pos;
 			
-			self.position = {x:xMax + relPos.x, y:yMax + relPos.y};
+			self.position = {x:self.xMax + relPos.x, y:self.yMax + relPos.y};
 			//self.center = {x:self.position.x + radius, y:self.position.y + radius};
 			
 			//console.log("position: " + position.x + " " + position.y);
@@ -64,6 +65,8 @@ objectModule.factory("object.service", ["utility", function (utility) {
 		}
 
 		self.absolutePos = function () {
+
+			//console.log(relPos);
 
 			return relPos;
 		}
@@ -113,34 +116,7 @@ objectModule.factory("object.service", ["utility", function (utility) {
 
 	}
 
-	var createCross = function (obj) {
-
-		radius = obj/2;
-
-		container.style.width = obj.size + "px";
-		container.style.height = obj.size + "px";
-		//container.style.border = "1px solid black";
-
-		var vertical = document.createElement("div");
-		var horizontal = document.createElement("div");
-
-		vertical.style.position = "absolute";
-		vertical.style.top = 0;
-		vertical.style.left = "50%";
-		vertical.style.width = "2px";
-		vertical.style.height = "100%";
-		vertical.style.backgroundColor = obj.color;
-
-		horizontal.style.position = "absolute";
-		horizontal.style.top = "50%";
-		horizontal.style.left = 0;
-		horizontal.style.width = "100%";
-		horizontal.style.height = "2px";
-		horizontal.style.backgroundColor = obj.color;
-
-		$(container).append(vertical);
-		$(container).append(horizontal);
-	}
+	
 	
 	
 	var setShape = function (obj) {

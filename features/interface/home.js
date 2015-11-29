@@ -7,9 +7,6 @@ uiModule.directive("home", ['events', function (events) {
 			return element[0];
 				
 		});
-
-		
-
 	}
 
 

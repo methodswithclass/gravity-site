@@ -1,4 +1,4 @@
-accelModule.factory("utility", ["vector", function (vector) {
+sharedModule.factory("utility", ["vector", function (vector) {
 
 	var average = function (array) {
 

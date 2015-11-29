@@ -1,5 +1,39 @@
 sharedModule.factory('global', ['$sce', '$location', 'events', function($sce, $location, events) {
 
+	var factor = 1;
+	var yDir = 1;
+	var xDir = 1;
+
+	var setFactor = function (_factor) {
+
+		//console.log("factor is " + _factor);
+
+		factor = _factor;
+	}
+
+	var setDirection = function (direction, value) {
+
+		//console.log(direction + " value is " + value);
+
+		if (direction == "i") {
+			xDir = value;
+		}
+		else if (direction == "j") {
+			yDir = value;
+		}
+
+	}
+
+	var getFactor = function () {
+
+		return factor;
+	}
+
+	var getDirection = function (direction) {
+
+		return direction == "i" ? xDir : yDir;
+	}
+
 	var validate = function () {
 
 		var isRegistered = false;
@@ -85,8 +119,13 @@ sharedModule.factory('global', ['$sce', '$location', 'events', function($sce, $l
 			back:"back",
 			body:"body",
 			option:"option",
-			home:"home"
+			home:"home",
+			dist:10
     	},
+    	setFactor:setFactor,
+    	setDirection:setDirection,
+    	getFactor:getFactor,
+    	getDirection:getDirection,
     	isValid:isValid,
     	renderHtml:function (htmlCode) {
 	        return $sce.trustAsHtml(htmlCode);

@@ -1,4 +1,4 @@
-uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send', 'manager', function ($document, $state, $rootScope, params, send, manager) {
+uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service', 'send', 'manager', 'calibrate.service', 'events', function ($document, $state, $rootScope, params, send, manager, calibrate, events) {
 	
 	var complete;
 
@@ -11,6 +11,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 
 	var body = {};
 	var elements = {};
+	var objects = {};
 	var bodyElem;
 	var elem;
 
@@ -44,10 +45,6 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 	{
 		state:"Page.Space",
 		index:6
-	},
-	{
-		state:"Page.Initial",
-		index:0
 	}
 	];
 
@@ -68,7 +65,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 
 	var getIndex = function (stateName) {
 
-		console.log("check name:" + stateName);
+		//console.log("check name:" + stateName);
 
 		for (i in states) {
 
@@ -116,6 +113,23 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 		});
 	}
 
+	var showModal = function (params) {
+
+		console.log("show modal " + params.modal);
+
+		setModalTime(params.time);
+
+		$state.go("Modal." + params.modal);
+	}
+
+	var gotoPage = function (index) {
+
+		console.log("go to state " + index);
+
+		$state.go(states[index].state);
+
+	}
+
 
 	$rootScope.$on('$stateChangeStart', 
 	function(event, toState, toParams, fromState, fromParams){
@@ -137,10 +151,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
    			}
    			else {
 
-   				if (index == 7) {
-   					setDuration(initialDuration);
-   				}
-   				else if (index == 0) {
+   				if (index == 0) {
    					setDuration(backDuration);
    				}
    				else {
@@ -169,6 +180,8 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 		send.receiver({name:"body", receiver:body});
 
 		send.receiver({name:"pages", receiver:elements});
+
+		send.receiver({name:"objects", receiver:objects});
 
 		console.log("define states");
 
@@ -265,7 +278,8 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 	      state({
 	      	name:states[1].state,
 	      	onEnter:function() {
-	            
+
+	      		calibrate.start();
 
 	        },
 	        onExit:function() {
@@ -275,11 +289,9 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 	      state({
 	      	name:states[2].state,
 	      	onEnter:function() {
-	              
-	      		manager.createInstance();
+
 	        },
 	        onExit:function() {
-	        	manager.destroyInstance();
 	        }
 	      }).
 	      state({
@@ -323,58 +335,14 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'params', 'send
 	        	
 
 	        }
-	      }).
-	      state({
-	      	name:states[7].state,
-	      	onEnter:function() {
-	              
-	        },
-	        onExit:function() {
-
-	        }
 	      });
-
-	}
-
-	var openInitial = function () {
-
-		bodyElem = $(body["body"]);
-
-		bodyElem.removeClass("cutoff").addClass("scroll");
-
-		navigate(7, 10, function () {
-
-			console.log("nav complete");
-
-			bodyElem.removeClass("scroll").addClass("cutoff");
-
-			showModal({modal:"valid", time:1500});
-
-		});
-	}
-
-	var showModal = function (params) {
-
-		console.log("show modal " + params.modal);
-
-		setModalTime(params.time);
-
-		$state.go("Modal." + params.modal);
-	}
-
-	var gotoPage = function (index) {
-
-		console.log("go to state " + index);
-
-		$state.go(states[index].state);
 
 	}
 
 	return {
 		define:define,
 		gotoPage:gotoPage,
-		showModal:showModal,
-		openHome:openInitial
+		showModal:showModal
 	}
 
 

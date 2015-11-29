@@ -5,9 +5,9 @@ accelModule.factory("vector", function () {
 
 		var self = this;
 
-		this.x = x;
-		this.y = y;
-		this.time = time;
+		self.x = x;
+		self.y = y;
+		self.time = time;
 
 		var truncate = function (number, decimal) {
 
@@ -16,24 +16,24 @@ accelModule.factory("vector", function () {
 			return value;
 		}
 		
-		this.len = function () {
+		self.len = function () {
 			return Math.sqrt(self.x*self.x + self.y*self.y);
 		}
 		
-		this.add = function (vector) {
+		self.add = function (vector) {
 			return new Vector(self.x+vector.x, self.y+vector.y, self.time);
 		}
 		
-		this.subtract = function(vector) {
+		self.subtract = function(vector) {
 			//console.log("self " + self.printValues() + "\n vector " + vector.printValues());
 			return new Vector(self.x-vector.x, self.y-vector.y, self.time);	
 		}
 		
-		this.multiply = function (scalar) {
+		self.multiply = function (scalar) {
 			return new Vector(self.x*scalar, self.y*scalar, self.time);	
 		}
 		
-		this.unit = function () {
+		self.unit = function () {
 			
 			if (self.len() > 0) {
 				return self.multiply(1/self.len());
@@ -45,7 +45,7 @@ accelModule.factory("vector", function () {
 			
 		}
 
-		this.set = function (vector) {
+		self.set = function (vector) {
 
 			self.x = vector.x;
 			self.y = vector.y;
@@ -54,7 +54,7 @@ accelModule.factory("vector", function () {
 			//console.log(which + " self " + self.printValues() + "\n vector " + vector.printValues());
 		}
 		
-		this.printValues = function () {
+		self.printValues = function () {
 			return "x: " + self.x + " y: " + self.y + " t: " + self.time;
 		}
 

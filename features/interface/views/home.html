@@ -1,16 +1,18 @@
+<div class="absolute fill">
 
+	<div class="absolute corner width height scrollY touch" ng-attr-dir="home" ng-attr-id="home" home>
 
-<div class="absolute width height scrollY touch" ng-attr-dir="home" ng-attr-id="home" home>
+		<div class="absolute width">
+			<div class="relative margin-v-20 width height-100">
+				<div class="absolute width vcenter text-center font-70">{{info.name}}</div>
+			</div>
 
-	<div class="absolute width">
-		<div class="relative margin-v-20 width height-100">
-			<div class="absolute width vcenter text-center font-70">{{info.name}}</div>
-		</div>
+			<div class="relative top-100 width height">
 
-		<div class="relative top-100 width height">
+				<div ng-repeat="game in info.pages">
+					<option on-tap="onPressup()" ng-attr-dir="option" ng-attr-id="{{'option.' + game.name}}"></option>
+				</div>
 
-			<div ng-repeat="game in info.pages">
-				<option on-tap="onPressup()" ng-attr-dir="option" ng-attr-id="{{'option.' + game.name}}"></option>
 			</div>
 
 		</div>

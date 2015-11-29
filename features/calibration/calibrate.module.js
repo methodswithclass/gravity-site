@@ -1,0 +1,1 @@
+var calibrateModule = angular.module("calibrate.module", ['sharedModule', 'managerModule']);

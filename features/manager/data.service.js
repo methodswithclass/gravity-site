@@ -1,4 +1,4 @@
-uiModule.factory("params", ['global', function (g) {
+managerModule.factory("data.service", ['global', function (g) {
 
 	var class1 = {
 		left:' padding-left',
@@ -83,13 +83,13 @@ uiModule.factory("params", ['global', function (g) {
 		},
 		obj:{
 			shape:g.c.circle,
-			size:50,
+			size:200,
 			color:"black"
 		},
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:1,
+			factor:0.5,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -123,13 +123,13 @@ uiModule.factory("params", ['global', function (g) {
 		},
 		obj:{
 			shape:g.c.circle,
-			size:50,
+			size:200,
 			color:"black"
 		},
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:3,
+			factor:1.5,
 			mu:0.06,
 			damp:0.4,
 			gravity:false,
@@ -163,7 +163,7 @@ uiModule.factory("params", ['global', function (g) {
 		},
 		obj:{
 			shape:g.c.circle,
-			size:50,
+			size:200,
 			color:"black"
 		},
 		params:{
@@ -203,13 +203,13 @@ uiModule.factory("params", ['global', function (g) {
 		},
 		obj:{
 			shape:g.c.circle,
-			size:50,
+			size:200,
 			color:"black"
 		},
 		params:{
 			interval:1/300,
 			filterSize:2,
-			factor:2,
+			factor:1.3,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -243,62 +243,41 @@ uiModule.factory("params", ['global', function (g) {
 		},
 		obj:{
 			shape:g.c.cross,
-			size:100,
-			color:"red"
+			size:300,
+			color:"transparent",
+			color2:"red"
 		},
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:1,
+			factor:0.7,
 			mu:0.1,
 			damp:0.4,
-			gravity:true
+			gravity:true,
+			bounce:false
 		}
 
 	}
 	];
 
-	var home = {
-		name:"Home",
-		index:g.c.homeIndex,
-		page:{
-			game:false,
-			view:"home.html",
-			back:"blue2-back",
-			fore:"white-back",
-			rect:{
-				top:0,
-				left:"25%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
+	var getPageByName = function (name) {
+
+		for (i in games) {
+
+			if (games[i].name == name) {
+
+				return games[i];
 			}
 		}
-		
+
+		return {};
 	}
 
-	var homeData = [];
 
-	for (i in games) {
-
-		homeData[i] = {
-			name:games[i].name,
-			index:games[i].index,
-			menu:games[i].page.menu,
-			rect:games[i].page.rect,
-			directive:g.c.option
-		};
-
-	};
-
-	home.pages = homeData;
-
-	games.unshift(home);
 
 	return {
 		bodyDir:g.c.body,
-		pages:games
+		pages:games,
+		getPageByName:getPageByName
 	}
 }]);

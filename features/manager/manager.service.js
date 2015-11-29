@@ -1,59 +1,106 @@
-managerModule.factory("manager", ["accelerometer", "object.service", function (accelerometer, objectFact) {
+managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', function (accelerometer, objectFact, data, send) {
 
 	var object;
 	var accel;
 
-	var createInstance = function (parent, element) {
+	var objects = {};
+	var accels = {};
+	var hasMotion = {};
+	var toggles = {};
 
-		console.log("create instance");
+	var setupReceivers = function () {
+
+		send.receiver({name:"toggle", receiver:toggles});
+	}
+
+	var addInstance = function (input) {
+
+		console.log("create instance: " + input.name);
+
+		var game = data.getPageByName(input.name);
 
 		object = new objectFact({
-			parent:parent, 
-			element:element
+			parent:input.parent, 
+			object:input.object
 		});
 			
 		accel = new accelerometer({
-			params:{
-				interval:1/300,
-				filterSize:3,
-				factor:1,
-				mu:0.1,
-				damp:0.4,
-				gravity:true,
-				bounce:true
-			},
-			element:object
+			params:game.params,
+			object:object
 		});
 
+		accel.setinitial(0,0);
+
+
+
+		// accel.getMotion(function (position, velocity, acceleration) {
+				
+		// 	//console.log(position);
+
+		// 	object.setPosition(position);
+		// 	object.setVelocity(velocity);
+		// 	object.setAcceleration(acceleration);
+
+		// });
+
+		objects[input.name] = object;
+		accels[input.name] = accel;
+		hasMotion[input.name] = input.deviceinput;
+
 	}
 
-	var destroyInstance = function () {
+	var getInstance = function (name) {
 
-		console.log("destory instance");
-
-		object = {};
-		object = null;
-
-		accel = {};
-		accel = null;
+		return {object:objects[name], accel:accels[name]};
 	}
 
-	var start = function () {
+	var startInstance = function (name) {
 
-		accel.start();
+		if (name != "Home") {
+
+			accels[name].start();
+
+			if (hasMotion[name]) window.ondevicemotion = accels[name].motion;
+
+			console.log(toggles[name].play[0]);
+
+			toggles[name].play.addClass("hidden");
+			toggles[name].stop.removeClass("hidden");
+	
+		}
+
 	}
 
-	var stop = function () {
+	var stopInstance = function (name) {
 
-		accel.stop();
+		//console.log("destory instance");
+
+		if (name != "Home") {
+
+			accels[name].stop();
+
+			window.ondevicemotion = null;
+
+			toggles[name].play.removeClass("hidden");
+			toggles[name].stop.addClass("hidden");
+
+		}
 	}
 
+	var resetInstance = function (name) {
+
+		if (name != "Home") {
+			accels[name].reset();
+		}
+	}
 
 	return {
-		createInstance:createInstance,
-		destroyInstance:destroyInstance,
-		start:start,
-		stop:stop
+		setupReceivers:setupReceivers,
+		addInstance:addInstance,
+		getInstance:getInstance,
+		startInstance:startInstance,
+		stopInstance:stopInstance,
+		resetInstance:resetInstance
 	}
 
 }]);

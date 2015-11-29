@@ -1,4 +1,4 @@
-uiModule.factory("buttonService", ['params', 'send', 'global', 'states', 'events', function (params, send, g, states, events) {
+uiModule.factory("buttonService", ['data.service', 'send', 'global', 'states', 'events', 'manager', function (params, send, g, states, events, manager) {
 
 	var self = this;
 
@@ -73,6 +73,8 @@ uiModule.factory("buttonService", ['params', 'send', 'global', 'states', 'events
 		var page = params.pages[index];
 
 		states.gotoPage(page.index);
+
+		manager.resetInstance(page.name);
 
 	}
 
