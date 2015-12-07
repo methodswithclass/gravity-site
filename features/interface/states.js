@@ -1,4 +1,4 @@
-uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service', 'send', 'manager', 'calibrate.service', 'events', function ($document, $state, $rootScope, params, send, manager, calibrate, events) {
+uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service', 'send', 'manager', 'calibrate.service', 'events', function ($document, $state, $rootScope, data, send, manager, calibrate, events) {
 	
 	var complete;
 
@@ -77,6 +77,25 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 
 		return -1;
 	}
+
+	var splitStateName = function (state) {
+
+		var nameArray;
+
+		if (state.search(".") > -1) {
+			nameArray = state.split(".");
+		}
+		else nameArray = [];
+
+		var index = getIndex(state);
+
+		return {
+			type:nameArray[0],
+			name:nameArray[1],
+			index:index
+		}
+
+	}
 	
 
 
@@ -94,17 +113,16 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 			}
 		}
 
-		index = index >= params.pages.length ? 0 : index;
+		index = index >= data.pages.length ? 0 : index;
 
-		var name = params.pages[index].name;
+		var page = data.pages[index];
+		var name = page.name;
 		var id = "page" + name;
+
+		if (page.game) manager.initializeInstance(page.name);
 
 		elem = $(elements[id]);
 		bodyElem = $(body["body"]);
-
-		//console.log("navigate to " + name);
-		//console.log(elem[0]);
-		//console.log(bodyElem[0]);
 
 		bodyElem.scrollTo(elem[0], {
 			duration:duration,
@@ -113,13 +131,13 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 		});
 	}
 
-	var showModal = function (params) {
+	var showModal = function (input) {
 
-		console.log("show modal " + params.modal);
+		console.log("show modal " + input.modal);
 
-		setModalTime(params.time);
+		setModalTime(input.time);
 
-		$state.go("Modal." + params.modal);
+		$state.go("Modal." + input.modal);
 	}
 
 	var gotoPage = function (index) {
@@ -140,11 +158,11 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 
 		//console.log(prevState);
 
-		var stateName = toState.name.split(".");
+		var stateName = splitStateName(toState.name);
 
-	   	if (stateName[0] == "Page") {
+	   	if (stateName.type == "Page") {
 
-   			var index = getIndex(toState.name);
+   			var index = stateName.index;
 
    			if (index == -1) {
    				console.log("state not found");

@@ -1,12 +1,16 @@
-managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', function (accelerometer, objectFact, data, send) {
+managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'games.library', function (accelerometer, objectFact, data, send, games) {
 
 	var object;
 	var accel;
 
 	var objects = {};
 	var accels = {};
+	var arenas = {};
 	var hasMotion = {};
 	var toggles = {};
+
+	var timer;
+	var interval;
 
 	var setupReceivers = function () {
 
@@ -20,8 +24,9 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		var game = data.getPageByName(input.name);
 
 		object = new objectFact({
-			parent:input.parent, 
-			object:input.object
+			object:input.object,
+			arena:input.parent,
+			params:game
 		});
 			
 		accel = new accelerometer({
@@ -29,13 +34,11 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			object:object
 		});
 
-		accel.setinitial(0,0);
-
-
+		accel.initialize({
+			arena:input.parent
+		});
 
 		// accel.getMotion(function (position, velocity, acceleration) {
-				
-		// 	//console.log(position);
 
 		// 	object.setPosition(position);
 		// 	object.setVelocity(velocity);
@@ -45,16 +48,48 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		objects[input.name] = object;
 		accels[input.name] = accel;
+		arenas[input.name] = input.parent;
 		hasMotion[input.name] = input.deviceinput;
 
 	}
 
 	var getInstance = function (name) {
 
-		return {object:objects[name], accel:accels[name]};
+		return {arena:arenas[name], object:objects[name], accel:accels[name]};
+	}
+
+	var initializeInstance = function (name) {
+
+		var page = data.getPageByName(name);
+
+		if (page.game) games[name].initialize({arena:arenas[name]});
+	}
+
+	var runGame = function (name) {
+
+		var page = data.getPageByName(name);
+
+		var interval = 1000*page.params.interval*30;
+
+		timer = setInterval(function () {
+
+			games[name].update(objects[name], interval);
+
+		}, interval);
+
+	}
+
+	var stopGame = function (name) {
+
+		clearInterval(timer);
+		timer = null;
+
+		games[name].tearDown();
 	}
 
 	var startInstance = function (name) {
+
+		var page = data.getPageByName(name);
 
 		if (name != "Home") {
 
@@ -66,6 +101,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 			toggles[name].play.addClass("hidden");
 			toggles[name].stop.removeClass("hidden");
+
+			if (page.game) runGame(name);
 	
 		}
 
@@ -74,6 +111,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	var stopInstance = function (name) {
 
 		//console.log("destory instance");
+
+		var page = data.getPageByName(name);
 
 		if (name != "Home") {
 
@@ -84,13 +123,19 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			toggles[name].play.removeClass("hidden");
 			toggles[name].stop.addClass("hidden");
 
+			if (page.game) stopGame(name);
+
 		}
 	}
 
 	var resetInstance = function (name) {
 
+		var page = data.getPageByName(name);
+
 		if (name != "Home") {
 			accels[name].reset();
+
+			if (page.game) games[name].reset();
 		}
 	}
 
@@ -98,6 +143,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		setupReceivers:setupReceivers,
 		addInstance:addInstance,
 		getInstance:getInstance,
+		initializeInstance:initializeInstance,
 		startInstance:startInstance,
 		stopInstance:stopInstance,
 		resetInstance:resetInstance

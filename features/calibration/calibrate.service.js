@@ -84,10 +84,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 		var value;
 
 		if (direction == yDir) {
-			value =  Math.abs(relPos.y)/obj.yMax; 
+			value =  Math.abs(relPos.y)/obj.bounds.y; 
 		}
 		else {
-			value = 1 + Math.abs(relPos.x)/obj.xMax;
+			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
 		}
 
 		var _percent = value/2;
@@ -96,7 +96,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 
 		//console.log(obj.yMax);
 
-		if (direction == yDir && Math.abs(relPos.y) >= obj.yMax) {
+		if (direction == yDir && Math.abs(relPos.y) >= obj.bounds.y) {
 
 			var grav = g.c.dist/time*1e9;
 
@@ -107,7 +107,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 			}
 
 		}
-		else if (direction == xDir && Math.abs(relPos.x) >= obj.xMax) {
+		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
 			if (Math.abs(relPos.x)/relPos.x < 0) {
 				g.setDirection(xDir,-1);

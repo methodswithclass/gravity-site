@@ -31,7 +31,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 	            	calibrate.init($("#arenaCalibrate")[0], $("#objectCalibrate")[0]);
 	      		}, 500);
             }
-            else {
+            else if (info.name != "Home") {
             	setTimeout(function() {
 		            
 		            manager.addInstance({

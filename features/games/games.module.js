@@ -1,0 +1,1 @@
+var gamesModule = angular.module("gamesModule", ['sharedModule']);

@@ -18,8 +18,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Calibrate",
 		index:g.c.calibrateIndex,
+		game:false,
 		page:{
-			game:false,
 			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
@@ -59,8 +59,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Gravity", 
 		index:g.c.gravIndex,
+		game:false,
 		page:{
-			game:false,
 			view:"page.html",
 			back:"green2-back",
 			fore:"white-back",
@@ -99,8 +99,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Float", 
 		index:g.c.floatIndex,
+		game:false,
 		page:{
-			game:false,
 			view:"page.html",
 			back:"brown-back",
 			fore:"white-back",
@@ -139,8 +139,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Enemies", 
 		index:g.c.enemiesIndex,
+		game:true,
 		page:{
-			game:true,
 			view:"page.html",
 			back:"blue2-back",
 			fore:"white-back",
@@ -179,8 +179,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Balance", 
 		index:g.c.balanceIndex,
+		game:true,
 		page:{
-			game:true,
 			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
@@ -219,8 +219,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Space",
 		index:g.c.spaceIndex,
+		game:true,
 		page:{
-			game:true,
 			view:"page.html",
 			back:"white-back",
 			fore:"black-back",
@@ -273,11 +273,31 @@ managerModule.factory("data.service", ['global', function (g) {
 		return {};
 	}
 
+	var EnemyType = [
+		{
+			shape:g.c.circle,
+			size:15,
+			color:"blue",
+			pieceColor:"red",
+			reward:10,
+			punish:-5
+		},
+		{
+			shape:g.c.square,
+			size:30,
+			color:"orange",
+			pieceColor:"green",
+			reward:20,
+			punish:-10
+		}
+	];
+
 
 
 	return {
 		bodyDir:g.c.body,
 		pages:games,
+		enemydata:EnemyType,
 		getPageByName:getPageByName
 	}
 }]);

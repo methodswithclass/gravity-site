@@ -1,4 +1,4 @@
-sharedModule.factory("utility", ["vector", function (vector) {
+sharedModule.factory("utility", ["vector", 'global', function (vector, g) {
 
 	var average = function (array) {
 
@@ -25,16 +25,16 @@ sharedModule.factory("utility", ["vector", function (vector) {
 		var loc = Math.random();
 		
 		if (side < 0.25) { //top
-			return new Vector(loc*$(arena).width(), -100,0);
+			return new vector(loc*$(arena).width(), -100,0);
 		}
 		else if (side < 0.5) { //right
-			return new Vector($(arena).width() +100, loc*$(arena).height(), 0);
+			return new vector($(arena).width() +100, loc*$(arena).height(), 0);
 		}
 		else if (side < 0.75 ) { //bottom
-			return new Vector(loc*$(arena).width(), $(arena).height() + 100, 0);
+			return new vector(loc*$(arena).width(), $(arena).height() + 100, 0);
 		}
 		else if (side < 1) { //left
-			return new Vector(-100, loc*$(arena).height(), 0);
+			return new vector(-100, loc*$(arena).height(), 0);
 		}
 		
 	}
@@ -52,11 +52,11 @@ sharedModule.factory("utility", ["vector", function (vector) {
 		var leftRand = Math.random();
 		var speed = spread*Math.random() + minimum;
 		
-		var end = new self.Vector(leftRand*box.width + box.left, topRand*box.height + box.top, 0);
+		var end = new vector(leftRand*box.width + box.left, topRand*box.height + box.top, 0);
 		
-		var vector = end.subtract(pos).unit();
+		var velocity = end.subtract(pos).unit();
 		
-		return vector.multiply(speed);
+		return velocity.multiply(speed);
 		
 	}
 
@@ -91,15 +91,15 @@ sharedModule.factory("utility", ["vector", function (vector) {
 
 	var intersectShape = function (one, two) {
 
-		if (one.shape == params.square || two.shape == params.square) {
-			return self.intersectRect(one.el(), two.el());	
+		if (one.shape == g.c.square || two.shape == g.c.square) {
+			return intersectRect(one.el(), two.el());	
 		}
 		else {
 			
-			var oneVector = new Vector(one.position.x + one.radius, one.position.y + one.radius, 0);
-			var twoVector = new Vector(two.position.x + two.radius, two.position.y + two.radius, 0);
+			var onevector = new vector(one.position.x + one.radius, one.position.y + one.radius, 0);
+			var twovector = new vector(two.position.x + two.radius, two.position.y + two.radius, 0);
 			
-			var diff = oneVector.subtract(twoVector);
+			var diff = onevector.subtract(twovector);
 			
 			if (diff.len() < one.radius + two.radius) {
 				return true;	

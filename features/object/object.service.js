@@ -5,46 +5,50 @@ objectModule.factory("object.service", ["utility", function (utility) {
 	var object = function (input) {
 
 		var self = this;
-
-		var p = input.parent;
 		var container = input.object;
-
-		self.xMax = 100;
-		self.yMax = 100;
-
+		var arena = input.arena;
 		var relPos = {x:0, y:0};
 		
 		self.position = {x:0, y:0};
 		self.velocity = {x:0, y:0};
 		self.acceleration = {x:0, y:0};
 
+		self.arena = {x:$(arena).width(), y:$(arena).height()};
+		self.size = {x:$(container).width(), y:$(container).height()};
+		self.bounds = {x:self.arena.x/2 - self.size.x/2, y:self.arena.y/2 - self.size.y/2};
+		self.radius = self.size.x/2;
+
+		//console.log(params.name);
+
+		self.shape = input.params.obj.shape;
+
 		self.el = function () {
 
 			return container;
 		}
 
-		self.getXBound = function () {
-			self.xMax = $(p).width()/2 - $(self.el()).width()/2;
+		// self.getXBound = function () {
+		// 	self.xMax = $(p).width()/2 - $(self.el()).width()/2;
 
-			//console.log("get x bound " + xMax);
+		// 	//console.log("get x bound " + xMax);
 		
-			return self.xMax;
-		}
+		// 	return self.xMax;
+		// }
 		
-		self.getYBound = function () {
-			self.yMax = $(p).height()/2 - $(self.el()).height()/2;
+		// self.getYBound = function () {
+		// 	self.yMax = $(p).height()/2 - $(self.el()).height()/2;
 
-			//console.log(p);
-			//console.log("get y  bound " + self.yMax);
+		// 	//console.log(p);
+		// 	//console.log("get y  bound " + self.yMax);
 		
-			return self.yMax;
-		}
+		// 	return self.yMax;
+		// }
 
 		self.setPosition = function (pos) {
 
 			relPos = pos;
 			
-			self.position = {x:self.xMax + relPos.x, y:self.yMax + relPos.y};
+			self.position = {x:self.bounds.x + relPos.x, y:self.bounds.y + relPos.y};
 			//self.center = {x:self.position.x + radius, y:self.position.y + radius};
 			
 			//console.log("position: " + position.x + " " + position.y);
