@@ -79,12 +79,12 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	}
 
-	var stopGame = function (name) {
+	var stopGame = function (name, back) {
 
 		clearInterval(timer);
 		timer = null;
 
-		games[name].tearDown();
+		games[name].tearDown(back);
 	}
 
 	var startInstance = function (name) {
@@ -108,7 +108,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	}
 
-	var stopInstance = function (name) {
+	var stopInstance = function (name, back) {
 
 		//console.log("destory instance");
 
@@ -123,7 +123,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			toggles[name].play.removeClass("hidden");
 			toggles[name].stop.addClass("hidden");
 
-			if (page.game) stopGame(name);
+			if (page.game) stopGame(name, back);
 
 		}
 	}

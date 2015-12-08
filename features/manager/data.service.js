@@ -87,7 +87,7 @@ managerModule.factory("data.service", ['global', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:1/300,
+			interval:1/600,
 			filterSize:3,
 			factor:0.5,
 			mu:0.1,
@@ -168,8 +168,8 @@ managerModule.factory("data.service", ['global', function (g) {
 		},
 		params:{
 			interval:1/300,
-			filterSize:3,
-			factor:1,
+			filterSize:2,
+			factor:2,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -276,17 +276,17 @@ managerModule.factory("data.service", ['global', function (g) {
 	var EnemyType = [
 		{
 			shape:g.c.circle,
-			size:15,
+			size:50,
 			color:"blue",
-			pieceColor:"red",
+			pieceColor:{red:255, green:255, blue:255},
 			reward:10,
 			punish:-5
 		},
 		{
 			shape:g.c.square,
-			size:30,
+			size:75,
 			color:"orange",
-			pieceColor:"green",
+			pieceColor:{red:255, green:255, blue:255},
 			reward:20,
 			punish:-10
 		}

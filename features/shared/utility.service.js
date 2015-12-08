@@ -23,18 +23,20 @@ sharedModule.factory("utility", ["vector", 'global', function (vector, g) {
 	var getRandomPosition = function (arena) {
 		var side = Math.random();
 		var loc = Math.random();
+
+		var distance = 200;
 		
 		if (side < 0.25) { //top
-			return new vector(loc*$(arena).width(), -100,0);
+			return new vector(loc*$(arena).width(), -distance,0);
 		}
 		else if (side < 0.5) { //right
-			return new vector($(arena).width() +100, loc*$(arena).height(), 0);
+			return new vector($(arena).width() +distance, loc*$(arena).height(), 0);
 		}
 		else if (side < 0.75 ) { //bottom
-			return new vector(loc*$(arena).width(), $(arena).height() + 100, 0);
+			return new vector(loc*$(arena).width(), $(arena).height() + distance, 0);
 		}
 		else if (side < 1) { //left
-			return new vector(-100, loc*$(arena).height(), 0);
+			return new vector(-distance, loc*$(arena).height(), 0);
 		}
 		
 	}
@@ -44,7 +46,7 @@ sharedModule.factory("utility", ["vector", 'global', function (vector, g) {
 		var marginY = 100;
 		var marginX = 50;
 		var spread = 20;
-		var minimum = 20;
+		var minimum = 40;
 		
 		var box = {top:marginY, left:marginX, width:$(arena).width() - 2*marginX, height:$(arena).height() - 2*marginY};
 		

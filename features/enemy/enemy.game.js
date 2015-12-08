@@ -1,70 +1,34 @@
 enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, keeperFactory) {
 
 	var total = 30;
-	var id = 0;
 	var crowdPercentage = 0.7;
-
 	var enemies = [];
 	var keeper;
-
 	var timer;
-
-	var interval = 10;
-
 	var arena;
+	var destroyAll = false;
 
-	// var getUniqueId = function () {
-
-	// 	var id = 0;
-
-	// 	for (i = 0; i < enemies.length; i++) {
-	// 		if (i != enemies[i].id) {
-	// 			id = i;
-	// 		}
-	// 	}
-
-	// 	if (i == enemies.length) {
-	// 		id = i;
-	// 	}
-
-	// 	console.log("create enemy with id: " + id);
-
-	// 	return id;
-	// }
-
-	// var remove = function (index) {
-			
-	// 	var i = 0;
-	// 	while (i < enemies.length) {
-	// 		if (enemies[i].id == index) {
-	// 			enemies.splice(i,1);
-	// 			break;
-	// 		}
-	// 		i++;
-	// 	}
-	// }
-
-	var create = function(index, replace) {
+	var create = function(index) {
 
 		console.log("create enemy with id: " + index);
 
-		if (replace) enemies.splice(index,1);
-
-		var typeIndex = Math.random();
-
-		if (typeIndex <= crowdPercentage) {
-			typeIndex = 0;
-		}
-		else typeIndex = 1;
-
 		var enemy = new Enemy({
 			id:index,
-			type:typeIndex,
-			destroy:true,
+			type:Math.random() <= crowdPercentage ? 0 : 1,
 			arena:arena
 		});
 
 		enemies.splice(index, 0, enemy);
+	}
+
+	var remove = function (index, replace) {
+
+		enemies[index].remove();
+		enemies.splice(index,1);
+
+		if (replace) {
+			create(index);
+		}
 
 	}
 
@@ -76,9 +40,27 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 
 		var i = 0;
 		var length = enemies.length;
+		var enemy;
 		
 		while (i < length) {
-			enemies[i].update(object, create, keeper);
+
+			enemy = enemies[i];
+
+			enemy.update(remove);
+
+			if (enemy.intersect(object)) {
+				keeper.addPoints(enemy.type.reward);
+				enemy.destroy();
+			}
+			else if (enemy.lost()) {
+				keeper.addPoints(enemy.type.punish);
+				enemy.destroy();
+			}
+
+			if (!enemy.active) {
+				remove(i, true);
+			}
+
 			i++;
 		}
 
@@ -86,14 +68,14 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 
 	var initialize = function (input) {
 
-		arena = input.arena;
+		if (input) arena = input.arena;
 
 		keeper = new keeperFactory();
 
 		keeper.setTotalTime(60000);
 
 		for (var i = 0; i < total; i++) {
-			create(i, false);
+			create(i);
 		}
 
 	}
@@ -106,7 +88,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 				case 0:
 				
 					setTimeout(function() {
-						enemies[index].destroy(keeper, null, null);
+						enemies[index].destroy(false);
 						
 						index++;
 						
@@ -125,6 +107,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 				
 						while (enemies.length > 0) {
 							enemies[0].remove();
+							enemies.splice(0,1);
 						}
 						
 						timeout(2, 500);
@@ -150,6 +133,50 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 
 	}
 
+	var tearDown2 = function (back) {
+		
+		var timeout = function () {
+
+			setTimeout(function () {
+
+				if (enemies.length > 0) {
+
+					console.log("destroy:" + enemies.length);
+
+					enemies[0].destroy(100);
+
+					timer = setInterval(function () {
+
+						enemies[0].update();
+
+						if (!enemies[0].active) {
+							remove(0, false);
+							clearInterval(timer);
+							timer = null;
+							timeout();
+						}
+
+					}, 10);
+
+				}
+				else {
+					initialize();
+				}
+
+			}, 50);
+
+		}
+
+		if (back) {
+
+			while (enemies.length > 0) {
+				remove(0, false);
+			}
+		}
+		else timeout(0);
+
+	}
+
 	var reset = function () {
 
 		keeper.reset();
@@ -162,7 +189,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 		initialize:initialize,
 		create:create,
 		update:update,
-		tearDown:tearDown,
+		tearDown:tearDown2,
 		reset:reset
 
 	}
