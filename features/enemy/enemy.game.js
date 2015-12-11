@@ -1,14 +1,13 @@
-enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, keeperFactory) {
+enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function(Enemy, keeperFactory, g) {
 
-	var total = 30;
+	var total = 10;
 	var crowdPercentage = 0.7;
 	var enemies = [];
 	var keeper;
 	var timer;
 	var arena;
-	var destroyAll = false;
 
-	var create = function(index) {
+	var createEnemy = function(index) {
 
 		console.log("create enemy with id: " + index);
 
@@ -21,14 +20,57 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 		enemies.splice(index, 0, enemy);
 	}
 
-	var remove = function (index, replace) {
+	var createAll = function () {
+
+		for (var i = 0; i < total; i++) {
+			createEnemy(i);
+		}
+
+	}
+
+	var destroy = function (index, replace) {
+
+		console.log("destroy index: " + index);
 
 		enemies[index].remove();
 		enemies.splice(index,1);
 
 		if (replace) {
-			create(index);
+			createEnemy(index);
 		}
+
+	}
+
+	var animateDestroy = function (index) {
+
+		var duration = 100;
+
+		console.log("animate destroy:" + index);
+
+		if (index < enemies.length) {
+
+			setTimeout(function () {
+
+				enemies[index].destroy(index);
+
+				animateDestroy(++index);
+
+			}, duration);
+		}
+		else {
+
+			setTimeout(function () {
+
+				for (i in enemies) {
+					destroy(i, true);
+				}
+
+			}, 500);
+
+			
+		}
+
+		
 
 	}
 
@@ -41,32 +83,33 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 		var i = 0;
 		var length = enemies.length;
 		var enemy;
+		//var duration = Math.random()*500 + 700;
 		
 		while (i < length) {
 
 			enemy = enemies[i];
 
-			enemy.update(remove);
+			enemy.update();
 
 			if (enemy.intersect(object)) {
 				keeper.addPoints(enemy.type.reward);
-				enemy.destroy();
+				enemy.destroy(i, function (index) {
+					destroy(index, true);
+				});
 			}
 			else if (enemy.lost()) {
 				keeper.addPoints(enemy.type.punish);
-				enemy.destroy();
-			}
-
-			if (!enemy.active) {
-				remove(i, true);
+				destroy(i, true);
 			}
 
 			i++;
 		}
 
+		//console.log("points: " + keeper.getPoints());
+
 	}
 
-	var initialize = function (input) {
+	var onCreate = function (input) {
 
 		if (input) arena = input.arena;
 
@@ -74,123 +117,65 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 
 		keeper.setTotalTime(60000);
 
-		for (var i = 0; i < total; i++) {
-			create(i);
-		}
+		createAll();
 
 	}
 
-	var tearDown = function() {
+	var onEnter = function () {
 
-		var timeout = function (stage, time, index) {		
-			
-			switch(stage) {
-				case 0:
-				
-					setTimeout(function() {
-						enemies[index].destroy(false);
-						
-						index++;
-						
-						if (index < enemies.length)
-							timeout(0, 100, index);
-						else
-							timeout(1, 500);
-						
-					}, time);
-				
-				break;
-				
-				case 1:
-			
-					setTimeout(function () {
-				
-						while (enemies.length > 0) {
-							enemies[0].remove();
-							enemies.splice(0,1);
-						}
-						
-						timeout(2, 500);
-						
-					}, time);
-					
-					break;
-					
-				case 2:
-					
-					setTimeout(function () {
-				
-						initialize();
-						
-					}, time);
-					
-					break;
-			}
-			
-		}
 		
-		timeout(0, 100, 0);
 
 	}
 
-	var tearDown2 = function (back) {
-		
-		var timeout = function () {
-
-			setTimeout(function () {
-
-				if (enemies.length > 0) {
-
-					console.log("destroy:" + enemies.length);
-
-					enemies[0].destroy(100);
-
-					timer = setInterval(function () {
-
-						enemies[0].update();
-
-						if (!enemies[0].active) {
-							remove(0, false);
-							clearInterval(timer);
-							timer = null;
-							timeout();
-						}
-
-					}, 10);
-
-				}
-				else {
-					initialize();
-				}
-
-			}, 50);
-
-		}
-
-		if (back) {
-
-			while (enemies.length > 0) {
-				remove(0, false);
-			}
-		}
-		else timeout(0);
-
-	}
-
-	var reset = function () {
+	var onStart = function () {
 
 		keeper.reset();
-			
+
+	}
+
+	var onEnd = function () {
+
+		animateDestroy(0);
+
+	}
+
+	var onLeave = function () {
+
+		keeper.reset();
+
+		while (enemies.length > 0) {
+			destroy(0, false);
+		}
+
+	}
+
+	var clock = function () {
+
+		return keeper.clock();
+	}
+
+	var zeroTime = function () {
+
+		return keeper.zeroTime();
+	}
+
+	var points = function () {
+
+		return keeper.getPoints();
 	}
 
 
 	return {
 
-		initialize:initialize,
-		create:create,
+		onCreate:onCreate,
+		onEnter:onEnter,
+		onStart:onStart,
+		onEnd:onEnd,
+		onLeave:onLeave,
 		update:update,
-		tearDown:tearDown2,
-		reset:reset
+		clock:clock,
+		zeroTime:zeroTime,
+		points:points
 
 	}
 

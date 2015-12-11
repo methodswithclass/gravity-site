@@ -3,11 +3,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 	var complete;
 
 	var modalTime = 1000;
-	var duration = 700;
-
-	var openDuration = 300;
-	var backDuration = 300;
-	var initalDuration = 10;
+	var duration = 300;
 
 	var body = {};
 	var elements = {};
@@ -47,10 +43,6 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 		index:6
 	}
 	];
-
-	var setDuration = function (_duration) {
-		duration = _duration;
-	}
 
 	var setModalTime = function (_time) {
 
@@ -99,7 +91,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 	
 
 
-	var navigate = function (index, duration, _complete) {
+	var navigate = function (name, _complete) {
 
 		var complete;
 
@@ -113,15 +105,7 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 			}
 		}
 
-		index = index >= data.pages.length ? 0 : index;
-
-		var page = data.pages[index];
-		var name = page.name;
-		var id = "page" + name;
-
-		if (page.game) manager.initializeInstance(page.name);
-
-		elem = $(elements[id]);
+		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
 
 		bodyElem.scrollTo(elem[0], {
@@ -154,41 +138,36 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 
 		console.log(toState);	  
 
-		prevState = fromState; 
+		prevState = fromState;
 
-		//console.log(prevState);
+		var fromStateName = splitStateName(fromState.name);
+		var toStateName = splitStateName(toState.name);
 
-		var stateName = splitStateName(toState.name);
+	   	if (toStateName.type == "Page") {
 
-	   	if (stateName.type == "Page") {
+	   		var fromPage = data.getPageByName(fromStateName.name);
+			var toPage = data.getPageByName(toStateName.name);
 
-   			var index = stateName.index;
+	   		if (fromPage.motion) {
+	   			manager.stopInstance(fromPage.name);
+	   			manager.leaveInstance(fromPage.name);
+	   		}
+	   		if (toPage.motion) {
+	   			manager.enterInstance(toPage.name);
+	   		}
 
-   			if (index == -1) {
-   				console.log("state not found");
-   			}
-   			else {
+    		bodyElem = $(body["body"]);
 
-   				if (index == 0) {
-   					setDuration(backDuration);
-   				}
-   				else {
-   					setDuration(openDuration);
-   				}
+			bodyElem.removeClass("cutoff").addClass("scroll");
 
-	    		bodyElem = $(body["body"]);
+			navigate(toPage.name, function () {
 
-				bodyElem.removeClass("cutoff").addClass("scroll");
+				console.log("nav complete");
 
-				navigate(index, duration, function () {
+				bodyElem.removeClass("scroll").addClass("cutoff");
 
-					console.log("nav complete");
+			});
 
-					bodyElem.removeClass("scroll").addClass("cutoff");
-
-				});
-
-   			}
 	   	}
 
 	});

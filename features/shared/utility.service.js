@@ -116,6 +116,26 @@ sharedModule.factory("utility", ["vector", 'global', function (vector, g) {
 		
 	}
 
+	var overlapShape = function (one, two, margin) {
+
+		var oneVector = new vector(one.position.x + one.radius, one.position.y + one.radius, 0);
+		var twoVector = new vector(two.position.x + two.radius, two.position.y + two.radius, 0);
+		
+		var diff = oneVector.subtract(twoVector);
+		
+		//console.log("length: " + diff.len() + "radius: " + one.radius + " radius: " + two.radius);
+
+		if (diff.len() < one.radius - two.radius + margin) {
+			return true;	
+		}
+		else {
+			
+			return false;	
+		}
+
+
+	}
+
 	var resolveDigit = function (digit) {
 		if (digit < 10) {
 			return "0" + digit;	
@@ -139,6 +159,7 @@ sharedModule.factory("utility", ["vector", 'global', function (vector, g) {
 		len:len,
 		intersectShape:intersectShape,
 		intersectRect:intersectRect,
+		overlapShape:overlapShape,
 		getDestroyPosition:getDestroyPosition
 	}
 

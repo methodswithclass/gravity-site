@@ -15,13 +15,6 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 					$("#progress").css({width:calibrate.getProgress() + "%"});
 
-					events.on("calibrate", function () {
-
-						//clearInterval(timer);
-						//timer = null;
-
-					});
-
 				}, 10);
 			}
 

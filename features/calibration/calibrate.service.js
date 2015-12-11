@@ -39,6 +39,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 
 			manager.startInstance("Calibrate");
 
+			//accel.start();
+
 			progress.runScheme();
 
 		}, 500);
@@ -57,11 +59,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 
 			time += 10;
 
+			//console.log(acc);
+
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
 			checkdirection(direction);
 
 		}, 10);
+
 	}
 	
 	var stop = function (oncomplete) {
@@ -154,8 +159,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'gl
 				complete:function () {
 
 					//finished();
-					
-					events.dispatch("calibrate");
 					events.dispatch("leave");
 					stop();
 				},

@@ -22,7 +22,8 @@ uiModule.directive("back", ['buttonService', 'send', 'manager', function (button
 		
 			buttons.buttonAction({name:"back.Home"});
 
-			manager.stopInstance(game.name, true);
+			//manager.stopInstance(game.name, true);
+			//manager.leaveInstance(game.name);
 		}
 
 		var addClass = function (_class) {

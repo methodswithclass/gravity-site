@@ -1,4 +1,4 @@
-gamesModule.factory("keeper", function () {
+gamesModule.factory("keeper", ['utility', function (utility) {
 
 
 	var keeper = function () {
@@ -11,14 +11,57 @@ gamesModule.factory("keeper", function () {
 		//set total time to non-zero for count down, otherwise it counts up
 		var totalTime = 0;
 
+		var pointTimer;
+
 		self.addPoints = function(_points) {
 
+			// var goal = points + _points;
+
+			// pointTimer = setInterval(function () {
+
+			// 	points += 5;
+
+			// 	if (points >= goal) {
+
+			// 		points = goal;
+
+			// 		clearInterval(pointTimer);
+			// 		pointTimer = null;
+			// 	}
+			// }, 1);
+
 			points += _points;
+			
 		}
 
 		self.getPoints = function () {
 
-			return points;
+			//console.log("points raw: " + points);
+
+			var sign = Math.abs(points)/points;
+			var pointStr = Math.abs(points) + "";
+			var threeArray = [];
+
+			var thousands = Math.floor(pointStr.length / 3);
+			var remainder = pointStr.length % 3;
+			var j = 0;
+			var k;
+
+			if (remainder != 0) {
+				thousands++;
+				threeArray[0] = pointStr.substr(0, remainder);
+				j = 1;
+			}
+
+			for (var i = j; i < thousands; i++) {
+
+				if (remainder != 0)	k = i-1;
+				else k = i;
+
+				threeArray[i] = pointStr.substr(remainder + k*3,3);
+			}
+
+			return (sign < 0 ? "-" : "") + threeArray.join(",");
 		}
 
 		self.setTotalTime = function (_time) {
@@ -28,17 +71,22 @@ gamesModule.factory("keeper", function () {
 
 		self.tick = function (_tick) {
 
-			time += _tick;
+			time += Math.floor(_tick);
 		}
 
-		self.getTime = function () {
+		self.time = function () {
 
 			return totalTime - time;
 		}
 
-		self.timeToString = function () {
+		self.zeroTime = function () {
 
-			var time = Math.abs(self.getTime());
+			return Math.abs(self.time()) < 1000;
+		}
+
+		self.clock = function () {
+
+			var time = Math.abs(self.time());
 
 			var minutesDec = time/1000/60;
 			var minutes = Math.floor(minutesDec);
@@ -60,4 +108,4 @@ gamesModule.factory("keeper", function () {
 
 	return keeper;
 
-});
+}]);

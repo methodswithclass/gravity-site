@@ -53,7 +53,7 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 
 		var bounce = function () {
 
-			console.log("bounce");
+			//console.log("bounce");
 			
 			var sideX = pos1.x/Math.abs(pos1.x);
 			
@@ -148,6 +148,10 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 			
 			if (running) {
 
+				console.log(input.name + " motion");
+
+				//console.log("motion " + e.accelerationIncludingGravity.y);
+
 				if (p.gravity) {
 					unfiltered.set(new vector(xDir*factor*e.accelerationIncludingGravity.x, yDir*factor*e.accelerationIncludingGravity.y, (e.timeStamp - startTime)/1000));
 				}
@@ -169,6 +173,8 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 			
 			timer = setInterval(function () {
 
+				//console.log("local");
+
 				//console.log("integrate");
 				
 				filterBucket[filterBucket.length] = unfiltered;
@@ -179,7 +185,7 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 					
 					filterBucket = [];	
 				}
-					
+				
 			}, 1000*interval);
 		}
 		
@@ -190,7 +196,7 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 			running = false;
 			
 			if (timer) {
-				clearInterval(timer);	
+				clearInterval(timer);
 			}
 			
 			//reset();

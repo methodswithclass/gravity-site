@@ -31,7 +31,7 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 
 			$scope.stop = function () {
 
-				manager.resetInstance(name);
+				//manager.resetInstance(name);
 				manager.stopInstance(name, false);
 
 				// $("#play" + name).removeClass("hidden");

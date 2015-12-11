@@ -14,6 +14,8 @@ uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrappe
 		var home = {
 			name:"Home",
 			index:g.c.homeIndex,
+			motion:false,
+			game:false,
 			page:{
 				game:false,
 				view:"home.html",

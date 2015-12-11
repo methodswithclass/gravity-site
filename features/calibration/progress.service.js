@@ -115,9 +115,11 @@ calibrateModule.factory("progress.service", function () {
 
 		max = scheme.length-1;
 
+		start();
+
 		processload();
 
-		start();
+		
 	}
 
 	var runScheme = function () {
@@ -126,9 +128,11 @@ calibrateModule.factory("progress.service", function () {
 
 		reset();
 
+		start();
+
 		processload();
 
-		start();
+		
 	}
 
 	return {

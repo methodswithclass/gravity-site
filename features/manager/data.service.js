@@ -18,6 +18,7 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Calibrate",
 		index:g.c.calibrateIndex,
+		motion:false,
 		game:false,
 		page:{
 			view:"page.html",
@@ -49,7 +50,7 @@ managerModule.factory("data.service", ['global', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:1,
+			factor:1.3,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -59,6 +60,7 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Gravity", 
 		index:g.c.gravIndex,
+		motion:true,
 		game:false,
 		page:{
 			view:"page.html",
@@ -99,6 +101,7 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Float", 
 		index:g.c.floatIndex,
+		motion:true,
 		game:false,
 		page:{
 			view:"page.html",
@@ -139,6 +142,7 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Enemies", 
 		index:g.c.enemiesIndex,
+		motion:true,
 		game:true,
 		page:{
 			view:"page.html",
@@ -169,7 +173,7 @@ managerModule.factory("data.service", ['global', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:2,
-			factor:2,
+			factor:1,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -179,6 +183,7 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Balance", 
 		index:g.c.balanceIndex,
+		motion:true,
 		game:true,
 		page:{
 			view:"page.html",
@@ -219,7 +224,8 @@ managerModule.factory("data.service", ['global', function (g) {
 	{
 		name:"Space",
 		index:g.c.spaceIndex,
-		game:true,
+		motion:true,
+		game:false,
 		page:{
 			view:"page.html",
 			back:"white-back",
@@ -279,16 +285,16 @@ managerModule.factory("data.service", ['global', function (g) {
 			size:50,
 			color:"blue",
 			pieceColor:{red:255, green:255, blue:255},
-			reward:10,
-			punish:-5
+			reward:1025,
+			punish:-75
 		},
 		{
-			shape:g.c.square,
+			shape:g.c.circle,
 			size:75,
-			color:"orange",
+			color:"green",
 			pieceColor:{red:255, green:255, blue:255},
-			reward:20,
-			punish:-10
+			reward:565,
+			punish:-132
 		}
 	];
 

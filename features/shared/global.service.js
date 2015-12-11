@@ -109,6 +109,8 @@ sharedModule.factory('global', ['$sce', '$location', 'events', function($sce, $l
 			circle:"circle",
 			square:"square",
 			cross:"cross",
+			annihilate:"annihilate",
+			remove:"remove",
 			homeIndex:0,
 			calibrateIndex:1,
 			gravIndex:2,
