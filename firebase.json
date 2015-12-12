@@ -1,9 +1,0 @@
-{
-  "firebase": "nuplae-angular",
-  "public": ".",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
