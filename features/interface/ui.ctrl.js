@@ -18,7 +18,7 @@ uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrappe
 			game:false,
 			page:{
 				view:"home.html",
-				back:"green-back",
+				back:"blue2-back",
 				fore:"white-back",
 				rect:{
 					top:0,
