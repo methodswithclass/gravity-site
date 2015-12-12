@@ -12,14 +12,13 @@ uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrappe
 	var makeHomeData = function () {
 
 		var home = {
-			name:"Home netlify",
+			name:"Home",
 			index:g.c.homeIndex,
 			motion:false,
 			game:false,
 			page:{
-				game:false,
 				view:"home.html",
-				back:"blue2-back",
+				back:"green-back",
 				fore:"white-back",
 				rect:{
 					top:0,
