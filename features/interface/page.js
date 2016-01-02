@@ -13,7 +13,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 
 			$scope.getContentUrl = function() {
 				//console.log($scope.view);
-                return 'features/interface/views/' + $scope.view;
+                return 'features/views/' + $scope.view;
             }
 
             var info = $scope.info;

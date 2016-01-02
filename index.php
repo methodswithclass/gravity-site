@@ -8,18 +8,14 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script src="js/native/whatdevice.js"></script>
-    <script src="js/libs/jquery-1.11.3.min.js"></script>
-    <script src="js/libs/jquery.scrollto.js"></script>
-    <script src="js/libs/hammer.js"></script>
-    <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
-    <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
-    <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
-    <script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-route.js"></script>
-    <script src="js/libs/angular.ui-router.min.js"></script>
-    <script src="js/libs/jquery.hammer.js"></script>
+
+    <script src="libs/jquery-1.11.3.min.js"></script>
+    <script src="libs/jquery.scrollto.js"></script>
+    <script src="libs/hammer.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="libs/angular.ui-router.min.js"></script>
+    <script src="libs/jquery.hammer.js"></script>
 
   </head>
   <body ng-app="nuplae">
@@ -36,14 +32,16 @@
 
     <!-- Shared -->
 
-    <script src="features/shared/shared.module.js"></script>
-    <script src="features/shared/on-tap.directive.js"></script>
-    <script src="features/shared/on-press.directive.js"></script>
-    <script src="features/shared/on-press-up.directive.js"></script>
-    <script src="features/shared/global.service.js"></script>
-    <script src="features/shared/events.service.js"></script>
-    <script src="features/shared/send.service.js"></script>
-    <script src="features/shared/utility.service.js"></script>
+     <!-- <script src="features/shared/shared.module.js"></script>
+    // <script src="features/shared/on-tap.directive.js"></script>
+    // <script src="features/shared/on-press.directive.js"></script>
+    // <script src="features/shared/on-press-up.directive.js"></script>
+    // <script src="features/shared/global.service.js"></script>
+    // <script src="features/shared/events.service.js"></script>
+    // <script src="features/shared/send.service.js"></script>
+    // <script src="features/shared/utility.service.js"></script> -->
+
+    <script src="http://code.methodswithclass.com/shared-1.js"></script>
 
     <!-- Console -->
 

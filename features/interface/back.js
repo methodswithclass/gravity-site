@@ -66,7 +66,7 @@ uiModule.directive("back", ['buttonService', 'send', 'manager', function (button
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"features/interface/views/back.html",
+		templateUrl:"features/views/back.html",
 		link:link
 	}
 

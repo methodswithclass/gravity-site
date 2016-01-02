@@ -14,15 +14,15 @@ app.config(['$routeProvider', '$stateProvider', function (routeProvider, statePr
     routeProvider.
         when(invalid, {
     
-          templateUrl: 'features/interface/views/invalid.html'
+          templateUrl: 'features/views/invalid.html'
         }).
         when(valid, {
         
-          templateUrl: 'features/interface/views/valid.html',
+          templateUrl: 'features/views/valid.html',
         }).
         when(checking, {
 
-          templateUrl:'features/interface/views/checking.html',
+          templateUrl:'features/views/checking.html',
         });
 }]).run(function ($location) {
 
