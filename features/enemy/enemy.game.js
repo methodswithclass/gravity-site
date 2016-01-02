@@ -49,9 +49,14 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		if (index < enemies.length) {
 
-			enemies[index].destroy();
+			setTimeout(function () {
 
-			animateDestroy(index+1);
+				enemies[index].destroy({duration:600, reduce:0.5, radius:700});
+
+				animateDestroy(index+1);
+
+			}, 50);
+			
 		}
 		else {
 
@@ -89,8 +94,11 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 			if (enemy.intersect(object)) {
 				keeper.addPoints(enemy.type.reward);
-				enemy.destroy(i, function (index) {
-					destroy(index, true);
+				enemy.destroy({
+					index:i, 
+					complete:function (index) {
+						destroy(index, true);
+					}
 				});
 			}
 			else if (enemy.lost()) {

@@ -8,12 +8,10 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 		var maxSize = parentSize*0.8;
 
 		var size = Math.random()*maxSize*0.5 + maxSize*0.5;
-		var durr = Math.random()*400 + 600;
-		var maxRadius = 900;
+		var duration = Math.random()*400 + 600;
+		var radius = 900;
 		var end = {x:Math.random()*2 - 1, y:Math.random()*2 - 1};
-		// var size = maxSize;
-		// var end = input.end;
-		// var maxRadius = 900;
+		var reduce = 0.2;
 		var color = input.color;
 
 		var container = document.createElement("div");
@@ -26,17 +24,22 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 		container.style.backgroundColor = 'rgb(' + [color.red,color.green,color.blue].join(',') + ')';
 		$(input.parent).append(container);
 
-		self.explode = function (complete) {
+		self.explode = function (params, _complete) {
+
+			var complete = function () {};
+
+			if (params.duration) duration = Math.random()*params.duration*0.7 + params.duration;
+			if (params.radius) radius = params.radius;
+			if (params.reduce) reduce = params.reduce;
+			if (_complete) complete = _complete;
 
 			$(container).animate({
-				left:maxRadius*end.x,
-				top:maxRadius*end.y,
-				width:size*0.2,
-				height:size*0.2
-			// }, Math.random()*0.7*duration + 0.3*duration);
-			}, durr, function () {
-
-				if (complete) complete();
+				left:radius*end.x,
+				top:radius*end.y,
+				width:size*reduce,
+				height:size*reduce
+			}, duration, function () {
+				complete(params.index) 
 			});
 		}
 
@@ -139,21 +142,29 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 			return false;
 		}
 
-		self.destroy = function (index, complete) {
+		self.destroy = function (params) {
 
 			self.moving = false;
 
 			$(inner).remove();
 
 			for (i in particles) {
-				if (i == numParts - 1) particles[i].explode(function () { if (complete) complete(index) });
-				else particles[i].explode();
+				
+				if (i == numParts - 1) {
+					particles[i].explode(params, function () { 
+						if (params.complete) {
+							params.complete(params.index);
+						}
+				 	});
+				}
+				else {
+					particles[i].explode(params);
+				}
 			}
-			
 		}
 
 		this.setPosition();
-
+			
 	}
 
 	return enemy;
