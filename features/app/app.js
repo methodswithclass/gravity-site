@@ -1,32 +1,20 @@
-var app = angular.module('nuplae', ['sharedModule', 'uiModule', 'consoleModule', 'ngRoute', 'ui.router']);
+var app = angular.module('nuplae', ['sharedModule', 'stateModule', 'uiModule', 'consoleModule', 'ngRoute', 'ui.router']);
 
-var checking = "/checking";
-var invalid = "/invalid";
-var valid = "/valid";
+app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvider, $locationProvider) {
+  
+  console.log("define states");
 
+  $locationProvider.html5Mode(true);
 
-app.config(['$routeProvider', '$stateProvider', function (routeProvider, stateProvider, location) {
+  var states = runtimeProvider.states;
 
-  console.log("define routes");
+  for (var i = 0; i < states.length; i++) {
+    runtimeProvider.addState(states[i]);
+  }
 
-    uiModule.stateProvider = stateProvider;
+}]).run(function (states) {
 
-    routeProvider.
-        when(invalid, {
-    
-          templateUrl: 'features/views/invalid.html'
-        }).
-        when(valid, {
-        
-          templateUrl: 'features/views/valid.html',
-        }).
-        when(checking, {
+    console.log("go to checking");
 
-          templateUrl:'features/views/checking.html',
-        });
-}]).run(function ($location) {
-
-    console.log("location checking");
-
-    $location.path(checking);
+    states.go("checking");
 });

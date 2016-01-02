@@ -7,7 +7,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 		templateUrl:"features/calibration/calibrate.html",
 		link:function ($scope, element, attr) {
 
-			if ($scope.info.name == "Calibrate") {
+			if ($scope.info.id == "calibrate") {
 
 				var timer = setInterval(function() {
 

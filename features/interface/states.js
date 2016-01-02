@@ -93,17 +93,9 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 
 	var navigate = function (name, _complete) {
 
-		var complete;
+		var complete = function () {};
 
-		if (_complete) {
-
-			complete = _complete;
-		}
-		else {
-			complete = function () {
-
-			}
-		}
+		if (_complete) complete = _complete;
 
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
@@ -228,10 +220,6 @@ uiModule.factory("states", ['$document', '$state', '$rootScope', 'data.service',
 	        onExit:function() {
 	              
 	        	 console.log("close modal valid");
-
-	        	 //setNavigate(false);
-
-	        	 //$state.go(states[0].state);
 	        },
 	      }).
 	      state({

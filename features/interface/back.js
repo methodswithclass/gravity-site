@@ -1,18 +1,11 @@
-uiModule.directive("back", ['buttonService', 'send', 'manager', function (buttons, send, manager) {
+uiModule.directive("back", ['states', 'send', 'manager', function (states, send, manager) {
 
 
 	var link = function ($scope, element, attr) {
 
 		var game = $scope.info;
 
-		send.accum({name:attr.dir, id:attr.id, data:element[0]});
-
-		// $scope.onPress = function () {
-
-		// 	console.log("on press");
-
-		// 	buttons.callChange({name:attr.id, others:false, isId:true});
-		// }
+		//send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
 		$scope.onPressup = function () {
 
@@ -20,7 +13,9 @@ uiModule.directive("back", ['buttonService', 'send', 'manager', function (button
 
 			//buttons.callReturn({name:attr.id, others:false, isId:true});
 		
-			buttons.buttonAction({name:"back.Home"});
+			//buttons.buttonAction({name:"back.Home"});
+
+			states.go("page.home");
 
 			//manager.stopInstance(game.name, true);
 			//manager.leaveInstance(game.name);

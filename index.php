@@ -17,10 +17,12 @@
     <script src="libs/angular.ui-router.min.js"></script>
     <script src="libs/jquery.hammer.js"></script>
 
+    <base href="/">
+
   </head>
   <body ng-app="nuplae">
-    <div class="min-width-900 width deselect" id="main" ng-controller="nuplaeCtrl as main">
-      <div ng-view=""></div>
+    <div class="absolute width height deselect" id="main">
+      <div ui-view=""></div>
       <div ui-view="modal" autoscroll="false"></div>
     </div>
     <console ng-attr-vis="hide"><console>
@@ -32,7 +34,7 @@
 
     <!-- Shared -->
 
-    <script src="http://code.methodswithclass.com/shared-1.js"></script>
+    <script src="http://code.methodswithclass.com/shared-2.js"></script>
 
     <!-- Utility -->
 
@@ -41,6 +43,12 @@
     <!-- Console -->
 
     <script src="http://code.methodswithclass.com/console-1.js"></script>
+
+    <!-- States -->
+
+    <script src="features/state/stateModule.js"></script>
+    <script src="features/state/states.js"></script>
+    <script src="features/state/runtimeState.js"></script>
 
     <!-- Validate -->
 
@@ -103,7 +111,7 @@
     <script src="features/interface/option.js"></script>
     <script src="features/interface/page.js"></script>
     <script src="features/interface/back.js"></script>
-    <script src="features/interface/states.js"></script>
+    <!-- <script src="features/interface/states.js"></script> -->
     <script src="features/interface/repeat.directive.js"></script>
     <script src="features/interface/body.js"></script>
     <script src="features/interface/home.js"></script>

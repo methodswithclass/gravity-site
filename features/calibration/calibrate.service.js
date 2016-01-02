@@ -37,7 +37,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		setTimeout(function() {
 
-			manager.startInstance("Calibrate");
+			manager.startInstance("calibrate");
 
 			//accel.start();
 
@@ -49,7 +49,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var startCheck = function (direction) {
 
-		manager.resetInstance("Calibrate");
+		manager.resetInstance("calibrate");
 
 		var acc = getCalibrationData(direction);
 		
@@ -76,8 +76,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		accelWatch = null;
 
 		progress.reset();
-		manager.stopInstance("Calibrate");
-		manager.resetInstance("Calibrate");
+		manager.stopInstance("calibrate");
+		manager.resetInstance("calibrate");
 		
 	}
 
@@ -125,22 +125,25 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var init = function (parent, object) {
 
 		manager.addInstance({
-			name:"Calibrate",
+			id:"calibrate",
 			parent:parent,
 			object:object,
 			deviceinput:false
 		});
 
-		var result = manager.getInstance("Calibrate");
+		var result = manager.getInstance("calibrate");
 
 		accel = result.accel;
 		obj = result.object;
+
+		//console.log(accel);
+		//console.log(object);
 
 		progress.loadScheme([
 			{
 				percent:0,
 				complete:function () {
-					//console.log("run 0 percent");
+					console.log("run 0 percent");
 					time = (new Date()).getTime();
 					startCheck(yDir);
 				},

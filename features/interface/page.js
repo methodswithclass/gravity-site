@@ -18,26 +18,27 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 
             var info = $scope.info;
 
-        	if (info.name == "Calibrate") {
+        	if (info.id == "calibrate") {
 
-        		$("#toggleCalibrate").addClass("hidden");
+        		$("#togglecalibrate").addClass("hidden");
         		//$("#objectCalibrate").addClass("hidden");
 
         		events.on("leave", function () {
-	      			states.gotoPage(0);
+	      			states.go("page.home");
 	      		});
 
         		setTimeout(function() {
-	            	calibrate.init($("#arenaCalibrate")[0], $("#objectCalibrate")[0]);
+	            	calibrate.init($("#arenacalibrate")[0], $("#objectcalibrate")[0]);
+	            	calibrate.start();
 	      		}, 500);
             }
-            else if (info.name != "Home") {
+            else if (info.id != "home") {
             	setTimeout(function() {
 		            
 		            manager.addInstance({
-		            	name:info.name, 
-		            	parent:$("#arena" + info.name)[0], 
-		            	object:$("#object" + info.name)[0], 
+		            	id:info.id, 
+		            	parent:$("#arena" + info.id)[0], 
+		            	object:$("#object" + info.id)[0], 
 		            	deviceinput:true
 		            });
 

@@ -57,7 +57,10 @@ calibrateModule.factory("progress.service", function () {
 	var processload = function () {
 
 		timer = setInterval(function () {
-			if (!stopped) updateProgress();
+			if (!stopped){
+				//console.log("process");
+				updateProgress();
+			}
 		}, interval);
 	}
 

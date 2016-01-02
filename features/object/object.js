@@ -7,21 +7,23 @@ objectModule.directive("object", ['send', 'data.service', 'object.generator', 'u
 		template:"<div class='absolute'></div>",
 		link:function ($scope, element, attr) {
 
-			var pageName = $scope.info.name;
+			var pageName = $scope.info.id;
 
-			var page = data.getPageByName(pageName);
+			if (pageName != "home") {
+				var page = data.getPageById(pageName);
 
-			var params = page.obj;
+				var params = page.obj;
 
-			element.css({height:params.size, width:params.size, borderRadius:params.size/2, backgroundColor:params.color});
+				element.css({height:params.size, width:params.size, borderRadius:params.size/2, backgroundColor:params.color});
 
-			if (params.shape == g.c.cross) {
+				if (params.shape == g.c.cross) {
 
-				object.cross(element, params);
+					object.cross(element, params);
 
+				}
+
+				send.retrieve.accum({name:"objects", id:attr.id, data:element[0]});
 			}
-
-			send.accum({name:"objects", id:attr.id, data:element[0]});
 		}
 	}
 

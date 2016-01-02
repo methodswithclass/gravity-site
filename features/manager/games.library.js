@@ -2,8 +2,8 @@ managerModule.factory("games.library", ["data.service", "enemy.game", 'balance.g
 
 	var library = {};
 
-	library[data.pages[3].name] = enemies;
-	library[data.pages[4].name] = balance;
+	library["enemies"] = enemies;
+	library["balance"] = balance;
 
 
 	return library;

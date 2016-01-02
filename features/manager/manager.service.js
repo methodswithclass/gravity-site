@@ -15,25 +15,25 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var setupReceivers = function () {
 
-		send.receiver({name:"toggle", receiver:toggles});
-		send.receiver({name:"display", receiver:displays});
+		send.setup.receiver({name:"toggle", receiver:toggles});
+		send.setup.receiver({name:"display", receiver:displays});
 	}
 
 	var addInstance = function (input) {
 
-		console.log("create instance: " + input.name);
+		console.log("create instance: " + input.id);
 
-		var page = data.getPageByName(input.name);
+		var page = data.getPageById(input.id);
 
 		object = new objectFact({
-			name:input.name,
+			id:input.id,
 			object:input.object,
 			arena:input.parent,
 			params:page
 		});
 			
 		accel = new accelerometer({
-			name:input.name,
+			id:input.id,
 			params:page.params,
 			object:object
 		});
@@ -42,53 +42,53 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			arena:input.parent
 		});
 
-		if (page.game) games[page.name].onCreate({arena:input.parent});
+		if (page.game) games[page.id].onCreate({arena:input.parent});
 
-		objects[input.name] = object;
-		accels[input.name] = accel;
-		arenas[input.name] = input.parent;
-		hasMotion[input.name] = input.deviceinput;
+		objects[input.id] = object;
+		accels[input.id] = accel;
+		arenas[input.id] = input.parent;
+		hasMotion[input.id] = input.deviceinput;
 
 	}
 
-	var getInstance = function (name) {
+	var getInstance = function (id) {
 
-		return {arena:arenas[name], object:objects[name], accel:accels[name]};
+		return {arena:arenas[id], object:objects[id], accel:accels[id]};
 	}
 
-	var enterInstance = function (name) {
+	var enterInstance = function (id) {
 
-		console.log("enter " + name);
+		console.log("enter " + id);
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 
-		accels[name].reset();
+		accels[id].reset();
 
 		if (page.game) {
-			games[name].onEnter({arena:arenas[name]});
-			displays[name].time.html(games[name].clock());
-			displays[name].points.html(games[name].points());
+			games[id].onEnter({arena:arenas[id]});
+			displays[id].time.html(games[id].clock());
+			displays[id].points.html(games[id].points());
 		}
 	}
 
-	var runGame = function (name) {
+	var runGame = function (id) {
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 		var interval = 1000*page.params.interval*20;
 
-		games[name].onStart();
+		games[id].onStart();
 
 		timer = setInterval(function () {
 
-			//accels[name].update();
+			//accels[id].update();
 			
 			
-			games[name].update(objects[name], interval);
-			displays[name].time.html(games[name].clock());
-			displays[name].points.html(games[name].points());
+			games[id].update(objects[id], interval);
+			displays[id].time.html(games[id].clock());
+			displays[id].points.html(games[id].points());
 
-			if (games[name].zeroTime()) {
-				stopInstance(name);
+			if (games[id].zeroTime()) {
+				stopInstance(id);
 			}
 		
 
@@ -96,77 +96,77 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	}
 
-	var stopGame = function (name) {
+	var stopGame = function (id) {
 
-		games[name].onEnd();
+		games[id].onEnd();
 	}
 
-	var startInstance = function (name) {
+	var startInstance = function (id) {
 
-		console.log("start " + name);
+		console.log("start " + id);
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 
-		if (name != "Home") {
+		if (id != "home") {
 
-			accels[name].start();
+			accels[id].start();
 
-			if (hasMotion[name]) window.ondevicemotion = accels[name].motion;
+			if (hasMotion[id]) window.ondevicemotion = accels[id].motion;
 
-			console.log(toggles[name].play[0]);
+			console.log(toggles[id].play[0]);
 
-			toggles[name].play.addClass("hidden");
-			toggles[name].stop.removeClass("hidden");
+			toggles[id].play.addClass("hidden");
+			toggles[id].stop.removeClass("hidden");
 
-			if (page.game) runGame(name);
+			if (page.game) runGame(id);
 	
 		}
 
 	}
 
-	var stopInstance = function (name, back) {
+	var stopInstance = function (id, back) {
 
 		//console.log("destory instance");
 
-		console.log("stop " + name);
+		console.log("stop " + id);
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 
-		if (name != "Home") {
+		if (id != "home") {
 
 			clearInterval(timer);
 			timer = null;
 
-			accels[name].stop();
-			accels[name].reset();
+			accels[id].stop();
+			accels[id].reset();
 
 			window.ondevicemotion = null;
 
-			toggles[name].play.removeClass("hidden");
-			toggles[name].stop.addClass("hidden");
+			toggles[id].play.removeClass("hidden");
+			toggles[id].stop.addClass("hidden");
 
-			if (page.game) stopGame(name, back);
+			if (page.game) stopGame(id, back);
 
 		}
 	}
 
-	var leaveInstance = function (name) {
+	var leaveInstance = function (id) {
 
-		console.log("leave " + name);
+		console.log("leave " + id);
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 
-		if (page.game) games[name].onLeave();
+		if (page.game) games[id].onLeave();
 
 	}
 
-	var resetInstance = function (name) {
+	var resetInstance = function (id) {
 
-		var page = data.getPageByName(name);
+		var page = data.getPageById(id);
 
-		if (name != "Home") {
+		if (id != "home") {
 
-			if (page.game) games[name].reset();
+			if (page.game) games[id].reset();
 		}
 	}
 

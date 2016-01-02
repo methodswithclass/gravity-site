@@ -1,4 +1,4 @@
-uiModule.factory("buttonService", ['data.service', 'send', 'utility', 'states', 'events', function (params, send, g, states, events) {
+uiModule.factory("button.service", ['data.service', 'send', 'utility', 'states', 'events', function (params, send, g, states, events) {
 
 	var self = this;
 
@@ -16,8 +16,8 @@ uiModule.factory("buttonService", ['data.service', 'send', 'utility', 'states', 
 		console.log("setup receivers");
 		
 		//send.receiver({name:g.c.home, receiver:home});
-		send.receiver({name:g.c.option, receiver:options});
-		send.receiver({name:g.c.back, receiver:backs});
+		send.setup.receiver({name:g.c.option, receiver:options});
+		send.setup.receiver({name:g.c.back, receiver:backs});
 	}
 
 	var parseId = function (args) {
@@ -66,13 +66,9 @@ uiModule.factory("buttonService", ['data.service', 'send', 'utility', 'states', 
 		return -1;
 	}
 
-	var buttonAction = function (args) {
+	var buttonAction = function (name) {
 
-		var index = getIndexByName(args);
-
-		var page = params.pages[index];
-
-		states.gotoPage(page.index);
+		states.go(name);
 
 	}
 

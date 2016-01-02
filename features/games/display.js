@@ -8,16 +8,16 @@ gamesModule.directive("display", ['send', function (send) {
 		templateUrl:"features/games/display.html",
 		link:function ($scope, element, attr) {
 
-			var name = $scope.info.name;
+			var id = $scope.info.id;
 
 			setTimeout(function() {
 
-				var time = $("#time" + name);
-				var points = $("#points" + name);
+				var time = $("#time" + id);
+				var points = $("#points" + id);
 
 				var display = {time:time, points:points};
 
-				send.accum({name:"display", id:name, data:display});
+				send.retrieve.accum({name:"display", id:id, data:display});
 
 			}, 300);
 

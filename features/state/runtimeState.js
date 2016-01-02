@@ -3,30 +3,44 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
     var provider = {};
 
-    var contactController = function () {
+    var checkingController = function () {
 
-        return ['$scope', 'global', '$stateParams', 'data.service', function ($scope, g, $stateParams, data) {
+        return ['$scope', 'validate.service', 'states', function ($scope, checkDevice, states) {
 
-            $scope.bio = data.bio;
+            console.log("checking controller");
 
             $scope.getContentUrl = function() {
             
-                var view;
-
-                if (g.isMobile()) {
-
-                    view = "m.contact.html";
-                }
-                else {
-                    view = "d.contact.html";
-                }
+                var view = "checking.html";
 
                 return 'features/views/' + view;
             }
 
-            $scope.email = function () {
+            var result = checkDevice.run();
 
-                window.location.href = 'mailto:chris@methodswithclass.com';
+            result.then( 
+            function (path) { //valid
+                //console.log("change location to " + path);
+                console.log("device valid");
+                states.go("page.calibrate");
+            },
+            function (path) { //invalid
+                //console.log("change location to " + path);
+                states.go("invalid");
+            });
+
+        }];
+    }
+
+    var invalidController = function () {
+
+        return ['$scope', 'global', '$stateParams', 'data.service', function ($scope, g, $stateParams, data) {
+
+            $scope.getContentUrl = function() {
+            
+                var view = "invalid.html";
+
+                return 'features/views/' + view;
             }
 
         }];
@@ -34,57 +48,113 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
     var states = [
     {
-        name:"Default"
-    },
-    {
         name:"Modal", 
         views:{
-          "modal": {
-            templateUrl: "features/views/modal/modal.html"
-          }
+            "modal": {
+              templateUrl: "features/interface/views/modal/modal.html"
+            }
         },
         onEnter: function() {
-            
-        onEnterModal();
+              
+            var prevName = prevState.name;
+
+            if (prevName == "" || prevName.split(".")[0] == "Modal") {
+                prevName = "home";
+            }
+
+            var close = function () {
+
+                $state.go(prevName);    
+            }
+
+            //console.log(getModalTime());
+
+            var timer = setTimeout(function () {
+              close();
+            }, getModalTime());
 
         },
-        onExit:function () {
+        abstract: true
 
-        console.log("close modal");
-        },
-        abstract:true
     },
     {
         name:"Modal.valid",
         views:{
-          "modal": {
-            templateUrl: "features/views/modal/valid-modal.html"
-          }
+            "modal": {
+              templateUrl: "features/interface/views/modal/valid-modal.html"
+            }
+        },
+        onEnter:function() {
+
+        },
+        onExit:function() {
+              
+             console.log("close modal valid");
         }
     },
     {
         name:"Modal.invalid",
         views:{
             "modal": {
-              templateUrl:"features/views/modal/invalid-modal.html"
+              templateUrl: "features/interface/views/modal/invalid-modal.html"
             }
+        },
+        onEnter:function() {
+
+        },
+        onExit:function() {
+              
+             console.log("close modal invalid");
         }
     },
     {
-        name:"home",
+        name:"checking",
+        url:"/checking",
+        template:"<div ng-include='getContentUrl()'>checking</div>",
+        controller:checkingController()
+    },
+    {
+        name:"invalid",
+        url:"/invalid",
+        template:"<div ng-include='getContentUrl()'></div>",
+        controller:invalidController()
+    },
+    {
+        name:"page",
+        url:"",
+        template:"<div ng-include='getContentUrl()'></div>",
+        controller:"nuplaeCtrl",
+        controllerAs:"main",
+        abstract:true
+    },
+    {
+        name:"page.home",
         url:"/home",
         template:"<div ng-include='getContentUrl()'></div>"
     },
     {
-        name:"contact",
-        url:"/contact",
-        template:"<div ng-include='getContentUrl()'></div>",
-        controller:contactController()
+        name:"page.calibrate",
+        url:"/calibrate"
     },
     {
-        name:"credits",
-        url:"/credits",
-        templateUrl:'features/views/d.credits.html'
+        name:"page.gravity",
+        url:"/gravity"
+    },
+    {
+        name:"page.float",
+        url:"/float"
+    },
+    {
+        name:"page.enemies",
+        url:"/enemies"
+    },
+    {
+        name:"page.balance",
+        url:"/balance"
+    },
+    {
+        name:"page.space",
+        url:"/space"
     }
     ];
 
@@ -95,11 +165,9 @@ stateModule.provider("runtime.state", function ($stateProvider) {
         $stateProvider.state(state);
     }
 
-    provider.$get = ['send', '$location', 'data.service', 'global', '$state', function (send, $location, data, g, $state) {
+    provider.$get = function () {
 
       //console.log("get add state factory");
-
-        var blogs = data.blogs;
 
         var service = function () {
 
@@ -107,22 +175,12 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
             this.states = states;
 
-            this.addState = addState;
-
-
-            this.checkInbound = function() {
-
-                console.log("check inbound");
-
-                $state.go("home");
-            }
-
 
         }
 
         return new service();
     
-    }];
+    };
 
     provider.addState = addState;
     provider.states = states;

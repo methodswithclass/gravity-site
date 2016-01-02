@@ -1,12 +1,12 @@
 
-<div class="absolute fill" id="{{'arena' + info.name}}">
+<div class="absolute fill" id="{{'arena' + info.id}}">
 
-	<div class="absolute top-10 width text-center font-60">{{info.name}}</div>
+	<div class="absolute top-10 width text-center font-60">{{info.id}}</div>
 
-	<toggle ng-class="{hidden:info.name == 'Calibrate'}"></toggle>
-	<back ng-class="{hidden:info.name == 'Calibrate'}" ng-attr-id="{{'back.' + info.name}}" on-tap="onPressup()"></back>
-	<object ng-class="{hidden:info.name == 'Calibrate'}" ng-attr-id="{{'object' + info.name}}"></object>
-	<display ng-class="{hidden:info.name == 'Calibrate'}"></display>
-	<calibrate ng-class="{hidden:info.name != 'Calibrate'}"></calibrate>
+	<toggle ng-class="{hidden:info.id == 'calibrate'}"></toggle>
+	<back ng-class="{hidden:info.id == 'calibrate'}" ng-attr-id="{{'back.' + info.id}}" on-tap="onPressup()"></back>
+	<object ng-class="{hidden:info.id == 'calibrate'}" ng-attr-id="{{'object' + info.id}}"></object>
+	<display ng-class="{hidden:info.id == 'calibrate'}"></display>
+	<calibrate ng-class="{hidden:info.id != 'calibrate'}"></calibrate>
 
 </div>

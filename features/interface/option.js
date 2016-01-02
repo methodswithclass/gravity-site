@@ -1,4 +1,4 @@
-uiModule.directive("option", ['buttonService', 'send', function (buttons, send) {
+uiModule.directive("option", ['states', 'send', function (states, send) {
 
 	return {
 		restrict:'E',
@@ -9,26 +9,11 @@ uiModule.directive("option", ['buttonService', 'send', function (buttons, send) 
 
 			var self = this;
 
-			var info = $scope.game;
-
-			send.accum({name:attr.dir, id:attr.id, data:element[0]});
-
-			// $scope.onPress = function () {
-
-			// 	console.log("change " + attr.id);
-
-			// 	buttons.callChange({name:attr.id, others:true, idId:true});
-				
-				
-			// }
+			//send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
 			$scope.onPressup = function () {
 
-				console.log("button action");
-
-				//buttons.callReturn({name:attr.id, others:false, isId:true});
-
-				buttons.buttonAction({name:attr.id});
+				states.go("page." + $scope.page.id);
 			}
 
 		}
