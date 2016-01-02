@@ -38,9 +38,7 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 				top:radius*end.y,
 				width:size*reduce,
 				height:size*reduce
-			}, duration, function () {
-				complete(params.index) 
-			});
+			}, duration, complete);
 		}
 
 	}

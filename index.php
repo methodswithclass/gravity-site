@@ -32,15 +32,6 @@
 
     <!-- Shared -->
 
-     <!-- <script src="features/shared/shared.module.js"></script>
-    // <script src="features/shared/on-tap.directive.js"></script>
-    // <script src="features/shared/on-press.directive.js"></script>
-    // <script src="features/shared/on-press-up.directive.js"></script>
-    // <script src="features/shared/global.service.js"></script>
-    // <script src="features/shared/events.service.js"></script>
-    // <script src="features/shared/send.service.js"></script>
-    // <script src="features/shared/utility.service.js"></script> -->
-
     <script src="http://code.methodswithclass.com/shared-1.js"></script>
 
     <!-- Utility -->
@@ -49,9 +40,7 @@
 
     <!-- Console -->
 
-    <script src="features/console/console.module.js"></script>
-    <script src="features/console/console.directive.js"></script>
-    <script src="features/console/console.service.js"></script>
+    <script src="http://code.methodswithclass.com/console-1.js"></script>
 
     <!-- Validate -->
 
