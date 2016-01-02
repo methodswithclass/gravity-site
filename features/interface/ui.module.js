@@ -1,1 +1,1 @@
-var uiModule = angular.module("uiModule", ['sharedModule', 'validateModule', 'managerModule', 'calibrate.module']);
+var uiModule = angular.module("uiModule", ['sharedModule', 'utility.module', 'validateModule', 'managerModule', 'calibrate.module']);

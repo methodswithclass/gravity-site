@@ -43,6 +43,10 @@
 
     <script src="http://code.methodswithclass.com/shared-1.js"></script>
 
+    <!-- Utility -->
+
+    <script src="features/utility/utility.module.js"></script>
+
     <!-- Console -->
 
     <script src="features/console/console.module.js"></script>

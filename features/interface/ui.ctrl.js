@@ -1,5 +1,5 @@
 
-uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', 'global', 'manager', function ($document, data, checkDevice, buttons, states, events, con,  $location, g, manager) {
+uiModule.controller('nuplaeCtrl', ['$document', 'data.service', 'validate.wrapper', 'buttonService', 'states', 'events', 'con', '$location', 'utility', 'manager', function ($document, data, checkDevice, buttons, states, events, con,  $location, g, manager) {
 
 	console.log("open nuplae controller");
 

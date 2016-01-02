@@ -1,4 +1,4 @@
-enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'global', function(utility, data, vector, g) {
+enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'utility', function(utility, data, vector, g) {
 
 	var particle = function (input) {
 

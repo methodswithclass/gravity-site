@@ -4,7 +4,7 @@ uiModule.directive("option", ['buttonService', 'send', function (buttons, send) 
 		restrict:'E',
 		scope:false,
 		replace:true,
-		templateUrl:"features/interface/views/option.html",
+		templateUrl:"features/views/option.html",
 		link:function ($scope, element, attr) {
 
 			var self = this;

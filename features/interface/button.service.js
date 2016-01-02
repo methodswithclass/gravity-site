@@ -1,4 +1,4 @@
-uiModule.factory("buttonService", ['data.service', 'send', 'global', 'states', 'events', function (params, send, g, states, events) {
+uiModule.factory("buttonService", ['data.service', 'send', 'utility', 'states', 'events', function (params, send, g, states, events) {
 
 	var self = this;
 

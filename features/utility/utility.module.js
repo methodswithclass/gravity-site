@@ -7,6 +7,32 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var yDir = 1;
 	var xDir = 1;
 
+	var con = {
+		playAsset:"img/play.png",
+		stopAsset:"img/stop.png",
+		backAsset:"img/back.png",
+		loadingAsset:"img/loading.png",
+		landClockwise:"landClockwise",
+		portrait:"portrait",
+		circle:"circle",
+		square:"square",
+		cross:"cross",
+		annihilate:"annihilate",
+		remove:"remove",
+		homeIndex:0,
+		calibrateIndex:1,
+		gravIndex:2,
+		floatIndex:3,
+		enemiesIndex:4,
+		balanceIndex:5,
+		spaceIndex:6,
+		back:"back",
+		body:"body",
+		option:"option",
+		home:"home",
+		dist:10
+	}
+
 	var setFactor = function (_factor) {
 
 		//console.log("factor is " + _factor);
@@ -142,7 +168,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var intersectShape = function (one, two) {
 
-		if (one.shape == g.c.square || two.shape == g.c.square) {
+		if (one.shape == con.square || two.shape == con.square) {
 			return intersectRect(one.el(), two.el());	
 		}
 		else {
@@ -200,31 +226,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	}
 
 	return {
-		c:{
-			playAsset:"img/play.png",
-			stopAsset:"img/stop.png",
-			backAsset:"img/back.png",
-			loadingAsset:"img/loading.png",
-			landClockwise:"landClockwise",
-			portrait:"portrait",
-			circle:"circle",
-			square:"square",
-			cross:"cross",
-			annihilate:"annihilate",
-			remove:"remove",
-			homeIndex:0,
-			calibrateIndex:1,
-			gravIndex:2,
-			floatIndex:3,
-			enemiesIndex:4,
-			balanceIndex:5,
-			spaceIndex:6,
-			back:"back",
-			body:"body",
-			option:"option",
-			home:"home",
-			dist:10
-    	},
+		c:con,
 		setFactor:setFactor,
     	setDirection:setDirection,
     	getFactor:getFactor,
@@ -242,4 +244,4 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		getDestroyPosition:getDestroyPosition
 	}
 
-});
+}]);

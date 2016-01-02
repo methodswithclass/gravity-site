@@ -27,23 +27,6 @@ objectModule.factory("object.service", ["utility", function (utility) {
 			return container;
 		}
 
-		// self.getXBound = function () {
-		// 	self.xMax = $(p).width()/2 - $(self.el()).width()/2;
-
-		// 	//console.log("get x bound " + xMax);
-		
-		// 	return self.xMax;
-		// }
-		
-		// self.getYBound = function () {
-		// 	self.yMax = $(p).height()/2 - $(self.el()).height()/2;
-
-		// 	//console.log(p);
-		// 	//console.log("get y  bound " + self.yMax);
-		
-		// 	return self.yMax;
-		// }
-
 		self.setPosition = function (pos) {
 
 			relPos = pos;

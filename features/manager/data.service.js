@@ -1,4 +1,4 @@
-managerModule.factory("data.service", ['global', function (g) {
+managerModule.factory("data.service", ['utility', function (g) {
 
 	var class1 = {
 		left:' padding-left',

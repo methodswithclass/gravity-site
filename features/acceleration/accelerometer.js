@@ -1,4 +1,4 @@
-accelModule.factory("accelerometer", ["vector", "global", "utility", function (vector, globals, utility) {
+accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) {
 
 	var accel = function (input) {
 
@@ -40,9 +40,9 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 
 		var setValues = function () {
 
-			factor = globals.getFactor()*p.factor;
-			xDir = globals.getDirection("i");
-			yDir = globals.getDirection("j");
+			factor = g.getFactor()*p.factor;
+			xDir = g.getDirection("i");
+			yDir = g.getDirection("j");
 			threshold = factor*0.5;
 			filterSize = p.filterSize;
 			mu = p.mu;
@@ -109,7 +109,7 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 
 		var integrate = function (accelArray) {
 				
-			accel1.set(utility.average(accelArray));
+			accel1.set(g.average(accelArray));
 			
 			if (accel1.len() < threshold) {
 				accel1.set(new vector(0,0,accel1.time));
@@ -206,7 +206,7 @@ accelModule.factory("accelerometer", ["vector", "global", "utility", function (v
 
 			raw = e.accelerationIncludingGravity;
 
-			self.down = utility.len(raw);
+			self.down = g.len(raw);
 
 			//console.log(self.down);
 		}

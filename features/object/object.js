@@ -1,4 +1,4 @@
-objectModule.directive("object", ['send', 'data.service', 'object.generator', 'global', function (send, data, object, g) {
+objectModule.directive("object", ['send', 'data.service', 'object.generator', 'utility', function (send, data, object, g) {
 
 	return {
 		scope:false,

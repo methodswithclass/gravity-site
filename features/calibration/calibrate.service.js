@@ -1,4 +1,4 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'global', 'events', function (progress, manager, g, events) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'utility', 'events', function (progress, manager, g, events) {
 
 	var accel;
 	var obj;

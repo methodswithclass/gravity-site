@@ -49,13 +49,9 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		if (index < enemies.length) {
 
-			setTimeout(function () {
+			enemies[index].destroy();
 
-				enemies[index].destroy(index);
-
-				animateDestroy(++index);
-
-			}, duration);
+			animateDestroy(index+1);
 		}
 		else {
 
