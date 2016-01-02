@@ -1,7 +1,7 @@
 
 <div class="absolute fill" id="{{'arena' + info.id}}">
 
-	<div class="absolute top-10 width text-center font-60">{{info.id}}</div>
+	<div class="absolute top-10 width text-center font-60">{{info.title}}</div>
 
 	<toggle ng-class="{hidden:info.id == 'calibrate'}"></toggle>
 	<back ng-class="{hidden:info.id == 'calibrate'}" ng-attr-id="{{'back.' + info.id}}" on-tap="onPressup()"></back>
