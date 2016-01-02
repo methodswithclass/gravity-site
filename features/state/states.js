@@ -89,6 +89,10 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 				bodyElem.removeClass("scroll").addClass("cutoff");
 
+				if (toPage.id == "calibrate") {
+					calibrate.start();
+				}
+
 			});
 
 	   	}
