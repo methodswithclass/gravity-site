@@ -3,7 +3,7 @@
   <head>
 
   	<link rel="stylesheet" href="css/museo/museo300.css" type="text/css" charset="utf-8">
-    <link rel="stylesheet" href="http://code.methodswithclass.com/classes.css">
+    <link rel="stylesheet" href="http://code.methodswithclass.com/api/classes.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -34,7 +34,7 @@
 
     <!-- Shared -->
 
-    <script src="http://code.methodswithclass.com/shared-2.js"></script>
+    <script src="http://code.methodswithclass.com/api/shared-2.js"></script>
 
     <!-- Utility -->
 
@@ -42,7 +42,7 @@
 
     <!-- Console -->
 
-    <script src="http://code.methodswithclass.com/console-1.js"></script>
+    <script src="http://code.methodswithclass.com/api/console-1.js"></script>
 
     <!-- States -->
 
