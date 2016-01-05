@@ -107,15 +107,12 @@
     <!-- Interface -->
 
     <script src="features/interface/ui.module.js"></script>
-    <script src="features/interface/ui.ctrl.js"></script>
     <script src="features/interface/option.js"></script>
     <script src="features/interface/page.js"></script>
     <script src="features/interface/back.js"></script>
-    <!-- <script src="features/interface/states.js"></script> -->
     <script src="features/interface/repeat.directive.js"></script>
     <script src="features/interface/body.js"></script>
     <script src="features/interface/home.js"></script>
-    <script src="features/interface/button.service.js"></script>
     
 
   </body>
