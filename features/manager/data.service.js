@@ -112,7 +112,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:6,
+			interval:2,
 			filterSize:3,
 			factor:0.8,
 			mu:0.1,
