@@ -30,7 +30,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		body:"body",
 		option:"option",
 		home:"home",
-		dist:5
+		dist:15
 	}
 
 	var setFactor = function (_factor) {
