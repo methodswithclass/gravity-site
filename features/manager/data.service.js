@@ -240,8 +240,8 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:2,
-			factor:0.9,
-			mu:0.08,
+			factor:0.6,
+			mu:0.01,
 			damp:0.4,
 			gravity:true,
 			bounce:true
@@ -283,8 +283,8 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:0.6,
-			mu:0.2,
+			factor:0.4,
+			mu:0.15,
 			damp:0.4,
 			gravity:true,
 			bounce:false
