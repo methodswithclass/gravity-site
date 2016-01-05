@@ -120,8 +120,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		
 		var marginY = 100;
 		var marginX = 50;
-		var spread = 20;
-		var minimum = 40;
+		var spread = 10;
+		var minimum = 10;
 		
 		var box = {top:marginY, left:marginX, width:$(arena).width() - 2*marginX, height:$(arena).height() - 2*marginY};
 		
