@@ -156,7 +156,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:3,
 			filterSize:5,
-			factor:2,
+			factor:1,
 			mu:0.1,
 			damp:0.4,
 			gravity:false,
