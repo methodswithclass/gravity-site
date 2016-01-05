@@ -186,7 +186,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 					filterBucket = [];	
 				}
 				
-			}, 1000*interval);
+			}, interval);
 		}
 		
 		self.stop = function () {

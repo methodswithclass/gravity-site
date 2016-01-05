@@ -74,7 +74,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	var runGame = function (id) {
 
 		var page = data.getPageById(id);
-		var interval = 1000*page.params.interval*20;
+		var interval = page.params.interval*1.2;
 
 		games[id].onStart();
 
