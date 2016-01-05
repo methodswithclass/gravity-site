@@ -154,7 +154,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:1/600,
+			interval:1/300,
 			filterSize:3,
 			factor:0.9,
 			mu:0.1,
@@ -196,7 +196,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:1/600,
+			interval:1/300,
 			filterSize:2,
 			factor:0.9,
 			mu:0.1,
@@ -281,7 +281,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 			color2:"red"
 		},
 		params:{
-			interval:1/600,
+			interval:1/300,
 			filterSize:3,
 			factor:0.4,
 			mu:0.15,
