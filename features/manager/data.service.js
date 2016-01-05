@@ -114,7 +114,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/600,
 			filterSize:3,
-			factor:1,
+			factor:0.8,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -156,8 +156,8 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:1,
-			mu:0.06,
+			factor:0.9,
+			mu:0.1,
 			damp:0.4,
 			gravity:false,
 			bounce:true
@@ -198,7 +198,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:2,
-			factor:0.6,
+			factor:0.9,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -240,7 +240,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:2,
-			factor:0.6,
+			factor:0.9,
 			mu:0.08,
 			damp:0.4,
 			gravity:true,
@@ -283,7 +283,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:1/300,
 			filterSize:3,
-			factor:0.2,
+			factor:0.6,
 			mu:0.2,
 			damp:0.4,
 			gravity:true,
