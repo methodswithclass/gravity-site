@@ -154,9 +154,9 @@ managerModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:2,
+			interval:1,
 			filterSize:3,
-			factor:2,
+			factor:4,
 			mu:0.1,
 			damp:0.4,
 			gravity:false,
