@@ -115,7 +115,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 				accel1.set(new vector(0,0,accel1.time));
 			}
 			
-			var timeInterval = 1000*interval*filterSize;
+			var timeInterval = interval*filterSize;
 
 			vel1.set(vel0.add(accel0.multiply(timeInterval)).add(accel1.subtract(accel0).multiply(0.5*timeInterval)));
 			pos1.set(pos0.add(vel0.multiply(timeInterval)).add(vel1.subtract(vel0).multiply(0.5*timeInterval)));
