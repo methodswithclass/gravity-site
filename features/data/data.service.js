@@ -196,9 +196,9 @@ dataModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:4,
-			filterSize:2,
-			factor:0.9,
+			interval:2,
+			filterSize:3,
+			factor:0.8,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -239,9 +239,9 @@ dataModule.factory("data.service", ['utility', function (g) {
 		},
 		params:{
 			interval:2,
-			filterSize:2,
-			factor:0.4,
-			mu:0.01,
+			filterSize:3,
+			factor:0.8,
+			mu:0.1,
 			damp:0.4,
 			gravity:true,
 			bounce:true
@@ -283,8 +283,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:2,
 			filterSize:3,
-			factor:0.4,
-			mu:0.15,
+			factor:0.8,
+			mu:0.1,
 			damp:0.4,
 			gravity:true,
 			bounce:false
