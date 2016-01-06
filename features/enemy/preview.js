@@ -9,7 +9,7 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 
 			$scope.types = data.enemydata;
 
-			//$scope.infowidth = 500*($scope.types.length-1);
+			$scope.infowidth = 500*($scope.types.length-1);
 
 			var width = $(window).width()*0.8;
 			var height = $(window).height()*0.8;
@@ -20,7 +20,7 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 			setTimeout(function () {
 
 				$(element[0].querySelector("#previewenemies")).css({width:width, height:height*0.8});
-				$(element[0].querySelector("#infoenemies")).css({width:500*($scope.types.length-1)});
+				//$(element[0].querySelector("#infoenemies")).css({width:500*($scope.types.length-1)});
 			}, 1000);
 			
 			$scope.hideinfo = $scope.info.id != "enemies";

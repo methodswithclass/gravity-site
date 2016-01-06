@@ -47,10 +47,10 @@ touchModule.directive("touch", function () {
 					//console.log("left", left);
 					console.log("diff y", diff.y, "diff x", diff.x);
 
-					if (diff.x < -1*$scope.width) diff.x = -1*$scope.width;
+					if (diff.x <= -1*$scope.width) diff.x = -1*$scope.width;
 					else if (diff.x > 0) diff.x = 0;
 
-					if (diff.y < -1*$scope.height) diff.y = -1*$scope.height;
+					if (diff.y <= -1*$scope.height) diff.y = -1*$scope.height;
 					else if (diff.y > 0) diff.y = 0;
 
 					console.log("after width", $scope.width);
