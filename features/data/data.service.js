@@ -353,7 +353,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 	var EnemyType = [
 	{
-		name:"breaker"
+		name:"breaker",
 		description:"this will ruin you",
 		shape:g.c.circle,
 		size:90,
@@ -375,7 +375,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		percentage:0.01
 	},
 	{
-		name:"common"
+		name:"common",
 		description:"everyday passerby",
 		shape:g.c.circle,
 		size:75,
