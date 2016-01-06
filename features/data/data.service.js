@@ -352,33 +352,50 @@ dataModule.factory("data.service", ['utility', function (g) {
 	}
 
 	var EnemyType = [
-		{
-			shape:g.c.circle,
-			size:90,
-			color:"red",
-			speed:1,
-			reward:-2000,
-			punish:0,
-			percentage:0.01
-		},
-		{
-			shape:g.c.circle,
-			size:75,
-			color:"blue",
-			speed:0.6,
-			reward:1025,
-			punish:-75,
-			percentage:0.6
-		},
-		{
-			shape:g.c.circle,
-			size:100,
-			color:"green",
-			speed:0.4,
-			reward:565,
-			punish:-132,
-			percentage:0.3
-		}
+	{
+		name:"breaker"
+		description:"this will ruin you",
+		shape:g.c.circle,
+		size:90,
+		color:"red",
+		speed:1,
+		reward:-5000,
+		punish:0,
+		percentage:0.02
+	},
+	{
+		name:"maker",
+		description:"gold mine",
+		shape:g.c.circle,
+		size:90,
+		color:"gold",
+		speed:1,
+		reward:4000,
+		punish:0,
+		percentage:0.01
+	},
+	{
+		name:"common"
+		description:"everyday passerby",
+		shape:g.c.circle,
+		size:75,
+		color:"blue",
+		speed:0.6,
+		reward:125,
+		punish:-23,
+		percentage:0.8
+	},
+	{
+		name:"featured",
+		description:"less you see, better it is when you do",
+		shape:g.c.circle,
+		size:100,
+		color:"green",
+		speed:0.4,
+		reward:843,
+		punish:-327,
+		percentage:0.17
+	}
 	];
 
 	EnemyType.sort(function (a,b) {
