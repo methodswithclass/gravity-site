@@ -238,8 +238,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:2,
-			filterSize:5,
+			interval:5,
+			filterSize:3,
 			factor:0.8,
 			mu:0.08,
 			damp:0.4,
