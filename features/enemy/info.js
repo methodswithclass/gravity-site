@@ -14,10 +14,9 @@ enemyModule.directive("info", ['data.service', function (data) {
 			$(element).css({left:$scope.$index*$(element).width()});
 
 			var enemy = document.createElement("div");
-			$(enemy).addClass("absolute bordered hcenter");
+			$(enemy).addClass("absolute bordered center");
 			enemy.style.width = type.size + "px";
 			enemy.style.height = type.size + "px";
-			enemy.style.top = $(element).height()*0.5 - type.size/2 + "px";
 			enemy.style.backgroundColor = type.color;
 			enemy.style.borderRadius = type.size/2 + "px";
 

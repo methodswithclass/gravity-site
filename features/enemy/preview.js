@@ -10,13 +10,16 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 			$scope.types = data.enemydata;
 
 			var width = $(window).width()*0.9;
-			var height = $(window).height()*0.9;
+			var height = $(window).height()*0.7;
 
 			if (width > height) width = height;
 			else if (height > width) height = width;
 
-			$(element[0].querySelector("#previewenemeies")).css({width:width, height:height});
+			setTimeout(function () {
 
+				$(element[0].querySelector("#previewenemies")).css({width:width*1.2, height:height});
+			}, 1000);
+			
 			$scope.hideinfo = $scope.info.id != "enemies";
 
 	        $scope.setShow = function (_show) {
