@@ -21,7 +21,7 @@
 
   </head>
   <body ng-app="nuplae">
-    <div class="absolute width height" id="main">
+    <div class="absolute width height deselect" id="main">
       <div ui-view=""></div>
       <div ui-view="modal"></div>
     </div>
