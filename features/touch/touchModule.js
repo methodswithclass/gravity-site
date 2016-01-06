@@ -1,0 +1,1 @@
+var touchModule = angular.module("touchModule", ['sharedModule']);

@@ -44,6 +44,11 @@
 
     <script src="http://code.methodswithclass.com/api/console-1.js"></script>
 
+    <!-- Touch -->
+
+    <script src="features/touch/touchModule.js"></script>
+    <script src="features/touch/touch.js"></script>
+
     <!-- States -->
 
     <script src="features/state/stateModule.js"></script>

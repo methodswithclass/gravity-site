@@ -1,1 +1,1 @@
-var enemyModule = angular.module("enemyModule", ['sharedModule', 'utility.module', 'gamesModule', 'dataModule']);
+var enemyModule = angular.module("enemyModule", ['sharedModule', 'utility.module', 'gamesModule', 'dataModule', 'touchModule']);
