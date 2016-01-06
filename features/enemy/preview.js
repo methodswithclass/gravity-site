@@ -9,8 +9,8 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 
 			$scope.types = data.enemydata;
 
-			var width = $(window).width()*0.9;
-			var height = $(window).height()*0.9;
+			var width = $(window).width()*0.8;
+			var height = $(window).height()*0.8;
 
 			if (width > height) width = height;
 			else if (height > width) height = width;
