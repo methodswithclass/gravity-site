@@ -238,7 +238,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:3,
+			interval:2,
 			filterSize:5,
 			factor:1,
 			mu:0.05,
