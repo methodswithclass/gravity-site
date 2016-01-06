@@ -386,8 +386,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"common",
 			description:"everyday passerby",
-			reward:"+125",
-			punish:"-23"
+			reward:"+150",
+			punish:"-30"
 		},
 		shape:g.c.circle,
 		size:75,
@@ -401,8 +401,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"featured",
 			description:"doesn't come out to play much",
-			reward:"+843",
-			punish:"-327"
+			reward:"+800",
+			punish:"-300"
 		},
 		shape:g.c.circle,
 		size:100,
