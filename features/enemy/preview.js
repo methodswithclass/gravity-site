@@ -9,26 +9,20 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 
 			$scope.types = data.enemydata;
 
-            $scope.dismiss = function () {
+			var width = $(window).width()*0.9;
+			var height = $(window).height()*0.9;
 
-                $(element).hide();
+			if (width > height) width = height;
+			else if (height > width) height = width;
 
-            }
+			$(element[0].querySelector("#previewenemeies")).css({width:width, height:height});
 
-            $scope.show = function () {
+			$scope.hideinfo = $scope.info.id != "enemies";
 
-            	console.log("info showed");
+	        $scope.setShow = function (_show) {
 
-            	$(element).show();
-            }
-
-           	events.on("showinfo", function () {
-
-           		console.log("show info");
-
-           		$scope.show();
-           		
-           	});
+	        	$scope.hideinfo = _show;
+	        }
 
 		}
 	}

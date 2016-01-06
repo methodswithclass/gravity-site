@@ -45,23 +45,6 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 	        	},500);	
 	        }
 
-	        var showInfo = document.createElement("div");
-	        $(showInfo).addClass("absolute width-100 height-100 black-back rounded50 right-20 bottom30 pointer");
-	        if (info.id == "enemies"){
-	        	$(element).append(showInfo);
-	        }
-
-	        $(showInfo).on("click", function () {
-
-	        	events.dispatch("showinfo");
-
-	        });
-
-
-
-
-
-
 		}
 
 	}
