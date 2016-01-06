@@ -43,17 +43,32 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 	}
 
+	var getType = function () {
+
+		var types = data.enemydata;
+		var rand = Math.random();
+
+		for (i in types) {
+			if (rand < types[i].normal) {
+				return i;
+			}
+		}
+
+		return 0;
+	}
+
 	var enemy = function (input) {
 
 		var self = this;
 
 		self.id = input.id;
-		self.type = data.enemydata[input.type];
+		self.type = data.enemydata[getType()];
 		self.shape = self.type.shape;
 		self.radius = self.type.size;
 		self.bounds = {x:$(input.arena).width(), y:$(input.arena).height()};
-		self.position = utility.getRandomPosition(input.arena);
-		self.velocity = utility.getRandomVelocity(input.arena, self.position);
+		var distance = 350;
+		self.position = utility.getRandomPosition(input.arena, distance);
+		self.velocity = utility.getRandomVelocity(input.arena, self.position, self.type.speed);
 
 		self.moving = true;
 
@@ -116,13 +131,13 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 		self.lost = function () {
 
-			if (self.position.x < -200 || self.position.x > self.bounds.x + 200) {
+			if (self.position.x < -distance || self.position.x > self.bounds.x + distance) {
 				console.log("lost");
 				return true;
 			}
 			
 			//is lost outside Y boundaries
-			if (self.position.y < -200 || self.position.y > self.bounds.y + 200) {
+			if (self.position.y < -distance || self.position.y > self.bounds.y + distance) {
 				console.log("lost");
 				return true;
 			}

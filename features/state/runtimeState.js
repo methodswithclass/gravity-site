@@ -6,66 +6,6 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
     var states = [
     {
-        name:"Modal", 
-        views:{
-            "modal": {
-              templateUrl: "features/interface/views/modal/modal.html"
-            }
-        },
-        onEnter: function() {
-              
-            var prevName = prevState.name;
-
-            if (prevName == "" || prevName.split(".")[0] == "Modal") {
-                prevName = "home";
-            }
-
-            var close = function () {
-
-                $state.go(prevName);    
-            }
-
-            //console.log(getModalTime());
-
-            var timer = setTimeout(function () {
-              close();
-            }, getModalTime());
-
-        },
-        abstract: true
-
-    },
-    {
-        name:"Modal.valid",
-        views:{
-            "modal": {
-              templateUrl: "features/interface/views/modal/valid-modal.html"
-            }
-        },
-        onEnter:function() {
-
-        },
-        onExit:function() {
-              
-             console.log("close modal valid");
-        }
-    },
-    {
-        name:"Modal.invalid",
-        views:{
-            "modal": {
-              templateUrl: "features/interface/views/modal/invalid-modal.html"
-            }
-        },
-        onEnter:function() {
-
-        },
-        onExit:function() {
-              
-             console.log("close modal invalid");
-        }
-    },
-    {
         name:"checking",
         url:"/checking",
         template:"<div ng-include='getContentUrl()'>checking</div>",
@@ -156,8 +96,7 @@ stateModule.provider("runtime.state", function ($stateProvider) {
     },
     {
         name:"page.home",
-        url:"/home",
-        template:"<div ng-include='getContentUrl()'></div>"
+        url:"/home"
     },
     {
         name:"page.calibrate",

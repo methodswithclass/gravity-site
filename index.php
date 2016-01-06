@@ -23,7 +23,7 @@
   <body ng-app="nuplae">
     <div class="absolute width height deselect" id="main">
       <div ui-view=""></div>
-      <div ui-view="modal" autoscroll="false"></div>
+      <div ui-view="modal"></div>
     </div>
     <console ng-attr-vis="hide"><console>
     
@@ -88,6 +88,8 @@
     <script src="features/enemy/enemy.module.js"></script>
     <script src="features/enemy/enemy.game.js"></script>
     <script src="features/enemy/enemy.service.js"></script>
+    <script src="features/enemy/preview.js"></script>
+    <script src="features/enemy/info.js"></script>
 
     <!-- Balance -->
 
@@ -96,11 +98,15 @@
     <script src="features/balance/target.service.js"></script>
     <script src="features/balance/meter.service.js"></script>
 
+    <!-- Data -->
+
+    <script src="features/data/data.module.js"></script>
+    <script src="features/data/data.service.js"></script>
+
     <!-- Manager -->
 
     <script src="features/manager/manager.module.js"></script>
     <script src="features/manager/manager.service.js"></script>
-    <script src="features/manager/data.service.js"></script>
     <script src="features/manager/toggle.js"></script>
     <script src="features/manager/games.library.js"></script>
 

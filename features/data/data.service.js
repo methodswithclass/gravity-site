@@ -1,4 +1,4 @@
-managerModule.factory("data.service", ['utility', function (g) {
+dataModule.factory("data.service", ['utility', function (g) {
 
 	var class1 = {
 		left:' padding-left',
@@ -332,24 +332,71 @@ managerModule.factory("data.service", ['utility', function (g) {
 		return {};
 	}
 
+	var isPage = function (id) {
+
+		console.log("is page", id);
+
+		for (i in pages) {
+
+			//console.log("page", pages[i], " ", id);
+
+			if (pages[i].id == id) {
+
+				return true;
+			}
+		}
+
+		console.log("no page");
+
+		return false;
+	}
+
 	var EnemyType = [
 		{
 			shape:g.c.circle,
-			size:50,
-			color:"blue",
-			pieceColor:{red:255, green:255, blue:255},
-			reward:1025,
-			punish:-75
+			size:150,
+			color:"red",
+			speed:0.2,
+			reward:-2000,
+			punish:2000,
+			percentage:0.01
 		},
 		{
 			shape:g.c.circle,
 			size:75,
+			color:"blue",
+			speed:0.6,
+			reward:1025,
+			punish:-75,
+			percentage:0.6
+		},
+		{
+			shape:g.c.circle,
+			size:100,
 			color:"green",
-			pieceColor:{red:255, green:255, blue:255},
+			speed:0.4,
 			reward:565,
-			punish:-132
+			punish:-132,
+			percentage:0.3
 		}
 	];
+
+	EnemyType.sort(function (a,b) {
+
+		return a.percentage > b.percentage;
+	});
+
+	EnemyType.forEach(function(value, index, array) {
+
+		if (index == 0) {
+			value.normal = value.percentage;
+		}
+		else {
+			value.normal = value.percentage + array[index-1].normal;
+		}
+
+		//console.log("percentage: " + value.percentage + " range: " + value.normal);
+	});
 
 
 
@@ -357,6 +404,7 @@ managerModule.factory("data.service", ['utility', function (g) {
 		bodyDir:g.c.body,
 		pages:pages,
 		enemydata:EnemyType,
-		getPageById:getPageById
+		getPageById:getPageById,
+		isPage:isPage
 	}
 }]);

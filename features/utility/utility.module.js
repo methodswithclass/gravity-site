@@ -95,11 +95,9 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return value;
 	}
 
-	var getRandomPosition = function (arena) {
+	var getRandomPosition = function (arena, distance) {
 		var side = Math.random();
 		var loc = Math.random();
-
-		var distance = 200;
 		
 		if (side < 0.25) { //top
 			return new vector(loc*$(arena).width(), -distance,0);
@@ -116,12 +114,12 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		
 	}
 
-	var getRandomVelocity = function (arena, pos) {
+	var getRandomVelocity = function (arena, pos, speed) {
 		
 		var marginY = 100;
 		var marginX = 50;
-		var spread = 10;
-		var minimum = 10;
+		var spread = 20;
+		var minimum = 20*speed;
 		
 		var box = {top:marginY, left:marginX, width:$(arena).width() - 2*marginX, height:$(arena).height() - 2*marginY};
 		

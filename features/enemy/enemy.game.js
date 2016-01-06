@@ -1,7 +1,6 @@
 enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function(Enemy, keeperFactory, g) {
 
 	var total = 10;
-	var crowdPercentage = 0.7;
 	var enemies = [];
 	var keeper;
 	var timer;
@@ -13,7 +12,6 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		var enemy = new Enemy({
 			id:index,
-			type:Math.random() <= crowdPercentage ? 0 : 1,
 			arena:arena
 		});
 

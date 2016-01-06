@@ -1,1 +1,1 @@
-var stateModule = angular.module("stateModule", ["sharedModule", 'validateModule', 'calibrate.module', 'managerModule', "ngRoute", "ui.router"]);
+var stateModule = angular.module("stateModule", ["sharedModule", 'validateModule', 'calibrate.module', 'managerModule', 'dataModule', "ngRoute", "ui.router"]);

@@ -17,16 +17,6 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	send.setup.receiver({name:"body", receiver:body});
 
-	var setModalTime = function (_time) {
-
-		modalTime = _time;
-	}
-
-	var getModalTime = function () {
-
-		return modalTime;
-	}
-
 	var splitStateName = function (name) {
 
 		var name = name.split(".");
@@ -44,6 +34,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		if (_complete) complete = _complete;
 
+		
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
 
@@ -52,6 +43,17 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 			queue:false,
 			onAfter:complete
 		});
+	}
+
+	var current = function () {
+
+		return $state.current.name;
+	}
+
+	var go = function (state) {
+
+		$state.go(state);
+		
 	}
 
 	$rootScope.$on('$stateChangeStart', 
@@ -66,7 +68,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		//console.log(toState.name + " " + toStateName.type + " " + toStateName.name);
 
-	   	if (fromStateName.type == "page" && toStateName.type == "page") {
+	   	if (data.isPage(fromStateName.name) && data.isPage(toStateName.name)) {
 
 	   		var fromPage = data.getPageById(fromStateName.name);
 			var toPage = data.getPageById(toStateName.name);
@@ -107,31 +109,10 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		console.log("setup state receivers");
 	}
-
-	var showModal = function (params) {
-
-		//console.log("show modal " + params.modal);
-
-		setModalTime(params.time);
-
-		$state.go("Modal." + params.modal);
-	}
-
-	var current = function () {
-
-		return $state.current.name;
-	}
-
-	var go = function (state) {
-
-		$state.go(state);
-		
-	}
 	
 
 	return {
 		define:define,
-		showModal:showModal,
 		current:current,
 		go:go
 	}
