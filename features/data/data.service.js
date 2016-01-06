@@ -283,8 +283,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:2,
 			filterSize:3,
-			factor:0.8,
-			mu:0.1,
+			factor:0.4,
+			mu:0.15,
 			damp:0.4,
 			gravity:true,
 			bounce:false
