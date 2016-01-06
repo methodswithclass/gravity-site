@@ -17,7 +17,7 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 
 			setTimeout(function () {
 
-				$(element[0].querySelector("#previewenemies")).css({width:width, height:height*0.6});
+				$(element[0].querySelector("#previewenemies")).css({width:width, height:height*0.8});
 			}, 1000);
 			
 			$scope.hideinfo = $scope.info.id != "enemies";
