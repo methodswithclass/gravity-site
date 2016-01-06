@@ -368,7 +368,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		description:"gold mine",
 		shape:g.c.circle,
 		size:90,
-		color:"gold",
+		color:"yellow",
 		speed:1,
 		reward:4000,
 		punish:0,
