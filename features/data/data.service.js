@@ -363,7 +363,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:90,
 		color:"red",
 		speed:1,
-		reward:-50000,
+		reward:-70000,
 		punish:0,
 		percentage:0.02
 	},
@@ -400,7 +400,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	{
 		meta:{
 			name:"featured",
-			description:"less you see, better it is when you do",
+			description:"doesn't come out to play much",
 			reward:"+843",
 			punish:"-327"
 		},
