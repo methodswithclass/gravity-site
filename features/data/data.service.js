@@ -198,7 +198,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:3,
 			filterSize:3,
-			factor:0.8,
+			factor:1,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -240,8 +240,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:2,
 			filterSize:3,
-			factor:0.8,
-			mu:0.1,
+			factor:1,
+			mu:0.05,
 			damp:0.4,
 			gravity:true,
 			bounce:true
@@ -354,11 +354,11 @@ dataModule.factory("data.service", ['utility', function (g) {
 	var EnemyType = [
 		{
 			shape:g.c.circle,
-			size:150,
+			size:30,
 			color:"red",
-			speed:0.2,
+			speed:1,
 			reward:-2000,
-			punish:2000,
+			punish:0,
 			percentage:0.01
 		},
 		{
