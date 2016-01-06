@@ -12,9 +12,8 @@ touchModule.directive("touch", function () {
 
 			var isDown = false;
 			var initial = {x:0, y:0};
-
-			var top = $(element).position().top;
-			var left = $(element).position().left;
+			var pos;
+			var diff = {x:0, y:0};
 
 			var mouseDown = function (e) {
 
@@ -23,7 +22,7 @@ touchModule.directive("touch", function () {
 				if (!isDown) {
 
 					isDown = true;
-					initial = {x:e.pageX - left, y:e.pageY - top};
+					initial = {x:e.pageX - diff.x, y:e.pageY - diff.y};
 				}
 			}
 
@@ -31,9 +30,7 @@ touchModule.directive("touch", function () {
 
 				if (isDown) {
 
-					var pos = {x:e.pageX, y:e.pageY};
-						
-					var diff;
+					pos = {x:e.pageX, y:e.pageY};
 
 					if ($scope.dir == "x") {
 						diff = {x:pos.x - initial.x, y:0};
@@ -45,6 +42,7 @@ touchModule.directive("touch", function () {
 						diff = {x:pos.x - initial.x, y:pos.y - initial.y};
 					}
 
+					//console.log("left", left);
 					console.log("diff y", diff.y, "diff x", diff.x);
 
 					if (diff.x < -1*$(element).width()) diff.x = -1*$(element).width();
