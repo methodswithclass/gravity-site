@@ -353,30 +353,42 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 	var EnemyType = [
 	{
-		name:"breaker",
-		description:"this will ruin you",
+		meta:{
+			name:"breaker",
+			description:"this will ruin you",
+			reward:"-70,000",
+			punish:"0"
+		},
 		shape:g.c.circle,
 		size:90,
 		color:"red",
 		speed:1,
-		reward:-5000,
+		reward:-50000,
 		punish:0,
 		percentage:0.02
 	},
 	{
-		name:"maker",
-		description:"gold mine",
+		meta:{
+			name:"maker",
+			description:"gold mine",
+			reward:"+100,000",
+			punish:"0"
+		},
 		shape:g.c.circle,
 		size:90,
 		color:"yellow",
 		speed:1,
-		reward:4000,
+		reward:100000,
 		punish:0,
 		percentage:0.01
 	},
 	{
-		name:"common",
-		description:"everyday passerby",
+		meta:{
+			name:"common",
+			description:"everyday passerby",
+			reward:"+125",
+			punish:"-23"
+		},
 		shape:g.c.circle,
 		size:75,
 		color:"blue",
@@ -386,8 +398,12 @@ dataModule.factory("data.service", ['utility', function (g) {
 		percentage:0.8
 	},
 	{
-		name:"featured",
-		description:"less you see, better it is when you do",
+		meta:{
+			name:"featured",
+			description:"less you see, better it is when you do",
+			reward:"+843",
+			punish:"-327"
+		},
 		shape:g.c.circle,
 		size:100,
 		color:"green",

@@ -1,16 +1,16 @@
-<div class='absolute width-300 height'>
+<div class='absolute width-500 height font-30'>
 	<div class="absolute width60 height90 center border rounded10">
-		<div class="absolute width height-30 font-25 text-center">
-			{{type.description}}
+		<div class="absolute width height-30 text-center">
+			{{type.meta.description}}
 		</div>
-		<div class="absolute width height-100 bottom0 font-25">
+		<div class="absolute width60 height-100 hcenter bottom0">
 			<div class='relative width height50'>
-				<div class="absolute width50 height vcenter"><div class="absolute center text-center">hit</div></div>
-				<div class="absolute width50 height left50 vcenter"><div class="absolute center text-center">{{type.reward}}</div></div>
+				<div class="absolute width50 height vcenter"><div class="absolute vcenter">hit</div></div>
+				<div class="absolute width50 height right0 vcenter"><div class="absolute vcenter right0 text-right">{{type.meta.reward}}</div></div>
 			</div>
 			<div class='relative width height50'>
-				<div class="absolute width50 height vcenter"><div class="absolute center text-center">miss</div></div>
-				<div class="absolute width50 height left50 vcenter"><div class="absolute center text-center">{{type.punish}}</div>
+				<div class="absolute width50 height vcenter"><div class="absolute vcenter">miss</div></div>
+				<div class="absolute width50 height right0 vcenter"><div class="absolute vcenter right0 text-right">{{type.meta.punish}}</div></div>
 			</div>
 		</div>
 	</div>
