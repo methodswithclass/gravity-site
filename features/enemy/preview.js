@@ -22,7 +22,7 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 			
 			$scope.hideinfo = $scope.info.id != "enemies";
 
-	        $scope.setShow = function (_show) {
+	        $scope.setHidden = function (_show) {
 
 	        	$scope.hideinfo = _show;
 	        }
