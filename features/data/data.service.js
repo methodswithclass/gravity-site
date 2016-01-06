@@ -112,14 +112,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			// interval:2,
-			// filterSize:3,
-			// factor:0.8,
-			// mu:0.1,
-			interval:1,
-			filterSize:5,
-			factor:0.4,
-			mu:0.105,
+			interval:2,
+			filterSize:3,
+			factor:0.8,
+			mu:0.1,
 			damp:0.4,
 			gravity:true,
 			bounce:true
