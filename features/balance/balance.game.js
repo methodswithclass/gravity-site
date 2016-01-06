@@ -16,8 +16,8 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 've
 
 		meter = new meterFactory({
 			parent:arena,
-			max:10000,
-			start:2000
+			max:5000,
+			start:500
 		});
 
 		target = new Target({

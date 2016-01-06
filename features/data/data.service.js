@@ -240,7 +240,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		params:{
 			interval:5,
 			filterSize:3,
-			factor:0.8,
+			factor:0.6,
 			mu:0.08,
 			damp:0.4,
 			gravity:true,
