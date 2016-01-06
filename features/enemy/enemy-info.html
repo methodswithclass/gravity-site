@@ -1,17 +1,16 @@
-<div class='relative width height'>
-	<div class="absolute width height60 vcenter">
-		<div class='absolute width10 height vcenter' id="{{'info' + $index}}">
-		
-
+<div class='absolute width-300 height'>
+	<div class="absolute width60 height90 center border rounded10">
+		<div class="absolute width height-30 font-25 text-center">
+			{{type.description}}
 		</div>
-		<div class="absolute width60 height right0 font-25">
-			<div class='absolute width30 height vcenter'>
-				<div class="absolute width hcenter text-center">hit points</div>
-				<div class="absolute width hcenter text-center bottom0">{{reward}}</div>
+		<div class="absolute width height-100 bottom0 font-25">
+			<div class='relative width height50'>
+				<div class="absolute width50 height vcenter"><div class="absolute center text-center">hit</div></div>
+				<div class="absolute width50 height left50 vcenter"><div class="absolute center text-center">{{type.reward}}</div></div>
 			</div>
-			<div class='absolute width30 height vcenter right0'>
-				<div class="absolute width hcenter text-center">miss points</div>
-				<div class="absolute width hcenter text-center bottom0">{{punish}}</div>
+			<div class='relative width height50'>
+				<div class="absolute width50 height vcenter"><div class="absolute center text-center">miss</div></div>
+				<div class="absolute width50 height left50 vcenter"><div class="absolute center text-center">{{type.punish}}</div>
 			</div>
 		</div>
 	</div>

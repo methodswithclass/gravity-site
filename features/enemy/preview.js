@@ -1,4 +1,4 @@
-enemyModule.directive("preview", ['data.service', function (data) {
+enemyModule.directive("preview", ['data.service', 'events', function (data, events) {
 		
 	return {
 		restrict:"E",
@@ -14,6 +14,21 @@ enemyModule.directive("preview", ['data.service', function (data) {
                 $(element).hide();
 
             }
+
+            $scope.show = function () {
+
+            	console.log("info showed");
+
+            	$(element).show();
+            }
+
+           	events.on("showinfo", function () {
+
+           		console.log("show info");
+
+           		$scope.show();
+           		
+           	});
 
 		}
 	}

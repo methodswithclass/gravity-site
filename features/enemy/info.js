@@ -1,4 +1,4 @@
-enemyModule.directive("info", function () {
+enemyModule.directive("info", ['data.service', function (data) {
 
 	return {
 		restrict:"E",
@@ -8,26 +8,22 @@ enemyModule.directive("info", function () {
 		link:function ($scope, element, attr) {
 
 			var type = $scope.type;
-			$scope.reward = type.reward;
-			$scope.punish = type.punish;
+
+			//console.log("info " + type.name);
+
+			$(element).css({left:$scope.$index*$(element).width()});
 
 			var enemy = document.createElement("div");
-			$(enemy).addClass("absolute bordered center");
+			$(enemy).addClass("absolute bordered hcenter");
 			enemy.style.width = type.size + "px";
 			enemy.style.height = type.size + "px";
+			enemy.style.top = $(element).height()*0.5 - type.size/2 + "px";
 			enemy.style.backgroundColor = type.color;
 			enemy.style.borderRadius = type.size/2 + "px";
 
-			console.log("enemy info " + $scope.$index);
-
-			setTimeout(function () {
-
-				$("#info" + $scope.$index).append(enemy);
-
-			}, 300);
-			
+			$(element).append(enemy);
 		}
 
 	}
 
-});
+}]);
