@@ -6,9 +6,11 @@
 		<div class="absolute corner nuplaeSize">
 
 			<div ng-repeat="page in main.pages">
-				<div class="absolute width25 height50 cutoff border rounded20 {{page.page.back}}" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
-					<div class="absolute inset-mobile-1 center {{page.page.fore}} rounded20 cutoff">
-						<page ng-attr-page="{{page.id}}" view="{{page.page.view}}" info="page"></page>
+				<div class="absolute width25 height50 cutoff" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
+					<div class="absolute inset-mobile-1 center border-white rounded20 {{page.page.back}}">
+						<div class="absolute inset-mobile-1 center {{page.page.fore}} rounded20 cutoff">
+							<page ng-attr-page="{{page.id}}" view="{{page.page.view}}" info="page"></page>
+						</div>
 					</div>
 				</div>	
 			</div>
