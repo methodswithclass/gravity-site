@@ -365,10 +365,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:1,
 		reward:-0.5,
 		punish:0.1,
-		percentage:0.01,
+		percentage:0.02,
 		destroy:{
 			color:"red",
-			speed:0.8
+			speed:0.5
 		}
 	},
 	{
@@ -384,10 +384,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:1,
 		reward:0.2,
 		punish:0,
-		percentage:0.01,
+		percentage:0.02,
 		destroy:{
 			color:"yellow",
-			speed:0.3
+			speed:0.5
 		}
 	},
 	{
@@ -403,7 +403,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:0.6,
 		reward:5,
 		punish:-10,
-		percentage:0.8,
+		percentage:0.76,
 		destroy:"standard"
 	},
 	{
@@ -419,7 +419,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:0.4,
 		reward:10,
 		punish:-20,
-		percentage:0.18,
+		percentage:0.2,
 		destroy:"standard"
 	}
 	];

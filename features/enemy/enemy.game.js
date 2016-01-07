@@ -8,7 +8,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 	var createEnemy = function(index) {
 
-		console.log("create enemy with id: " + index);
+		//console.log("create enemy with id: " + index);
 
 		var enemy = new Enemy({
 			id:index,
@@ -28,7 +28,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 	var destroy = function (index, replace) {
 
-		console.log("destroy index: " + index);
+		//console.log("destroy index: " + index);
 
 		enemies[index].remove();
 		enemies.splice(index,1);
@@ -43,7 +43,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		var duration = 100;
 
-		console.log("animate destroy:" + index);
+		//console.log("animate destroy:" + index);
 
 		if (index < enemies.length) {
 
@@ -91,17 +91,17 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 			enemy.update();
 
 			if (enemy.intersect(object)) {
-				console.log("hit", enemy.type.reward);
-				keeper.addPoints(enemy.type.reward);
+				//console.log("hit", enemy.type.reward);
 				enemy.destroy({
 					index:i, 
 					complete:function (index) {
 						destroy(index, true);
+						keeper.addPoints(enemy.type.reward);
 					}
 				});
 			}
 			else if (enemy.lost()) {
-				console.log("miss", enemy.type.punish);
+				//console.log("miss", enemy.type.punish);
 				keeper.addPoints(enemy.type.punish);
 				destroy(i, true);
 			}

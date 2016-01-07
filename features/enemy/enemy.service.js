@@ -170,13 +170,13 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 		self.lost = function () {
 
 			if (self.position.x < -distance || self.position.x > self.bounds.x + distance) {
-				console.log("lost");
+				//console.log("lost");
 				return true;
 			}
 			
 			//is lost outside Y boundaries
 			if (self.position.y < -distance || self.position.y > self.bounds.y + distance) {
-				console.log("lost");
+				//console.log("lost");
 				return true;
 			}
 

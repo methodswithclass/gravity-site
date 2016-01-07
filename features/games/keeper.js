@@ -17,8 +17,13 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 			if (Math.abs(_points) >= 1) points += _points;
 			else {
-				points*(1+_points);
+				console.log("percentage", _points, "points", points);
+				if (points > 0)	points *= (1+_points);
+				else if (points < 0) points *= (1-_points);
+				console.log("result", points);
 			}
+
+			points = Math.floor(points);
 			
 		}
 
@@ -62,7 +67,7 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 			time += Math.floor(_tick);
 
-			console.log("keeper time", time);
+			//console.log("keeper time", time);
 		}
 
 		self.time = function () {
