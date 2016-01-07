@@ -394,15 +394,15 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"common",
 			description:"everyday passerby",
-			reward:"+150",
-			punish:"-30"
+			reward:"+5",
+			punish:"-5"
 		},
 		shape:g.c.circle,
 		size:75,
 		color:"blue",
 		speed:0.6,
-		reward:52,
-		punish:-32,
+		reward:5,
+		punish:-10,
 		percentage:0.8,
 		destroy:"standard"
 	},
@@ -410,15 +410,15 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"featured",
 			description:"doesn't come out to play much",
-			reward:"+800",
-			punish:"-300"
+			reward:"+10",
+			punish:"-20"
 		},
 		shape:g.c.circle,
 		size:100,
 		color:"green",
 		speed:0.4,
-		reward:23,
-		punish:-10,
+		reward:10,
+		punish:-20,
 		percentage:0.18,
 		destroy:"standard"
 	}
