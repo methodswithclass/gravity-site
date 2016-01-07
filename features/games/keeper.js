@@ -15,7 +15,7 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 		self.addPoints = function(_points) {
 
-			if (Math.abs(_points) > 1) points += _points;
+			if (Math.abs(_points) >= 1) points += _points;
 			else {
 				points *= (1+_points);
 			}
