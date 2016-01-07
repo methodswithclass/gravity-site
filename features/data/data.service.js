@@ -382,7 +382,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:90,
 		color:"yellow",
 		speed:0.5,
-		reward:0.5,
+		reward:0.2,
 		punish:0,
 		percentage:0.04,
 		destroy:{
@@ -438,7 +438,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			value.normal = value.percentage + array[index-1].normal;
 		}
 
-		//console.log("percentage: " + value.percentage + " range: " + value.normal);
+		//console.log("percentage: " + value.percentage + " normal: " + value.normal);
 	});
 
 
