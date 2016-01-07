@@ -95,8 +95,8 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 				enemy.destroy({
 					index:i, 
 					complete:function (index) {
-						destroy(index, true);
 						keeper.addPoints(enemy.type.reward);
+						destroy(index, true);
 					}
 				});
 			}
