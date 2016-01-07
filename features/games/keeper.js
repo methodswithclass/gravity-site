@@ -17,7 +17,7 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 			if (Math.abs(_points) >= 1) points += _points;
 			else {
-				points *= (1+_points);
+				points*(1+_points);
 			}
 			
 		}
