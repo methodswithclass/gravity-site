@@ -356,14 +356,14 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"breaker",
 			description:"this will ruin you",
-			reward:"-70,000",
+			reward:"-500",
 			punish:"0"
 		},
 		shape:g.c.circle,
 		size:90,
 		color:"red",
 		speed:1,
-		reward:-70000,
+		reward:-531,
 		punish:0,
 		percentage:0.01
 	},
@@ -371,14 +371,14 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"maker",
 			description:"gold mine",
-			reward:"+100,000",
+			reward:"+300",
 			punish:"0"
 		},
 		shape:g.c.circle,
 		size:90,
 		color:"yellow",
 		speed:1,
-		reward:100000,
+		reward:324,
 		punish:0,
 		percentage:0.01
 	},
@@ -393,7 +393,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:75,
 		color:"blue",
 		speed:0.6,
-		reward:125,
+		reward:83,
 		punish:-23,
 		percentage:0.8
 	},
@@ -408,8 +408,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:100,
 		color:"green",
 		speed:0.4,
-		reward:843,
-		punish:-327,
+		reward:126,
+		punish:-83,
 		percentage:0.18
 	}
 	];
