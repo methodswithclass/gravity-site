@@ -90,17 +90,17 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 			enemy.update();
 
-			if (enemy.intersect(object)) {
+			if (enemy.moving && enemy.intersect(object)) {
 				//console.log("hit", enemy.type.reward);
+				keeper.addPoints(enemy.type.reward);
 				enemy.destroy({
 					index:i, 
 					complete:function (index) {
-						keeper.addPoints(enemy.type.reward);
 						destroy(index, true);
 					}
 				});
 			}
-			else if (enemy.lost()) {
+			else if (enemy.moving && enemy.lost()) {
 				//console.log("miss", enemy.type.punish);
 				keeper.addPoints(enemy.type.punish);
 				destroy(i, true);

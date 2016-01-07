@@ -163,24 +163,31 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 		self.intersect = function (object) {
 
-			return utility.intersectShape(self, object);
+			var result = utility.intersectShape(self, object);
+
+			self.moving = !result;
+
+			return result;
 
 		}
 
 		self.lost = function () {
 
+
+			var result = false;
+
 			if (self.position.x < -distance || self.position.x > self.bounds.x + distance) {
-				//console.log("lost");
-				return true;
+				result = true;
 			}
 			
 			//is lost outside Y boundaries
 			if (self.position.y < -distance || self.position.y > self.bounds.y + distance) {
-				//console.log("lost");
-				return true;
+				result = true;
 			}
 
-			return false;
+			self.moving = !result;
+
+			return result;
 
 		}
 
@@ -194,8 +201,6 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 		}
 
 		self.destroy = function (params) {
-
-			self.moving = false;
 
 			$(inner).remove();
 

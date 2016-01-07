@@ -375,7 +375,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"maker",
 			description:"gold mine",
-			reward:"+50%",
+			reward:"+20%",
 			punish:"0"
 		},
 		shape:g.c.circle,
@@ -401,8 +401,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:75,
 		color:"blue",
 		speed:0.8,
-		reward:23,
-		punish:-13,
+		reward:83,
+		punish:-32,
 		percentage:0.72,
 		destroy:"standard"
 	},
@@ -417,8 +417,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:100,
 		color:"green",
 		speed:0.6,
-		reward:52,
-		punish:-48,
+		reward:103,
+		punish:-64,
 		percentage:0.2,
 		destroy:"standard"
 	}
