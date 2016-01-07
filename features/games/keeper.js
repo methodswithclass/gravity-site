@@ -15,22 +15,10 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 		self.addPoints = function(_points) {
 
-			// var goal = points + _points;
-
-			// pointTimer = setInterval(function () {
-
-			// 	points += 5;
-
-			// 	if (points >= goal) {
-
-			// 		points = goal;
-
-			// 		clearInterval(pointTimer);
-			// 		pointTimer = null;
-			// 	}
-			// }, 1);
-
-			points += _points;
+			if (Math.abs(_points) > 1) points += _points;
+			else {
+				points *= (1+_points);
+			}
 			
 		}
 
@@ -38,8 +26,9 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 
 			//console.log("points raw: " + points);
 
-			var sign = Math.abs(points)/points;
-			var pointStr = Math.abs(points) + "";
+			var pts = Math.floor(points);
+			var sign = Math.abs(pts)/pts;
+			var pointStr = Math.abs(pts) + "";
 			var threeArray = [];
 
 			var thousands = Math.floor(pointStr.length / 3);

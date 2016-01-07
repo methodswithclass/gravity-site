@@ -363,8 +363,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:90,
 		color:"red",
 		speed:1,
-		reward:-500,
-		punish:200,
+		reward:-0.5,
+		punish:0.1,
 		percentage:0.01,
 		destroy:{
 			color:"red",
@@ -382,7 +382,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		size:90,
 		color:"yellow",
 		speed:1,
-		reward:500,
+		reward:0.2,
 		punish:0,
 		percentage:0.01,
 		destroy:{
