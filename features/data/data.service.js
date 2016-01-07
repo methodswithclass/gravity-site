@@ -356,7 +356,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"breaker",
 			description:"this will ruin you",
-			reward:"-10,000",
+			reward:"-50%",
 			punish:"0"
 		},
 		shape:g.c.circle,
@@ -375,7 +375,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		meta:{
 			name:"maker",
 			description:"gold mine",
-			reward:"+5,000",
+			reward:"+20%",
 			punish:"0"
 		},
 		shape:g.c.circle,
