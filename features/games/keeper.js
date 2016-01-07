@@ -72,6 +72,8 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 		self.tick = function (_tick) {
 
 			time += Math.floor(_tick);
+
+			console.log("keeper time", time);
 		}
 
 		self.time = function () {

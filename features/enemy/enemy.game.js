@@ -75,7 +75,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 	var update = function (object, interval) {
 
-		//console.log(keeper);
+		//console.log("tick");
 
 		keeper.tick(interval);
 

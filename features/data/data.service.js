@@ -365,7 +365,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:1,
 		reward:-70000,
 		punish:0,
-		percentage:0.02
+		percentage:0.01
 	},
 	{
 		meta:{
@@ -410,7 +410,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		speed:0.4,
 		reward:843,
 		punish:-327,
-		percentage:0.17
+		percentage:0.18
 	}
 	];
 
