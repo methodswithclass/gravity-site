@@ -1,5 +1,35 @@
 enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'utility', function(utility, data, vector, g) {
 
+	var special = function (input) {
+
+		var self = this;
+
+		var parentSize = $(input.parent).width();
+		var size = parentSize*0.8;
+
+		var container = document.createElement("div");
+		$(container).addClass("absolute bordered opacity70");
+		container.style.width = size + "px";
+		container.style.height = size + "px";
+		container.style.top = parentSize/2 - size/2 + "px";
+		container.style.left = parentSize/2 - size/2 + "px";
+		container.style.borderRadius = size/2 + "px";
+		container.style.backgroundColor = input.destroy.color;
+		$(input.parent).append(container);
+
+		self.explode = function (complete) {
+
+			$(container).animate({
+				width:2000,
+				height:2000,
+				borderRadius:1000,
+				left:-1000,
+				top:-1000
+			}, input.destroy.speed*800, complete);
+		}
+
+	}
+
 	var particle = function (input) {
 
 		var self = this;
@@ -74,6 +104,7 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 		var numParts = 4;
 		var particles = [];
+		var specials;
 		var color = {red:Math.floor(Math.random()*255), green:Math.floor(Math.random()*255), blue:Math.floor(Math.random()*255)};
 		
 		var container = document.createElement("div");
@@ -90,12 +121,19 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 			inner.style.borderRadius = this.radius + "px";
 
 		
+		if (self.type.destroy == "standard") {
+			
+			for (var i = 0; i < numParts; i++) {
 
-		for (var i = 0; i < numParts; i++) {
+				//end = {x:Math.sin(Math.PI*2*i/numParts + shift), y:Math.cos(Math.PI*2*i/numParts + shift)};
 
-			//end = {x:Math.sin(Math.PI*2*i/numParts + shift), y:Math.cos(Math.PI*2*i/numParts + shift)};
+				particles[i] = new particle({parent:container, color:color});
+			}
+		}
+		else {
 
-			particles[i] = new particle({parent:container, color:color});
+			specials = new special({parent:container, destroy:self.type.destroy});
+
 		}
 
 		$(container).append(inner);
@@ -161,19 +199,34 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 			$(inner).remove();
 
-			for (i in particles) {
-				
-				if (i == numParts - 1) {
-					particles[i].explode(params, function () { 
-						if (params.complete) {
-							params.complete(params.index);
-						}
-				 	});
+			if (self.type.destroy == "standard") {
+
+				for (i in particles) {
+					
+					if (i == numParts - 1) {
+						particles[i].explode(params, function () { 
+							if (params.complete) {
+								params.complete(params.index);
+							}
+					 	});
+					}
+					else {
+						particles[i].explode(params);
+					}
 				}
-				else {
-					particles[i].explode(params);
-				}
+
 			}
+			else {
+
+				specials.explode(function () { 
+					if (params.complete) {
+						params.complete(params.index);
+					}
+			 	});
+
+			}
+
+
 		}
 
 		this.setPosition();

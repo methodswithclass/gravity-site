@@ -116,12 +116,12 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var getRandomVelocity = function (arena, pos, speed) {
 		
-		var marginY = 100;
-		var marginX = 50;
+		var width = $(arena).width();
+		var height = $(arena).width();
 		var spread = 20;
 		var minimum = 20*speed;
 		
-		var box = {top:marginY, left:marginX, width:$(arena).width() - 2*marginX, height:$(arena).height() - 2*marginY};
+		var box = {top:height*(1-0.8)/2, left:width*(1-0.8)/2, width:width*0.8, height:height*0.8};
 		
 		var topRand = Math.random();
 		var leftRand = Math.random();
