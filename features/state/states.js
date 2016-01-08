@@ -1,4 +1,4 @@
-stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'data.service', 'send', 'events', 'global', 'calibrate.service', 'manager', function ($q, runtime, $state, $rootScope, data, send, events, g, calibrate, manager) {
+stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'data.service', 'send', 'events', 'global', 'calibrate.service', 'manager', '$window', function ($q, runtime, $state, $rootScope, data, send, events, g, calibrate, manager, $window) {
 
 	var modalTime = 1000;
 	var duration = 300;
@@ -16,6 +16,17 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	var state;
 
 	send.setup.receiver({name:"body", receiver:body});
+
+	var current = function () {
+
+		return $state.current.name;
+	}
+
+	var go = function (state) {
+
+		$state.go(state);
+		
+	}
 
 	var splitStateName = function (name) {
 
@@ -45,15 +56,17 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		});
 	}
 
-	var current = function () {
+	var resize = function () {
 
-		return $state.current.name;
-	}
+		var name = (splitStateName(current())).name;
 
-	var go = function (state) {
+		elem = $(elements["page" + name]);
+		bodyElem = $(body["body"]);
 
-		$state.go(state);
-		
+		if (elem[0]) {
+			bodyElem.scrollTo(elem[0]);
+		}
+
 	}
 
 	$rootScope.$on('$stateChangeStart', 
@@ -110,6 +123,9 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		console.log("setup state receivers");
 	}
 	
+	angular.element($window).bind('resize', function () {
+		resize();
+	});
 
 	return {
 		define:define,
