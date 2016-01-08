@@ -124,6 +124,7 @@
     <script src="features/interface/repeat.directive.js"></script>
     <script src="features/interface/body.js"></script>
     <script src="features/interface/home.js"></script>
+    <script src="features/interface/rotation.js"></script>
     
 
   </body>
