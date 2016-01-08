@@ -12,6 +12,7 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 		var resize = function () {
 
 			if (!g.isPortrait() && !$(elem)[0]) {
+				alert("landscape");
 				$(element).append(elem);
 			}
 			else {
