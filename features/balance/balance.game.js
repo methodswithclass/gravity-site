@@ -66,11 +66,11 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 've
 
 			if (target.overlap(object)) {
 				meter.tick(-1*interval);
-				keeper.addPoints(23);
+				keeper.addPoints(3);
 			}
 			else {
 				meter.tick(interval);
-				keeper.addPoints(-7);
+				keeper.addPoints(-1);
 			}
 
 			target.finish(meter.check(), function () {
