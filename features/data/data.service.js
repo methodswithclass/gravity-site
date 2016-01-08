@@ -434,14 +434,14 @@ dataModule.factory("data.service", ['utility', function (g) {
 			value.meta.hit = (value.hit < 0 ? "-" : "+") + Math.abs(value.hit)*100 + "%";
 		}
 		else {
-			value.meta.hit = (value.hit < 0 ? "-" : "+") + Math.abs(g.round(value.hit, Math.abs(value.hit) > 20 ? 10 : 5)) + "";
+			value.meta.hit = (value.hit < 0 ? "-" : "+") + Math.abs(g.round(value.hit, Math.abs(value.hit) > 20 ? 10 : 5)) + "pts";
 		}
 
 		if (Math.abs(value.miss) < 1) {
 			value.meta.miss = (value.miss < 0 ? "-" : "+") + Math.abs(value.miss)*100 + "%";
 		}
 		else {
-			value.meta.miss = (value.miss < 0 ? "-" : "+") + Math.abs(g.round(value.miss, Math.abs(value.miss) > 20 ? 10 : 5)) + "";
+			value.meta.miss = (value.miss < 0 ? "-" : "+") + Math.abs(g.round(value.miss, Math.abs(value.miss) > 20 ? 10 : 5)) + "pts";
 		}
 
 
