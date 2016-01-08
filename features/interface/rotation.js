@@ -2,21 +2,24 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 
 	return function ($scope, element, attr) {
 
-		var elem = "<div class='absolute width height black-back font-70 white'>" + 
-						"<div class='absolute width60 center'>" + 
-							"turn off your screen rotation to play this game"
+		var elem = "<div id='screenwarn' class='absolute width height z-100'>" +
+						"<div class='absolute width height black-back opacity90'></div>" + 
+						"<div class='absolute width60 center font-70 white'>" + 
+							"turn off your screen rotation to play this game" +
 						"</div>" + 
 					"</div>";
 
+		var added = false;
 
 		var resize = function () {
 
-			if (!g.isPortrait() && !$(elem)[0]) {
-				alert("landscape");
+			if (!g.isPortrait() && !added) {
+				added = true;
 				$(element).append(elem);
 			}
-			else {
-				$(elem).remove();
+			else if (g.isPortrait()) {
+				added = false;
+				$("#screenwarn").remove();
 			}
 		}
 
