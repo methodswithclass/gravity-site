@@ -60,7 +60,7 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 've
 
 		//console.log(keeper);
 
-		keeper.tick(interval*5);
+		keeper.tick(interval*3);
 
 		if (target.active) {
 
