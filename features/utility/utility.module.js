@@ -95,6 +95,13 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return value;
 	}
 
+	var round = function (number, order) {
+
+		var value = Math.round(number/order)*order;
+
+		return value;
+	}
+
 	var getRandomPosition = function (arena, distance) {
 		var side = Math.random();
 		var loc = Math.random();
@@ -232,6 +239,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
     	isValid:isValid,
 		average:average,
 		truncate:truncate,
+		round:round,
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
 		resolveDigit:resolveDigit,

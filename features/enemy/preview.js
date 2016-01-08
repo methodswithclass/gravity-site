@@ -23,11 +23,17 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 				//$(element[0].querySelector("#infoenemies")).css({width:500*($scope.types.length-1)});
 			}, 1000);
 			
+			$scope.hidemessage = false;
 			$scope.hideinfo = $scope.info.id != "enemies";
 
-	        $scope.setHidden = function (_show) {
+			$scope.togglemessage = function (action) {
 
-	        	$scope.hideinfo = _show;
+	        	$scope.hidemessage = action == 'hide';
+	        }
+
+	        $scope.toggleinfo = function (action) {
+
+	        	$scope.hideinfo = action == 'hide';
 	        }
 
 		}

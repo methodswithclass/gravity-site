@@ -355,16 +355,14 @@ dataModule.factory("data.service", ['utility', function (g) {
 	{
 		meta:{
 			name:"breaker",
-			description:"this will ruin you",
-			reward:"-80%",
-			punish:"0"
+			description:"this will ruin you"
 		},
 		shape:g.c.circle,
 		size:90,
 		color:"red",
 		speed:0.7,
-		reward:-0.8,
-		punish:0.1,
+		hit:-0.8,
+		miss:0.1,
 		percentage:0.04,
 		destroy:{
 			color:"red",
@@ -374,16 +372,14 @@ dataModule.factory("data.service", ['utility', function (g) {
 	{
 		meta:{
 			name:"maker",
-			description:"gold mine",
-			reward:"+20%",
-			punish:"0"
+			description:"gold mine"
 		},
 		shape:g.c.circle,
 		size:90,
 		color:"yellow",
 		speed:0.5,
-		reward:0.2,
-		punish:0,
+		hit:0.2,
+		miss:0,
 		percentage:0.04,
 		destroy:{
 			color:"yellow",
@@ -393,32 +389,28 @@ dataModule.factory("data.service", ['utility', function (g) {
 	{
 		meta:{
 			name:"common",
-			description:"everyday passerby",
-			reward:"+5",
-			punish:"-5"
+			description:"everyday passerby"
 		},
 		shape:g.c.circle,
 		size:75,
 		color:"blue",
 		speed:0.8,
-		reward:83,
-		punish:-32,
+		hit:83,
+		miss:-32,
 		percentage:0.72,
 		destroy:"standard"
 	},
 	{
 		meta:{
 			name:"featured",
-			description:"doesn't come out to play much",
-			reward:"+10",
-			punish:"-20"
+			description:"doesn't come out to play much"
 		},
 		shape:g.c.circle,
 		size:100,
 		color:"green",
 		speed:0.6,
-		reward:103,
-		punish:-64,
+		hit:103,
+		miss:-64,
 		percentage:0.2,
 		destroy:"standard"
 	}
@@ -437,6 +429,21 @@ dataModule.factory("data.service", ['utility', function (g) {
 		else {
 			value.normal = value.percentage + array[index-1].normal;
 		}
+
+		if (Math.abs(value.hit) < 1) {
+			value.meta.hit = value.hit*100 + "%";
+		}
+		else {
+			value.meta.hit = g.round(value.hit, Math.abs(value.hit) > 20 ? 10 : 5) + "";
+		}
+
+		if (Math.abs(value.miss) < 1) {
+			value.meta.miss = value.miss*100 + "%";
+		}
+		else {
+			value.meta.miss = g.round(value.miss, Math.abs(value.miss) > 20 ? 10 : 5) + "";
+		}
+
 
 		//console.log("percentage: " + value.percentage + " normal: " + value.normal);
 	});

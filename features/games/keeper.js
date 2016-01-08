@@ -16,15 +16,15 @@ gamesModule.factory("keeper", ['utility', function (utility) {
 		self.addPoints = function(_points) {
 
 			points = Math.floor(points);
-			var sign = points > 0 ? 1 : -1;
 
-			if (Math.abs(_points) >= 1) points += _points;
-			else {
+			if (Math.abs(_points) < 1) {
+				var sign = points > 0 ? 1 : -1;
 				console.log("percentage", _points, "points", points);
 				points += sign*points*_points;
 				console.log("result", points);
 			}
-			
+			else points += _points;
+
 		}
 
 		self.getPoints = function () {

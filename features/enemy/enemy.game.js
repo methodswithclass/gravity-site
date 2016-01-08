@@ -92,7 +92,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 			if (enemy.moving && enemy.intersect(object)) {
 				//console.log("hit", enemy.type.reward);
-				keeper.addPoints(enemy.type.reward);
+				keeper.addPoints(enemy.type.hit);
 				enemy.destroy({
 					index:i, 
 					complete:function (index) {
@@ -102,7 +102,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 			}
 			else if (enemy.moving && enemy.lost()) {
 				//console.log("miss", enemy.type.punish);
-				keeper.addPoints(enemy.type.punish);
+				keeper.addPoints(enemy.type.miss);
 				destroy(i, true);
 			}
 
