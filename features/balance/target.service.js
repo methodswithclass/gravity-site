@@ -22,12 +22,19 @@ balanceModule.factory("target.service", ['utility', function (utility) {
 		
 		$(input.parent).append(container);
 
-		var getRandomPosition = function () {
+		var getRandomPosition = function (position) {
 
 			var x;
 			var arena = {width:$(input.parent).width(), height:$(input.parent).height()}
-			var spread = {x:arena.width - self.size.width - 20, y:arena.height - self.size.height - 20};
-			var min = {x:20, y:20};
+			var spread = {x:arena.width - self.size.width - 20, y:arena.height/2 - self.size.height - 20};
+			var min = {x:20};
+
+			if (position.y < arena.height/2) {
+				min.y = arena.height/2;
+			}
+			else {
+				min.y  = 20;
+			}
 
 			return {x:Math.random()*spread.x + min.x, y:Math.random()*spread.y + min.y};
 
@@ -68,7 +75,7 @@ balanceModule.factory("target.service", ['utility', function (utility) {
 
 		self.reset = function () {
 
-			self.position = getRandomPosition();
+			self.position = getRandomPosition(self.position);
 			setPosition();
 			setSize();
 			setColor();
@@ -148,7 +155,7 @@ balanceModule.factory("target.service", ['utility', function (utility) {
 
 		}
 
-		self.position = getRandomPosition();
+		self.position = getRandomPosition({x:0, y:0});
 		setPosition();
 		self.hide();
 
