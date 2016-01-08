@@ -27,4 +27,4 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 
 	}
 
-});
+}]);
