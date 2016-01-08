@@ -5,7 +5,7 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 		var elem = "<div id='screenwarn' class='absolute width height z-100'>" +
 						"<div class='absolute width height black-back opacity90'></div>" + 
 						"<div class='absolute width60 center font-70 white'>" + 
-							"turn off your screen rotation to play this game" +
+							"lock your screen in portrait mode to play this game" +
 						"</div>" + 
 					"</div>";
 
@@ -22,6 +22,8 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 				$("#screenwarn").remove();
 			}
 		}
+
+		resize();
 
 		angular.element($window).bind('resize', function () {
 			resize();
