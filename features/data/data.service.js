@@ -23,7 +23,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"home.html",
-			back:"blue2-back",
+			back:"blue3-back",
 			fore:"white-back",
 			rect:{
 				top:0,
@@ -171,9 +171,9 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:true,
 		page:{
 			view:"page.html",
-			back:"blue2-back",
+			back:"blue3-back",
 			fore:"white-back",
-			menu:"blue2-back",
+			menu:"blue3-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", right:"10px"},

@@ -13,7 +13,7 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 
 		var resize = function () {
 
-			if (!g.isPortrait() && !added) {
+			if (g.isMobile() && !g.isPortrait() && !added) {
 				added = true;
 				$(element).append(elem);
 			}
