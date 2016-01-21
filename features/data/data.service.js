@@ -17,7 +17,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	var pages = [
 	{
 		id:"home",
-		title:"Home",
+		title:"gravity home",
 		index:g.c.homeIndex,
 		motion:false,
 		game:false,
