@@ -17,7 +17,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	var pages = [
 	{
 		id:"home",
-		title:"gravity home",
+		title:"home",
 		index:g.c.homeIndex,
 		motion:false,
 		game:false,
@@ -38,7 +38,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"calibrate",
-		title:"Calibrate",
+		title:"calibrate",
 		index:g.c.calibrateIndex,
 		motion:false,
 		game:false,
@@ -81,7 +81,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"gravity",
-		title:"Gravity", 
+		title:"gravity", 
 		index:g.c.gravIndex,
 		motion:true,
 		game:false,
@@ -123,7 +123,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"float",
-		title:"Float", 
+		title:"float", 
 		index:g.c.floatIndex,
 		motion:true,
 		game:false,
@@ -165,7 +165,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"enemies",
-		title:"Enemies", 
+		title:"enemies", 
 		index:g.c.enemiesIndex,
 		motion:true,
 		game:true,
@@ -207,7 +207,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"balance",
-		title:"Balance", 
+		title:"balance", 
 		index:g.c.balanceIndex,
 		motion:true,
 		game:true,
@@ -249,7 +249,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 	},
 	{
 		id:"space",
-		title:"Space",
+		title:"space",
 		index:g.c.spaceIndex,
 		motion:true,
 		game:false,
