@@ -148,7 +148,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			
 			if (running) {
 
-				console.log(input.id + " motion");
+				//console.log(input.id + " motion");
 
 				//console.log("motion " + e.accelerationIncludingGravity.y);
 
