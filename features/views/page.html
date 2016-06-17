@@ -5,7 +5,7 @@
 
 	<toggle ng-show="info.id != 'calibrate'"></toggle>
 	<back ng-show="info.id != 'calibrate'" ng-attr-id="{{'back.' + info.id}}" on-tap="onPressup()"></back>
-	<object ng-show="info.id != 'calibrate'" ng-attr-id="{{'object' + info.id}}"></object>
+	<object ng-attr-id="{{'object' + info.id}}"></object>
 	<display ng-show="info.id != 'calibrate'"></display>
 	<calibrate ng-show="info.id == 'calibrate'"></calibrate>
 
