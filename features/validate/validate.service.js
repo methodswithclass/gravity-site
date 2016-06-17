@@ -58,7 +58,7 @@ validateModule.factory("validate.service", function ($q) {
 				//console.log("validating");
 
 				if (self.checkMotion) {
-
+					
 					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
 						//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
 						setMotion(true);
