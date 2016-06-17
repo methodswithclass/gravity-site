@@ -21,7 +21,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		if (direction == yDir) { 
 			accel.setinitial(-10, 0); 
-			return {x:0, y:-accelValue};
+			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
 			accel.setinitial(0, -10);
@@ -107,14 +107,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			g.setFactor(grav/Math.abs(obj.acceleration.y));
 
-			if (Math.abs(relPos.y)/relPos.y < 0) {
+			if (relPos.y < 0) {
 				g.setDirection(yDir, -1);
 			}
 
 		}
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
-			if (Math.abs(relPos.x)/relPos.x < 0) {
+			if (relPos.x < 0) {
 				g.setDirection(xDir,-1);
 			}
 
