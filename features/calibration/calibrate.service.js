@@ -17,7 +17,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		//console.log(accel.down);
 
-		var accelValue = 1;
+		var accelValue = -1;
 
 		if (direction == yDir) { 
 			accel.setinitial(-10, 0); 
