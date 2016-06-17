@@ -90,11 +90,15 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		if (direction == yDir) {
 			value =  Math.abs(relPos.y)/obj.bounds.y;
-			console.log("ydir", value); 
+			console.log("relpos y", relPos.y);
+			console.log("y bound", obj.bound.y);
+			console.log("y value", value); 
 		}
 		else {
 			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
-			console.log("xdir", value);
+			console.log("relpos x", relPos.x);
+			console.log("x bound", obj.bound.x);
+			console.log("x value", value);
 		}
 
 		var _percent = value/2;
@@ -110,6 +114,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setFactor(grav/Math.abs(obj.acceleration.y));
 
 			if (relPos.y < 0) {
+				console.log("y edge", relPos.y);
 				g.setDirection(yDir, -1);
 			}
 
@@ -117,6 +122,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
 			if (relPos.x < 0) {
+				console.log("x edge", relPos.x);
 				g.setDirection(xDir,-1);
 			}
 
