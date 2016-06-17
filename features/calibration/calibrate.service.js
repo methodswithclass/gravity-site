@@ -91,13 +91,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		if (direction == yDir) {
 			value =  Math.abs(relPos.y)/obj.bounds.y;
 			console.log("relpos y", relPos.y);
-			console.log("y bound", obj.bound.y);
+			console.log("y bound", obj.bounds.y);
 			console.log("y value", value); 
 		}
 		else {
 			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
 			console.log("relpos x", relPos.x);
-			console.log("x bound", obj.bound.x);
+			console.log("x bound", obj.bounds.x);
 			console.log("x value", value);
 		}
 
