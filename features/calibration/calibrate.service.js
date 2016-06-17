@@ -89,10 +89,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		var value;
 
 		if (direction == yDir) {
-			value =  Math.abs(relPos.y)/obj.bounds.y; 
+			value =  Math.abs(relPos.y)/obj.bounds.y;
+			console.log("ydir", value); 
 		}
 		else {
 			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
+			console.log("xdir", value);
 		}
 
 		var _percent = value/2;
