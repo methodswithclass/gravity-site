@@ -53,54 +53,33 @@ validateModule.factory("validate.service", function ($q) {
 
 		return $q(function (resolve, reject) {
 
-			if (window.DeviceMotionEvent) {
+			window.addEventListener("devicemotion", function (e) {
 
-				window.addEventListener("devicemotion", function (e) {
+				console.log("validating");
 
-					console.log("validating");
+				if (self.checkMotion) {
 
-					if (self.checkMotion) {
+					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
+						//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
+						setMotion(true);
+						check++;
 
-						if (e.accelerationIncludingGravity || e.acceleration) {
-							//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
-							setMotion(true);
-							//check++;
+						console.log(check);
 
-							console.log(check);
-
-							//if (check > minCheck) {
-								checkSupported(resolve, reject);
-							//}
+						if (check > minCheck) {
+							checkSupported(resolve, reject);
 						}
-						else {
-							//console.log("DeviceMotion is not supported");
-							setMotion(false);
-							//check++;
-
-							//if (check > minCheck) {
-								checkSupported(resolve, reject);
-							//}
-						}
-
 					}
-				
-				});
+					else {
+						//console.log("DeviceMotion is not supported");
+						setMotion(false);
 
-			}
-			else {
+						checkSupported(resolve, reject);
+					}
 
-				console.log("no event");
-
-				setMotion(false);
-
-				var wait = setTimeout(function() {
-
-					checkSupported(resolve, reject);
-
-				}, minCheck*2);
-				
-
-			}
+				}
+			
+			});
 
 		});
 
