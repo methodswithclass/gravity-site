@@ -55,7 +55,7 @@ validateModule.factory("validate.service", function ($q) {
 
 			window.addEventListener("devicemotion", function (e) {
 
-				console.log("validating");
+				//console.log("validating");
 
 				if (self.checkMotion) {
 
@@ -64,7 +64,7 @@ validateModule.factory("validate.service", function ($q) {
 						setMotion(true);
 						check++;
 
-						console.log(check);
+						//console.log(check);
 
 						if (check > minCheck) {
 							checkSupported(resolve, reject);
