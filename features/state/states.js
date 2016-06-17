@@ -72,7 +72,9 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	$rootScope.$on('$stateChangeStart', 
 	function(event, toState, toParams, fromState, fromParams){
 
-		console.log(toState);	  
+
+		console.log(fromState);	
+		console.log(toState);  
 
 		prevState = fromState;
 
@@ -80,21 +82,25 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		var toStateName = splitStateName(toState.name);
 
 		//console.log(toState.name + " " + toStateName.type + " " + toStateName.name);
+		
+		if (data.isPage(fromStateName.name)) {
 
-	   	if (data.isPage(fromStateName.name) && data.isPage(toStateName.name)) {
-
-	   		var fromPage = data.getPageById(fromStateName.name);
-			var toPage = data.getPageById(toStateName.name);
-
+			var fromPage = data.getPageById(fromStateName.name);
 	   		if (fromPage.motion) {
 	   			manager.stopInstance(fromPage.id);
 	   			manager.leaveInstance(fromPage.id);
 	   		}
+
+	   	}
+
+	   	if (data.isPage(toStateName.name)) {
+
+	   		var toPage = data.getPageById(toStateName.name);
 	   		if (toPage.motion) {
 	   			manager.enterInstance(toPage.id);
 	   		}
 
-    		bodyElem = $(body["body"]);
+	   		bodyElem = $(body["body"]);
 
 			bodyElem.removeClass("cutoff").addClass("scroll");
 

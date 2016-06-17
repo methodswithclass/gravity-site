@@ -22,16 +22,22 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
             var result = checkDevice.run();
 
-            result.then( 
-            function (path) { //valid
-                //console.log("change location to " + path);
-                console.log("device valid");
-                states.go("page.calibrate");
-            },
-            function (path) { //invalid
-                //console.log("change location to " + path);
-                states.go("invalid");
-            });
+            setTimeout(function () {
+
+                result.then( 
+                function (path) { //valid
+                    //console.log("change location to " + path);
+                    console.log("device valid");
+                    states.go("page.calibrate");
+                },
+                function (path) { //invalid
+                    //console.log("change location to " + path);
+                    states.go("invalid");
+                });
+
+            }, 1000);
+
+            
 
         }]
     },

@@ -2,9 +2,6 @@ validateModule.factory("validate.service", function ($q) {
 
 	var self = this;
 
-	var valid = "/valid";
-	var invalid = "/invalid";
-
 	var check = 0;
 	var minCheck = 10;
 	this.motion = false;
@@ -30,11 +27,12 @@ validateModule.factory("validate.service", function ($q) {
 
 
 		if(isMotion()) {
-
-			resolve(valid);
+			console.log("resolve validate");
+			resolve("valid");
 		}
 		else {
-			reject(invalid);
+			console.log("reject validate");
+			reject("invalid");
 		}
 		
 	}
@@ -59,32 +57,39 @@ validateModule.factory("validate.service", function ($q) {
 
 				window.addEventListener("devicemotion", function (e) {
 
+					console.log("validating");
+
 					if (self.checkMotion) {
 
-						if (e.accelerationIncludingGavity || e.acceleration) {
+						if (e.accelerationIncludingGravity || e.acceleration) {
 							//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
 							setMotion(true);
-							check++;
+							//check++;
 
-							if (check > minCheck) {
+							console.log(check);
+
+							//if (check > minCheck) {
 								checkSupported(resolve, reject);
-							}
+							//}
 						}
 						else {
 							//console.log("DeviceMotion is not supported");
 							setMotion(false);
-							check++;
+							//check++;
 
-							if (check > minCheck) {
+							//if (check > minCheck) {
 								checkSupported(resolve, reject);
-							}
+							//}
 						}
 
 					}
+				
 				});
 
 			}
 			else {
+
+				console.log("no event");
 
 				setMotion(false);
 
