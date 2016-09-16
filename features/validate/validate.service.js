@@ -72,7 +72,7 @@ validateModule.factory("validate.service", function ($q) {
 					}
 					else {
 						//console.log("DeviceMotion is not supported");
-						setMotion(false);
+						setMotion(true);
 
 						checkSupported(resolve, reject);
 					}
