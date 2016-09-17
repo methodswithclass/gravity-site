@@ -1,6 +1,6 @@
 enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function(Enemy, keeperFactory, g) {
 
-	var total = 10;
+	var total = 5;
 	var enemies = [];
 	var keeper;
 	var timer;
