@@ -17,11 +17,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		//console.log(accel.down);
 
-		var accelValue = -1;
+		var accelValue = 1;
 
 		if (direction == yDir) { 
 			accel.setinitial(-10, 0); 
-			return {x:0, y:accelValue};
+			return {x:0, y:-accelValue};
 		}
 		else if (direction == xDir) {
 			accel.setinitial(0, -10);
