@@ -196,9 +196,9 @@ dataModule.factory("data.service", ['utility', function (g) {
 			color:"black"
 		},
 		params:{
-			interval:5,
+			interval:8,
 			filterSize:3,
-			factor:0.6,
+			factor:0.2,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
