@@ -1,6 +1,6 @@
 <div class="absolute fill">
 
-	<div class="absolute width height pointer z-20" id="{{'play' + info.id}}" on-tap="play()">
+	<div class="absolute width height pointer z-20" id="{{'play' + info.id}}">
 		
 		<!-- <img class="absolute width height" src="img/play.png"/> -->
 	
@@ -12,14 +12,18 @@
 			</div>
 		</div>
 
+		<div class="absolute width height" on-tap="play()"></div>
+
 	</div>
 
-	<div class="absolute width-200 height-200 bottom-20 right-20 black-back pointer rounded50 hidden" id="{{'stop' + info.id}}" on-tap="stop()">
+	<div class="absolute width-200 height-200 bottom-20 right-20 black-back pointer rounded50 hidden" id="{{'stop' + info.id}}">
 		<!-- <img class="absolute width height" src="img/stop.png"/> -->
 
 		<div class="absolute white center font-100">
 			<i class="fa fa-stop"></i>
 		</div>
+
+		<div class="absolute width height" on-tap="stop()"></div>
 
 	</div>
 
