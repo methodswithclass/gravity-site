@@ -9,6 +9,8 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 
 			var id = $scope.info.id;
 
+			var playing = false;
+
 			setTimeout(function() {
 
 				var play = $("#play" + id);
@@ -20,15 +22,30 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 
 			}, 300);
 
-			$scope.play = function () {
+			// $scope.play = function () {
 
-				manager.startInstance(id);
-			}
+				
+			// }
 
 
-			$scope.stop = function () {
+			// $scope.stop = function () {
 
-				manager.stopInstance(id, false);
+				
+			// }
+
+			$scope.toggle = function () {
+
+				if (playing) {
+
+					playing = false;
+					manager.stopInstance(id, false);
+				}
+				else {
+
+					playing = true;
+					manager.startInstance(id);
+				}
+
 			}
 
 		}
