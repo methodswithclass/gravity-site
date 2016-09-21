@@ -46,7 +46,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
-			menu:"pink-back",
+			menu:"color1-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", right:"10px"},
@@ -89,7 +89,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"green2-back",
 			fore:"white-back",
-			menu:"green2-back",
+			menu:"color2-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -131,7 +131,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"brown-back",
 			fore:"white-back",
-			menu:"brown-back",
+			menu:"color3-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -173,7 +173,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"blue3-back",
 			fore:"white-back",
-			menu:"blue3-back",
+			menu:"color4-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", right:"10px"},
@@ -215,7 +215,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"pink-back",
 			fore:"white-back",
-			menu:"pink-back",
+			menu:"color5-back",
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -257,7 +257,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"white-back",
 			fore:"black-back",
-			menu:"brown-back",
+			menu:"color6-back",
 			button:"white-back",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
