@@ -3,13 +3,13 @@
 
 	<div class="absolute top-10 width text-center font-60">{{info.title}}</div>
 
-	<object ng-show="info.id != 'calibrate'" ng-attr-id="{{'object' + info.id}}"></object>
-	<display ng-show="info.id != 'calibrate'"></display>
+	<object ng-show="info.id != 'calibrate' && info.id != 'settings'" ng-attr-id="{{'object' + info.id}}"></object>
+	<display ng-show="info.id != 'calibrate' && info.id != 'settings'"></display>
 	<calibrate ng-show="info.id == 'calibrate'"></calibrate>
 
 	<preview></preview>
 
-	<toggle ng-show="info.id != 'calibrate'"></toggle>
+	<toggle ng-show="info.id != 'calibrate' && info.id != 'settings'"></toggle>
 	<back ng-show="info.id != 'calibrate'" ng-attr-id="{{'back.' + info.id}}" on-tap="onPressup()"></back>
 
 </div>

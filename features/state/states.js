@@ -32,19 +32,26 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		var name = name.split(".");
 
-		return {
-			type:name[0],
-			name:name[1]
+		var results = {};
+
+		if (name.length > 1) {
+			results = {
+				type:name[0],
+				name:name[1]
+			}
 		}
+		else {
+			results = {
+				type:"",
+				name:name[0]
+			}
+		}
+
+		return results;
 
 	}
 
 	var navigate = function (name, _complete) {
-
-		var complete = function () {};
-
-		if (_complete) complete = _complete;
-
 		
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
@@ -52,7 +59,10 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		bodyElem.scrollTo(elem[0], {
 			duration:duration,
 			queue:false,
-			onAfter:complete
+			onAfter:function() {
+
+				if (_complete) _complete();
+			}
 		});
 	}
 
@@ -73,16 +83,19 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	function(event, toState, toParams, fromState, fromParams){
 
 
-		console.log(fromState);	
-		console.log(toState);  
+		//console.log(fromState);	
+		//console.log(toState);  
+
+		console.log("from state", fromState.name, "to state", toState.name);
 
 		prevState = fromState;
 
 		var fromStateName = splitStateName(fromState.name);
 		var toStateName = splitStateName(toState.name);
-
-		//console.log(toState.name + " " + toStateName.type + " " + toStateName.name);
 		
+		console.log("from", fromStateName, "to", toStateName);
+
+		console.log("check if fromState is page");
 		if (data.isPage(fromStateName.name)) {
 
 			var fromPage = data.getPageById(fromStateName.name);
@@ -93,6 +106,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	   	}
 
+	   	console.log("check if toState is page");
 	   	if (data.isPage(toStateName.name)) {
 
 	   		var toPage = data.getPageById(toStateName.name);
@@ -108,7 +122,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 				console.log("nav complete");
 
-				bodyElem.removeClass("scroll").addClass("cutoff");
+				//bodyElem.removeClass("scroll").addClass("cutoff");
 
 				if (toPage.id == "calibrate") {
 					calibrate.start();

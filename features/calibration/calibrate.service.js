@@ -31,7 +31,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var start = function () {
 
-		g.setFactor(1);
+		g.setGlobalFactor(1);
+		g.setSessionFactor(1);
 		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
 
@@ -90,15 +91,15 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		if (direction == yDir) {
 			value =  Math.abs(relPos.y)/obj.bounds.y;
-			console.log("relpos y " + relPos.y);
-			console.log("y bound " + obj.bounds.y);
-			console.log("y value " + value); 
+			//console.log("relpos y " + relPos.y);
+			//console.log("y bound " + obj.bounds.y);
+			//console.log("y value " + value); 
 		}
 		else {
 			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
-			console.log("relpos x " + relPos.x);
-			console.log("x bound " + obj.bounds.x);
-			console.log("x value " + value);
+			//console.log("relpos x " + relPos.x);
+			//console.log("x bound " + obj.bounds.x);
+			//console.log("x value " + value);
 		}
 
 		var _percent = value/2;
@@ -111,7 +112,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			var grav = g.c.dist/time*1e9;
 
-			g.setFactor(grav/Math.abs(obj.acceleration.y));
+			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			if (relPos.y < 0) {
 				console.log("y edge " + relPos.y);

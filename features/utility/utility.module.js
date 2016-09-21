@@ -3,7 +3,10 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 .factory("utility", ['vector', function (vector) {
 
-	var factor = 1;
+	var factor = {
+		global:1,
+		session:1
+	};
 	var yDir = 1;
 	var xDir = 1;
 
@@ -20,6 +23,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		annihilate:"annihilate",
 		remove:"remove",
 		homeIndex:0,
+		settingsIndex:7,
 		calibrateIndex:1,
 		gravIndex:2,
 		floatIndex:3,
@@ -33,11 +37,16 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		dist:20
 	}
 
-	var setFactor = function (_factor) {
+	var setGlobalFactor = function (_factor) {
 
 		//console.log("factor is " + _factor);
 
-		factor = _factor;
+		factor.global = _factor;
+	}
+
+	var setSessionFactor = function (_factor) {
+
+		factor.session = _factor;
 	}
 
 	var setDirection = function (direction, value) {
@@ -55,7 +64,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var getFactor = function () {
 
-		return factor;
+		return factor.global*factor.session;
 	}
 
 	var getDirection = function (direction) {
@@ -232,7 +241,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	return {
 		c:con,
-		setFactor:setFactor,
+		setGlobalFactor:setGlobalFactor,
+		setSessionFactor:setSessionFactor,
     	setDirection:setDirection,
     	getFactor:getFactor,
     	getDirection:getDirection,

@@ -49,6 +49,14 @@
     <script src="features/touch/touchModule.js"></script>
     <script src="features/touch/touch.js"></script>
 
+    <!-- Controllers -->
+
+    <script src="features/controllers/controllers.module.js"></script>
+    <script src="features/controllers/checkingController.js"></script>
+    <script src="features/controllers/invalidController.js"></script>
+    <script src="features/controllers/pageController.js"></script>
+    <script src="features/controllers/settingsController.js"></script>
+
     <!-- States -->
 
     <script src="features/state/stateModule.js"></script>
@@ -81,6 +89,12 @@
     <script src="features/calibration/calibrate.service.js"></script>
     <script src="features/calibration/calibrate.js"></script>
     <script src="features/calibration/progress.service.js"></script>
+
+    <!-- Settings -->
+
+    <script src="features/validate/validateModule.js"></script>
+    <script src="features/validate/validate.service.js"></script>
+    <script src="features/validate/validate.wrapper.js"></script>
 
     <!-- Games -->
 
@@ -125,6 +139,7 @@
     <script src="features/interface/body.js"></script>
     <script src="features/interface/home.js"></script>
     <script src="features/interface/rotation.js"></script>
+    <script src="features/interface/settings-btn.js"></script>
     
 
   </body>

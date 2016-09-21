@@ -37,6 +37,49 @@ dataModule.factory("data.service", ['utility', function (g) {
 		}
 	},
 	{
+		id:"settings",
+		title:"settings",
+		index:g.c.settingsIndex,
+		motion:false,
+		game:false,
+		page:{
+			view:"page.html",
+			back:"black-back",
+			fore:"white-back",
+			menu:"color1-back",
+			button:"transparent",
+			backButton:{
+				loc:{top:"10px", left:"10px"},
+				padding:'padding-left',
+				icon:"left",
+				directive:g.c.back
+			},
+			rect:{
+				top:"50%",
+				left:"75%"
+			},
+			border:{
+				color:"black",
+				width:1,
+				radius:0
+			}	
+		},
+		obj:{
+			shape:g.c.circle,
+			size:50,
+			color:"black"
+		},
+		params:{
+			interval:2,
+			filterSize:3,
+			factor:1,
+			mu:0.1,
+			damp:0.4,
+			gravity:true,
+			bounce:false
+		}
+	},
+	{
 		id:"calibrate",
 		title:"calibrate",
 		index:g.c.calibrateIndex,
@@ -300,7 +343,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 		for (i in pages) {
 
-			if (i != 0) {
+			if (i >= 2) {
 				options[j++] = {
 					id:pages[i].id,
 					title:pages[i].title,
@@ -334,19 +377,19 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 	var isPage = function (id) {
 
-		console.log("is page", id);
+		console.log("check if", id, "is page");
 
 		for (i in pages) {
 
 			//console.log("page", pages[i], " ", id);
 
 			if (pages[i].id == id) {
-
+				console.log(id, "is a page");
 				return true;
 			}
 		}
 
-		console.log("no page");
+		console.log(id, "is not a page");
 
 		return false;
 	}
