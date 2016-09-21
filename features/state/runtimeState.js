@@ -8,7 +8,7 @@ stateModule.provider("runtime.state", function ($stateProvider) {
     {
         name:"checking",
         url:"/checking",
-        template:"<div ng-include='getContentUrl()'>checking</div>",
+        template:"<div ng-include='getContentUrl()'></div>",
         controller:['$scope', 'validate.service', 'states', function ($scope, checkDevice, states) {
 
             console.log("checking controller");
