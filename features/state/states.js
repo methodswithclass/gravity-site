@@ -117,7 +117,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	   		var tp = data.getPageById(tso.name);
 	   		if (tp.motion) {
-	   			manager.enterInstance(to.id);
+	   			manager.enterInstance(tp.id);
 	   		}
 
 	   		bodyElem = $(body["body"]);
@@ -135,7 +135,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 				}
 
 			});
-			
+
 	   	}
 
 	});
