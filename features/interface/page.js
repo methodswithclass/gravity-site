@@ -9,7 +9,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 		template:'<div ng-include="getContentUrl()"></div>',
 		link:function ($scope, element, attr) {
 
-			//console.log("name: " + $scope.info.name + " view: " + $scope.view);
+			console.log("in page, name:", $scope.info.id, "view:", $scope.view);
 
 			$scope.getContentUrl = function() {
 				//console.log($scope.view);

@@ -9,7 +9,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	var bodyElem;
 	var elem;
 
-	var prevState;
+	var ps; //prevState
 
 	var states = runtime.states;
 
@@ -56,6 +56,8 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
 
+		console.log("nav to", name, "element", elem[0]);
+
 		bodyElem.scrollTo(elem[0], {
 			duration:duration,
 			queue:false,
@@ -80,56 +82,60 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	}
 
 	$rootScope.$on('$stateChangeStart', 
-	function(event, toState, toParams, fromState, fromParams){
+	function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/){
 
 
 		//console.log(fromState);	
 		//console.log(toState);  
 
-		console.log("from state", fromState.name, "to state", toState.name);
+		console.log("from state", fs.name, "to state", ts.name);
 
-		prevState = fromState;
+		ps = fs;
 
-		var fromStateName = splitStateName(fromState.name);
-		var toStateName = splitStateName(toState.name);
+		var fso = splitStateName(fs.name);
+		var tso = splitStateName(ts.name);
 		
-		console.log("from", fromStateName, "to", toStateName);
+		console.log("from", fso, "to", tso);
 
-		console.log("check if fromState is page");
-		if (data.isPage(fromStateName.name)) {
+		console.log("check if 'fromState' is page");
+		if (fso.type == "page") {
 
-			var fromPage = data.getPageById(fromStateName.name);
-	   		if (fromPage.motion) {
-	   			manager.stopInstance(fromPage.id);
-	   			manager.leaveInstance(fromPage.id);
+			console.log(fso.name, "is page");
+
+			var fp = data.getPageById(fso.name);
+	   		if (fp.motion) {
+	   			manager.stopInstance(fp.id);
+	   			manager.leaveInstance(fp.id);
 	   		}
 
 	   	}
 
-	   	console.log("check if toState is page");
-	   	if (data.isPage(toStateName.name)) {
+	   	console.log("check if 'toState' is page");
+	   	if (tso.type == "page") {
 
-	   		var toPage = data.getPageById(toStateName.name);
-	   		if (toPage.motion) {
-	   			manager.enterInstance(toPage.id);
+	   		console.log(tso.name, "is page");
+
+	   		var tp = data.getPageById(tso.name);
+	   		if (tp.motion) {
+	   			manager.enterInstance(to.id);
 	   		}
 
 	   		bodyElem = $(body["body"]);
 
 			bodyElem.removeClass("cutoff").addClass("scroll");
 
-			navigate(toPage.id, function () {
+			navigate(tp.id, function () {
 
 				console.log("nav complete");
 
 				//bodyElem.removeClass("scroll").addClass("cutoff");
 
-				if (toPage.id == "calibrate") {
+				if (tp.id == "calibrate") {
 					calibrate.start();
 				}
 
 			});
-
+			
 	   	}
 
 	});

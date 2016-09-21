@@ -21,7 +21,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		if (direction == yDir) { 
 			accel.setinitial(-10, 0); 
-			return {x:0, y:-accelValue};
+			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
 			accel.setinitial(0, -10);
@@ -33,7 +33,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		g.setGlobalFactor(1);
 		g.setSessionFactor(1);
-		g.setDirection(yDir, 1);
+		g.setDirection(yDir, -1);
 		g.setDirection(xDir, 1);
 
 		setTimeout(function() {
@@ -115,8 +115,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			if (relPos.y < 0) {
-				console.log("y edge " + relPos.y);
-				g.setDirection(yDir, -1);
+				//console.log("y edge " + relPos.y);
+				g.setDirection(yDir, -1*g.getDirection("j"));
 			}
 
 		}
@@ -124,7 +124,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			if (relPos.x < 0) {
 				console.log("x edge " + relPos.x);
-				g.setDirection(xDir,-1);
+				g.setDirection(xDir, -1*g.getDirection("i"));
 			}
 
 		}

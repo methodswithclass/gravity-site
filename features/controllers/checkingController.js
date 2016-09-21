@@ -15,12 +15,10 @@ controllerModule.controller("CheckingController", ['$scope', 'validate.service',
 
         result.then( 
         function (path) { //valid
-            //console.log("change location to " + path);
             console.log("device valid");
             states.go("page.calibrate");
         },
         function (path) { //invalid
-            //console.log("change location to " + path);
             states.go("invalid");
         });
 

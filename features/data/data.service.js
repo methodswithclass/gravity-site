@@ -55,8 +55,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:"50%",
-				left:"75%"
+				top:"-50%",
+				left:"25%"
 			},
 			border:{
 				color:"black",

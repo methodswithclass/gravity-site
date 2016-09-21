@@ -1,6 +1,6 @@
 controllerModule.controller("PageController", ['$scope', '$document', 'data.service', 'states', 'events', 'con', 'manager', function ($scope, $document, data, states, events, con, manager) {
 
-    console.log("open nuplae controller");
+    console.log("page controller");
 
     var self = this;
 

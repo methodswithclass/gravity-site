@@ -21,7 +21,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var addInstance = function (input) {
 
-		console.log("create instance: " + input.id);
+		console.log("add instance:", input.id);
 
 		var page = data.getPageById(input.id);
 
@@ -58,7 +58,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var enterInstance = function (id) {
 
-		console.log("enter " + id);
+		console.log("enter instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -72,6 +72,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	}
 
 	var runGame = function (id) {
+
+		console.log("run game:", id);
 
 		var page = data.getPageById(id);
 		var interval = page.params.interval;
@@ -100,12 +102,14 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var stopGame = function (id) {
 
+		console.log("stop game:", id);
+
 		games[id].onEnd();
 	}
 
 	var startInstance = function (id) {
 
-		console.log("start " + id);
+		console.log("start instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -115,7 +119,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 			if (hasMotion[id]) window.ondevicemotion = accels[id].motion;
 
-			console.log(toggles[id].play[0]);
+			//console.log(toggles[id].play[0]);
 
 			toggles[id].play.addClass("hidden");
 			toggles[id].stop.removeClass("hidden");
@@ -130,7 +134,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		//console.log("destory instance");
 
-		console.log("stop " + id);
+		console.log("stop instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -154,7 +158,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var leaveInstance = function (id) {
 
-		console.log("leave " + id);
+		console.log("leave instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -163,6 +167,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	}
 
 	var resetInstance = function (id) {
+
+		console.log("reset instance:", id);
 
 		var page = data.getPageById(id);
 

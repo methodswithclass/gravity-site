@@ -23,15 +23,10 @@ validateModule.factory("validate.service", function ($q) {
 
 		self.checkMotion = false;
 
-		console.log("finished validating");
-
-
 		if(isMotion()) {
-			console.log("resolve validate");
 			resolve("valid");
 		}
 		else {
-			console.log("reject validate");
 			reject("invalid");
 		}
 		
@@ -55,23 +50,16 @@ validateModule.factory("validate.service", function ($q) {
 
 			window.addEventListener("devicemotion", function (e) {
 
-				//console.log("validating");
-
 				if (self.checkMotion) {
 					
 					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
-						//console.log("DeviceMotion is supported: " + e.accelerationIncludingGravity.x);
 						setMotion(true);
 						check++;
-
-						//console.log(check);
-
 						if (check > minCheck) {
 							checkSupported(resolve, reject);
 						}
 					}
 					else {
-						//console.log("DeviceMotion is not supported");
 						setMotion(true);
 
 						checkSupported(resolve, reject);
