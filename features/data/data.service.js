@@ -23,7 +23,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"home.html",
-			back:"blue3-back",
+			back:"black-back",
 			fore:"white-back",
 			rect:{
 				top:0,
@@ -44,7 +44,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"page.html",
-			back:"pink-back",
+			back:"color1-back",
 			fore:"white-back",
 			menu:"color1-back",
 			button:"transparent",
@@ -87,7 +87,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"page.html",
-			back:"green2-back",
+			back:"color2-back",
 			fore:"white-back",
 			menu:"color2-back",
 			button:"transparent",
@@ -129,7 +129,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"page.html",
-			back:"brown-back",
+			back:"color3-back",
 			fore:"white-back",
 			menu:"color3-back",
 			button:"transparent",
@@ -171,7 +171,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:true,
 		page:{
 			view:"page.html",
-			back:"blue3-back",
+			back:"color4-back",
 			fore:"white-back",
 			menu:"color4-back",
 			button:"transparent",
@@ -213,7 +213,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:true,
 		page:{
 			view:"page.html",
-			back:"pink-back",
+			back:"color5-back",
 			fore:"white-back",
 			menu:"color5-back",
 			button:"transparent",
@@ -255,7 +255,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		game:false,
 		page:{
 			view:"page.html",
-			back:"white-back",
+			back:"color6-back",
 			fore:"black-back",
 			menu:"color6-back",
 			button:"white-back",
