@@ -9,7 +9,7 @@ uiModule.directive("back", ['states', 'send', 'manager', function (states, send,
 
 		$scope.onPressup = function () {
 
-			console.log("on pressup");
+			console.log("return home");
 
 			//buttons.callReturn({name:attr.id, others:false, isId:true});
 		

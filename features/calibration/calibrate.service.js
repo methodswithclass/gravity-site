@@ -43,7 +43,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			progress.runScheme();
 
-		}, 500);
+		}, 1000);
 		
 	}
 
