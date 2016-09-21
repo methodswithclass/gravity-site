@@ -33,7 +33,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		g.setGlobalFactor(1);
 		g.setSessionFactor(1);
-		g.setDirection(yDir, -1);
+		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
 
 		setTimeout(function() {
@@ -105,8 +105,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		var _percent = value/2;
 
 		progress.setPercent(_percent);
-
-		//console.log(obj.yMax);
 
 		if (direction == yDir && Math.abs(relPos.y) >= obj.bounds.y) {
 
