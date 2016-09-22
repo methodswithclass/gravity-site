@@ -108,19 +108,19 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			// if (relPos.y < 0) {
-			if($(obj.el()).offset().top >= $(parent).height()/2) {
-				console.log("switched y direction");
-				g.setDirection(yDir, -1*g.getDirection("j"));
-			}
+			// if($(obj.el()).offset().top >= $(parent).height()/2) {
+			// 	console.log("switched y direction");
+			// 	g.setDirection(yDir, -1*g.getDirection("j"));
+			// }
 
 		}
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
 			// if (relPos.x < 0) {
-			if($(obj.el()).offset().left >= $(parent).width()/2) {
-				console.log("switched x direction");
-				g.setDirection(xDir, -1*g.getDirection("i"));
-			}
+			// if($(obj.el()).offset().left >= $(parent).width()/2) {
+			// 	console.log("switched x direction");
+			// 	g.setDirection(xDir, -1*g.getDirection("i"));
+			// }
 
 		}
 
