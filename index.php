@@ -55,7 +55,6 @@
     <script src="features/controllers/checkingController.js"></script>
     <script src="features/controllers/invalidController.js"></script>
     <script src="features/controllers/pageController.js"></script>
-    <script src="features/controllers/settingsController.js"></script>
 
     <!-- States -->
 
@@ -92,9 +91,9 @@
 
     <!-- Settings -->
 
-    <script src="features/validate/validateModule.js"></script>
-    <script src="features/validate/validate.service.js"></script>
-    <script src="features/validate/validate.wrapper.js"></script>
+    <script src="features/settings/settings.module.js"></script>
+    <script src="features/settings/settings.service.js"></script>
+    <script src="features/settings/settings-btn.js"></script>
 
     <!-- Games -->
 

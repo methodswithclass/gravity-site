@@ -8,6 +8,8 @@ controllerModule.controller("PageController", ['$scope', '$document', 'data.serv
 
     self.pages = data.pages;
 
+    var body;
+
     // ===================== SETUP ======================
 
     states.define();

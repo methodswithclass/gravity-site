@@ -1,1 +1,1 @@
-var controllerModule = angular.module("controllerModule", ["sharedModule", 'validateModule', 'calibrate.module', 'managerModule', 'dataModule', "ngRoute", "ui.router"]);
+var controllerModule = angular.module("controllerModule", ["sharedModule", 'validateModule', 'calibrate.module', 'settingsModule', 'managerModule', 'dataModule', "ngRoute", "ui.router"]);
