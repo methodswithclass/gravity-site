@@ -98,7 +98,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:"25%",
+				top:0,
 				left:0
 			},
 			border:{

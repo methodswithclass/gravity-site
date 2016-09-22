@@ -15,13 +15,14 @@
     <script src="libs/angular.min.js"></script>
     <script src="libs/angular-route.min.js"></script>
     <script src="libs/angular.ui-router.min.js"></script>
+    <script src="libs/angular.hammer.js"></script>
     <script src="libs/jquery.hammer.js"></script>
 
     <base href="/">
 
   </head>
   <body ng-app="nuplae">
-    <div class="absolute width height scroll deselect" id="main">
+    <div class="absolute width height deselect" id="main">
       <div ui-view=""></div>
       <div ui-view="modal"></div>
     </div>
@@ -138,7 +139,6 @@
     <script src="features/interface/body.js"></script>
     <script src="features/interface/home.js"></script>
     <script src="features/interface/rotation.js"></script>
-    <script src="features/interface/settings-btn.js"></script>
     
 
   </body>
