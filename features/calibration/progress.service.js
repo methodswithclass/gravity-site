@@ -10,7 +10,7 @@ calibrateModule.factory("progress.service", function () {
 	var index = 0;
 	var max = 0;
 	var interval = 10;
-	var phasedelay = 500;
+	var phasedelay = 1500;
 	var timer;
 
 	var setPercent = function (_percent) {
@@ -82,7 +82,7 @@ calibrateModule.factory("progress.service", function () {
 
 	var updateProgress = function () {
 
-		//console.log("index " + index + "percent " + percent);
+		console.log("index", index, "percent", percent);
 
 		if (index == 0) {
 			messagetext = scheme[index].message;

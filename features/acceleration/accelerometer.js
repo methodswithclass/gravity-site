@@ -34,6 +34,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		var raw = {x:0, y:0, z:0};
 		self.down = 0;
+		var timer;
 		var running = false;
 
 		self.bounds = {x:100, y:100};

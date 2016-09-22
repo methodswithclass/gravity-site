@@ -1,4 +1,4 @@
-var app = angular.module('nuplae', ['sharedModule', 'stateModule', 'uiModule', 'consoleModule', 'ngRoute', 'ui.router']);
+var app = angular.module('gravity', ['sharedModule', 'stateModule', 'uiModule', 'consoleModule', 'ngRoute', 'ui.router']);
 
 app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvider, $locationProvider) {
   

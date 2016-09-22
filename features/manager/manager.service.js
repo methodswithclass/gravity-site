@@ -168,13 +168,18 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var resetInstance = function (id) {
 
-		console.log("reset instance:", id);
+		console.log("reset instance:", id); 
 
 		var page = data.getPageById(id);
 
 		if (id != "home") {
 
-			if (page.game) games[id].reset();
+			accels[id].stop();
+			accels[id].reset();
+
+			if(page.game) {
+				games[id].reset();
+			}
 		}
 	}
 

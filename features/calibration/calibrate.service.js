@@ -1,4 +1,4 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'utility', 'events', function (progress, manager, g, events) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'utility', 'events', '$mdToast', function (progress, manager, g, events, $mdToast) {
 
 	var accel;
 	var obj;
@@ -6,6 +6,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var yDir = "j";
 	var xDir = "i";
+
+	var messages = {
+		xDir:{
+			same:"x direction same",
+			diff:"x direction switched"
+		},
+		yDir:{
+			same:"y direction same",
+			diff:"y direction switched"
+		}
+	}
 
 	var accelWatch;
 	var checkTimer;
@@ -41,11 +52,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			manager.startInstance("calibrate");
 
-			//accel.start();
-
 			progress.runScheme();
 
-		}, 1000);
+		}, 3000);
 		
 	}
 
@@ -61,13 +70,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			time += 10;
 
-			//console.log(acc);
+			console.log("dummy acceleration", acc);
 
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
 			checkdirection(direction);
 
-		}, 10);
+		}, 300);
 
 	}
 	
@@ -81,6 +90,19 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		manager.stopInstance("calibrate");
 		manager.resetInstance("calibrate");
 		
+	}
+
+	var showToast = function (message) {
+
+		$mdToast.showSimple(message).then(function () {
+
+			setInterval(function (){
+
+				$mdToast.hide();
+
+			}, 1000);
+		});
+
 	}
 
 
@@ -99,6 +121,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		var _percent = value/2;
 
+		console.log("percent", _percent);
+
 		progress.setPercent(_percent);
 
 		if (direction == yDir && Math.abs(relPos.y) >= obj.bounds.y) {
@@ -108,20 +132,32 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			// if (relPos.y < 0) {
-			// if($(obj.el()).offset().top >= $(parent).height()/2) {
-			// 	console.log("switched y direction");
-			// 	g.setDirection(yDir, -1*g.getDirection("j"));
-			// }
+			if($(obj.el()).offset().top >= $(parent).height()/2) {
+				//console.log("switched y direction");
+
+				showToast(messages.yDir.diff);
+
+				g.setDirection(yDir, -1*g.getDirection("j"));
+			}
+			else {
+				showToast(messages.yDir.same);
+			}
 
 		}
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
 			// if (relPos.x < 0) {
-			// if($(obj.el()).offset().left >= $(parent).width()/2) {
-			// 	console.log("switched x direction");
-			// 	g.setDirection(xDir, -1*g.getDirection("i"));
-			// }
+			if($(obj.el()).offset().left <= $(parent).width()/2) {
+				console.log("switched x direction");
+				
+				showToast(messages.xDir.diff);
 
+				g.setDirection(xDir, -1*g.getDirection("i"));
+			}
+			else {
+				
+				showToast(messages.xDir.same);
+			}
 		}
 
 	}
@@ -145,7 +181,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			{
 				percent:0,
 				complete:function () {
-					//console.log("run 0 percent");
+					console.log("run 0 percent");
 					time = (new Date()).getTime();
 					startCheck(yDir);
 				},
@@ -154,6 +190,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			{
 				percent:50,
 				complete:function () {
+					console.log("run 50 percent");
 					startCheck(xDir);
 				},
 				message:"checking x coord"
@@ -161,6 +198,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			{
 				percent:100,
 				complete:function () {
+					console.log("run 100 percent");
 					events.dispatch("leave");
 					stop();
 				},

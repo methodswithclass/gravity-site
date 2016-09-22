@@ -38,7 +38,7 @@ balanceModule.factory("meter", function () {
 				current = max;
 			}
 
-			console.log("current meter " + current);
+			//console.log("current meter " + current);
 
 			//console.log("meter percent: " + percent);
 
