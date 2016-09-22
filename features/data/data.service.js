@@ -26,7 +26,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			back:"black-back",
 			fore:"white-back",
 			rect:{
-				top:0,
+				top:"25%",
 				left:"25%"
 			},
 			border:{
@@ -50,12 +50,12 @@ dataModule.factory("data.service", ['utility', function (g) {
 			button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				padding:'padding-left',
-				icon:"left",
+				padding:'padding-top',
+				icon:"down",
 				directive:g.c.back
 			},
 			rect:{
-				top:"-50%",
+				top:0,
 				left:"25%"
 			},
 			border:{
@@ -98,7 +98,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:0,
+				top:"25%",
 				left:0
 			},
 			border:{
@@ -140,7 +140,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:0,
+				top:"25%",
 				left:"50%"
 			},
 			border:{
@@ -182,7 +182,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:0,
+				top:"25%",
 				left:"75%"
 			},
 			border:{

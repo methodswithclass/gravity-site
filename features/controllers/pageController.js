@@ -16,22 +16,15 @@ controllerModule.controller("PageController", ['$scope', '$document', 'data.serv
     // ===================== EVENTS ======================
 
     events.on("console", function () {
-
         //console.log("console event dispatch");
-
         return con.isRegistered();
     });
 
     // ===================== ON READY ======================
 
     angular.element($document).ready(function () {
-
-        //console.log("document ready");
-
         con.register($("#consoleContainer"));
-
         con.attach();
-    
     });
 
 }])

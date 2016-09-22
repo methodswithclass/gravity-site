@@ -143,14 +143,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		accel = result.accel;
 		obj = result.object;
 
-		//console.log(accel);
-		//console.log(object);
-
 		progress.loadScheme([
 			{
 				percent:0,
 				complete:function () {
-					console.log("run 0 percent");
+					//console.log("run 0 percent");
 					time = (new Date()).getTime();
 					startCheck(yDir);
 				},
@@ -159,7 +156,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			{
 				percent:50,
 				complete:function () {
-					//console.log("run 50 percent");
 					startCheck(xDir);
 				},
 				message:"checking x coord"
@@ -167,8 +163,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			{
 				percent:100,
 				complete:function () {
-
-					//finished();
 					events.dispatch("leave");
 					stop();
 				},
