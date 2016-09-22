@@ -60,7 +60,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var startCheck = function (direction) {
 
-		manager.resetInstance("calibrate");
+		//manager.resetInstance("calibrate");
 
 		var acc = getCalibrationData(direction);
 		
@@ -68,7 +68,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		accelWatch = setInterval(function () {
 
-			time += 10;
+			time += 300;
 
 			console.log("dummy acceleration", acc);
 
@@ -92,17 +92,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		
 	}
 
-	var showToast = function (message) {
+	var showToast = function (dir, type) {
 
-		$mdToast.showSimple(message).then(function () {
-
-			setInterval(function (){
-
-				$mdToast.hide();
-
-			}, 1000);
-		});
-
+		$mdToast.show(
+            $mdToast.simple()
+              .textContent(messages[dir][type])
+              .position("bottom " + (dir == "xDir" ? "left" : "right"))
+              .hideDelay(1000)
+        );
 	}
 
 
@@ -132,15 +129,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			// if (relPos.y < 0) {
-			if($(obj.el()).offset().top >= $(parent).height()/2) {
+			if($(obj.el()).offset().top <= $(parent).height()/2) {
 				//console.log("switched y direction");
 
-				showToast(messages.yDir.diff);
+				//showToast(messages.yDir.diff);
+				showToast("yDir", "diff");
 
 				g.setDirection(yDir, -1*g.getDirection("j"));
 			}
 			else {
-				showToast(messages.yDir.same);
+				//showToast(messages.yDir.same);
+				showToast("yDir", "same");
 			}
 
 		}
@@ -148,15 +147,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			// if (relPos.x < 0) {
 			if($(obj.el()).offset().left <= $(parent).width()/2) {
-				console.log("switched x direction");
+				//console.log("switched x direction");
 				
-				showToast(messages.xDir.diff);
+				//showToast(messages.xDir.diff);
+				showToast("xDir", "diff");
 
 				g.setDirection(xDir, -1*g.getDirection("i"));
 			}
 			else {
 				
-				showToast(messages.xDir.same);
+				//showToast(messages.xDir.same);
+				showToast("xDir", "same");
 			}
 		}
 

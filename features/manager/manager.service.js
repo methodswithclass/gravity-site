@@ -84,7 +84,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		timer = setInterval(function () {
 
-			//accels[id].update();
+			accels[id].update();
 			
 			
 			games[id].update(objects[id], interval);
@@ -168,7 +168,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var resetInstance = function (id) {
 
-		console.log("reset instance:", id); 
+		console.log("reset instance:", id);
 
 		var page = data.getPageById(id);
 
