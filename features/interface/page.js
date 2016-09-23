@@ -30,7 +30,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
         		setTimeout(function() {
 	            	calibrate.init($("#arenacalibrate")[0], $("#objectcalibrate")[0]);
 	            	calibrate.start();
-	      		}, 1000);
+	      		}, 500);
             }
             else if (info.id != "home") {
             	setTimeout(function() {

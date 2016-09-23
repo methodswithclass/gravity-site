@@ -53,18 +53,13 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		}
 
 		var bounce = function () {
-
-			//console.log("bounce");
 			
 			var sideX = pos1.x/Math.abs(pos1.x);
 			
 			var minVel = 12*(Math.abs(accel1.y)+Math.abs(accel1.x));
-
-			//console.log(sideX + " " + self.bounds.x)
 			
 			if (Math.abs(pos1.x) >= self.bounds.x) {
 
-				//console.log("bounce x");
 				pos1.x	= sideX*self.bounds.x;
 				vel1.x = -(1-damp)*vel1.x;
 				if ((Math.abs(vel1.x) < minVel && p.gravity) || !p.bounce) {
@@ -74,11 +69,8 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			
 			
 			var sideY = pos1.y/Math.abs(pos1.y);
-			
-			//console.log(sideY + " " + self.bounds.y);
 
 			if (Math.abs(pos1.y) >= self.bounds.y) {
-				//console.log("bounce y");
 				pos1.y	= sideY*self.bounds.y;
 				vel1.y = -(1-damp)*vel1.y;
 				if ((Math.abs(vel1.y) < minVel && p.gravity) || !p.bounce) {
@@ -96,11 +88,6 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		}
 
 		var updateMotion = function (pos, vel, acc) {
-				
-			//console.log(pos);
-			
-			// var evt = new CustomEvent("accel", {detail:{pos:pos, vel:vel, acc:acc}, bubbles:true, cancelable:false});
-			// window.dispatchEvent(evt);
 
 			obj.setPosition(pos);
 			obj.setVelocity(vel);
@@ -149,10 +136,6 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			
 			if (running) {
 
-				//console.log(input.id + " motion");
-
-				//console.log("motion " + e.accelerationIncludingGravity.y);
-
 				if (p.gravity) {
 					unfiltered.set(new vector(xDir*factor*e.accelerationIncludingGravity.x, yDir*factor*e.accelerationIncludingGravity.y, (e.timeStamp - startTime)/1000));
 				}
@@ -173,10 +156,6 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			startTime = (new Date()).getTime();
 			
 			timer = setInterval(function () {
-
-				//console.log("local");
-
-				//console.log("integrate");
 				
 				filterBucket[filterBucket.length] = unfiltered;
 					
@@ -199,8 +178,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			if (timer) {
 				clearInterval(timer);
 			}
-			
-			//reset();
+
 		}
 
 		self.getRaw = function (e) {
@@ -208,8 +186,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			raw = e.accelerationIncludingGravity;
 
 			self.down = g.len(raw);
-
-			//console.log(self.down);
+			
 		}
 
 		self.reset = function () {

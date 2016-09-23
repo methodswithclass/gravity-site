@@ -7,7 +7,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var yDir = "j";
 	var xDir = "i";
 
-	var messages = {
+	var sm = {
 		xDir:{
 			same:"x direction same",
 			diff:"x direction switched"
@@ -54,13 +54,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			progress.runScheme();
 
-		}, 3000);
+		}, 500);
 		
 	}
 
 	var startCheck = function (direction) {
-
-		//manager.resetInstance("calibrate");
 
 		var acc = getCalibrationData(direction);
 		
@@ -68,15 +66,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		accelWatch = setInterval(function () {
 
-			time += 300;
-
-			console.log("dummy acceleration", acc);
+			time += 30;
 
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
 			checkdirection(direction);
 
-		}, 300);
+		}, 30);
 
 	}
 	
@@ -96,67 +92,51 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		$mdToast.show(
             $mdToast.simple()
-              .textContent(messages[dir][type])
-              .position("bottom " + (dir == "xDir" ? "left" : "right"))
-              .hideDelay(1000)
+				.content(sm[dir][type])
+				.position("bottom " + dir == "yDir" ? "left" : "right")
+				.hideDelay(2000)
         );
 	}
 
 
 	var checkdirection = function (direction) {
 
-		var relPos = obj.absolutePos();
-
+		var relPos = obj.relativePos();
+		console.log("obj", obj, obj.relativePos());
 		var value;
-
 		if (direction == yDir) {
 			value =  Math.abs(relPos.y)/obj.bounds.y;
 		}
 		else {
 			value = 1 + Math.abs(relPos.x)/obj.bounds.x;
 		}
-
 		var _percent = value/2;
-
-		console.log("percent", _percent);
-
+		//console.log("dir", direction, "value", value, "percent", _percent);
 		progress.setPercent(_percent);
 
 		if (direction == yDir && Math.abs(relPos.y) >= obj.bounds.y) {
 
 			var grav = g.c.dist/time*1e9;
-
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
-			// if (relPos.y < 0) {
-			if($(obj.el()).offset().top <= $(parent).height()/2) {
-				//console.log("switched y direction");
-
-				//showToast(messages.yDir.diff);
+			if (relPos.y < 0) {
+			//if(obj.absolutePos().y <= 0) {
 				showToast("yDir", "diff");
-
 				g.setDirection(yDir, -1*g.getDirection("j"));
 			}
 			else {
-				//showToast(messages.yDir.same);
 				showToast("yDir", "same");
 			}
 
 		}
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
-			// if (relPos.x < 0) {
-			if($(obj.el()).offset().left <= $(parent).width()/2) {
-				//console.log("switched x direction");
-				
-				//showToast(messages.xDir.diff);
+			if (relPos.x < 0) {
+			//if(obj.absolutePos().x <= 0) {
 				showToast("xDir", "diff");
-
 				g.setDirection(xDir, -1*g.getDirection("i"));
 			}
 			else {
-				
-				//showToast(messages.xDir.same);
 				showToast("xDir", "same");
 			}
 		}
@@ -178,34 +158,42 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		accel = result.accel;
 		obj = result.object;
 
-		progress.loadScheme([
-			{
-				percent:0,
-				complete:function () {
-					console.log("run 0 percent");
-					time = (new Date()).getTime();
-					startCheck(yDir);
-				},
-				message:"checking y coord"
+		obj.setPosition({x:0, y:0});
+
+		console.log("screen", obj.screenPos());
+		console.log("relative", obj.relativePos());
+		console.log("absolute", obj.absolutePos());
+
+		var scheme = [
+		{
+			percent:0,
+			complete:function () {
+				//console.log("run 0 percent");
+				time = (new Date()).getTime();
+				startCheck(yDir);
 			},
-			{
-				percent:50,
-				complete:function () {
-					console.log("run 50 percent");
-					startCheck(xDir);
-				},
-				message:"checking x coord"
+			message:"checking y coord"
+		},
+		{
+			percent:50,
+			complete:function () {
+				//console.log("run 50 percent");
+				startCheck(xDir);
 			},
-			{
-				percent:100,
-				complete:function () {
-					console.log("run 100 percent");
-					events.dispatch("leave");
-					stop();
-				},
-				message:"completed"
-			}
-		]);
+			message:"checking x coord"
+		},
+		{
+			percent:100,
+			complete:function () {
+				//console.log("run 100 percent");
+				events.dispatch("leave");
+				stop();
+			},
+			message:"completed"
+		}
+		]
+
+		progress.loadScheme(scheme);
 		
 	}
 

@@ -51,4 +51,31 @@ html, body {
 	border:1px solid black;	
 }
 
+@media (max-width: 600px) {
+	md-toast {
+	     width: 30%; 
+	     max-width: 30%; 
+	     min-width: 0; 
+	     border-radius: 0;
+	     padding: 0; 
+	}
+}
+
+.left-toast {
+	position:absolute;
+	left:0;
+	width:30%;
+	max-width:30%;
+	min-width:0;
+}
+
+.right-toast {
+	position:absolute;
+	float:right;
+	right:0;
+	width:30%;
+	max-width:30%;
+	min-width:0;
+}
+
 

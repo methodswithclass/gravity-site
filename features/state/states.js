@@ -56,7 +56,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
 
-		console.log("nav to", name, "element", elem[0]);
+		console.log("nav", bodyElem[0], "to element", elem[0]);
 
 		bodyElem.scrollTo(elem[0], {
 			duration:duration,
@@ -83,8 +83,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	$rootScope.$on('$stateChangeStart', 
 	function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/){
-
-
+		
 		//console.log(fromState);	
 		//console.log(toState);  
 

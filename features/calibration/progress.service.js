@@ -82,7 +82,7 @@ calibrateModule.factory("progress.service", function () {
 
 	var updateProgress = function () {
 
-		console.log("index", index, "percent", percent);
+		console.log("update", "index", index, "percent", percent);
 
 		if (index == 0) {
 			messagetext = scheme[index].message;
@@ -118,9 +118,9 @@ calibrateModule.factory("progress.service", function () {
 
 		max = scheme.length-1;
 
-		start();
+		// start();
 
-		processload();
+		// processload();
 
 		
 	}

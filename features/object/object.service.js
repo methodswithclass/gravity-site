@@ -18,8 +18,6 @@ objectModule.factory("object.service", ["utility", function (utility) {
 		self.bounds = {x:self.arena.x/2 - self.size.x/2, y:self.arena.y/2 - self.size.y/2};
 		self.radius = self.size.x/2;
 
-		//console.log(params.name);
-
 		self.shape = input.params.obj.shape;
 
 		self.el = function () {
@@ -51,11 +49,30 @@ objectModule.factory("object.service", ["utility", function (utility) {
 			self.acceleration = acc;
 		}
 
+		self.screenPos = function () {
+
+			return {
+				x:$(self.el()).offset().left,
+				y:$(self.el()).offset().top
+			}
+		}
+
+		self.relativePos = function () {
+
+			return {
+				x:self.position.x - self.bounds.x,
+				y:self.position.y - self.bounds.y
+			};
+		}
+
 		self.absolutePos = function () {
 
-			//console.log(relPos);
+			var screenPos = self.screenPos();
 
-			return relPos;
+			return {
+				x:screenPos.x - self.bounds.x,
+				y:screenPos.y - self.bounds.y
+			}
 		}
 
 		self.hide = function () {
