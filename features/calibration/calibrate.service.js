@@ -33,8 +33,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		$mdToast.show({
 			template:"<md-toast class='absolute width padding0 margin0 bottom0'>" +
 				    		"<div class='absolute width height-200 md-toast-content'>" +
-				    			"<div class='absolute vcenter font-50'>" +
-				    				sm[dir][type] +
+				    			"<div class='absolute width height'>" + 
+				    				"<div class='absolute vcenter font-50'>" +
+				    					sm[dir][type] +
+				    				"</div>" +
 				    			"</div>" +
 				    		"</div>" +
 						"</md-toast>",
