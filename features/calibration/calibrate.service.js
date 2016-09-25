@@ -30,12 +30,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var showToast = function (dir, type) {
 
-		$mdToast.show(
-            $mdToast.simple()
-				.content(sm[dir][type])
-				.position("bottom " + dir == "yDir" ? "left" : "right")
-				.hideDelay(2000)
-        );
+		$mdToast.show({
+			template:"<md-toast class='absolute width height-100 bottom0'>" +
+				    		"<div class='absolute width height md-toast-content'>" +
+				    			"<div class='absolute vcenter font-70'>" +
+				    				sm[dir][type] +
+				    			"</div>" +
+				    		"</div>" +
+						"</md-toast>",
+			autoWrap:false,
+			hideDelay:2000
+		});
 	}
 
 	var getProgress = function () {
@@ -57,12 +62,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		if (direction == yDir) {
 			//obj.setPosition({x:-10, y:0});
-			accel.setinitial(0,0);
+			//accel.setinitial(0,0);
 			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
 			//obj.setPosition({x:0, y:-10});
-			accel.setinitial(0,0);
+			//accel.setinitial(0,0);
 			return {x:accelValue, y:0};
 		}
 	}

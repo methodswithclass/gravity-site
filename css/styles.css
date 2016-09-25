@@ -82,7 +82,7 @@ html, body {
 	border:1px solid black;	
 }
 
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
 	md-toast {
 	     width: 30%; 
 	     max-width: 30%; 
@@ -90,7 +90,7 @@ html, body {
 	     border-radius: 0;
 	     padding: 0; 
 	}
-}
+}*/
 
 .left-toast {
 	position:absolute;
@@ -107,6 +107,19 @@ html, body {
 	width:30%;
 	max-width:30%;
 	min-width:0;
+}
+
+.toast-class {
+	position:absolute;
+	width:100%;
+	height:100%;
+}
+
+md-toast {
+	position:absolute;
+	width:100%;
+	height:100px;
+	font-size:70px;
 }
 
 
