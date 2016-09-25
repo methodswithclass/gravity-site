@@ -11,13 +11,14 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 				var timer = setInterval(function() {
 
-					//console.log("update message");
+					console.log("update message");
 
-					$("#message").html(calibrate.message());
+					$("#message").html("message is:" + calibrate.message());
 
-					$("#progress").css({width:calibrate.getProgress() + "%"});
+					//$("#progress").css({width:calibrate.getProgress() + "%"});
+					$("#progress").css({width:50 + "%"});
 
-					//$scope.$apply();
+					$scope.$apply();
 
 				}, 10);
 			}

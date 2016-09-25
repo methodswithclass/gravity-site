@@ -5,6 +5,7 @@ objectModule.factory("object.service", ["utility", function (utility) {
 	var object = function (input) {
 
 		var self = this;
+		self.name = input.id;
 		var container = input.object;
 		var arena = input.arena;
 		var relPos = {x:0, y:0};

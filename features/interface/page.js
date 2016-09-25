@@ -20,7 +20,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 
         	if (info.id == "calibrate") {
 
-        		$("#togglecalibrate").addClass("hidden");
+        		//$("#togglecalibrate").addClass("hidden");
         		//$("#objectCalibrate").addClass("hidden");
 
         		events.on("leave", function () {

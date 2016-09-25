@@ -6,6 +6,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		var p = input.params;
 		var obj = input.object;
+		self.name = input.id;
 
 		var filterBucket = [];
 
@@ -147,7 +148,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		self.start = function () {
 				
-			console.log("start accel");
+			console.log("start accel", self.name);
 
 			setValues();
 			

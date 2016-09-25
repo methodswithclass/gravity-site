@@ -7,7 +7,7 @@ calibrateModule.factory("progress.service", function () {
 	var scheme;
 	var loading = false;
 	var stopped = true;
-	var index = 0;
+	//var index = 0;
 	var max = 0;
 	var interval = 10;
 	var phasedelay = 1500;
@@ -15,9 +15,11 @@ calibrateModule.factory("progress.service", function () {
 
 	var setPercent = function (_percent) {
 
-		percentArray[percentArray.length] = _percent;
+		percentArray[percentArray.length] = Math.floor(_percent);
 
-		percent = Math.max(...percentArray)*100;
+		percent = Math.max(...percentArray);
+
+		console.log("progress", "percent", percent);
 	}
 
 	var getPercent = function () {
@@ -29,12 +31,17 @@ calibrateModule.factory("progress.service", function () {
 		return messagetext;
 	}
 
-	var reset = function () {
-
-		console.log("clear progress");
+	var resetTimer = function () {
 
 		clearInterval(timer);
 		timer = null;
+	}
+
+	var reset = function () {
+
+		console.log("progress", "clear");
+
+		resetTimer();
 		index = 0;
 		percent = 0;
 		percentArray = [];
@@ -42,98 +49,78 @@ calibrateModule.factory("progress.service", function () {
 
 	var start = function () {
 
-		console.log("start progress");
+		console.log("progress", "start");
 
 		stopped = false;
 	}
 
 	var stop = function () {
 
-		console.log("stop progress");
+		console.log("progress", "stop");
 
 		stopped = true;
 	}
 
-	var processload = function () {
+	var runPhase = function (index) {
+
+		console.log("progress", "run index", index);
+
+		scheme[index].start();
 
 		timer = setInterval(function () {
 			if (!stopped){
-				//console.log("process");
-				updateProgress();
+				updateProgress(index);
 			}
 		}, interval);
 	}
 
-	var completeload = function (complete) {
+	var updateProgress = function (index) {
 
-		console.log("completeload " + index);
+		console.log("progress", "update index", index, "percent", percent);
 
-		stop();
+		setPercent(scheme[index].update(percent));
 
-		if (complete) {
+		messagetext = scheme[index].message;
+	
+		if (percent >= scheme[index].percent) {
 
-			setTimeout(function () {
-
-				complete();
-
-			}, phasedelay);
-		}
-	}
-
-	var updateProgress = function () {
-
-		console.log("update", "index", index, "percent", percent);
-
-		if (index == 0) {
-			messagetext = scheme[index].message;
+			console.log("progress", "complete phase", index);
 
 			scheme[index].complete();
 
-			index++;
-		}
-		else if (percent == scheme[index].percent) {
-
-			messagetext = scheme[index].message;
-
-			scheme[index].complete();
+			stop();
+			resetTimer();
 
 			if (index < max) {
-
-				index++;
-
-				completeload(function () {
+				
+				setTimeout(function () {
 					start();
-				});
+					runPhase(index + 1);
+				}, phasedelay);
 			}
-			
 		}
 			
 	}
 
 	var loadScheme = function (_scheme) {
 
-		console.log("progress load scheme");
+		console.log("progress", "load scheme");
 
 		scheme = _scheme;
 
 		max = scheme.length-1;
-
-		// start();
-
-		// processload();
-
 		
 	}
 
 	var runScheme = function () {
 
-		console.log("progress run scheme");
+		console.log("progress", "run scheme");
 
 		reset();
 
 		start();
 
-		processload();
+		runPhase(0);
 
 		
 	}

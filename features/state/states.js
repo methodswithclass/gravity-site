@@ -127,7 +127,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 				console.log("nav complete");
 
-				bodyElem.removeClass("scroll").addClass("cutoff");
+				//bodyElem.removeClass("scroll").addClass("cutoff");
 
 				if (tp.id == "calibrate") {
 					calibrate.start();
