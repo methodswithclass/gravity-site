@@ -28,6 +28,7 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 
 					playing = false;
 					manager.stopInstance(id, false);
+					manager.resetInstance(id);
 				}
 				else {
 
