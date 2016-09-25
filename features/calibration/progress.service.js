@@ -76,7 +76,7 @@ calibrateModule.factory("progress.service", function () {
 
 	var updateProgress = function (index) {
 
-		console.log("progress", "update index", index, "percent", percent);
+		//console.log("progress", "update index", index, "percent", percent);
 
 		setPercent(scheme[index].update(percent));
 

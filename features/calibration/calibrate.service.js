@@ -26,19 +26,40 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var time = 0;
 	var _percent = 0;
 
-	var getCalibrationData = function (direction) {
+	var showToast = function (dir, type) {
 
-		//console.log(" ");
+		$mdToast.show(
+            $mdToast.simple()
+				.content(sm[dir][type])
+				.position("bottom " + dir == "yDir" ? "left" : "right")
+				.hideDelay(2000)
+        );
+	}
+
+	var getProgress = function () {
+
+		return progress.getPercent();
+	}
+
+	var getMessage = function () {
+
+		return progress.message();
+	}
+
+	var getPercent = function () {
+
+		return _percent*(1/scheme.length);
+	}
+
+	var getCalibrationData = function (direction) {
 
 		var accelValue = 1;
 
-		if (direction == yDir) { 
-			//accel.setinitial(-10, 0); 
+		if (direction == yDir) {
 			obj.setPosition({x:-10, y:0});
 			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
-			//accel.setinitial(0, -10);
 			obj.setPosition({x:0, y:-10});
 			return {x:accelValue, y:0};
 		}
@@ -46,16 +67,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var reset = function () {
 
+		console.log("calibrate reset");
+
 		obj.setPosition({x:0, y:0});
 
 		progress.reset();
-		manager.stopInstance("calibrate");
 		manager.resetInstance("calibrate");
 	}
 
 	var start = function () {
 
-		reset();
+		console.log("calibrate start");
 
 		g.setGlobalFactor(1);
 		g.setSessionFactor(1);
@@ -79,6 +101,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		
 	}
 
+	var stop = function (oncomplete) {
+
+		clearInterval(accelWatch);
+		accelWatch = {};
+		accelWatch = null;
+		
+	}
+
 	var startCheck = function (direction) {
 
 		var acc = getCalibrationData(direction);
@@ -91,8 +121,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			time += interval;
 
-			//console.log("calibrate", "accel", accel);
-
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
 			checkdirection(direction);
@@ -100,33 +128,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		}, interval);
 
 	}
-	
-	var stop = function (oncomplete) {
-
-		clearInterval(accelWatch);
-		accelWatch = {};
-		accelWatch = null;
-		
-	}
-
-	var showToast = function (dir, type) {
-
-		$mdToast.show(
-            $mdToast.simple()
-				.content(sm[dir][type])
-				.position("bottom " + dir == "yDir" ? "left" : "right")
-				.hideDelay(2000)
-        );
-	}
-
-	var getPercent = function () {
-
-		return _percent*(1/scheme.length);
-	}
 
 
 	var checkdirection = function (direction) {
-
 
 
 		var relPos = obj.absolutePos();
@@ -275,7 +279,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			console.log("complete phase 5");
 
 			setTimeout(function () {
-				events.dispatch("leave");
+				manager.stopInstance("calibrate");
+				events.dispatch("gohome");
 			}, 500);
 			
 		}
@@ -283,6 +288,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	]
 
 	var init = function (parent, object) {
+
+		console.log("calibrate init");
 
 		manager.addInstance({
 			id:"calibrate",
@@ -305,20 +312,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		
 	}
 
-	var getProgress = function () {
-
-		return progress.getPercent();
-	}
-
-	var message = function () {
-
-		return progress.message();
-	}
-
 	return {
 		init:init,
 		getProgress:getProgress,
-		message:message,
+		getMessage:getMessage,
 		reset:reset,
 		start:start
 	}

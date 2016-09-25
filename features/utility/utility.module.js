@@ -7,6 +7,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		global:1,
 		session:1
 	};
+
 	var yDir = 1;
 	var xDir = 1;
 
@@ -16,6 +17,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		backAsset:"img/back.png",
 		loadingAsset:"img/loading.png",
 		landClockwise:"landClockwise",
+		valid:"valid",
+		invalid:"invalid",
 		portrait:"portrait",
 		circle:"circle",
 		square:"square",
@@ -37,9 +40,33 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		dist:20
 	}
 
-	var setGlobalFactor = function (_factor) {
+	var forced = false;
+	var valid = false;
+	var status = con.invalid;
 
-		//console.log("factor is " + _factor);
+	var toggleValidity = function (_valid) {
+
+		forced = true;
+		valid = _valid;
+		status = valid ? con.valid : con.invalid;
+	}
+
+	var isForced = function () {
+
+		return forced;
+	}
+
+	var deviceStatus = function () {
+
+		return status;
+	}
+
+	var isValid = function () {
+
+		return valid;
+	}
+
+	var setGlobalFactor = function (_factor) {
 
 		factor.global = _factor;
 	}
@@ -70,18 +97,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var getDirection = function (direction) {
 
 		return direction == "i" ? xDir : yDir;
-	}
-
-	var isValid = function () {
-
-		//console.log($location.url());
-
-		if ($location.url() == "/valid") {	
-			return true;
-		}
-
-		return false;
-
 	}
 
 	var average = function (array) {
@@ -246,6 +261,9 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
     	setDirection:setDirection,
     	getFactor:getFactor,
     	getDirection:getDirection,
+    	toggleValidity:toggleValidity,
+    	isForced:isForced,
+    	deviceStatus:deviceStatus,
     	isValid:isValid,
 		average:average,
 		truncate:truncate,

@@ -36,7 +36,7 @@
       <div ui-view=""></div>
       <div ui-view="modal"></div>
     </div>
-    <console ng-attr-vis="show"><console>
+    <console ng-attr-vis="hide"><console>
     
 
     <!-- App -->
@@ -64,7 +64,7 @@
 
     <script src="features/controllers/controllers.module.js"></script>
     <script src="features/controllers/checkingController.js"></script>
-    <script src="features/controllers/invalidController.js"></script>
+    <script src="features/controllers/validController.js"></script>
     <script src="features/controllers/pageController.js"></script>
 
     <!-- States -->

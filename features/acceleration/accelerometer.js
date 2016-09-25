@@ -174,7 +174,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		
 		self.stop = function () {
 			
-			console.log("stop accel");
+			console.log("stop accel", self.name);
 			
 			running = false;
 			

@@ -1,4 +1,4 @@
-validateModule.factory("validate.service", function ($q) {
+validateModule.factory("validate.service", ['$q', 'utility', function ($q, g) {
 
 	var self = this;
 
@@ -24,19 +24,31 @@ validateModule.factory("validate.service", function ($q) {
 		self.checkMotion = false;
 
 		if(isMotion()) {
-			resolve("valid");
+			resolve(g.c.valid);
 		}
 		else {
-			reject("invalid");
+			reject(g.c.invalid);
 		}
 		
 	}
 
 	var invalidate = function () {
 
+		console.log("valid service", "invalidate");
+
 		return $q(function (resolve, reject) {
-			reject(invalid);
+			reject(g.c.invalid);
 		});
+	}
+
+	var validate = function () {
+
+		console.log("valid service", "validate");
+
+		return $q(function (resolve, reject) {
+			resolve(g.c.valid);
+		});
+
 	}
 
 	var run = function() {
@@ -60,7 +72,7 @@ validateModule.factory("validate.service", function ($q) {
 						}
 					}
 					else {
-						setMotion(true);
+						setMotion(false);
 
 						checkSupported(resolve, reject);
 					}
@@ -77,8 +89,9 @@ validateModule.factory("validate.service", function ($q) {
 	return {
 
 		run:run,
+		validate:validate,
 		invalidate:invalidate
 	}
 
 
-});
+}]);

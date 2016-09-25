@@ -6,28 +6,45 @@ stateModule.provider("runtime.state", function ($stateProvider) {
 
     var states = [
     {
+        name:"modal",
+        views:{
+            "modal":{
+                templateUrl:"views/modal.html"
+            }
+        },
+        abstract:true
+    },
+    {
+        name:"modal.valid",
+        url:"/valid",
+        views:{
+            "modal":{
+                templateUrl:"views/modal.valid.html",
+                controller:"ValidController"
+            }
+        },
+        
+    },
+    {
+        name:"modal.invalid",
+        url:"/invalid",
+        views:{
+            "modal":{
+                templateUrl:"views/modal.invalid.html"
+            }
+        },
+        
+    },
+    {
         name:"checking",
         url:"/checking",
         template:"<div ng-include='getContentUrl()'></div>",
         controller:"CheckingController"
     },
     {
-        name:"invalid",
-        url:"/invalid",
-        template:"<div ng-include='getContentUrl()'></div>",
-        controller:"InvalidController"
-    },
-    // {
-    //     name:"settings",
-    //     url:"/settings",
-    //     templateUrl:"features/views/settings.html",
-    //     controller:"SettingsController",
-    //     controllerAs:"main"
-    // },
-    {
         name:"page",
         url:"",
-        templateUrl:"features/views/valid.html",
+        templateUrl:"views/content.html",
         controller:"PageController",
         controllerAs:"main",
         abstract:true

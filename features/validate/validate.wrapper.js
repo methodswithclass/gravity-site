@@ -1,57 +1,91 @@
-validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', function ($q, validate, events) {
+validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 'utility', function ($q, validate, events, g) {
 
 
-	var run = function () {
+	var isRegistered = false;
 
-		return $q(function (resolve, reject) {
+	var checkRegistered = function (resolve, reject, complete) {
 
-			var isValid;
+		var timer = setInterval(function () {
 
-			var desktopdebug = false;
-			var isRegistered = false;
-			var checking = "/checking";
-			var invalid = "/invalid";
-			var valid = "/valid";
-			
-			var proceed = function () {
+			isRegistered = events.dispatch("console");
 
-				if (!desktopdebug) {
-					isValid = validate.run();
-				}
-				else {
-					isValid = validate.invalidate();
-				}
+			console.log("valid wrapper", "registered", isRegistered);
 
-				isValid.then( 
-				function (path) { //valid
-					resolve(path);
-				},
-				function (path) { //invalid
-					reject(path);
-				});
+			if (isRegistered) {
 
+				clearInterval(timer);
+				timer = null;
+
+				complete(resolve, reject);
 			}
 
-			var timer = setInterval(function () {
-
-				isRegistered = events.dispatch("console");
-
-				if (isRegistered) {
-
-					clearInterval(timer);
-					timer = null;
-					proceed();
-				}
-
-
-			}, 10);
-
-		});
+		}, 10);
 
 	}
 
+	var runValidation = function (resolve, reject) {
+
+		console.log("valid wrapper", "run validation");
+
+		validate.run().then( 
+		function (path) { //valid
+			resolve(path);
+		},
+		function (path) { //invalid
+			reject(path);
+		});
+	}
+
+	var forceValidation = function (resolve, reject) {
+
+		console.log("valid wrapper", "force validation");
+
+		if (g.isValid()) {
+
+			validate.validate().then( 
+			function (path) { //valid
+				resolve(path);
+			},
+			function (path) { //invalid
+				reject(path);
+			});
+		}
+		else {
+			validate.invalidate().then( 
+			function (path) { //valid
+				resolve(path);
+			},
+			function (path) { //invalid
+				reject(path);
+			});
+		}
+	}
+
+	var run = function () {
+
+		console.log("valid wrapper", "run");
+
+		return $q(function (resolve, reject) {
+		
+			checkRegistered(resolve, reject, runValidation);
+
+		});
+	}
+
+	var force = function () {
+
+		console.log("valid wrapper", "force");
+
+		return $q(function (resolve, reject) {
+		
+			checkRegistered(resolve, reject, forceValidation);
+
+		});
+	}
+
 	return {
-		run:run
+		run:run,
+		force:force
 	}
 
 }]);

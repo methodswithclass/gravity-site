@@ -4,7 +4,7 @@ uiModule.directive("back", ['states', 'send', 'manager', function (states, send,
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"features/views/back.html",
+		templateUrl:"views/back.html",
 		link:function ($scope, element, attr) {
 
 			$scope.onPressup = function () {

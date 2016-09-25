@@ -12,8 +12,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 			console.log("in page, name:", $scope.info.id, "view:", $scope.view);
 
 			$scope.getContentUrl = function() {
-				//console.log($scope.view);
-                return 'features/views/' + $scope.view;
+                return 'views/' + $scope.view;
             }
 
             var info = $scope.info;
@@ -23,11 +22,8 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
         		//$("#togglecalibrate").addClass("hidden");
         		//$("#objectCalibrate").addClass("hidden");
 
-        		events.on("leave", function () {
-	      			states.go("page.home");
-	      		});
-
         		setTimeout(function() {
+        			console.log("page directive", "run calibration");
 	            	calibrate.init($("#arenacalibrate")[0], $("#objectcalibrate")[0]);
 	            	calibrate.start();
 	      		}, 500);

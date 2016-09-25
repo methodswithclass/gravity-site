@@ -20,18 +20,7 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 
 				send.retrieve.accum({name:"toggle", id:id, data:toggle});
 
-			}, 300);
-
-			// $scope.play = function () {
-
-				
-			// }
-
-
-			// $scope.stop = function () {
-
-				
-			// }
+			}, 500);
 
 			$scope.toggle = function () {
 

@@ -15,13 +15,15 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var setupReceivers = function () {
 
+		console.log("manager setup receivers");
+
 		send.setup.receiver({name:"toggle", receiver:toggles});
 		send.setup.receiver({name:"display", receiver:displays});
 	}
 
 	var addInstance = function (input) {
 
-		console.log("add instance:", input.id);
+		console.log("manager", "add instance:", input.id);
 
 		var page = data.getPageById(input.id);
 
@@ -58,7 +60,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var enterInstance = function (id) {
 
-		console.log("enter instance:", id);
+		console.log("manager", "enter instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -73,7 +75,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var runGame = function (id) {
 
-		console.log("run game:", id);
+		console.log("manager", "run game:", id);
 
 		var page = data.getPageById(id);
 		var interval = page.params.interval;
@@ -102,14 +104,14 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var stopGame = function (id) {
 
-		console.log("stop game:", id);
+		console.log("manager", "stop game:", id);
 
 		games[id].onEnd();
 	}
 
 	var startInstance = function (id) {
 
-		console.log("start instance:", id);
+		console.log("manager", "start instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -132,9 +134,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var stopInstance = function (id, back) {
 
-		//console.log("destory instance");
-
-		console.log("stop instance:", id);
+		console.log("manager", "stop instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -158,7 +158,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var leaveInstance = function (id) {
 
-		console.log("leave instance:", id);
+		console.log("manager", "leave instance:", id);
 
 		var page = data.getPageById(id);
 
@@ -168,7 +168,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	var resetInstance = function (id) {
 
-		console.log("reset instance:", id);
+		console.log("manager", "reset instance:", id);
 
 		var page = data.getPageById(id);
 

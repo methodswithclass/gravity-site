@@ -1,4 +1,4 @@
-controllerModule.controller("PageController", ['$scope', '$document', 'data.service', 'states', 'events', 'con', 'manager', function ($scope, $document, data, states, events, con, manager) {
+controllerModule.controller("PageController", ['$scope', '$document', 'data.service', 'states', 'events', 'manager', function ($scope, $document, data, states, events, manager) {
 
     console.log("page controller");
 
@@ -17,16 +17,10 @@ controllerModule.controller("PageController", ['$scope', '$document', 'data.serv
 
     // ===================== EVENTS ======================
 
-    events.on("console", function () {
-        //console.log("console event dispatch");
-        return con.isRegistered();
+    events.on("gohome", function () {
+        states.go("page.home");
     });
 
-    // ===================== ON READY ======================
-
-    angular.element($document).ready(function () {
-        con.register($("#consoleContainer"));
-        con.attach();
-    });
+    // ===================== ON READY =====================
 
 }])
