@@ -84,7 +84,7 @@ calibrateModule.factory("progress.service", function () {
 	
 		if (percent >= scheme[index].percent) {
 
-			console.log("progress", "complete phase", index);
+			console.log("progress", "complete index", index);
 
 			scheme[index].complete();
 

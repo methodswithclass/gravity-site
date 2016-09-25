@@ -23,6 +23,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var element;
 
+	var accelValue = 1;
+	var acc = {};
 	var time = 0;
 	var _percent = 0;
 
@@ -53,14 +55,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var getCalibrationData = function (direction) {
 
-		var accelValue = 1;
-
 		if (direction == yDir) {
-			obj.setPosition({x:-10, y:0});
+			//obj.setPosition({x:-10, y:0});
+			accel.setinitial(0,0);
 			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
-			obj.setPosition({x:0, y:-10});
+			//obj.setPosition({x:0, y:-10});
+			accel.setinitial(0,0);
 			return {x:accelValue, y:0};
 		}
 	}
@@ -68,8 +70,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var reset = function () {
 
 		console.log("calibrate reset");
-
-		obj.setPosition({x:0, y:0});
 
 		progress.reset();
 		manager.resetInstance("calibrate");
@@ -93,6 +93,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		setTimeout(function() {
 
+			manager.resetInstance("calibrate");
 			manager.startInstance("calibrate");
 
 			progress.runScheme();
@@ -111,11 +112,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var startCheck = function (direction) {
 
-		var acc = getCalibrationData(direction);
+		acc = {};
+		acc = getCalibrationData(direction);
 		
 		clearInterval(accelWatch);
 
-		var interval = 30;
+		var interval = 10;
 
 		accelWatch = setInterval(function () {
 
@@ -134,14 +136,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 
 		var relPos = obj.absolutePos();
-		console.log("calibrate", "dir", direction, "relPos", relPos);
+		console.log("calibrate", "dir", direction, "relPos", relPos, "acc", acc);
 		
 		var value;
 		if (direction == yDir) {
 			value =  Math.abs(relPos.y)/obj.bounds.y;
+			//value = relPos.y;
 		}
 		else {
 			value = Math.abs(relPos.x)/obj.bounds.x;
+			//value = relPos.x;
 		}
 
 		//_percent = Math.abs(direction == xDir ? relPos.x : relPos.y)/obj.bounds.y;;
@@ -161,7 +165,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
 			if (relPos.y < 0) {
-			//if(obj.absolutePos().y <= 0) {
+			//if(relPos.y ) {
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "diff");
 				g.setDirection(yDir, -1*g.getDirection("j"));
@@ -174,7 +178,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		}
 		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
 
-			console.log("calibrate", "reached x boundary", relPos.y);
+			console.log("calibrate", "reached x boundary", relPos.x);
 
 			stop();
 
@@ -208,7 +212,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		complete:function () {
 
 			console.log("complete phase 1");
-
+			manager.resetInstance("calibrate");
 		}
 	},
 	{
@@ -222,12 +226,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		start:function () {
 			console.log("begin phase 2");
 			time = (new Date()).getTime();
-			startCheck(yDir);
+			manager.startInstance("calibrate");
+			startCheck(xDir);
 		},
 		complete:function () {
-
 			console.log("complete phase 2");
-
+			manager.resetInstance("calibrate");
 		}
 	},
 	{
@@ -240,11 +244,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		},
 		start:function () {
 			console.log("begin phase 3");
-			startCheck(xDir);
+			manager.startInstance("calibrate");
+			startCheck(yDir);
 		},
 		complete:function () {
 			console.log("complete phase 3");
-
+			manager.resetInstance("calibrate");
 		}
 	},
 	{

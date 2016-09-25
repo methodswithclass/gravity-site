@@ -88,7 +88,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 			accels[id].update();
 			
-			
 			games[id].update(objects[id], interval);
 			displays[id].time.html(games[id].clock());
 			displays[id].points.html(games[id].points());
@@ -96,7 +95,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			if (games[id].zeroTime()) {
 				stopInstance(id);
 			}
-		
 
 		}, interval);
 
@@ -106,7 +104,19 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		console.log("manager", "stop game:", id);
 
-		games[id].onEnd();
+		var page = data.getPageById(id);
+
+		if (page.game) games[id].onEnd();
+	}
+
+	var leaveGame = function (id) {
+
+		console.log("manager", "leave game:", id);
+
+		var page = data.getPageById(id);
+
+		if (page.game) games[id].onLeave();
+
 	}
 
 	var startInstance = function (id) {
@@ -144,7 +154,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			timer = null;
 
 			accels[id].stop();
-			accels[id].reset();
 
 			window.ondevicemotion = null;
 
@@ -156,16 +165,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		}
 	}
 
-	var leaveInstance = function (id) {
-
-		console.log("manager", "leave instance:", id);
-
-		var page = data.getPageById(id);
-
-		if (page.game) games[id].onLeave();
-
-	}
-
 	var resetInstance = function (id) {
 
 		console.log("manager", "reset instance:", id);
@@ -174,7 +173,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		if (id != "home") {
 
-			accels[id].stop();
 			accels[id].reset();
 
 			if(page.game) {
@@ -190,7 +188,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		enterInstance:enterInstance,
 		startInstance:startInstance,
 		stopInstance:stopInstance,
-		leaveInstance:leaveInstance,
+		leaveInstance:leaveGame,
 		resetInstance:resetInstance
 	}
 
