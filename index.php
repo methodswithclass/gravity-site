@@ -36,7 +36,7 @@
       <div ui-view=""></div>
       <div ui-view="modal"></div>
     </div>
-    <console ng-attr-vis="hide"><console>
+    <console ng-attr-vis="show"><console>
     
 
     <!-- App -->
