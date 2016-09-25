@@ -93,6 +93,8 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			obj.setPosition(pos);
 			obj.setVelocity(vel);
 			obj.setAcceleration(acc);
+
+			var event = new CustomEvent('accel', { 'detail':{pos:pos, vel:vel, accel:acc}});
 				
 		}
 

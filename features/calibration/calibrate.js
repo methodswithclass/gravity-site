@@ -15,7 +15,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 					var $message = $("#message");
 					var $progress = $("#progress");
 
-					console.log("update message", $message[0], $progress[0]);
+					//console.log("update message", $message[0], $progress[0]);
 
 					$message.html("message is:" + calibrate.message());
 

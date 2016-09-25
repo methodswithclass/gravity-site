@@ -30,7 +30,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 		//console.log(" ");
 
-		var accelValue = 0.01;
+		var accelValue = 1;
 
 		if (direction == yDir) { 
 			//accel.setinitial(-10, 0); 
@@ -44,12 +44,30 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		}
 	}
 
+	var reset = function () {
+
+		obj.setPosition({x:0, y:0});
+
+		progress.reset();
+		manager.stopInstance("calibrate");
+		manager.resetInstance("calibrate");
+	}
+
 	var start = function () {
+
+		reset();
 
 		g.setGlobalFactor(1);
 		g.setSessionFactor(1);
 		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
+
+		accel.getMotion(function (position, velocity, acceleration) {
+
+			obj.position = position;
+			obj.velocity = velocity;
+			obj.acceleration = acceleration;
+		})
 
 		setTimeout(function() {
 
@@ -73,7 +91,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 			time += interval;
 
-			console.log("calibrate", "accel", accel);
+			//console.log("calibrate", "accel", accel);
 
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
@@ -109,8 +127,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 
 	var checkdirection = function (direction) {
 
-		var relPos = obj.relativePos();
-		console.log("calibrate", "dir", direction, "relPos", relPos, "obj bounds", obj.bounds);
+
+
+		var relPos = obj.absolutePos();
+		console.log("calibrate", "dir", direction, "relPos", relPos);
 		
 		var value;
 		if (direction == yDir) {
@@ -123,7 +143,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		//_percent = Math.abs(direction == xDir ? relPos.x : relPos.y)/obj.bounds.y;;
 		_percent = Math.floor(value)*100;
 
-		console.log("value", _percent + "%");
+		console.log("calibration", "in check", _percent + "%");
 		
 		//progress.setPercent(_percent);
 
@@ -193,12 +213,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		message:"checking y axis",
 		percent:50,
 		update:function (percent) {
-			return percent + 1;
+			return percent + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 2");
 			time = (new Date()).getTime();
-			//startCheck(yDir);
+			startCheck(yDir);
 		},
 		complete:function () {
 
@@ -212,11 +232,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		message:"checking x axis",
 		percent:75,
 		update:function (percent) {
-			return percent + 1;
+			return percent + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
-			//startCheck(xDir);
+			startCheck(xDir);
 		},
 		complete:function () {
 			console.log("complete phase 3");
@@ -277,8 +297,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		accel = result.accel;
 		obj = result.object;
 
-		obj.setPosition({x:0, y:0});
-
 		console.log("screen", obj.screenPos());
 		console.log("relative", obj.relativePos());
 		console.log("absolute", obj.absolutePos());
@@ -295,13 +313,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var message = function () {
 
 		return progress.message();
-	}
-
-	var reset = function () {
-
-		progress.reset();
-		manager.stopInstance("calibrate");
-		manager.resetInstance("calibrate");
 	}
 
 	return {
