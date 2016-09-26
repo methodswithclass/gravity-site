@@ -31,7 +31,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 	var showToast = function (dir, type) {
 
 		$mdToast.show({
-			template:"<md-toast class='absolute width height-200 bottom0'>" +
+			template:"<md-toast class='absolute width padding0 margin0 height-200 bottom0'>" +
 				    		"<div class='absolute width height md-toast-content'>" +
 				    			"<div class='absolute width height'>" + 
 				    				"<div class='absolute vcenter font-50'>" +
