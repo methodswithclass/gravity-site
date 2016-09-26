@@ -109,7 +109,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		},
 		obj:{
 			shape:g.c.circle,
-			size:200,
+			size:30,
 			color:"black"
 		},
 		params:{
