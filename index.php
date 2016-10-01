@@ -9,9 +9,13 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-    <script src="libs/jquery-1.11.3.min.js"></script>
+    <!-- <script src="libs/jquery-1.11.3.min.js"></script> -->
     <script src="libs/jquery.scrollto.js"></script>
     <script src="libs/hammer.js"></script>
     <script src="libs/angular.min.js"></script>
@@ -103,6 +107,7 @@
     <!-- Settings -->
 
     <script src="features/settings/settings.module.js"></script>
+    <script src="features/settings/settings.js"></script>
     <script src="features/settings/settings.service.js"></script>
     <script src="features/settings/settings-btn.js"></script>
 

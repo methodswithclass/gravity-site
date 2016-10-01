@@ -1,4 +1,4 @@
-controllerModule.controller("PageController", ['$scope', '$document', 'data.service', 'states', 'events', 'manager', function ($scope, $document, data, states, events, manager) {
+controllerModule.controller("PageController", ['$scope', 'data.service', 'states', 'events', 'manager', function ($scope, data, states, events, manager) {
 
     console.log("page controller");
 
@@ -12,7 +12,7 @@ controllerModule.controller("PageController", ['$scope', '$document', 'data.serv
 
     // ===================== SETUP ======================
 
-    states.define();
+    states.setupReceivers();
     manager.setupReceivers();
 
     // ===================== EVENTS ======================
@@ -20,6 +20,11 @@ controllerModule.controller("PageController", ['$scope', '$document', 'data.serv
     events.on("gohome", function () {
         states.go("page.home");
     });
+
+    events.on("enter-page", function () {
+
+        states.navTo();
+    })
 
     // ===================== ON READY =====================
 

@@ -14,12 +14,16 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	var states = runtime.states;
 
 	var state;
+	var isPage = false;
 
 	send.setup.receiver({name:"body", receiver:body});
 
 	var current = function () {
 
-		return $state.current.name;
+		return {
+			name:$state.current.name,
+			isPage:isPage
+		};
 	}
 
 	var go = function (state) {
@@ -28,7 +32,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		
 	}
 
-	var splitStateName = function (name) {
+	var inspectState = function (name) {
 
 		var name = name.split(".");
 
@@ -108,11 +112,15 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	   		}
 
 	   	}
+	   	else {
+	   		console.log(fso.name, "is not page");
+	   	}
 
 	   	console.log("check if 'toState' is page");
 	   	if (tso.type == "page") {
 
 	   		console.log(tso.name, "is page");
+	   		isPage = true;
 
 	   		var tp = data.getPageById(tso.name);
 	   		if (tp.motion) {
@@ -127,7 +135,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 				console.log("nav complete");
 
-				//bodyElem.removeClass("scroll").addClass("cutoff");
+				bodyElem.removeClass("scroll").addClass("cutoff");
 
 				if (tp.id == "calibrate") {
 					calibrate.start();
@@ -136,16 +144,21 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 			});
 
 	   	}
+	   	else {
+	   		console.log(tso.name, "is not page");
+	   	}
 
 	});
 
-	var define = function () {
+	var setupReceivers = function () {
+
+		console.log("setup state receivers");
 
 		send.setup.receiver({name:"body", receiver:body});
 		send.setup.receiver({name:"pages", receiver:elements});
 		send.setup.receiver({name:"objects", receiver:objects});
 
-		console.log("setup state receivers");
+		
 	}
 	
 	angular.element($window).bind('resize', function () {
@@ -153,7 +166,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	});
 
 	return {
-		define:define,
+		setupReceivers:setupReceivers,
 		current:current,
 		go:go
 	}

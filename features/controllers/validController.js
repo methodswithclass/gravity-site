@@ -3,7 +3,7 @@ controllerModule.controller("ValidController", ['$scope', 'global', 'states', 'd
 
 	setTimeout(function () {
 
-		states.go("page.calibrate");
+		states.go("page.settings");
 	}, 2000);
 
 }])

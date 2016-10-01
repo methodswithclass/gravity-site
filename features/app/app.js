@@ -15,7 +15,7 @@ app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvi
 }]).run(function (states, utility) {
 
     utility.toggleValidity(true);
-
+    
     console.log("go to checking");
     states.go("checking");
 });

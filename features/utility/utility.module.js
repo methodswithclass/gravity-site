@@ -5,7 +5,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var factor = {
 		global:1,
-		session:1
+		session:0.5
 	};
 
 	var yDir = 1;
@@ -87,6 +87,16 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 			yDir = value;
 		}
 
+	}
+
+	var getGlobalFactor = function () {
+
+		return factor.global;
+	}
+
+	var getSessionFactor = function () {
+
+		return factor.session;
 	}
 
 	var getFactor = function () {
@@ -259,6 +269,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		setGlobalFactor:setGlobalFactor,
 		setSessionFactor:setSessionFactor,
     	setDirection:setDirection,
+    	getGlobalFactor:getGlobalFactor,
+    	getSessionFactor:getSessionFactor,
     	getFactor:getFactor,
     	getDirection:getDirection,
     	toggleValidity:toggleValidity,

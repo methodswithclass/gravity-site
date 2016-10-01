@@ -234,7 +234,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 			console.log("begin phase 2");
 			time = (new Date()).getTime();
 			manager.startInstance("calibrate");
-			startCheck(xDir);
+			startCheck(yDir);
 		},
 		complete:function () {
 			console.log("complete phase 2");
@@ -252,7 +252,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'manager', 'ut
 		start:function () {
 			console.log("begin phase 3");
 			manager.startInstance("calibrate");
-			startCheck(yDir);
+			startCheck(xDir);
 		},
 		complete:function () {
 			console.log("complete phase 3");
