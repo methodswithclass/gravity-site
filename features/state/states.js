@@ -32,7 +32,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 		
 	}
 
-	var inspectState = function (name) {
+	var getStateParams = function (name) {
 
 		var name = name.split(".");
 
@@ -43,6 +43,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 				type:name[0],
 				name:name[1]
 			}
+
 		}
 		else {
 			results = {
@@ -50,6 +51,8 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 				name:name[0]
 			}
 		}
+
+		results.page = results.type == "page";
 
 		return results;
 
@@ -74,7 +77,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	var resize = function () {
 
-		var name = (splitStateName(current())).name;
+		var name = (getStateParams(current())).name;
 
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
@@ -95,13 +98,13 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		ps = fs;
 
-		var fso = splitStateName(fs.name);
-		var tso = splitStateName(ts.name);
+		var fso = getStateParams(fs.name);
+		var tso = getStateParams(ts.name);
 		
 		console.log("from", fso, "to", tso);
 
 		console.log("check if 'fromState' is page");
-		if (fso.type == "page") {
+		if (fso.page) {
 
 			console.log(fso.name, "is page");
 
@@ -117,7 +120,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	   	}
 
 	   	console.log("check if 'toState' is page");
-	   	if (tso.type == "page") {
+	   	if (tso.page) {
 
 	   		console.log(tso.name, "is page");
 	   		isPage = true;
