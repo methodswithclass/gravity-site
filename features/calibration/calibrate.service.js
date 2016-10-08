@@ -69,8 +69,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		console.log("calibrate init");
 
-		//var result = manager.getInstance("calibrate");
-
 		parent = input.arena;
 		accel = input.accel;
 		obj = input.object;

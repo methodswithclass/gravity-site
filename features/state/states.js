@@ -153,7 +153,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
                 complete:function (input) {
                     console.log("move complete");
                     input.body.removeClass("scroll").addClass("cutoff");
-                    input.manager.startInstance(tso.name);
+                    if (tso.name == "calibrate") input.manager.startInstance(tso.name);
                 }
             });
 

@@ -18,6 +18,16 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
         states.setupReceivers();
         manager.setupReceivers();
 
+
+        // ===================== CALIBRATE ======================
+
+        // if (state.name == "calibrate") {
+
+        //     setTimeout(function () {
+        //         manager.startInstance(state.name);
+        //     }, 0);
+        // }
+
     }
     else {
 
@@ -27,7 +37,7 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
         if (util.isValid()) {
             console.log("########## is valid ############");
             //self.valid = true;
-            
+
             setTimeout(function () {
                 states.go("page.calibrate");
             }, 2000);

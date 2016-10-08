@@ -7,7 +7,6 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	var accels = {};
 	var arenas = {};
 	var displays = {};
-	var hasMotion = {};
 	var toggles = {};
 
 	var timer;
@@ -21,7 +20,9 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		send.setup.receiver({name:"display", receiver:displays});
 	}
 
-	var runGame = function (id) {
+	var startStage = function (id) {
+
+		//id page must be set to page.type.stages
 
 		console.log("manager", "run game:", id);
 
@@ -36,7 +37,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			
 			games[id].update(objects[id], interval);
 			
-			if (page.keep) {
+			if (page.type.game) {
 				displays[id].time.html(games[id].clock());
 				displays[id].points.html(games[id].points());
 
@@ -49,20 +50,24 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	}
 
-	var stopGame = function (id) {
+	var stopStage = function (id) {
+
+		//id page must be set to page.type.stages
 
 		console.log("manager", "stop game:", id);
 
 		var page = data.getPageById(id);
-		if (page.game) games[id].onEnd();
+		games[id].onEnd();
 	}
 
-	var leaveGame = function (id) {
+	var leaveStage = function (id) {
+
+		//id page must be set to page.type.stages
 
 		console.log("manager", "leave game:", id);
 
 		var page = data.getPageById(id);
-		if (page.game) games[id].onLeave();
+		games[id].onLeave();
 
 	}
 
@@ -89,12 +94,11 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			arena:input.parent
 		});
 
-		if (page.game) games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
+		if (page.type.stages) games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
 
 		objects[input.id] = object;
 		accels[input.id] = accel;
 		arenas[input.id] = input.parent;
-		hasMotion[input.id] = input.deviceinput;
 
 	}
 
@@ -104,12 +108,11 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		var page = data.getPageById(id);
 
-		if (page.game) {
-			accels[id].reset();
-			games[id].onEnter({arena:arenas[id]});
-		}
+		if (page.type.accel) accels[id].reset();
+			
+		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
-		if (page.keep) {
+		if (page.type.game) {
 			displays[id].time.html(games[id].clock());
 			displays[id].points.html(games[id].points());
 		}
@@ -123,13 +126,16 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		if (id != "home") {
 
-			if (page.game) accels[id].start();
+			if (page.type.accel) accels[id].start();
 
-			if (hasMotion[id]) window.ondevicemotion = accels[id].motion;
+			if (page.type.motion) window.ondevicemotion = accels[id].motion;
 
-			toggles[id].play.addClass("hidden");
-			toggles[id].stop.removeClass("hidden"); 
-			if (page.game) runGame(id);
+			if (page.type.accel && page.type.motion) {
+				toggles[id].play.addClass("hidden");
+				toggles[id].stop.removeClass("hidden");
+			}
+
+			if (page.type.stages) startStage(id);
 	
 		}
 
@@ -146,14 +152,16 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			clearInterval(timer);
 			timer = null;
 
-			if (page.game) accels[id].stop();
+			if (page.type.accel) accels[id].stop();
 
 			window.ondevicemotion = null;
 
-			toggles[id].play.removeClass("hidden");
-			toggles[id].stop.addClass("hidden");
+			if (page.type.accel && page.type.motion) {
+				toggles[id].play.removeClass("hidden");
+				toggles[id].stop.addClass("hidden");
+			}
 
-			if (page.game) stopGame(id);
+			if (page.type.stages) stopStage(id);
 
 		}
 	}
@@ -163,7 +171,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "leave instance:", id);
 
 		var page = data.getPageById(id);
-		if (page.game) leaveGame(id);
+		if (page.type.stages) leaveStage(id);
 
 	}
 
@@ -175,8 +183,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		if (id != "home") {
 
-			accels[id].reset();
-			games[id].reset();
+			if (page.type.accel) accels[id].reset();
+			if (page.type.game) games[id].reset();
 		
 		}
 	}
@@ -193,7 +201,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		enterInstance:enterInstance,
 		startInstance:startInstance,
 		stopInstance:stopInstance,
-		leaveInstance:leaveGame,
+		leaveInstance:leaveInstance,
 		resetInstance:resetInstance
 	}
 

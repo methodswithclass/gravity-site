@@ -19,9 +19,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"home",
 		title:"home",
 		index:g.c.homeIndex,
-		option:false,
-		motion:false,
-		game:false,
+		type:{
+			option:false,
+			motion:false,
+			accel:false,
+			stages:false,
+			game:false
+		},
 		page:{
 			view:"home.html",
 			back:"black-back",
@@ -41,10 +45,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"validity",
 		title:"validity",
 		index:g.c.validIndex,
-		option:false,
-		motion:false,
-		game:false,
-		keep:false,
+		type:{
+			option:false,
+			motion:false,
+			accel:false,
+			stages:false,
+			game:false
+		},
 		page:{
 			view:"validity.html",
 			back:"black-back",
@@ -64,10 +71,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"settings",
 		title:"settings",
 		index:g.c.settingsIndex,
-		option:false,
-		motion:false,
-		game:false,
-		keep:false,
+		type:{
+			option:false,
+			motion:false,
+			accel:false,
+			stages:false,
+			game:false
+		},
 		page:{
 			view:"page.html",
 			back:"black-back",
@@ -109,10 +119,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"calibrate",
 		title:"calibrate",
 		index:g.c.calibrateIndex,
-		option:true,
-		motion:false,
-		game:true,
-		keep:false,
+		type:{
+			option:true,
+			motion:false,
+			accel:true,
+			stages:true,
+			game:false
+		},
 		page:{
 			view:"page.html",
 			back:"color1-back",
@@ -154,10 +167,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"gravity",
 		title:"gravity", 
 		index:g.c.gravIndex,
-		option:true,
-		motion:true,
-		game:false,
-		keep:false,
+		type:{
+			option:true,
+			motion:true,
+			accel:true,
+			stages:false,
+			game:false
+		},
 		page:{
 			view:"page.html",
 			back:"color2-back",
@@ -198,10 +214,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"float",
 		title:"float", 
 		index:g.c.floatIndex,
-		option:true,
-		motion:true,
-		game:false,
-		keep:false,
+		type:{
+			option:true,
+			motion:true,
+			accel:true,
+			stages:false,
+			game:false
+		},
 		page:{
 			view:"page.html",
 			back:"color3-back",
@@ -242,10 +261,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"enemies",
 		title:"enemies", 
 		index:g.c.enemiesIndex,
-		option:true,
-		motion:true,
-		game:true,
-		keep:true,
+		type:{
+			option:true,
+			motion:true,
+			accel:true,
+			stages:true,
+			game:true
+		},
 		page:{
 			view:"page.html",
 			back:"color4-back",
@@ -286,10 +308,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"balance",
 		title:"balance", 
 		index:g.c.balanceIndex,
-		option:true,
-		motion:true,
-		game:true,
-		keep:true,
+		type:{
+			option:true,
+			motion:true,
+			accel:true,
+			stages:true,
+			game:true
+		},
 		page:{
 			view:"page.html",
 			back:"color5-back",
@@ -330,10 +355,13 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"space",
 		title:"space",
 		index:g.c.spaceIndex,
-		option:true,
-		motion:true,
-		game:true,
-		keep:true,
+		type:{
+			option:true,
+			motion:true,
+			accel:true,
+			stages:true,
+			game:true
+		},
 		page:{
 			view:"page.html",
 			back:"color6-back",
@@ -381,7 +409,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 		for (i in pages) {
 
-			if (pages[i].option) {
+			if (pages[i].type.option) {
 				options[j++] = {
 					id:pages[i].id,
 					title:pages[i].title,

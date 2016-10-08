@@ -6,9 +6,8 @@
 	<display ng-hide="info.id == 'validity' || info.id == 'calibrate' || info.id == 'settings'"></display>
 	<calibrate ng-hide="info.id != 'calibrate'"></calibrate>
 	<settings ng-hide="info.id != 'settings'"></settings>
+	<preview ng-hide="info.id != 'enemies'"></preview>
 	<toggle ng-hide="info.id == 'validity' || info.id == 'calibrate' || info.id == 'settings'"></toggle>
 	<back ng-hide="info.id == 'validity' || info.id == 'calibrate'" ng-attr-id="{{'back.' + info.id}}" ></back>
-
-	<preview ng-hide="info.id != 'enemies'"></preview>
 
 </div>

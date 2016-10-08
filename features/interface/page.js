@@ -23,8 +23,7 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 		            manager.addInstance({
 		            	id:info.id, 
 		            	parent:$("#arena" + info.id)[0], 
-		            	object:$("#object" + info.id)[0], 
-		            	deviceinput:info.motion
+		            	object:$("#object" + info.id)[0]
 		            });
 
 	        	},500);	
