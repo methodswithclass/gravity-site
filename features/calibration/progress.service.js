@@ -13,6 +13,14 @@ calibrateModule.factory("progress.service", function () {
 	var phasedelay = 1500;
 	var timer;
 
+	var setMessage = function(message) {
+		messagetext = message;
+	}
+
+	var getMessage = function () {
+		return messagetext;
+	}
+
 	var setPercent = function (_percent) {
 
 		percentArray[percentArray.length] = Math.floor(_percent);
@@ -25,10 +33,6 @@ calibrateModule.factory("progress.service", function () {
 	var getPercent = function () {
 
 		return percent;
-	}
-
-	var message = function() {
-		return messagetext;
 	}
 
 	var resetTimer = function () {
@@ -80,7 +84,7 @@ calibrateModule.factory("progress.service", function () {
 
 		setPercent(scheme[index].update(percent));
 
-		messagetext = scheme[index].message;
+		setMessage(scheme[index].message);
 	
 		if (percent >= scheme[index].percent) {
 
@@ -128,9 +132,8 @@ calibrateModule.factory("progress.service", function () {
 	return {
 		loadScheme:loadScheme,
 		runScheme:runScheme,
-		setPercent:setPercent,
 		getPercent:getPercent,
-		message:message,
+		getMessage:getMessage,
 		reset:reset
 	}
 

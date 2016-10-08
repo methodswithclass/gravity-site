@@ -9,22 +9,29 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 			if ($scope.info.id == "calibrate") {
 
-				var $message;
-				var $progress;
+
+				var message, $message;
+				var progress, $progress;
 				var timer;
 
 				events.on("startCalibrate", function () {
+
+					message = document.getElementById("message");
+					progress = document.getElementById("progress");
 
 					$message = $("#message");
 					$progress = $("#progress");
 
 					timer = setInterval(function() {
 					
-						console.log("update message elements", $message[0], $progress[0]);
+						console.log("update message elements", message, progress);
 						console.log("update message content", calibrate.getMessage(), calibrate.getProgress());
 						
-						$message.html("message is:" + calibrate.getMessage());
-						$progress.css({width:calibrate.getProgress() + "%"});
+						// $message.html("message is: " + calibrate.getMessage());
+						// $progress.css({width:calibrate.getProgress() + "%"});
+
+						message.innerHTML = "message is: " + calibrate.getMessage();
+						progress.style.width = calibrate.getProgress() + "%";
 
 						$scope.$apply();
 

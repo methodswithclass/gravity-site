@@ -12,14 +12,15 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var xDir = 1;
 
 	var con = {
-		playAsset:"img/play.png",
-		stopAsset:"img/stop.png",
-		backAsset:"img/back.png",
-		loadingAsset:"img/loading.png",
+		// playAsset:"img/play.png",
+		// stopAsset:"img/stop.png",
+		// backAsset:"img/back.png",
+		// loadingAsset:"img/loading.png",
 		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
 		portrait:"portrait",
+		landscape:"landscape",
 		circle:"circle",
 		square:"square",
 		cross:"cross",
@@ -86,13 +87,11 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var setDirection = function (direction, value) {
 
-		//console.log(direction + " value is " + value);
-
 		if (direction == "i") {
-			xDir = value;
+			xDir = value >= 0 ? 1 : -1;
 		}
 		else if (direction == "j") {
-			yDir = value;
+			yDir = value >= 0 ? 1 : -1;
 		}
 
 	}
@@ -269,7 +268,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var len = function (vector) {
 
-		return Math.sqrt(vector.x*vector.x + vector.y * vector.y + vector.z * vector.z);
+		return Math.sqrt(vector.x*vector.x + vector.y*vector.y);
 	}
 
 	return {

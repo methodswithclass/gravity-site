@@ -60,10 +60,12 @@ objectModule.factory("object.service", ["utility", function (utility) {
 
 		self.relativePos = function () {
 
-			return {
-				x:self.position.x - self.bounds.x,
-				y:self.position.y - self.bounds.y
-			};
+			// return {
+			// 	x:self.position.x - self.bounds.x,
+			// 	y:self.position.y - self.bounds.y
+			// };
+
+			return relPos;
 		}
 
 		self.absolutePos = function () {

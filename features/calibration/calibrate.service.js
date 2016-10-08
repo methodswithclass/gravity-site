@@ -9,12 +9,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var sm = {
 		xDir:{
-			same:"x direction same",
-			diff:"x direction switched"
+			same:"x axis unchanged",
+			switched:"x axis switched"
 		},
 		yDir:{
-			same:"y direction same",
-			diff:"y direction switched"
+			same:"y axis unchanged",
+			switched:"y axis switched"
 		}
 	}
 
@@ -52,7 +52,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var getMessage = function () {
 
-		return progress.message();
+		return progress.getMessage();
 	}
 
 	var getPercent = function () {
@@ -71,7 +71,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		parent = input.arena;
 		accel = input.accel;
-		obj = input.object;
+		obj = accel.obj;
 
 		console.log("screen", obj.screenPos());
 		console.log("relative", obj.relativePos());
@@ -94,12 +94,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
 
-		accel.getMotion(function (position, velocity, acceleration) {
+		// accel.getMotion(function (position, velocity, acceleration) {
 
-			obj.position = position;
-			obj.velocity = velocity;
-			obj.acceleration = acceleration;
-		})
+		// 	obj.setPosition(position);
+		// 	obj.setVelocity(velocity);
+		// 	obj.setAcceleration(acceleration);
+		// })
 
 		setTimeout(function() {
 
@@ -135,12 +135,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		if (direction == yDir) {
 			//obj.setPosition({x:-10, y:0});
-			//accel.setinitial(0,0);
 			return {x:0, y:accelValue};
 		}
 		else if (direction == xDir) {
 			//obj.setPosition({x:0, y:-10});
-			//accel.setinitial(0,0);
 			return {x:accelValue, y:0};
 		}
 	}
@@ -170,39 +168,31 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	var checkdirection = function (direction) {
 
 
-		var relPos = obj.absolutePos();
-		//console.log("calibrate", "dir", direction, "relPos", relPos, "acc", acc);
+		var position = obj.absolutePos();
+		console.log("calibrate", "dir", direction, "position", position, "acc", acc);
 		
 		var value;
 		if (direction == yDir) {
-			value =  Math.abs(relPos.y)/obj.bounds.y;
-			//value = relPos.y;
+			value =  Math.abs(position.y)/obj.bounds.y;
 		}
 		else {
-			value = Math.abs(relPos.x)/obj.bounds.x;
-			//value = relPos.x;
+			value = Math.abs(position.x)/obj.bounds.x;
 		}
 
-		//_percent = Math.abs(direction == xDir ? relPos.x : relPos.y)/obj.bounds.y;;
 		_percent = Math.floor(value)*100;
 
-		//console.log("calibration", "in check", _percent + "%");
-		
-		//progress.setPercent(_percent);
+		if (direction == yDir && Math.abs(position.y) >= obj.bounds.y) {
 
-		if (direction == yDir && Math.abs(relPos.y) >= obj.bounds.y) {
-
-			console.log("calibrate", "reached y boundary", relPos.y);
+			console.log("calibrate", "reached y boundary", position.y);
 
 			stop();
 
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
-			if (relPos.y < 0) {
-			//if(relPos.y ) {
+			if (position.y < 0) {
 				console.log("calibrate", "y direction SWITCHED");
-				showToast("yDir", "diff");
+				showToast("yDir", "switched");
 				g.setDirection(yDir, -1*g.getDirection("j"));
 			}
 			else {
@@ -211,16 +201,15 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			}
 
 		}
-		else if (direction == xDir && Math.abs(relPos.x) >= obj.bounds.x) {
+		else if (direction == xDir && Math.abs(position.x) >= obj.bounds.x) {
 
-			console.log("calibrate", "reached x boundary", relPos.x);
+			console.log("calibrate", "reached x boundary", position.x);
 
 			stop();
 
-			if (relPos.x < 0) {
-			//if(obj.absolutePos().x <= 0) {
+			if (position.x < 0) {
 				console.log("calibrate", "x direction SWITCHED");
-				showToast("xDir", "diff");
+				showToast("xDir", "switched");
 				g.setDirection(xDir, -1*g.getDirection("i"));
 			}
 			else {

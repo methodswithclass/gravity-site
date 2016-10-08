@@ -5,7 +5,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		var self = this;
 
 		var p = input.params;
-		var obj = input.object;
+		self.obj = input.object;
 		self.name = input.id;
 
 		var filterBucket = [];
@@ -30,11 +30,8 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		var pos1 = new vector(0,0,0);
 		var startTime = 0;
 
-		var position = {x:pos0.x, y:pos0.y};
-		var velocity = {x:vel0.x, y:vel0.y};
-
-		var raw = {x:0, y:0, z:0};
-		self.down = 0;
+		//var raw = {x:0, y:0, z:0};
+		//self.down = 0;
 		var timer;
 		var running = false;
 
@@ -90,11 +87,11 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		var updateMotion = function (pos, vel, acc) {
 
-			obj.setPosition(pos);
-			obj.setVelocity(vel);
-			obj.setAcceleration(acc);
+			self.obj.setPosition(pos);
+			self.obj.setVelocity(vel);
+			self.obj.setAcceleration(acc);
 
-			var event = new CustomEvent('accel', { 'detail':{pos:pos, vel:vel, accel:acc}});
+			//var event = new CustomEvent('accel', { 'detail':{pos:pos, vel:vel, accel:acc}});
 				
 		}
 
@@ -130,8 +127,8 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 			self.setinitial(0,0);
 
-			self.bounds["x"] = $(input.arena).width()/2 - obj.size.x/2;
-			self.bounds["y"] = $(input.arena).height()/2 - obj.size.y/2;
+			self.bounds.x = $(input.arena).width()/2 - self.obj.size.x/2;
+			self.bounds.y = $(input.arena).height()/2 - self.obj.size.y/2;
 
 		}
 
@@ -184,13 +181,13 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		}
 
-		self.getRaw = function (e) {
+		// self.getRaw = function (e) {
 
-			raw = e.accelerationIncludingGravity;
+		// 	raw = e.accelerationIncludingGravity;
 
-			self.down = g.len(raw);
+		// 	self.down = g.len(raw);
 			
-		}
+		// }
 
 		self.reset = function () {
 			
