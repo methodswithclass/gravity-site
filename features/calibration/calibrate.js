@@ -24,8 +24,8 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 					timer = setInterval(function() {
 					
-						console.log("update message elements", message, progress);
-						console.log("update message content", calibrate.getMessage(), calibrate.getProgress());
+						//console.log("update message elements", message, progress);
+						//console.log("update message content", calibrate.getMessage(), calibrate.getProgress());
 						
 						// $message.html("message is: " + calibrate.getMessage());
 						// $progress.css({width:calibrate.getProgress() + "%"});

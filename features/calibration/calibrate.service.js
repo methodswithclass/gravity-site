@@ -94,13 +94,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
 
-		// accel.getMotion(function (position, velocity, acceleration) {
-
-		// 	obj.setPosition(position);
-		// 	obj.setVelocity(velocity);
-		// 	obj.setAcceleration(acceleration);
-		// })
-
 		setTimeout(function() {
 
 			events.dispatch("startCalibrate");
@@ -169,7 +162,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 
 		var position = obj.absolutePos();
-		console.log("calibrate", "dir", direction, "position", position, "acc", acc);
+		//console.log("calibrate", "dir", direction, "position", position, "acc", acc);
 		
 		var value;
 		if (direction == yDir) {

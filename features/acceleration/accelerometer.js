@@ -142,6 +142,8 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 				else {
 					unfiltered.set(new vector(xDir*factor*e.acceleration.x, yDir*factor*e.acceleration.y, (e.timeStamp - startTime)/1000));
 				}
+
+				console.log("unfiltered", "x", unfiltered.x, "y", unfiltered.y);
 			}
 		}
 
