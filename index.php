@@ -84,6 +84,7 @@
     <script src="features/validate/validateModule.js"></script>
     <script src="features/validate/validate.service.js"></script>
     <script src="features/validate/validate.wrapper.js"></script>
+    <script src="features/validate/valid.js"></script>
 
 
     <!-- Acceleration -->
