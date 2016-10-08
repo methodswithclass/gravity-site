@@ -153,6 +153,11 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 	}
 
+	var reset = function () {
+
+		
+	}
+
 	var clock = function () {
 
 		return keeper.clock();
@@ -177,6 +182,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 		onEnd:onEnd,
 		onLeave:onLeave,
 		update:update,
+		reset:reset,
 		clock:clock,
 		zeroTime:zeroTime,
 		points:points

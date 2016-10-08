@@ -1,7 +1,6 @@
 settingsModule.factory("settings.service", ['utility', function (g) {
 
 
-
 	var save = function () {
 
     	g.setSessionFactor($("#amount").val()/100);

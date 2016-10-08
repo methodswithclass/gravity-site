@@ -8,7 +8,19 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'states
 
     self.pages = data.pages;
 
-    var body;
+    var id = states.current().name
+
+    self.page = data.getPageById(id);
+
+    states.movePage({
+        name:self.page.name,
+        duration:300,
+        complete:function (body, manager) {
+            console.log("move complete");
+            body.removeClass("scroll").addClass("cutoff");
+            manager.startInstance(self.page.name);
+        }
+    });
 
     // ===================== SETUP ======================
 
@@ -20,12 +32,7 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'states
     events.on("gohome", function () {
         states.go("page.home");
     });
-
-    events.on("enter-page", function () {
-
-        states.navTo();
-    })
-
+    
     // ===================== ON READY =====================
 
 }])

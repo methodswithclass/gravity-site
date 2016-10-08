@@ -83,7 +83,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"calibrate",
 		title:"calibrate",
 		index:g.c.calibrateIndex,
-		motion:false,
+		motion:true,
 		game:false,
 		page:{
 			view:"page.html",
@@ -295,7 +295,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		title:"space",
 		index:g.c.spaceIndex,
 		motion:true,
-		game:false,
+		game:true,
 		page:{
 			view:"page.html",
 			back:"color6-back",

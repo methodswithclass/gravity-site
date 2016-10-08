@@ -1,7 +1,6 @@
 stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'data.service', 'send', 'events', 'global', 'calibrate.service', 'manager', '$window', function ($q, runtime, $state, $rootScope, data, send, events, g, calibrate, manager, $window) {
 
 	var modalTime = 1000;
-	var duration = 300;
 
 	var body = {};
 	var elements = {};
@@ -17,14 +16,6 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	var isPage = false;
 
 	send.setup.receiver({name:"body", receiver:body});
-
-	var current = function () {
-
-		return {
-			name:$state.current.name,
-			isPage:isPage
-		};
-	}
 
 	var go = function (state) {
 
@@ -58,19 +49,36 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	}
 
-	var navigate = function (name, _complete) {
+	var current = function () {
+
+		var s = $state.current.name;
+		var so = getStateParams(s);
+
+		return {
+			state:s,
+			name:so.name,
+			type:so.type,
+			isPage:so.page
+		};
+	}
+
+	var movePage = function (input) {
 		
-		elem = $(elements["page" + name]);
+		manager.enterInstance(input.name);
+
+		elem = $(elements["page" + input.name]);
 		bodyElem = $(body["body"]);
 
-		console.log("nav", bodyElem[0], "to element", elem[0]);
+		console.log("move", bodyElem[0], "to element", elem[0]);
+
+		bodyElem.removeClass("cutoff").addClass("scroll");
 
 		bodyElem.scrollTo(elem[0], {
-			duration:duration,
+			duration:input.duration,
 			queue:false,
 			onAfter:function() {
 
-				if (_complete) _complete();
+				if (input.complete) input.complete(bodyElem, manager);
 			}
 		});
 	}
@@ -88,67 +96,85 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	}
 
-	$rootScope.$on('$stateChangeStart', 
-	function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/){
-		
-		//console.log(fromState);	
-		//console.log(toState);  
+	events.on("enter-page", function () {
 
-		console.log("from state", fs.name, "to state", ts.name);
+
+	});
+
+	$rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	{
+
+		console.log("start state change", "from state", fs.name, "to state", ts.name);
 
 		ps = fs;
 
 		var fso = getStateParams(fs.name);
-		var tso = getStateParams(ts.name);
-		
-		console.log("from", fso, "to", tso);
 
-		console.log("check if 'fromState' is page");
+		console.log("check if 'fromState' is a page");
 		if (fso.page) {
 
-			console.log(fso.name, "is page");
+			console.log(fso.name, "is a page");
 
 			var fp = data.getPageById(fso.name);
-	   		if (fp.motion) {
-	   			manager.stopInstance(fp.id);
-	   			manager.leaveInstance(fp.id);
-	   		}
+	   		manager.stopInstance(fp.id);
+	   		manager.leaveInstance(fp.id);
 
 	   	}
 	   	else {
-	   		console.log(fso.name, "is not page");
+	   		console.log(fso.name, "is not a page");
 	   	}
 
-	   	console.log("check if 'toState' is page");
+	});
+
+	$rootScope.$on('$stateChangeSuccess', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	{
+
+		console.log("complete state change", "from state", fs.name, "to state", ts.name);
+
+		//var fso = getStateParams(fs.name);
+		var tso = getStateParams(ts.name);
+
+	   	console.log("check if 'toState' is a page");
 	   	if (tso.page) {
 
-	   		console.log(tso.name, "is page");
-	   		isPage = true;
+	   		console.log(tso.name, "is a page");
+	 
+	 //   		isPage = true;
 
-	   		var tp = data.getPageById(tso.name);
-	   		if (tp.motion) {
-	   			manager.enterInstance(tp.id);
-	   		}
+	 //   		var tp = data.getPageById(tso.name);
 
-	   		bodyElem = $(body["body"]);
+	 //   		if (fso.page) {
 
-			bodyElem.removeClass("cutoff").addClass("scroll");
+	 //   			durr = 300;
+	 //   			delay = 0;
+	 //   		}
+	 //   		else {
+	 //   			durr = 0;
+	 //   			delay = 2000;
+	 //   		}
 
-			navigate(tp.id, function () {
+	 //   		setTimeout(function () {
 
-				console.log("nav complete");
+	 //   			movePage({
+	 //   				name:tp.id,
+	 //   				duration:durr, 
+	 //   				complete:function (body) {
 
-				bodyElem.removeClass("scroll").addClass("cutoff");
+		// 				console.log("move complete");
 
-				if (tp.id == "calibrate") {
-					calibrate.start();
-				}
+		// 				body.removeClass("scroll").addClass("cutoff");
 
-			});
+		// 				manager.startInstance(tp.id);
+		// 			}
+		// 		});
+
+	 //   		}, delay);
+
+			
 
 	   	}
 	   	else {
-	   		console.log(tso.name, "is not page");
+	   		console.log(tso.name, "is not a page");
 	   	}
 
 	});
@@ -171,7 +197,8 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	return {
 		setupReceivers:setupReceivers,
 		current:current,
-		go:go
+		go:go,
+		movePage:movePage
 	}
 
 

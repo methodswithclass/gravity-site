@@ -5,7 +5,7 @@ gamesModule.directive("display", ['send', function (send) {
 		scope:false,
 		restrict:"E",
 		replace:true,
-		templateUrl:"features/games/display.html",
+		templateUrl:"views/display.html",
 		link:function ($scope, element, attr) {
 
 			var id = $scope.info.id;

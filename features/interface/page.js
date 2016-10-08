@@ -17,18 +17,19 @@ uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', 
 
             var info = $scope.info;
 
-        	if (info.id == "calibrate") {
+        	// if (info.id == "calibrate") {
 
-        		//$("#togglecalibrate").addClass("hidden");
-        		//$("#objectCalibrate").addClass("hidden");
+        	// 	//$("#togglecalibrate").addClass("hidden");
+        	// 	//$("#objectCalibrate").addClass("hidden");
 
-        		setTimeout(function() {
-        			console.log("page directive", "run calibration");
-	            	calibrate.init($("#arenacalibrate")[0], $("#objectcalibrate")[0]);
-	            	calibrate.start();
-	      		}, 500);
-            }
-            else if (info.id != "home") {
+        	// 	setTimeout(function() {
+        	// 		console.log("page directive", "run calibration");
+	        //     	calibrate.init($("#arenacalibrate")[0], $("#objectcalibrate")[0]);
+	        //     	calibrate.start();
+	      		// }, 500);
+         //    }
+         //    else 
+         	if (info.id != "home") {
             	setTimeout(function() {
 		            
 		            manager.addInstance({

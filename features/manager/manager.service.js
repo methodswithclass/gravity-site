@@ -44,7 +44,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			arena:input.parent
 		});
 
-		if (page.game) games[page.id].onCreate({arena:input.parent});
+		games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
 
 		objects[input.id] = object;
 		accels[input.id] = accel;
@@ -66,8 +66,9 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		accels[id].reset();
 
+		games[id].onEnter({arena:arenas[id]});
+
 		if (page.game) {
-			games[id].onEnter({arena:arenas[id]});
 			displays[id].time.html(games[id].clock());
 			displays[id].points.html(games[id].points());
 		}
@@ -80,9 +81,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		var page = data.getPageById(id);
 		var interval = page.params.interval;
 
-		console.log(page.id, interval)
-
-		games[id].onStart();
+		//console.log(page.id, interval)
 
 		timer = setInterval(function () {
 
@@ -105,8 +104,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "stop game:", id);
 
 		var page = data.getPageById(id);
-
-		if (page.game) games[id].onEnd();
+		games[id].onEnd();
 	}
 
 	var leaveGame = function (id) {
@@ -114,8 +112,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "leave game:", id);
 
 		var page = data.getPageById(id);
-
-		if (page.game) games[id].onLeave();
+		games[id].onLeave();
 
 	}
 
@@ -131,11 +128,9 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 			if (hasMotion[id]) window.ondevicemotion = accels[id].motion;
 
-			//console.log(toggles[id].play[0]);
-
 			toggles[id].play.addClass("hidden");
 			toggles[id].stop.removeClass("hidden");
-
+			games[id].onStart();
 			if (page.game) runGame(id);
 	
 		}
@@ -160,7 +155,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			toggles[id].play.removeClass("hidden");
 			toggles[id].stop.addClass("hidden");
 
-			if (page.game) stopGame(id, back);
+			stopGame(id, back);
 
 		}
 	}
@@ -174,10 +169,8 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		if (id != "home") {
 
 			accels[id].reset();
-
-			if(page.game) {
-				games[id].reset();
-			}
+			games[id].reset();
+		
 		}
 	}
 
