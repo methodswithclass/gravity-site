@@ -58,29 +58,37 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 			state:s,
 			name:so.name,
 			type:so.type,
-			isPage:so.page
+			page:so.page
 		};
 	}
 
 	var movePage = function (input) {
 		
-		manager.enterInstance(input.name);
+		console.log("move to page", input.name, "delay", input.delay, "duration", input.duration);
 
-		elem = $(elements["page" + input.name]);
-		bodyElem = $(body["body"]);
+		setTimeout(function () {
 
-		console.log("move", bodyElem[0], "to element", elem[0]);
+			manager.enterInstance(input.name);
 
-		bodyElem.removeClass("cutoff").addClass("scroll");
+			elem = $(elements["page" + input.name]);
+			bodyElem = $(body["body"]);
 
-		bodyElem.scrollTo(elem[0], {
-			duration:input.duration,
-			queue:false,
-			onAfter:function() {
+			console.log("move", bodyElem[0], "to element", elem[0]);
 
-				if (input.complete) input.complete(bodyElem, manager);
-			}
-		});
+			bodyElem.removeClass("cutoff").addClass("scroll");
+
+			bodyElem.scrollTo(elem[0], {
+				duration:input.duration,
+				queue:false,
+				onAfter:function() {
+
+					if (input.complete) input.complete({body:bodyElem, manager:manager});
+				}
+			});
+
+		}, input.delay);
+
+		
 	}
 
 	var resize = function () {
@@ -96,11 +104,6 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	}
 
-	events.on("enter-page", function () {
-
-
-	});
-
 	$rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
 	{
 
@@ -110,10 +113,9 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		var fso = getStateParams(fs.name);
 
-		console.log("check if 'fromState' is a page");
 		if (fso.page) {
 
-			console.log(fso.name, "is a page");
+			console.log("from state", fso.name, "is a page");
 
 			var fp = data.getPageById(fso.name);
 	   		manager.stopInstance(fp.id);
@@ -121,7 +123,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	   	}
 	   	else {
-	   		console.log(fso.name, "is not a page");
+	   		console.log("from state", fso.name, "is not a page");
 	   	}
 
 	});
@@ -131,50 +133,33 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		console.log("complete state change", "from state", fs.name, "to state", ts.name);
 
-		//var fso = getStateParams(fs.name);
+		var fso = getStateParams(fs.name);
 		var tso = getStateParams(ts.name);
-
-	   	console.log("check if 'toState' is a page");
+		
 	   	if (tso.page) {
 
-	   		console.log(tso.name, "is a page");
-	 
-	 //   		isPage = true;
+	   		console.log("to state", tso.name, "is a page");
 
-	 //   		var tp = data.getPageById(tso.name);
+	   		var delay = 0;
 
-	 //   		if (fso.page) {
+	   		if (tso.name == "calibrate" && fso.name != "home") {
+	   			delay = 1000;
+	   		}
 
-	 //   			durr = 300;
-	 //   			delay = 0;
-	 //   		}
-	 //   		else {
-	 //   			durr = 0;
-	 //   			delay = 2000;
-	 //   		}
-
-	 //   		setTimeout(function () {
-
-	 //   			movePage({
-	 //   				name:tp.id,
-	 //   				duration:durr, 
-	 //   				complete:function (body) {
-
-		// 				console.log("move complete");
-
-		// 				body.removeClass("scroll").addClass("cutoff");
-
-		// 				manager.startInstance(tp.id);
-		// 			}
-		// 		});
-
-	 //   		}, delay);
-
-			
+	   		movePage({
+                name:tso.name,
+                delay:delay,
+                duration:100,
+                complete:function (input) {
+                    console.log("move complete");
+                    input.body.removeClass("scroll").addClass("cutoff");
+                    input.manager.startInstance(tso.name);
+                }
+            });
 
 	   	}
 	   	else {
-	   		console.log(tso.name, "is not a page");
+	   		console.log("to state", tso.name, "is not a page");
 	   	}
 
 	});

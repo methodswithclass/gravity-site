@@ -1,4 +1,4 @@
-controllerModule.controller("CheckingController", ['$scope', '$document', 'validate.wrapper', 'states', 'events', 'con', 'utility', function ($scope, $document, validation, states, events, con, g) {
+controllerModule.controller("CheckingController", ['$scope', '$document', 'validate.wrapper', 'states', 'events', 'con', 'utility', function ($scope, $document, validation, states, events, con, util) {
 
     console.log("checking controller");
 
@@ -15,7 +15,7 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
 
     var result; 
 
-    if (g.isForced()) {
+    if (util.isForced()) {
         result = validation.force();
     }
     else {
@@ -27,14 +27,21 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
         result.then( 
         function (path) { //valid
             console.log("device valid");
-            states.go("modal.valid");
+            // states.go("modal.valid");
+            util.setValidity(true);
+            states.go("validity");
         },
         function (path) { //invalid
             console.log("device invalid");
-            states.go("modal.invalid");
+            //states.go("modal.invalid");
+            util.setValidity(false);
+            states.go("validity");
         });
 
     }, 1000);
+
+
+    // ===================== ON READY =====================
 
     angular.element($document).ready(function () {
         con.register($("#consoleContainer"));

@@ -1,38 +1,68 @@
-controllerModule.controller("PageController", ['$scope', 'data.service', 'states', 'events', 'manager', function ($scope, data, states, events, manager) {
-
-    console.log("page controller");
+controllerModule.controller("PageController", ['$scope', 'data.service', 'utility', 'states', 'events', 'manager', function ($scope, data, util, states, events, manager) {
 
     var self = this;
 
     // ===================== DATA ======================
 
+
+    self.valid = false;
     self.pages = data.pages;
 
-    var id = states.current().name
+    var state = states.current();
 
-    self.page = data.getPageById(id);
+    console.log("page controller", state.state);
 
-    states.movePage({
-        name:self.page.name,
-        duration:300,
-        complete:function (body, manager) {
-            console.log("move complete");
-            body.removeClass("scroll").addClass("cutoff");
-            manager.startInstance(self.page.name);
+    if (state.page) {
+
+        console.log("page controller", state.state, "state is page");
+
+        //self.page = data.getPageById(state.name);
+
+        // setTimeout(function() {
+
+        //     states.movePage({
+        //         name:self.page.id,
+        //         duration:300,
+        //         complete:function (input) {
+        //             console.log("move complete");
+        //             input.body.removeClass("scroll").addClass("cutoff");
+        //             input.manager.startInstance(self.page.id);
+        //         }
+        //     });
+
+        // }, 1000);
+        
+
+        // ===================== SETUP ======================
+
+        states.setupReceivers();
+        manager.setupReceivers();
+
+    }
+    else {
+
+        console.log("page controller", state.state, "state is not page");
+
+        if (util.isValid()) {
+            //states.go("modal.valid");
+            self.valid = true;
         }
-    });
 
-    // ===================== SETUP ======================
+        setTimeout(function () {
 
-    states.setupReceivers();
-    manager.setupReceivers();
+            states.go("page.calibrate");
+        }, 2000);
 
-    // ===================== EVENTS ======================
+        // else {
+        //     states.go("modal.invalid");
+        // }
+
+    }
+
+    // ===================== EVENTS ===================== 
 
     events.on("gohome", function () {
         states.go("page.home");
     });
-    
-    // ===================== ON READY =====================
 
 }])

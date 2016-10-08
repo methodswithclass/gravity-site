@@ -60,7 +60,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		return _percent*(1/scheme.length);
 	}
 
-	var update = function () {
+	var update = function (object, interval) {
 
 
 	}
@@ -172,7 +172,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 
 		var relPos = obj.absolutePos();
-		console.log("calibrate", "dir", direction, "relPos", relPos, "acc", acc);
+		//console.log("calibrate", "dir", direction, "relPos", relPos, "acc", acc);
 		
 		var value;
 		if (direction == yDir) {
@@ -187,7 +187,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		//_percent = Math.abs(direction == xDir ? relPos.x : relPos.y)/obj.bounds.y;;
 		_percent = Math.floor(value)*100;
 
-		console.log("calibration", "in check", _percent + "%");
+		//console.log("calibration", "in check", _percent + "%");
 		
 		//progress.setPercent(_percent);
 

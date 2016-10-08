@@ -4,7 +4,7 @@ enemyModule.directive("preview", ['data.service', 'events', function (data, even
 		restrict:"E",
 		scope:false,
 		replace:false,
-		templateUrl:"features/enemy/enemy-modal.html",
+		templateUrl:"features/games/enemy/enemy-modal.html",
 		link:function ($scope, element, attr) {
 
 			$scope.types = data.enemydata;

@@ -26,6 +26,7 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		annihilate:"annihilate",
 		remove:"remove",
 		homeIndex:0,
+		validIndex:8,
 		settingsIndex:7,
 		calibrateIndex:1,
 		gravIndex:2,
@@ -44,11 +45,18 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var valid = false;
 	var status = con.invalid;
 
-	var toggleValidity = function (_valid) {
+	var forceValidity = function (_valid) {
 
 		forced = true;
 		valid = _valid;
 		status = valid ? con.valid : con.invalid;
+	}
+
+	var setValidity = function (_valid) {
+
+		forced = false;
+		valid = _valid;
+		status = _valid ? con.valid : con.invalid;
 	}
 
 	var isForced = function () {
@@ -56,14 +64,14 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return forced;
 	}
 
-	var deviceStatus = function () {
-
-		return status;
-	}
-
 	var isValid = function () {
 
 		return valid;
+	}
+
+	var deviceStatus = function () {
+
+		return status;
 	}
 
 	var setGlobalFactor = function (_factor) {
@@ -273,7 +281,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
     	getSessionFactor:getSessionFactor,
     	getFactor:getFactor,
     	getDirection:getDirection,
-    	toggleValidity:toggleValidity,
+    	forceValidity:forceValidity,
+    	setValidity:setValidity,
     	isForced:isForced,
     	deviceStatus:deviceStatus,
     	isValid:isValid,

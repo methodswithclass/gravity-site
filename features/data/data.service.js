@@ -19,6 +19,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"home",
 		title:"home",
 		index:g.c.homeIndex,
+		option:false,
 		motion:false,
 		game:false,
 		page:{
@@ -37,17 +38,42 @@ dataModule.factory("data.service", ['utility', function (g) {
 		}
 	},
 	{
+		id:"validity",
+		title:"validity",
+		index:g.c.validIndex,
+		option:false,
+		motion:false,
+		game:false,
+		keep:false,
+		page:{
+			view:"validity.html",
+			back:"black-back",
+			fore:"black-back",
+			rect:{
+				top:0,
+				left:0
+			},
+			border:{
+				color:"black",
+				width:1,
+				radius:0
+			}
+		}
+	},
+	{
 		id:"settings",
 		title:"settings",
 		index:g.c.settingsIndex,
+		option:false,
 		motion:false,
 		game:false,
+		keep:false,
 		page:{
 			view:"page.html",
 			back:"black-back",
 			fore:"white-back",
 			menu:"color1-back",
-			button:"transparent",
+			// button:"transparent",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-top',
@@ -83,14 +109,16 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"calibrate",
 		title:"calibrate",
 		index:g.c.calibrateIndex,
-		motion:true,
-		game:false,
+		option:true,
+		motion:false,
+		game:true,
+		keep:false,
 		page:{
 			view:"page.html",
 			back:"color1-back",
 			fore:"white-back",
 			menu:"color1-back",
-			button:"transparent",
+			// button:"transparent",
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
@@ -98,7 +126,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 				directive:g.c.back
 			},
 			rect:{
-				top:0,
+				top:"25%",
 				left:0
 			},
 			border:{
@@ -126,8 +154,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"gravity",
 		title:"gravity", 
 		index:g.c.gravIndex,
+		option:true,
 		motion:true,
 		game:false,
+		keep:false,
 		page:{
 			view:"page.html",
 			back:"color2-back",
@@ -168,8 +198,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"float",
 		title:"float", 
 		index:g.c.floatIndex,
+		option:true,
 		motion:true,
 		game:false,
+		keep:false,
 		page:{
 			view:"page.html",
 			back:"color3-back",
@@ -210,8 +242,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"enemies",
 		title:"enemies", 
 		index:g.c.enemiesIndex,
+		option:true,
 		motion:true,
 		game:true,
+		keep:true,
 		page:{
 			view:"page.html",
 			back:"color4-back",
@@ -252,8 +286,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"balance",
 		title:"balance", 
 		index:g.c.balanceIndex,
+		option:true,
 		motion:true,
 		game:true,
+		keep:true,
 		page:{
 			view:"page.html",
 			back:"color5-back",
@@ -294,8 +330,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 		id:"space",
 		title:"space",
 		index:g.c.spaceIndex,
+		option:true,
 		motion:true,
 		game:true,
+		keep:true,
 		page:{
 			view:"page.html",
 			back:"color6-back",
@@ -343,7 +381,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 
 		for (i in pages) {
 
-			if (i >= 2) {
+			if (pages[i].option) {
 				options[j++] = {
 					id:pages[i].id,
 					title:pages[i].title,

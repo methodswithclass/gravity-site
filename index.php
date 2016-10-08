@@ -26,27 +26,25 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    
+
 
     <base href="/">
 
   </head>
   <body ng-app="gravity">
-    
     <div class="absolute width height deselect" id="main">
         
         <div ui-view=""></div>
         <div ui-view="modal"></div>
     
     </div>
-   
+    
     <console ng-attr-vis="hide"><console>
     
 
     <!-- Console -->
 
     <script src="http://code.methodswithclass.com/api/console-1.js"></script>
-
 
     <!-- Shared -->
 
@@ -61,6 +59,12 @@
     <!-- Utility -->
 
     <script src="features/utility/utility.module.js"></script>
+
+
+    <!-- Touch -->
+
+    <script src="features/touch/touchModule.js"></script>
+    <script src="features/touch/touch.js"></script>
 
     <!-- Controllers -->
 
@@ -129,6 +133,11 @@
     <script src="features/games/balance/balance.game.js"></script>
     <script src="features/games/balance/target.service.js"></script>
     <script src="features/games/balance/meter.service.js"></script>
+
+    <!-- Space -->
+
+    <script src="features/games/space/space.module.js"></script>
+    <script src="features/games/space/space.game.js"></script>
 
     <!-- Data -->
 

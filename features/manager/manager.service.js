@@ -21,6 +21,51 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		send.setup.receiver({name:"display", receiver:displays});
 	}
 
+	var runGame = function (id) {
+
+		console.log("manager", "run game:", id);
+
+		var page = data.getPageById(id);
+		var interval = page.params.interval;
+
+		games[id].onStart();
+
+		timer = setInterval(function () {
+
+			//accels[id].update();
+			
+			games[id].update(objects[id], interval);
+			
+			if (page.keep) {
+				displays[id].time.html(games[id].clock());
+				displays[id].points.html(games[id].points());
+
+				if (games[id].zeroTime()) {
+					stopInstance(id);
+				}
+			}
+
+		}, interval);
+
+	}
+
+	var stopGame = function (id) {
+
+		console.log("manager", "stop game:", id);
+
+		var page = data.getPageById(id);
+		if (page.game) games[id].onEnd();
+	}
+
+	var leaveGame = function (id) {
+
+		console.log("manager", "leave game:", id);
+
+		var page = data.getPageById(id);
+		if (page.game) games[id].onLeave();
+
+	}
+
 	var addInstance = function (input) {
 
 		console.log("manager", "add instance:", input.id);
@@ -44,7 +89,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			arena:input.parent
 		});
 
-		games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
+		if (page.game) games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
 
 		objects[input.id] = object;
 		accels[input.id] = accel;
@@ -53,67 +98,21 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 	}
 
-	var getInstance = function (id) {
-
-		return {arena:arenas[id], object:objects[id], accel:accels[id]};
-	}
-
 	var enterInstance = function (id) {
 
 		console.log("manager", "enter instance:", id);
 
 		var page = data.getPageById(id);
 
-		accels[id].reset();
-
-		games[id].onEnter({arena:arenas[id]});
-
 		if (page.game) {
+			accels[id].reset();
+			games[id].onEnter({arena:arenas[id]});
+		}
+
+		if (page.keep) {
 			displays[id].time.html(games[id].clock());
 			displays[id].points.html(games[id].points());
 		}
-	}
-
-	var runGame = function (id) {
-
-		console.log("manager", "run game:", id);
-
-		var page = data.getPageById(id);
-		var interval = page.params.interval;
-
-		//console.log(page.id, interval)
-
-		timer = setInterval(function () {
-
-			accels[id].update();
-			
-			games[id].update(objects[id], interval);
-			displays[id].time.html(games[id].clock());
-			displays[id].points.html(games[id].points());
-
-			if (games[id].zeroTime()) {
-				stopInstance(id);
-			}
-
-		}, interval);
-
-	}
-
-	var stopGame = function (id) {
-
-		console.log("manager", "stop game:", id);
-
-		var page = data.getPageById(id);
-		games[id].onEnd();
-	}
-
-	var leaveGame = function (id) {
-
-		console.log("manager", "leave game:", id);
-
-		var page = data.getPageById(id);
-		games[id].onLeave();
-
 	}
 
 	var startInstance = function (id) {
@@ -124,20 +123,19 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		if (id != "home") {
 
-			accels[id].start();
+			if (page.game) accels[id].start();
 
 			if (hasMotion[id]) window.ondevicemotion = accels[id].motion;
 
 			toggles[id].play.addClass("hidden");
-			toggles[id].stop.removeClass("hidden");
-			games[id].onStart();
+			toggles[id].stop.removeClass("hidden"); 
 			if (page.game) runGame(id);
 	
 		}
 
 	}
 
-	var stopInstance = function (id, back) {
+	var stopInstance = function (id) {
 
 		console.log("manager", "stop instance:", id);
 
@@ -148,16 +146,25 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			clearInterval(timer);
 			timer = null;
 
-			accels[id].stop();
+			if (page.game) accels[id].stop();
 
 			window.ondevicemotion = null;
 
 			toggles[id].play.removeClass("hidden");
 			toggles[id].stop.addClass("hidden");
 
-			stopGame(id, back);
+			if (page.game) stopGame(id);
 
 		}
+	}
+
+	var leaveInstance = function (id) {
+
+		console.log("manager", "leave instance:", id);
+
+		var page = data.getPageById(id);
+		if (page.game) leaveGame(id);
+
 	}
 
 	var resetInstance = function (id) {
@@ -172,6 +179,11 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			games[id].reset();
 		
 		}
+	}
+
+	var getInstance = function (id) {
+
+		return {arena:arenas[id], object:objects[id], accel:accels[id]};
 	}
 
 	return {

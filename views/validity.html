@@ -1,0 +1,32 @@
+
+<div class="absolute fill" id="{{'arena' + info.id}}" rotation>
+
+	<div class="absolute width height black-back opacity70 z-20"></div>
+	<div class="absolute width80 height80 center white-back border rounded50 raised-dark z-50">
+		<div class="absolute width80 height80 center border">
+			<!-- <div ui-view="modal" autoscroll="false"></div> -->
+
+			<div ng-if="main.valid" class="absolute width90 height80 center">
+
+				<div class="absolute width text-center padding-v-50 font-70">This device is supported</div>
+
+				<div class="absolute width bottom0 text-center padding-v-50 font-50">please wait while the application loads</div>
+
+			</div>
+
+			<div ng-if="!main.valid" class="absolute width90 height80 center">
+
+				<div class="absolute width padding-v-50 text-center font-70">This device is not supported</div>
+
+				<div class="absolute width bottom0 padding-v-50 text-center font-50">this application requires a device with an accelerometer like a mobile device</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div class="absolute height-30 width white-back">
+		validity
+	</div>
+
+</div>

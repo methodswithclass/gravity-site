@@ -1,17 +1,14 @@
 
 <div class="absolute fill" id="{{'arena' + info.id}}" rotation>
 
-	<div class="absolute top-10 width text-center font-60">{{info.title}}</div>
+	<div id="{{'pagetitle' + info.id}}" ng-hide="info.id == 'validity'" class="absolute top-10 width text-center font-60">{{info.title}}</div>
+	<object ng-hide="info.id == 'validity' || info.id == 'settings'" ng-attr-id="{{'object' + info.id}}"></object>
+	<display ng-hide="info.id == 'validity' || info.id == 'calibrate' || info.id == 'settings'"></display>
+	<calibrate ng-hide="info.id != 'calibrate'"></calibrate>
+	<settings ng-hide="info.id != 'settings'"></settings>
+	<toggle ng-hide="info.id == 'validity' || info.id == 'calibrate' || info.id == 'settings'"></toggle>
+	<back ng-hide="info.id == 'validity' || info.id == 'calibrate'" ng-attr-id="{{'back.' + info.id}}" ></back>
 
-	<object ng-show="info.id != 'settings'" ng-attr-id="{{'object' + info.id}}"></object>
-	<display ng-show="info.id != 'calibrate'"></display>
-	<calibrate ng-show="info.id == 'calibrate'"></calibrate>
-
-	<preview></preview>
-
-	<settings ng-show="info.id == 'settings'"></settings>
-
-	<toggle ng-show="info.id != 'calibrate' && info.id != 'settings'"></toggle>
-	<back ng-show="info.id != 'calibrate'" ng-attr-id="{{'back.' + info.id}}" ></back>
+	<preview ng-hide="info.id != 'enemies'"></preview>
 
 </div>
