@@ -103,6 +103,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		setTimeout(function() {
 
+			events.dispatch("startCalibrate");
 			progress.runScheme();
 
 		}, 500);
@@ -120,7 +121,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var onLeave = function () {
 
-		
+		events.dispatch("leaveCalibrate");
 
 	}
 
