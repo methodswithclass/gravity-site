@@ -29,9 +29,7 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		var pos0 = new vector(0,0,0);
 		var pos1 = new vector(0,0,0);
 		var startTime = 0;
-
-		//var raw = {x:0, y:0, z:0};
-		//self.down = 0;
+		
 		var timer;
 		var running = false;
 
@@ -182,14 +180,6 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			}
 
 		}
-
-		// self.getRaw = function (e) {
-
-		// 	raw = e.accelerationIncludingGravity;
-
-		// 	self.down = g.len(raw);
-			
-		// }
 
 		self.reset = function () {
 			

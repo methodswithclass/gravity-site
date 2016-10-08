@@ -183,15 +183,27 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
-			if (position.y < 0) {
+			g.setDirection(yDir, (position.y > 0 ? 1 : -1)*g.getDirection("j"));
+
+			if (g.getDirection('j') < 0) {
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "switched");
-				g.setDirection(yDir, -1*g.getDirection("j"));
 			}
 			else {
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
 			}
+
+
+			// if (position.y < 0) {
+			// 	console.log("calibrate", "y direction SWITCHED");
+			// 	showToast("yDir", "switched");
+			// 	g.setDirection(yDir, -1*g.getDirection("j"));
+			// }
+			// else {
+			// 	console.log("calibrate", "y direction SAME");
+			// 	showToast("yDir", "same");
+			// }
 
 		}
 		else if (direction == xDir && Math.abs(position.x) >= obj.bounds.x) {
@@ -200,15 +212,26 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			stop();
 
-			if (position.x < 0) {
+			g.setDirection(xDir, (position.x > 0 ? 1 : -1)*g.getDirection("i"));
+
+			if (g.getDirection('i') < 0) {
 				console.log("calibrate", "x direction SWITCHED");
 				showToast("xDir", "switched");
-				g.setDirection(xDir, -1*g.getDirection("i"));
 			}
 			else {
 				console.log("calibrate", "x direction SAME");
 				showToast("xDir", "same");
 			}
+
+			// if (position.x < 0) {
+			// 	console.log("calibrate", "x direction SWITCHED");
+			// 	showToast("xDir", "switched");
+			// 	g.setDirection(xDir, -1*g.getDirection("i"));
+			// }
+			// else {
+			// 	console.log("calibrate", "x direction SAME");
+			// 	showToast("xDir", "same");
+			// }
 		}
 
 	}
