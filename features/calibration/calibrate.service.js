@@ -30,56 +30,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	var curr = 0;
 	var running = true;
 
-	var showToast = function (dir, type) {
 
-		$mdToast.show({
-			template:"<md-toast class='absolute width height-200 padding0 margin0 bottom0'>" +
-				    		"<div class='absolute width height'>" +
-				    			"<div class='absolute width height md-toast-content bottom0'>" + 
-				    				"<div class='absolute vcenter font-50'>" +
-				    					sm[dir][type] +
-				    				"</div>" +
-				    			"</div>" +
-				    		"</div>" +
-						"</md-toast>",
-			autoWrap:false,
-			hideDelay:2000
-		});
-	}
 
-	var getProgress = function () {
-
-		return progress.getPercent();
-	}
-
-	var getMessage = function () {
-
-		return progress.getMessage();
-	}
-
-	var getPhasePercent = function () {
-
-		return phase_p;
-	}
-
-	var getAccel = function () {
-
-		return {
-			curr:curr,
-			factor:g.getFactor()
-		};
-	}
-
-	var toggleRunning = function () {
-
-		if (running) {
-
-			running = false;
-		}
-		else {
-			running = true;
-		}
-	}
+	/* =======================================================================================*/
+	/* ================================   Stage Functions   ==================================*/
+	/* =======================================================================================*/
 
 	var update = function (object, interval) {
 
@@ -143,6 +98,67 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	}
 
+	/* =======================================================================================*/
+	/* =======================================     End      ==================================*/
+	/* =======================================================================================*/
+
+
+
+
+
+	var showToast = function (dir, type) {
+
+		$mdToast.show({
+			template:"<md-toast class='absolute width height-200 padding0 margin0 bottom0'>" +
+				    		"<div class='absolute width height'>" +
+				    			"<div class='absolute width height md-toast-content bottom0'>" + 
+				    				"<div class='absolute vcenter font-50'>" +
+				    					sm[dir][type] +
+				    				"</div>" +
+				    			"</div>" +
+				    		"</div>" +
+						"</md-toast>",
+			autoWrap:false,
+			hideDelay:2000
+		});
+	}
+
+	var getProgress = function () {
+
+		return progress.getPercent();
+	}
+
+	var getMessage = function () {
+
+		return progress.getMessage();
+	}
+
+	var getPhasePercent = function () {
+
+		return phase_p;
+	}
+
+	var getAccel = function () {
+
+		return {
+			curr:curr,
+			factor:g.getFactor()
+		};
+	}
+
+	var toggleRunning = function () {
+
+		if (running) {
+
+			running = false;
+		}
+		else {
+			running = true;
+		}
+
+	}
+
+
 	var getCalibrationData = function (direction) {
 
 		if (direction == yDir) {
@@ -152,6 +168,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			return {x:accelValue, y:0};
 		}
 	}
+
+
+
+
+
+	/* =======================================================================================*/
+	/* ================================   Phase Functions   ==================================*/
+	/* =======================================================================================*/
 
 	var num_phases = 4;
 
@@ -196,6 +220,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		else {
 			progress.hardStop();
 			events.dispatch("gohome");
+			//events.dispatch("calibrate-toggle");
 		}
 	}
 
@@ -259,6 +284,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
 			toggleRunning();
 
+			events.dispatch("calibrate-toggle");
+
 			accel.start();
 		},
 		check:function (index, axis) {
@@ -308,10 +335,20 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			current.length = 0;
 			current = null;
 			current = [];
+
+			events.dispatch("calibrate-toggle");
 			
 			next(index);
 		}
 	}
+
+	/* =======================================================================================*/
+	/* =======================================     End      ==================================*/
+	/* =======================================================================================*/
+
+
+
+
 
 	var scheme = {
 		num:num_phases,
@@ -370,24 +407,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				checkAxis.complete(2, yDir);
 			}
 		},
-		// {
-		// 	index:3,
-		// 	id:"checkX",
-		// 	message:"check x axis",
-		// 	percent:4/num_phases,
-		// 	start:function () {
-				
-		// 		checkAxis.start(3, xDir);
-		// 	},
-		// 	update:function (interval, percent) {
-
-		// 		return percent + checkAxis.check(3, xDir);
-		// 	},
-		// 	complete:function () {
-
-		// 		checkAxis.complete(3, xDir);
-		// 	}
-		// },
 		{
 			index:3,
 			id:"finish",
