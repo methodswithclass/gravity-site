@@ -181,11 +181,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			current.push(accel.getRaw());
 
-			_percent = 1/1000;
+			_percent += 1/1000;
 
 			curr = current.pop().y;
 
 			if (current.length > 1000) {
+
+				_percent = 1;
 
 				if (curr > 0) {
 
@@ -215,11 +217,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			current.push(accel.getRaw());
 
-			_percent = 1/1000;
+			_percent += 1/1000;
 
 			curr = current.pop().x;
 
 			if (current.length > 1000) {
+
+				_percent = 1;
 
 				if (curr < 0) {
 
@@ -365,7 +369,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check y axis",
 		percent:0.6,
 		update:function (percent) {
-			return 0.4 + getPercent();
+			return 0.4 + getPercent()/5;
 		},
 		start:function () {
 			console.log("begin phase 3");
@@ -384,7 +388,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check x axis",
 		percent:0.8,
 		update:function (percent) {
-			return 0.6 + getPercent();
+			return 0.6 + getPercent()/5;
 		},
 		start:function () {
 			console.log("begin phase 3");
