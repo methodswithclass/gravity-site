@@ -317,7 +317,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			if (check) {
 
 				g.setDirection(axis == yDir ? yDir : xDir, 1);
-				g.setDirection(axis == yDir ? xDir : yDir, -1);
+				g.setDirection(axis == yDir ? xDir : yDir, 1);
 
 				console.log("calibrate", (axis == yDir ? "y": "x"), "direction", (axis == yDir ? "SWITCHED": "SAME"));
 				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "switched": "same"));
@@ -326,7 +326,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			else {
 
 				g.setDirection(axis == yDir ? yDir : xDir, -1);
-				g.setDirection(axis == yDir ? xDir : yDir, 1);
+				g.setDirection(axis == yDir ? xDir : yDir, -1);
 
 				console.log("calibrate", (axis == yDir ? "y": "x"),  "direction", (axis == yDir ? "SAME": "SWITCHED"));
 				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "same": "switched"));
@@ -409,20 +409,38 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		},
 		{
 			index:3,
-			id:"finish",
-			message:"finish up calibration",
+			id:"checkX",
+			message:"check x axis",
 			percent:4/num_phases,
-			start:function() {
-
-				begin(3);
+			start:function () {
+				
+				checkAxis.start(3, xDir);
 			},
 			update:function (interval, percent) {
 
-				return percent + loading(3);
+				return percent + checkAxis.check(3, xDir);
 			},
 			complete:function () {
 
-				next(3);
+				checkAxis.complete(3, xDir);
+			}
+		},
+		{
+			index:4,
+			id:"finish",
+			message:"finish up calibration",
+			percent:5/num_phases,
+			start:function() {
+
+				begin(4);
+			},
+			update:function (interval, percent) {
+
+				return percent + loading(4);
+			},
+			complete:function () {
+
+				next(4);
 			}
 		}
 		]
