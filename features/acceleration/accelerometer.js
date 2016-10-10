@@ -146,6 +146,11 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 			}
 		}
 
+		self.unfiltered = function () {
+
+			return unfiltered;
+		}
+
 		self.raw = function (e) {
 
 			raw = {

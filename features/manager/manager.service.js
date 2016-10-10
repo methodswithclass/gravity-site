@@ -29,14 +29,16 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		var page = data.getPageById(id);
 		var interval = page.params.interval;
 
-		games[id].onStart();
+		if (page.type.stages) games[id].onStart();
 
 		timer = setInterval(function () {
 
 			//accels[id].update();
 			
-			games[id].update(objects[id], interval);
-			
+			if (page.type.stages) games[id].update(objects[id], interval);
+
+			displays[id].stats.html("x:" + accel.unfiltered().x + " <br>y: " + accel.unfiltered().y);
+
 			if (page.type.game) {
 				displays[id].time.html(games[id].clock());
 				displays[id].points.html(games[id].points());
@@ -57,7 +59,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "stop game:", id);
 
 		var page = data.getPageById(id);
-		games[id].onEnd();
+		if (page.type.stages) games[id].onEnd();
 	}
 
 	var leaveStage = function (id) {
@@ -67,7 +69,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "leave game:", id);
 
 		var page = data.getPageById(id);
-		games[id].onLeave();
+		if (page.type.stages) games[id].onLeave();
 
 	}
 
@@ -112,6 +114,9 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			
 		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
+		//console.log("display id", id);
+		if (page.type.accel) displays[id].stats.html("x:" + accel.unfiltered().x + " <br>y: " + accel.unfiltered().y);
+
 		if (page.type.game) {
 			displays[id].time.html(games[id].clock());
 			displays[id].points.html(games[id].points());
@@ -135,7 +140,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 				toggles[id].stop.removeClass("hidden");
 			}
 
-			if (page.type.stages) startStage(id);
+			startStage(id);
 	
 		}
 
@@ -161,7 +166,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 				toggles[id].stop.addClass("hidden");
 			}
 
-			if (page.type.stages) stopStage(id);
+			stopStage(id);
 
 		}
 	}
@@ -171,7 +176,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		console.log("manager", "leave instance:", id);
 
 		var page = data.getPageById(id);
-		if (page.type.stages) leaveStage(id);
+		leaveStage(id);
 
 	}
 

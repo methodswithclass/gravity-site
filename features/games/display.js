@@ -14,8 +14,9 @@ gamesModule.directive("display", ['send', function (send) {
 
 				var time = $("#time" + id);
 				var points = $("#points" + id);
+				var stats = $("#stats" + id);
 
-				var display = {time:time, points:points};
+				var display = {time:time, points:points, stats:stats};
 
 				send.retrieve.accum({name:"display", id:id, data:display});
 

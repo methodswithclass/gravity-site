@@ -351,12 +351,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 					g.setDirection(xDir, -1);
 
-					console.log("calibrate", "y direction SWITCHED");
-					showToast("yDir", "switched");
+					console.log("calibrate", "x direction SWITCHED");
+					showToast("xDir", "switched");
 				}
 				else if (curr > 0) {
-					console.log("calibrate", "y direction SAME");
-					showToast("yDir", "same");
+					console.log("calibrate", "x direction SAME");
+					showToast("xDir", "same");
 				}
 
 				console.log("complete phase 3");
