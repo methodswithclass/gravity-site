@@ -177,7 +177,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	/* ================================   Phase Functions   ==================================*/
 	/* =======================================================================================*/
 
-	var num_phases = 4;
+	var num_phases = 5;
 
 	var begin = function (index) {
 
@@ -186,6 +186,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		if (index + 1 >= num_phases) {
 			events.dispatch("tiltnone");
 			toggleRunning();
+			events.dispatch("calibrate-btn-show");
 		}
 	}
 
@@ -220,7 +221,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		else {
 			progress.hardStop();
 			events.dispatch("gohome");
-			//events.dispatch("calibrate-toggle");
+			events.dispatch("calibrate-btn-hide");
 		}
 	}
 
@@ -284,7 +285,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
 			toggleRunning();
 
-			events.dispatch("calibrate-toggle");
+			events.dispatch("calibrate-btn-show");
 
 			accel.start();
 		},
@@ -336,7 +337,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			current = null;
 			current = [];
 
-			events.dispatch("calibrate-toggle");
+			events.dispatch("calibrate-btn-hide");
 			
 			next(index);
 		}

@@ -93,17 +93,19 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 				var $btn;
 				var showing = true;
 
-				var toggleBtn = function () {
+				var toggleBtn = function (_showing) {
 
-					if (showing) {
-						showing = false;
-						$btn.hide();
-						$btn.addClass("hidden");
-					}
-					else {
+					if (_showing) {
+
 						showing = true;
 						$btn.show();
 						$btn.removeClass("hidden");
+					}
+					else {
+						
+						showing = false;
+						$btn.hide();
+						$btn.addClass("hidden");
 					}
 
 				}
@@ -111,19 +113,24 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 				setTimeout(function () {
 
 					$btn = $("#btn" + id);
-					toggleBtn();
+					toggleBtn(false);
 
 				}, 500);
 
 				$scope.continue = function () {
 
 					calibrate.toggleRunning();
-					toggleBtn();
+					toggleBtn(false);
 				}
 
-				events.on("calibrate-toggle", function () {
+				events.on("calibrate-btn-show", function () {
 
-					toggleBtn();
+					toggleBtn(true);
+				})
+
+				events.on("calibrate-btn-hide", function () {
+
+					toggleBtn(false);
 				})
 
 				events.on("calibrate-start", function () {
