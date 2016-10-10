@@ -93,7 +93,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	var resize = function () {
 
-		var name = (getStateParams(current())).name;
+		var name = current().name;
 
 		elem = $(elements["page" + name]);
 		bodyElem = $(body["body"]);
