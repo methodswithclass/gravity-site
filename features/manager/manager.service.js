@@ -1,4 +1,4 @@
-managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'games.library', function (accelerometer, objectFact, data, send, games) {
+managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'games.library', 'utility', function (accelerometer, objectFact, data, send, games, util) {
 
 	var object;
 	var accel;
@@ -20,6 +20,17 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		send.setup.receiver({name:"display", receiver:displays});
 	}
 
+	var setStats = function (id) {
+
+		displays[id].stats.html(
+			  "x:" + accel.unfiltered().x + "<br>"
+			+ "y: " + accel.unfiltered().y + "<br>"
+			+ "factor: " + util.getFactor() + "<br>"
+			+ "xDir: " + util.getDirection("i") + "<br>"
+			+ "yDir: " + util.getDirection("j") + "<br>"
+		);
+	}
+
 	var startStage = function (id) {
 
 		//id page must be set to page.type.stages
@@ -37,7 +48,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			
 			if (page.type.stages) games[id].update(objects[id], interval);
 
-			displays[id].stats.html("x:" + accel.unfiltered().x + " <br>y: " + accel.unfiltered().y);
+			if (page.type.accel) setStats(id);
 
 			if (page.type.game) {
 				displays[id].time.html(games[id].clock());
@@ -114,8 +125,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 			
 		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
-		//console.log("display id", id);
-		if (page.type.accel) displays[id].stats.html("x:" + accel.unfiltered().x + " <br>y: " + accel.unfiltered().y);
+		if (page.type.accel) setStats(id);
 
 		if (page.type.game) {
 			displays[id].time.html(games[id].clock());
@@ -133,7 +143,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 			if (page.type.accel) accels[id].start();
 
-			if (page.type.motion) window.ondevicemotion = accels[id].motion;
+			if (page.type.accel) window.ondevicemotion = accels[id].motion;
 
 			if (page.type.accel && page.type.motion) {
 				toggles[id].play.addClass("hidden");

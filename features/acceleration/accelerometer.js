@@ -133,6 +133,11 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 
 		self.motion = function (e) {
 			
+			raw = {
+				x:e.accelerationIncludingGravity.x,
+				y:e.accelerationIncludingGravity.y
+			}
+
 			if (running) {
 
 				if (p.gravity) {
@@ -143,19 +148,6 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 				}
 
 				//console.log("unfiltered", "x", unfiltered.x, "y", unfiltered.y);
-			}
-		}
-
-		self.unfiltered = function () {
-
-			return unfiltered;
-		}
-
-		self.raw = function (e) {
-
-			raw = {
-				x:e.accelerationIncludingGravity.x,
-				y:e.accelerationIncludingGravity.y
 			}
 		}
 
@@ -219,6 +211,11 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		self.getRaw = function () {
 
 			return raw;
+		}
+
+		self.unfiltered = function () {
+
+			return unfiltered;
 		}
 
 	}

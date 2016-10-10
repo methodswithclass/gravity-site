@@ -110,7 +110,8 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 						$scope.message = calibrate.getMessage();
 						$scope.progress = calibrate.getProgress()*100 + "%";
-						$scope.accel = util.truncate(calibrate.getAccel(), 4);
+						$scope.accel = " :  accel: " + util.truncate(calibrate.getAccel().curr, 4) 
+										+ ": factor: " +  util.truncate(calibrate.getAccel().factor, 4);
 
 						//console.log("message", $scope.message, "progress", $scope.progress, "accel", $scope.accel);
 

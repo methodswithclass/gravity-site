@@ -22,7 +22,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var element;
 
-	var accelValue = 1;
+	var accelValue = 0.01;
 	var acc = {};
 	var time = 0;
 	var position;
@@ -64,7 +64,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var getAccel = function () {
 
-		return curr;
+		return {
+			curr:curr,
+			factor:g.getFactor()
+		};
 	}
 
 	var toggleRunning = function () {
@@ -107,7 +110,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var onEnter = function () {
 
-		window.ondevicemotion = accel.raw;
+		//window.ondevicemotion = accel.motion;
 
 	}
 
@@ -150,8 +153,159 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		}
 	}
 
-
 	var num_phases = 5;
+
+	var begin = function (index) {
+
+		console.log("begin phase", index);
+		
+		if (index + 1 >= num_phases) {
+			events.dispatch("tiltnone");
+			toggleRunning();
+		}
+	}
+
+	var loading = function (index) {
+
+		var p;
+
+		if (running) {
+			console.log("running phase", index);
+			p = 0.003;
+		}
+		else {
+			console.log("pausing phase", index);
+			p = 0;
+		}
+
+		return p;
+	}
+
+	var next = function (index) {
+
+		reset();
+				
+		console.log("complete phase", index);	
+
+		phase_p = 0;
+
+		if (index + 1 < num_phases) {
+			progress.setIndex(index + 1);
+			progress.startPhase();
+		}
+		else {
+			progress.hardStop();
+			events.dispatch("gohome");
+		}
+	}
+
+
+	var checkFactor = {
+
+		start:function (index) {
+
+			console.log("begin phase", index);
+				
+			time = (new Date()).getTime();
+
+			acc = {};
+			acc = getCalibrationData(yDir);
+
+			accel.start();
+		},
+		check:function (index, interval) {
+
+			if (running) {
+
+				console.log("running phase", index);
+
+				time += interval;
+
+				accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
+
+				position = obj.absolutePos();
+				
+				phase_p =  Math.abs(position.y)/obj.bounds.y;
+
+			}
+			else {
+				console.log("pausing phase 1");
+			}
+
+			return phase_p/num_phases;
+		},
+		complete:function (index) {
+
+			console.log("calibrate", "reached y boundary");
+
+			var objaccel = Math.abs(obj.acceleration.y);
+			objaccel = objaccel != 0 ? objaccel : 1;
+
+			g.setGlobalFactor(g.c.dist*1e9/time/objaccel);
+
+			console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getGlobalFactor());
+
+			next(index);
+			
+		}
+	}
+
+	var checkAxis = {
+
+		start:function (index, axis) {
+
+			console.log("begin phase", index);
+
+			events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
+			toggleRunning();
+
+			accel.start();
+		},
+		check:function (index, axis) {
+
+			if (running) {
+
+				console.log("running phase", index);
+
+				current.push(accel.getRaw());
+
+				phase_p += 1/1000/100;
+
+				curr = current.pop()[axis == yDir ? "y" : "x"];
+
+			}
+			else {
+				console.log("pausing phase", index);
+				phase_p += 0;
+			}
+
+			return phase_p/num_phases;
+		},
+		complete:function (index, axis) {
+
+			reset();
+
+			if (curr > 0) {
+
+				g.setDirection(axis, axis == yDir ? -1: 1);
+
+				console.log("calibrate", (axis == yDir ? "y": "x"), "direction", (axis == yDir ? "SWITCHED": "SAME"));
+				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "switched": "same"));
+				
+			}
+			else if (curr < 0) {
+				console.log("calibrate", (axis == yDir ? "y": "x"),  "direction", (axis == yDir ? "SAME": "SWITCHED"));
+				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "same": "switched"));
+			}
+
+			current.length = 0;
+			current = null;
+			current = [];
+			
+			next(index);
+		}
+	}
+
 	var scheme = {
 		num:num_phases,
 		phases:[
@@ -161,33 +315,15 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			message:"load calibration",
 			percent:1/num_phases,
 			start:function() {
-
-				console.log("begin phase 0");
-
+				begin(0);
 			},
 			update:function (interval, percent) {
 
-				var p;
-
-				if (running) {
-					console.log("running phase 0");
-					p = percent + 0.003;
-				}
-				else {
-					console.log("pausing phase 0");
-					p = percent;
-				}
-
-				return p;
+				return percent + loading(0);
 			},
 			complete:function () {
 
-				reset();
-				
-				console.log("complete phase 0");	
-
-				progress.setIndex(1);
-				progress.startPhase();
+				next(0);
 			}
 		},
 		{
@@ -196,53 +332,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			message:"calibrate factor",
 			percent:2/num_phases,
 			start:function () {
-				console.log("begin phase 1");
 				
-				time = (new Date()).getTime();
-
-				acc = {};
-				acc = getCalibrationData(yDir);
-
-				accel.start();
-
+				checkFactor.start(1);
 			},
 			update:function (interval, percent) {
 
-				if (running) {
-
-					console.log("running phase 1");
-
-					time += interval;
-
-					accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
-
-					position = obj.absolutePos();
-					
-					phase_p =  Math.abs(position.y)/obj.bounds.y;
-
-				}
-				else {
-					console.log("pausing phase 1");
-				}
-
-				return percent + phase_p/num_phases;
+				return percent + checkFactor.check(1, interval);
 			},
 			complete:function () {
-
-				console.log("calibrate", "reached y boundary");
-
-				reset();
-
-				var grav = g.c.dist/time*1e9;
-				g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
-
-				console.log("complete phase 1");
-
-				phase_p = 0;
-
-				progress.setIndex(2);
-				progress.startPhase();
 				
+				checkFactor.complete(1);
 
 			}
 		},
@@ -252,63 +351,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			message:"check y axis",
 			percent:3/num_phases,
 			start:function () {
-				console.log("begin phase 2");
-
-				events.dispatch("tiltunder");
-				toggleRunning();
-
-				accel.start();
-
-				i = 0;
-
+				
+				checkAxis.start(2, yDir);
 			},
 			update:function (interval, percent) {
 
-				if (running) {
-
-					console.log("running phase 2");
-
-					current.push(accel.getRaw());
-
-					phase_p += 1/1000/100;
-
-					curr = current.pop().y;
-
-				}
-				else {
-					console.log("pausing phase 2");
-				}
-
-				return percent + phase_p/num_phases;
+				return percent + checkAxis.check(2, yDir);
 			},
 			complete:function () {
 
-				reset();
-
-				if (curr > 0) {
-
-					g.setDirection(yDir, -1);
-
-					console.log("calibrate", "y direction SWITCHED");
-					showToast("yDir", "switched");
-					
-				}
-				else if (curr < 0) {
-					console.log("calibrate", "y direction SAME");
-					showToast("yDir", "same");
-				}
-
-
-				console.log("complete phase 2");
-
-				current.length = 0;
-				current = null;
-				current = [];
-				phase_p = 0;
-
-				progress.setIndex(3);
-				progress.startPhase();
-
+				checkAxis.complete(2, yDir);
 			}
 		},
 		{
@@ -317,58 +369,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			message:"check x axis",
 			percent:4/num_phases,
 			start:function () {
-				console.log("begin phase 3");
-
-				events.dispatch("tiltright");
-				toggleRunning();
-
-				accel.start();
-
-				i = 0;
-
+				
+				checkAxis.start(3, xDir);
 			},
 			update:function (interval, percent) {
 
-				if (running) {
-
-					console.log("running phase 3");
-
-					current.push(accel.getRaw());
-
-					phase_p += 1/1000/100;
-
-					curr = current.pop().y;
-
-				}
-
-				return percent + phase_p/num_phases;
+				return percent + checkAxis.check(3, xDir);
 			},
 			complete:function () {
 
-				reset();
-
-				if (curr < 0) {
-
-					g.setDirection(xDir, -1);
-
-					console.log("calibrate", "x direction SWITCHED");
-					showToast("xDir", "switched");
-				}
-				else if (curr > 0) {
-					console.log("calibrate", "x direction SAME");
-					showToast("xDir", "same");
-				}
-
-				console.log("complete phase 3");
-
-				current.length = 0;
-				current = null;
-				current = [];
-				phase_p = 0;
-
-				progress.setIndex(4);
-				progress.startPhase();
-
+				checkAxis.complete(3, xDir);
 			}
 		},
 		{
@@ -378,171 +388,19 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			percent:5/num_phases,
 			start:function() {
 
-				console.log("begin phase 5");
-				events.dispatch("tiltnone");
-				toggleRunning();
-
+				begin(4);
 			},
 			update:function (interval, percent) {
 
-				var p;
-
-				if (running) {
-					console.log("running phase 0");
-					p = percent + 0.003;
-				}
-				else {
-					console.log("pausing phase 0");
-					p = percent;
-				}
-
-				return p;
+				return percent + loading(4);
 			},
 			complete:function () {
 
-				reset();
-				
-				console.log("complete phase 5");	
-
-				progress.hardStop();
-				events.dispatch("gohome");
+				next(4);
 			}
 		}
 		]
-	}	
-
-	//var num_phases = 6;
-	// var scheme = {
-	// 	num:num_phases,
-	// 	phases:[
-	// 	{
-	// 		index:0,
-	// 		id:"loading",
-	// 		message:"load calibration",
-	// 		percent:1/num_phases,
-	// 		update:function (percent) {
-
-	// 			return percent + 0.003;
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 0");
-	// 		},
-	// 		complete:function () {
-
-	// 			console.log("complete phase 0");
-	// 			reset();
-	// 			events.dispatch("progress-next");
-	// 		}
-	// 	},
-	// 	{
-	// 		index:1,
-	// 		id:"checkFactor",
-	// 		message:"calibrate factor",
-	// 		percent:2/num_phases,
-	// 		update:function (percent) {
-	// 			return percent + getPhasePercent()/num_phases;
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 1");
-	// 			time = (new Date()).getTime();
-	// 			startCheck();
-	// 		},
-	// 		complete:function () {
-	// 			console.log("complete phase 1");
-	// 			reset();
-	// 			events.dispatch("progress-next");
-
-	// 		}
-	// 	},
-	// 	{
-	// 		index:2,
-	// 		id:"checkY",
-	// 		message:"check y axis",
-	// 		percent:3/num_phases,
-	// 		update:function (percent) {
-	// 			return percent + getPhasePercent()/num_phases;
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 2");
-	// 			reset();
-	// 			events.dispatch("tiltunder");
-	// 			events.dispatch("calibrate-pause");
-	// 		},
-	// 		complete:function () {
-	// 			console.log("complete phase 2");
-	// 			reset();
-	// 			events.dispatch("progress-next");
-	// 		}
-	// 	},
-	// 	{
-	// 		index:3,
-	// 		id:"checkX",
-	// 		message:"check x axis",
-	// 		percent:4/num_phases,
-	// 		update:function (percent) {
-	// 			return percent + getPhasePercent()/num_phases;
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 3");
-	// 			events.dispatch("tiltright");
-	// 			events.dispatch("calibrate-pause");
-	// 		},
-	// 		complete:function () {
-	// 			console.log("complete phase 3");
-	// 			reset();
-	// 			//progress.setPercent(4/num_phases);
-	// 			events.dispatch("progress-next");
-	// 		}
-	// 	},
-	// 	{
-	// 		index:4,
-	// 		id:"finish",
-	// 		message:"finish calibration",
-	// 		percent:5/num_phases,
-	// 		update:function (percent) {
-	// 			return percent + 0.003;
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 4");
-	// 			//loading();
-	// 			//events.dispatch("calibrate-start");
-	// 		},
-	// 		complete:function () {
-	// 			console.log("complete phase 4");
-	// 			//stopLoading();
-	// 			reset();
-	// 			//progress.setPercent(5/num_phases);
-	// 			events.dispatch("progress-next");
-	// 		}
-	// 	},
-	// 	{
-	// 		index:5,
-	// 		id:"complete",
-	// 		message:"completed calibration, thank you",
-	// 		percent:6/num_phases,
-	// 		update:function (percent) {
-	// 			return getPercent();
-	// 		},
-	// 		start:function () {
-	// 			console.log("begin phase 5");
-	// 			events.dispatch("calibrate-start");
-	// 			stop();
-	// 		},
-	// 		complete:function () {
-
-	// 			console.log("complete phase 5");
-
-	// 			setTimeout(function () {
-	// 				reset();
-	// 				progress.hardStop();
-	// 				events.dispatch("calibrate-stop");
-	// 				events.dispatch("gohome");
-	// 			}, 500);
-				
-	// 		}
-	// 	}
-	// 	]
-	// }
+	}
 
 	return {
 		onCreate:onCreate,
