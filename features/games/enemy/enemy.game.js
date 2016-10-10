@@ -77,7 +77,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		//console.log("tick");
 
-		keeper.tick(interval*5);
+		keeper.tick(interval);
 
 		var i = 0;
 		var length = enemies.length;
