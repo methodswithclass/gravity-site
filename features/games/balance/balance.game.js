@@ -69,7 +69,7 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 've
 				keeper.addPoints(3);
 			}
 			else {
-				meter.tick(interval);
+				meter.tick(interval/5);
 				keeper.addPoints(-1);
 			}
 

@@ -119,7 +119,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 		keeper = new keeperFactory();
 
-		keeper.setTotalTime(60000);
+		keeper.setTotalTime(30000);
 
 		createAll();
 
