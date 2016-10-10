@@ -159,7 +159,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			console.log("loading timer", _percent);
 
-		}, 10);
+		}, 30);
 
 	}
 
@@ -171,56 +171,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	}
 
-	var startCheck = function () {
-
-		acc = {};
-		acc = getCalibrationData(yDir);
-		var interval = 10;
-
-		accel.start();
-
-		clearInterval(accelWatch);
-		accelWatch = setInterval(function () {
-
-			console.log("check factor");
-
-			time += interval;
-
-			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
-
-			calibrateFactor();
-
-		}, interval);
-
-	}
-
-	var calibrate = function () {
-
-
-		var interval = 10;
-
-		accel.start();
-
-		i = 0;
-
-		clearInterval(accelWatch);
-		accelWatch = setInterval(function () {
-
-			console.log("calibrate direction");
-
-			time += interval;
-
-			window.devicemotion = accel.raw;
-
-			calibrateDirection();
-
-		}, interval);
-
-	}
-
 	var calibrateDirection = function () {
 
-		curr = 1;
+		console.log("calibrate direction");
 
 		if (calDir == yDir) {
 
@@ -272,6 +225,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		}
 
+		//curr = 1;
+
 
 	}
 
@@ -295,6 +250,51 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 		}
+
+	}
+
+	var startCheck = function () {
+
+		acc = {};
+		acc = getCalibrationData(yDir);
+		var interval = 10;
+
+		accel.start();
+
+		clearInterval(accelWatch);
+		accelWatch = setInterval(function () {
+
+			console.log("check factor");
+
+			time += interval;
+
+			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
+
+			calibrateFactor();
+
+		}, interval);
+
+	}
+
+	var calibrate = function () {
+
+
+		var interval = 10;
+
+		accel.start();
+
+		i = 0;
+
+		clearInterval(accelWatch);
+		accelWatch = setInterval(function () {
+
+			time += interval;
+
+			window.ondevicemotion = accel.raw;
+
+			calibrateDirection();
+
+		}, interval);
 
 	}
 
@@ -440,7 +440,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		update:update,
 		reset:reset,
 		getProgress:getProgress,
-		getMessage:getMessage
+		getMessage:getMessage,
+		getAccel:getAccel
 	}
 
 }]);

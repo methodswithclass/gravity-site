@@ -80,7 +80,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 					$scope.hidecontinue = true;
 					events.dispatch("cal-service-accel");
-
+					events.dispatch("calibrate-start");
 				}
 
 				events.on("calibrate-pause", function () {
@@ -104,7 +104,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 						$scope.progress = calibrate.getProgress()*100 + "%";
 						$scope.accel = util.truncate(calibrate.getAccel(), 4);
 
-						console.log("message", $scope.message, "progress", $scope.progress);
+						console.log("message", $scope.message, "progress", $scope.progress, "accel", $scope.accel);
 
 						$scope.$apply();
 
