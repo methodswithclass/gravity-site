@@ -7,8 +7,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	var yDir = "j";
 	var xDir = "i";
 
-	var calDir = yDir;
-
 	var sm = {
 		xDir:{
 			same:"x axis unchanged",
@@ -21,16 +19,14 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	}
 
 	var accelWatch;
-	var loadingTimer;
+	var checkTimer;
 
 	var element;
 
 	var accelValue = 1;
 	var acc = {};
 	var time = 0;
-	var current = [];
 	var _percent = 0;
-	var i = 0;
 
 	var showToast = function (dir, type) {
 
@@ -61,7 +57,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var getPercent = function () {
 
-		return _percent;
+		return _percent*(1/scheme.length);
 	}
 
 	var update = function (object, interval) {
@@ -100,7 +96,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		setTimeout(function() {
 
-			events.dispatch("progress-start");
+			events.dispatch("startCalibrate");
+			progress.runScheme();
 
 		}, 500);
 
@@ -109,26 +106,20 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var onEnd = function () {
 
-		stopWatch();
+		clearInterval(accelWatch);
+		accelWatch = {};
+		accelWatch = null;
 
 	}
 
 	var onLeave = function () {
 
-		events.dispatch("calibrate-stop");
+		events.dispatch("leaveCalibrate");
 
-	}
-
-	var stopWatch = function () {
-
-		clearInterval(accelWatch);
-		accelWatch = {};
-		accelWatch = null;
 	}
 
 	var reset = function () {
 
-		stopWatch();
 		accel.stop();
 		accel.reset();
 	}
@@ -145,130 +136,45 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		}
 	}
 
-	var loading = function () {
-
-		loadingTimer = setInterval(function () {
-
-			_percent += 0.003;
-
-			console.log("loading timer", _percent);
-
-		}, 10);
-
-	}
-
-	var stopLoading = function () {
-
-		clearInterval(loadingTimer);
-		loadingTimer = {};
-		loadingTimer = null;
-
-	}
-
-	var startCheck = function () {
+	var startCheck = function (direction) {
 
 		acc = {};
-		acc = getCalibrationData(yDir);
+		acc = getCalibrationData(direction);
 		var interval = 10;
 
 		accel.start();
 
 		clearInterval(accelWatch);
 		accelWatch = setInterval(function () {
-
-			console.log("check factor");
 
 			time += interval;
 
 			accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
 
-			calibrateFactor();
+			checkdirection(direction);
 
 		}, interval);
 
 	}
 
-	var calibrate = function () {
 
-
-		var interval = 10;
-
-		accel.start();
-
-		clearInterval(accelWatch);
-		accelWatch = setInterval(function () {
-
-			console.log("calibrate direction");
-
-			time += interval;
-
-			window.devicemotion = accel.raw;
-
-			calibrateDirection();
-
-		}, interval);
-
-	}
-
-	var calibrateDirection = function () {
-
-
-		if (calDir == yDir) {
-
-			current[i++] = accel.getRaw();
-
-			_percent = 0.01;
-
-			if (current.length > 100 && current[current.length-1].y > 0) {
-
-				g.setDirection(yDir, -1);
-
-				console.log("calibrate", "y direction SWITCHED");
-				showToast("yDir", "switched");
-			}
-			else if (current.length > 100 && current[current.length-1].y < 0) {
-				console.log("calibrate", "y direction SAME");
-				showToast("yDir", "same");
-			}
-
-			calDir = xDir;
-
-		}
-		else if (calDir == xDir) {
-
-			current[i++] = accel.getRaw();
-
-			_percent = 0.01;
-
-			if (current.length > 100 && current[current.length-1].x < 0) {
-
-				g.setDirection(xDir, -1);
-
-				console.log("calibrate", "y direction SWITCHED");
-				showToast("yDir", "switched");
-			}
-			else if (current.length > 100 && current[current.length-1].x > 0) {
-				console.log("calibrate", "y direction SAME");
-				showToast("yDir", "same");
-			}
-
-		}
-
-
-	}
-
-
-	var calibrateFactor = function () {
+	var checkdirection = function (direction) {
 
 
 		var position = obj.absolutePos();
 		//console.log("calibrate", "dir", direction, "position", position, "acc", acc);
 		
-		var value =  Math.abs(position.y)/obj.bounds.y;
+		var value;
+		if (direction == yDir) {
+			value =  Math.abs(position.y)/obj.bounds.y;
+		}
+		else {
+			value = Math.abs(position.x)/obj.bounds.x;
+		}
 
-		_percent = value;
+		_percent = Math.floor(value)*100;
 
-		if (Math.abs(position.y) >= obj.bounds.y) {
+		if (direction == yDir && Math.abs(position.y) >= obj.bounds.y) {
 
 			console.log("calibrate", "reached y boundary", position.y);
 
@@ -276,126 +182,141 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
+
+			g.setDirection(yDir, (position.y > 0 ? -1 : 1)*g.getDirection("j"));
+
+			if (g.getDirection('j') < 0) {
+				console.log("calibrate", "y direction SWITCHED");
+				showToast("yDir", "switched");
+			}
+			else {
+				console.log("calibrate", "y direction SAME");
+				showToast("yDir", "same");
+			}
+
+
+			// if (position.y < 0) {
+			// 	console.log("calibrate", "y direction SWITCHED");
+			// 	showToast("yDir", "switched");
+			// 	g.setDirection(yDir, -1*g.getDirection("j"));
+			// }
+			// else {
+			// 	console.log("calibrate", "y direction SAME");
+			// 	showToast("yDir", "same");
+			// }
+
+		}
+		else if (direction == xDir && Math.abs(position.x) >= obj.bounds.x) {
+
+			console.log("calibrate", "reached x boundary", position.x);
+
+			stop();
+
+			g.setDirection(xDir, (position.x > 0 ? -1 : 1)*g.getDirection("i"));
+
+			if (g.getDirection('i') < 0) {
+				console.log("calibrate", "x direction SWITCHED");
+				showToast("xDir", "switched");
+			}
+			else {
+				console.log("calibrate", "x direction SAME");
+				showToast("xDir", "same");
+			}
+
+			// if (position.x < 0) {
+			// 	console.log("calibrate", "x direction SWITCHED");
+			// 	showToast("xDir", "switched");
+			// 	g.setDirection(xDir, -1*g.getDirection("i"));
+			// }
+			// else {
+			// 	console.log("calibrate", "x direction SAME");
+			// 	showToast("xDir", "same");
+			// }
 		}
 
 	}
-
-	events.on("cal-service-accel", function () {
-
-		calibrate();
-	});
 
 	var scheme = [
 	{
 		index:0,
 		id:"loading",
-		message:"load calibration",
-		percent:0.2,
+		message:"loading calibration",
+		percent:25,
 		update:function (percent) {
-
-			return getPercent();
+			return percent + 1;
 		},
 		start:function () {
 			console.log("begin phase 1");
-			loading();
-			events.dispatch("calibrate-start");
+
 		},
 		complete:function () {
 
 			console.log("complete phase 1");
-			stopLoading();
 			reset();
-			events.dispatch("progress-next");
 		}
 	},
 	{
 		index:1,
-		id:"checkFactor",
-		message:"calibrate factor",
-		percent:0.4,
+		id:"checkY",
+		message:"checking y axis",
+		percent:50,
 		update:function (percent) {
-			return 0.2 + getPercent()/5;
+			return percent + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 2");
 			time = (new Date()).getTime();
-			startCheck();
+			startCheck(yDir);
 		},
 		complete:function () {
 			console.log("complete phase 2");
 			reset();
-			events.dispatch("progress-next");
-		}
-	},
-	{
-		index:2,
-		id:"checkY",
-		message:"check y axis",
-		percent:0.6,
-		update:function (percent) {
-			return 0.4 + getPercent();
-		},
-		start:function () {
-			console.log("begin phase 3");
-			events.dispatch("tiltunder");
-			events.dispatch("calibrate-pause");
-		},
-		complete:function () {
-			console.log("complete phase 3");
-			reset();
-			events.dispatch("progress-next");
 		}
 	},
 	{
 		index:2,
 		id:"checkX",
-		message:"check x axis",
-		percent:0.8,
+		message:"checking x axis",
+		percent:75,
 		update:function (percent) {
-			return 0.6 + getPercent();
+			return percent + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
-			events.dispatch("tiltright");
-			events.dispatch("calibrate-pause");
+
+			startCheck(xDir);
 		},
 		complete:function () {
 			console.log("complete phase 3");
 			reset();
-			events.dispatch("progress-next");
 		}
 	},
 	{
 		index:3,
 		id:"finish",
-		message:"finish calibration",
-		percent:1,
+		message:"finishing calibration",
+		percent:100,
 		update:function (percent) {
-			return 0.8 + getPercent();
+			return percent + 1;
 		},
 		start:function () {
 			console.log("begin phase 4");
-			loading();
-			events.dispatch("calibrate-start");
 		},
 		complete:function () {
 			console.log("complete phase 4");
-			stopLoading();
 			reset();
-			events.dispatch("progress-next");
 		}
 	},
 	{
 		index:4,
 		id:"complete",
 		message:"completed calibration, thank you",
-		percent:1,
+		percent:100,
 		update:function (percent) {
 			return percent;
 		},
 		start:function () {
 			console.log("begin phase 5");
-			events.dispatch("calibrate-start");
 			stop();
 		},
 		complete:function () {
@@ -404,8 +325,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			setTimeout(function () {
 				reset();
-				progress.hardStop();
-				events.dispatch("calibrate-stop");
 				events.dispatch("gohome");
 			}, 500);
 			

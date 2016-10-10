@@ -1,16 +1,14 @@
-calibrateModule.factory("progress.service", function () {
+calibrateModule.factory("progress.service", ['events', function (events) {
 
 	var percentArray = [];
 	var percent = 0;
 	var messagetext = "";
 
 	var scheme;
-	var loading = false;
 	var stopped = true;
-	//var index = 0;
+	var index = 0;
 	var max = 0;
 	var interval = 10;
-	var phasedelay = 1500;
 	var timer;
 
 	var setMessage = function(message) {
@@ -23,7 +21,7 @@ calibrateModule.factory("progress.service", function () {
 
 	var setPercent = function (_percent) {
 
-		percentArray[percentArray.length] = Math.floor(_percent);
+		percentArray[percentArray.length] = _percent;
 
 		percent = Math.max(...percentArray);
 
@@ -35,22 +33,6 @@ calibrateModule.factory("progress.service", function () {
 		return percent;
 	}
 
-	var resetTimer = function () {
-
-		clearInterval(timer);
-		timer = null;
-	}
-
-	var reset = function () {
-
-		console.log("progress", "clear");
-
-		resetTimer();
-		index = 0;
-		percent = 0;
-		percentArray = [];
-	}
-
 	var start = function () {
 
 		console.log("progress", "start");
@@ -58,29 +40,32 @@ calibrateModule.factory("progress.service", function () {
 		stopped = false;
 	}
 
-	var stop = function () {
+	var pause = function () {
 
-		console.log("progress", "stop");
+		console.log("progress", "pause");
 
 		stopped = true;
+
+		//events.dispatch("calibrate-pause");
 	}
 
-	var runPhase = function (index) {
+	var runPhase = function () {
 
-		console.log("progress", "run index", index);
+		console.log("progress", "run phase index", index);
 
 		scheme[index].start();
 
+		clearInterval(timer);
 		timer = setInterval(function () {
+			//console.log("run phase timer");
 			if (!stopped){
-				updateProgress(index);
+				//console.log("run phase update");
+				updateProgress();
 			}
 		}, interval);
 	}
 
-	var updateProgress = function (index) {
-
-		//console.log("progress", "update index", index, "percent", percent);
+	var updateProgress = function () {
 
 		setPercent(scheme[index].update(percent));
 
@@ -88,20 +73,9 @@ calibrateModule.factory("progress.service", function () {
 	
 		if (percent >= scheme[index].percent) {
 
-			console.log("progress", "complete index", index);
+			console.log("progress", "complete phase index", index);
 
 			scheme[index].complete();
-
-			stop();
-			resetTimer();
-
-			if (index < max) {
-				
-				setTimeout(function () {
-					start();
-					runPhase(index + 1);
-				}, phasedelay);
-			}
 		}
 			
 	}
@@ -116,25 +90,61 @@ calibrateModule.factory("progress.service", function () {
 		
 	}
 
-	var runScheme = function () {
+	var resetUpdate = function () {
 
-		console.log("progress", "run scheme");
+		//pause();
+		clearInterval(timer);
+		timer = {};
+		timer = null;
+	}
 
-		reset();
+	var hardStop = function () {
+
+		console.log("progress", "hard stop and reset");
+
+		index = 0;
+		percent = 0;
+		percentArray = [];
+		resetUpdate();
+		events.dispatch("calibrate-stop");
+	}
+
+	events.on("progress-start", function () {
+
+		console.log("progress", "start phase");
 
 		start();
+		runPhase();
+	})
 
-		runPhase(0);
+	events.on("progress-stop", function () {
 
-		
-	}
+		//updateProgress();
+		pause();
+		resetUpdate();
+	});
+
+	events.on("progress-next", function () {
+
+		console.log("progress continues");
+
+		if (index < max) {
+
+			index++;
+
+			events.dispatch("progress-start");
+
+		}
+
+	});
 
 	return {
 		loadScheme:loadScheme,
-		runScheme:runScheme,
+		//runScheme:runScheme,
+		setPercent:setPercent,
 		getPercent:getPercent,
 		getMessage:getMessage,
-		reset:reset
-	}
+		hardStop:hardStop
+	}	
 
-});
+}]);

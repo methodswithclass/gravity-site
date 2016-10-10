@@ -1,7 +1,9 @@
 
 <div class="absolute fill" id="{{'arena' + info.id}}" rotation>
 
-	<div id="{{'pagetitle' + info.id}}" ng-hide="info.id == 'validity'" class="absolute top-10 width text-center font-60">{{info.title}}</div>
+	<div id="{{'pagetitle' + info.id}}" ng-hide="info.id == 'validity'" class="absolute height10 width text-center font-60">
+		<div class="absolute center">{{info.title}}</div>
+	</div>
 	<object ng-hide="info.id == 'validity' || info.id == 'settings'" ng-attr-id="{{'object' + info.id}}"></object>
 	<display ng-hide="info.id == 'validity' || info.id == 'calibrate' || info.id == 'settings'"></display>
 	<calibrate ng-hide="info.id != 'calibrate'"></calibrate>

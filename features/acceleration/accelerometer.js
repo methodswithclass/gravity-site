@@ -28,8 +28,9 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 		var vel1 = new vector(0,0,0);
 		var pos0 = new vector(0,0,0);
 		var pos1 = new vector(0,0,0);
+		var raw = {x:0, y:0};
 		var startTime = 0;
-		
+
 		var timer;
 		var running = false;
 
@@ -141,7 +142,15 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 					unfiltered.set(new vector(xDir*factor*e.acceleration.x, yDir*factor*e.acceleration.y, (e.timeStamp - startTime)/1000));
 				}
 
-				console.log("unfiltered", "x", unfiltered.x, "y", unfiltered.y);
+				//console.log("unfiltered", "x", unfiltered.x, "y", unfiltered.y);
+			}
+		}
+
+		self.raw = function (e) {
+
+			raw = {
+				x:e.accelerationIncludingGravity.x,
+				y:e.accelerationIncludingGravity.y
 			}
 		}
 
@@ -200,6 +209,11 @@ accelModule.factory("accelerometer", ["vector", "utility", function (vector, g) 
 				func(e.detail.pos, e.detail.vel, e.detail.acc);
 			}, false);
 				
+		}
+
+		self.getRaw = function () {
+
+			return raw;
 		}
 
 	}

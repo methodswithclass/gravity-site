@@ -39,7 +39,7 @@
     
     </div>
     
-    <console ng-attr-vis="show"><console>
+    <console ng-attr-vis="hide"><console>
     
 
     <!-- Console -->

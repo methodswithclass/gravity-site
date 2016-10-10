@@ -98,22 +98,22 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	var getGlobalFactor = function () {
 
-		return factor.global;
+		return Math.abs(factor.global);
 	}
 
 	var getSessionFactor = function () {
 
-		return factor.session;
+		return Math.abs(factor.session);
 	}
 
 	var getFactor = function () {
 
-		return factor.global*factor.session;
+		return Math.abs(factor.global*factor.session);
 	}
 
 	var getDirection = function (direction) {
 
-		return direction == "i" ? xDir : yDir;
+		return direction == "i" ? (xDir >= 0 ? 1 : -1) : (yDir >= 0 ? 1 : -1);
 	}
 
 	var average = function (array) {
