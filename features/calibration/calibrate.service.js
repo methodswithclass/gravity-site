@@ -269,7 +269,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 				current.push(accel.getRaw());
 
-				phase_p += 1/1000/100;
+				phase_p += 1/100/100;
 
 				curr = current.pop()[axis == yDir ? "y" : "x"];
 
