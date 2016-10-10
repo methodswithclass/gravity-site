@@ -220,6 +220,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var calibrateDirection = function () {
 
+		curr = 1;
 
 		if (calDir == yDir) {
 
