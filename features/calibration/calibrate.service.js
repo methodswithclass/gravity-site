@@ -93,6 +93,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 	var onEnter = function () {
 
+		window.ondevicemotion = accel.raw;
+
 	}
 
 	var onStart = function () {
@@ -177,22 +179,23 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		if (calDir == yDir) {
 
-			current[i++] = accel.getRaw();
+			current.push(accel.getRaw());
 
-			_percent = 0.01;
+			curr = current.pop().y;
 
-			curr = current[current.length-1].y;
-
-			if (current.length > 100 && curr > 0) {
+			if (current.length > 1000 && curr > 0) {
 
 				g.setDirection(yDir, -1);
 
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "switched");
+
+				_percent = 0.61;
 			}
 			else if (current.length > 100 && curr < 0) {
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
+				_percent = 0.61;
 			}
 
 			calDir = xDir;
@@ -202,22 +205,23 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		}
 		else if (calDir == xDir) {
 
-			current[i++] = accel.getRaw();
+			current.push(accel.getRaw());
 
-			_percent = 0.01;
+			curr = current.pop().x;
 
-			curr = current[current.length-1].x;
-
-			if (current.length > 100 && curr < 0) {
+			if (current.length > 1000 && curr < 0) {
 
 				g.setDirection(xDir, -1);
 
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "switched");
+
+				_percent = 0.81;
 			}
 			else if (current.length > 100 && curr > 0) {
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
+				_percent = 0.81;
 			}
 
 			current = [];
@@ -244,8 +248,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		if (Math.abs(position.y) >= obj.bounds.y) {
 
 			console.log("calibrate", "reached y boundary", position.y);
-
-			stop();
 
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
@@ -284,8 +286,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		accel.start();
 
 		i = 0;
-
-		window.ondevicemotion = accel.raw;
 
 		clearInterval(accelWatch);
 		accelWatch = setInterval(function () {
@@ -351,7 +351,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check y axis",
 		percent:0.6,
 		update:function (percent) {
-			return 0.4 + getPercent();
+			return getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
@@ -370,7 +370,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check x axis",
 		percent:0.8,
 		update:function (percent) {
-			return 0.6 + getPercent();
+			return getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
