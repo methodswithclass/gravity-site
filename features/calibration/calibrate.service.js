@@ -29,6 +29,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	var acc = {};
 	var time = 0;
 	var current = [];
+	var curr = 0;
 	var _percent = 0;
 	var i = 0;
 
@@ -62,6 +63,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 	var getPercent = function () {
 
 		return _percent;
+	}
+
+	var getAccel = function () {
+
+		return curr;
 	}
 
 	var update = function (object, interval) {
@@ -195,6 +201,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		accel.start();
 
+		i = 0;
+
 		clearInterval(accelWatch);
 		accelWatch = setInterval(function () {
 
@@ -219,7 +227,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			_percent = 0.01;
 
-			if (current.length > 100 && current[current.length-1].y > 0) {
+			curr = current[current.length-1].y;
+
+			if (current.length > 100 && curr > 0) {
 
 				g.setDirection(yDir, -1);
 
@@ -232,6 +242,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			}
 
 			calDir = xDir;
+			current = [];
+			i = 0;
 
 		}
 		else if (calDir == xDir) {
@@ -240,7 +252,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			_percent = 0.01;
 
-			if (current.length > 100 && current[current.length-1].x < 0) {
+			curr = current[current.length-1].x;
+
+			if (current.length > 100 && curr < 0) {
 
 				g.setDirection(xDir, -1);
 
@@ -251,6 +265,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
 			}
+
+			current = [];
+			i = 0;
 
 		}
 
