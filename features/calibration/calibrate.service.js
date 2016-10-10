@@ -190,7 +190,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "switched");
 			}
-			else if (current.length > 100 && current[current.length-1].y < 0) {
+			else if (current.length > 100 && curr < 0) {
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
 			}
@@ -215,7 +215,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				console.log("calibrate", "y direction SWITCHED");
 				showToast("yDir", "switched");
 			}
-			else if (current.length > 100 && current[current.length-1].x > 0) {
+			else if (current.length > 100 && curr > 0) {
 				console.log("calibrate", "y direction SAME");
 				showToast("yDir", "same");
 			}
@@ -285,12 +285,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		i = 0;
 
+		window.ondevicemotion = accel.raw;
+
 		clearInterval(accelWatch);
 		accelWatch = setInterval(function () {
 
 			time += interval;
-
-			window.ondevicemotion = accel.raw;
 
 			calibrateDirection();
 
