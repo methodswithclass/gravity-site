@@ -181,51 +181,67 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			current.push(accel.getRaw());
 
-			curr = current.pop().y;
+			_percent = 1/1000;
 
-			if (current.length > 1000 && curr > 0) {
+			if (current.length > 1000)
 
-				g.setDirection(yDir, -1);
+				curr = current.pop().y;
 
-				console.log("calibrate", "y direction SWITCHED");
-				showToast("yDir", "switched");
+				if (curr > 0) {
 
-				_percent = 0.61;
+					g.setDirection(yDir, -1);
+
+					console.log("calibrate", "y direction SWITCHED");
+					showToast("yDir", "switched");
+					
+				}
+				else if (curr < 0) {
+					console.log("calibrate", "y direction SAME");
+					showToast("yDir", "same");
+					
+
+				}
+
+				calDir = xDir;
+				current.length = 0;
+				current = null;
+				current = [];
+				i = 0;
+
 			}
-			else if (current.length > 100 && curr < 0) {
-				console.log("calibrate", "y direction SAME");
-				showToast("yDir", "same");
-				_percent = 0.61;
-			}
 
-			calDir = xDir;
-			current = [];
-			i = 0;
+
 
 		}
 		else if (calDir == xDir) {
 
 			current.push(accel.getRaw());
 
-			curr = current.pop().x;
+			_percent = 1/1000;
 
-			if (current.length > 1000 && curr < 0) {
+			if (current.length > 1000)
 
-				g.setDirection(xDir, -1);
+				curr = current.pop().x;
 
-				console.log("calibrate", "y direction SWITCHED");
-				showToast("yDir", "switched");
+				if (curr < 0) {
 
-				_percent = 0.81;
+					g.setDirection(xDir, -1);
+
+					console.log("calibrate", "y direction SWITCHED");
+					showToast("yDir", "switched");
+				}
+				else if (curr > 0) {
+					console.log("calibrate", "y direction SAME");
+					showToast("yDir", "same");
+				}
+
+				calDir = yDir;
+				current.length = 0;
+				current = null;
+				current = [];
+				i = 0;
+
 			}
-			else if (current.length > 100 && curr > 0) {
-				console.log("calibrate", "y direction SAME");
-				showToast("yDir", "same");
-				_percent = 0.81;
-			}
-
-			current = [];
-			i = 0;
 
 		}
 
@@ -351,7 +367,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check y axis",
 		percent:0.6,
 		update:function (percent) {
-			return getPercent();
+			return 0.4 + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
@@ -370,7 +386,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		message:"check x axis",
 		percent:0.8,
 		update:function (percent) {
-			return getPercent();
+			return 0.6 + getPercent();
 		},
 		start:function () {
 			console.log("begin phase 3");
