@@ -46,7 +46,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 						pos:{
 							image:{
 								top:"top0",
-								left:"right0"
+								left:"left0"
 							},
 							continue:{
 								top:"bottom0",
@@ -73,14 +73,26 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 
 				$scope.progress = "0%";
 				$scope.message = "";
-				$scope.hidecontinue = true;
 				$scope.accel = 0;
+
+				var $btn;
+
+				setTimeout(function () {
+
+					$btn = $("#continue");
+					$btn.hide();
+
+					//console.log($btn[0]);
+
+				}, 1000);
 
 				$scope.continue = function () {
 
-					$scope.hidecontinue = true;
+					//$btn.addClass("hidden");
+					$btn.hide();
+					events.dispatch("progress-start");
 					events.dispatch("cal-service-accel");
-					events.dispatch("calibrate-start");
+					//events.dispatch("calibrate-start");
 				}
 
 				events.on("calibrate-pause", function () {
@@ -88,11 +100,12 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 					console.log("progress stopped, allow continue");
 
 					events.dispatch("progress-stop");
-					events.dispatch("calibrate-stop");
+					//events.dispatch("calibrate-stop");
 
-					$scope.hidecontinue = false;
+					//$btn.removeClass("hidden");
+					$btn.show();
 
-					$scope.$apply();
+					//$scope.$apply();
 				})
 
 				events.on("calibrate-start", function () {
@@ -104,7 +117,7 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 						$scope.progress = calibrate.getProgress()*100 + "%";
 						$scope.accel = util.truncate(calibrate.getAccel(), 4);
 
-						console.log("message", $scope.message, "progress", $scope.progress, "accel", $scope.accel);
+						//console.log("message", $scope.message, "progress", $scope.progress, "accel", $scope.accel);
 
 						$scope.$apply();
 

@@ -41,13 +41,13 @@ stateModule.provider("runtime.state", function ($stateProvider) {
         template:"<div ng-include='getContentUrl()'></div>",
         controller:"CheckingController"
     },
-    {
-        name:"validity",
-        url:"/validity",
-        templateUrl:"views/content.html",
-        controller:"PageController",
-        controllerAs:"main",
-    },
+    // {
+    //     name:"validity",
+    //     url:"/validity",
+    //     templateUrl:"views/content.html",
+    //     controller:"PageController",
+    //     controllerAs:"main",
+    // },
     {
         name:"page",
         url:"",
@@ -56,10 +56,10 @@ stateModule.provider("runtime.state", function ($stateProvider) {
         controllerAs:"main",
         abstract:true
     },
-    // {
-    //     name:"page.validity",
-    //     url:"/validity"
-    // },
+    {
+        name:"page.validity",
+        url:"/validity"
+    },
     {
         name:"page.home",
         url:"/home"

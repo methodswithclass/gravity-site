@@ -178,8 +178,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			console.log("calibrate", "reached y boundary", position.y);
 
-			stop();
-
 			var grav = g.c.dist/time*1e9;
 			g.setGlobalFactor(grav/Math.abs(obj.acceleration.y));
 
@@ -194,23 +192,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				showToast("yDir", "same");
 			}
 
-
-			// if (position.y < 0) {
-			// 	console.log("calibrate", "y direction SWITCHED");
-			// 	showToast("yDir", "switched");
-			// 	g.setDirection(yDir, -1*g.getDirection("j"));
-			// }
-			// else {
-			// 	console.log("calibrate", "y direction SAME");
-			// 	showToast("yDir", "same");
-			// }
-
 		}
 		else if (direction == xDir && Math.abs(position.x) >= obj.bounds.x) {
 
 			console.log("calibrate", "reached x boundary", position.x);
-
-			stop();
 
 			g.setDirection(xDir, (position.x > 0 ? -1 : 1)*g.getDirection("i"));
 
@@ -223,15 +208,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				showToast("xDir", "same");
 			}
 
-			// if (position.x < 0) {
-			// 	console.log("calibrate", "x direction SWITCHED");
-			// 	showToast("xDir", "switched");
-			// 	g.setDirection(xDir, -1*g.getDirection("i"));
-			// }
-			// else {
-			// 	console.log("calibrate", "x direction SAME");
-			// 	showToast("xDir", "same");
-			// }
 		}
 
 	}

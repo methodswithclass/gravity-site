@@ -5,7 +5,7 @@ calibrateModule.factory("progress.service", ['events', function (events) {
 	var messagetext = "";
 
 	var scheme;
-	var stopped = true;
+	var running = false;
 	var index = 0;
 	var max = 0;
 	var interval = 10;
@@ -21,9 +21,11 @@ calibrateModule.factory("progress.service", ['events', function (events) {
 
 	var setPercent = function (_percent) {
 
-		percentArray[percentArray.length] = _percent;
+		//percentArray[percentArray.length] = _percent;
 
-		percent = Math.max(...percentArray);
+		//percent = Math.max(...percentArray);
+
+		percent = _percent;
 
 		console.log("progress", "percent", percent);
 	}
@@ -33,33 +35,20 @@ calibrateModule.factory("progress.service", ['events', function (events) {
 		return percent;
 	}
 
-	var start = function () {
+	var toggleRunning = function (_running) {
 
-		console.log("progress", "start");
+		console.log("progress", _running ? "start" : "pause");
 
-		stopped = false;
+		running = _running;
 	}
 
-	var pause = function () {
-
-		console.log("progress", "pause");
-
-		stopped = true;
-
-		//events.dispatch("calibrate-pause");
-	}
-
-	var runPhase = function () {
-
-		console.log("progress", "run phase index", index);
-
-		scheme[index].start();
+	var runScheme = function () {
 
 		clearInterval(timer);
 		timer = setInterval(function () {
 			//console.log("run phase timer");
-			if (!stopped){
-				//console.log("run phase update");
+			if (running){
+				//console.log("run index", index);
 				updateProgress();
 			}
 		}, interval);
@@ -84,18 +73,25 @@ calibrateModule.factory("progress.service", ['events', function (events) {
 
 		console.log("progress", "load scheme");
 
-		scheme = _scheme;
+		scheme = _scheme.phases;
 
-		max = scheme.length-1;
-		
+		max = _scheme.num;
 	}
 
 	var resetUpdate = function () {
 
-		//pause();
 		clearInterval(timer);
 		timer = {};
 		timer = null;
+	}
+
+	var runPhase = function () {
+
+		console.log("progress", "run phase");
+		
+		//toggleRunning(true);
+		scheme[index].start();
+
 	}
 
 	var hardStop = function () {
@@ -105,42 +101,41 @@ calibrateModule.factory("progress.service", ['events', function (events) {
 		index = 0;
 		percent = 0;
 		percentArray = [];
+		toggleRunning(false);
 		resetUpdate();
 		events.dispatch("calibrate-stop");
 	}
 
 	events.on("progress-start", function () {
 
-		console.log("progress", "start phase");
+		console.log("progress", "start phase", index);
 
-		start();
+		toggleRunning(true);
 		runPhase();
-	})
+
+	});
 
 	events.on("progress-stop", function () {
 
-		//updateProgress();
-		pause();
-		resetUpdate();
+		toggleRunning(false);
 	});
 
 	events.on("progress-next", function () {
 
-		console.log("progress continues");
+		//console.log("progress continues");
 
 		if (index < max) {
 
 			index++;
 
 			events.dispatch("progress-start");
-
 		}
 
 	});
 
 	return {
 		loadScheme:loadScheme,
-		//runScheme:runScheme,
+		runScheme:runScheme,
 		setPercent:setPercent,
 		getPercent:getPercent,
 		getMessage:getMessage,

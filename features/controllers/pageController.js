@@ -9,19 +9,19 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
 
     var state = states.current();
 
-    if (state.page) {
+    // if (state.name != "validity") {
 
-        console.log("page controller", state.state, "state is a page");
+        //console.log("page controller", state.state, "state is a page");
         
         // ===================== SETUP ======================
 
         states.setupReceivers();
         manager.setupReceivers();
 
-    }
-    else {
+    // }
+    // else {
 
-        console.log("page controller", state.state, "state is not a page");
+        //console.log("page controller", state.state, "state is not a page");
 
         console.log(" ");
         if (util.isValid()) {
@@ -37,7 +37,7 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
         }
         console.log(" ");
 
-    }
+    // }
 
     // ===================== EVENTS ===================== 
 

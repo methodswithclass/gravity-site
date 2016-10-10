@@ -29,13 +29,13 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
             console.log("device valid");
             // states.go("modal.valid");
             util.setValidity(true);
-            states.go("validity");
+            states.go("page.validity");
         },
         function (path) { //invalid
             console.log("device invalid");
             //states.go("modal.invalid");
             util.setValidity(false);
-            states.go("validity");
+            states.go("page.validity");
         });
 
     }, 1000);
