@@ -313,24 +313,38 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			reset();
 
-			var check = axis == yDir ? curr >= 0 : curr < 0;
+			if (axis == yDir) {
 
-			if (check) {
+				if (curr >= 0) {
 
-				g.setDirection(axis == yDir ? yDir : xDir, 1);
-				g.setDirection(axis == yDir ? xDir : yDir, 1);
+					g.setDirection(yDir, -1);
 
-				console.log("calibrate", (axis == yDir ? "y": "x"), "direction", (axis == yDir ? "SWITCHED": "SAME"));
-				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "switched": "same"));
-				
+					console.log("calibrate y direction", "SWITCHED");
+					showToast(yDir, "switched");
+					
+				}
+				else {
+
+					console.log("calibrate y direction", "SAME");
+					showToast(yDir, "unchanged");
+				}
 			}
-			else {
+			else if (axis == xDir) {
 
-				g.setDirection(axis == yDir ? yDir : xDir, -1);
-				g.setDirection(axis == yDir ? xDir : yDir, -1);
+				if (curr < 0) {
 
-				console.log("calibrate", (axis == yDir ? "y": "x"),  "direction", (axis == yDir ? "SAME": "SWITCHED"));
-				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "same": "switched"));
+					g.setDirection(xDir, -1);
+
+					console.log("calibrate x direction", "SWITCHED");
+					showToast(xDir, "switched");
+					
+				}
+				else {
+
+					console.log("calibrate x direction", "SAME");
+					showToast(xDir, "unchanged");
+				}
+
 			}
 
 			current.length = 0;
