@@ -183,9 +183,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			_percent = 1/1000;
 
-			if (current.length > 1000)
+			curr = current.pop().y;
 
-				curr = current.pop().y;
+			if (current.length > 1000) {
 
 				if (curr > 0) {
 
@@ -210,8 +210,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			}
 
-
-
 		}
 		else if (calDir == xDir) {
 
@@ -219,9 +217,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			_percent = 1/1000;
 
-			if (current.length > 1000)
+			curr = current.pop().x;
 
-				curr = current.pop().x;
+			if (current.length > 1000) {
 
 				if (curr < 0) {
 
