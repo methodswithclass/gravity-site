@@ -320,13 +320,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 					g.setDirection(yDir, -1);
 
 					console.log("calibrate y direction", "SWITCHED");
-					showToast(yDir, "switched");
+					showToast("yDir", "switched");
 					
 				}
 				else {
 
 					console.log("calibrate y direction", "SAME");
-					showToast(yDir, "unchanged");
+					showToast("yDir", "same");
 				}
 			}
 			else if (axis == xDir) {
@@ -336,13 +336,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 					g.setDirection(xDir, -1);
 
 					console.log("calibrate x direction", "SWITCHED");
-					showToast(xDir, "switched");
+					showToast("xDir", "switched");
 					
 				}
 				else {
 
 					console.log("calibrate x direction", "SAME");
-					showToast(xDir, "unchanged");
+					showToast("xDir", "same");
 				}
 
 			}
