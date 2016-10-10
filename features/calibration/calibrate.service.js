@@ -315,7 +315,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			if (axis == yDir) {
 
-				if (curr >= 0) {
+				if (curr < 0) {
 
 					g.setDirection(yDir, -1);
 
