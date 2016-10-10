@@ -313,38 +313,20 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			reset();
 
-			if (axis == yDir) {
+			if (curr < 0) {
 
-				if (curr < 0) {
+				g.setDirection(axis == yDir ? yDir : xDir, -1);
 
-					g.setDirection(yDir, -1);
-
-					console.log("calibrate y direction", "SWITCHED");
-					showToast("yDir", "switched");
-					
-				}
-				else {
-
-					console.log("calibrate y direction", "SAME");
-					showToast("yDir", "same");
-				}
+				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
+				showToast(axis == yDir ? "yDir" : "xDir", "switched");
+				
 			}
-			else if (axis == xDir) {
+			else {
 
-				if (curr < 0) {
+				g.setDirection(axis == yDir ? yDir : xDir, 1);
 
-					g.setDirection(xDir, -1);
-
-					console.log("calibrate x direction", "SWITCHED");
-					showToast("xDir", "switched");
-					
-				}
-				else {
-
-					console.log("calibrate x direction", "SAME");
-					showToast("xDir", "same");
-				}
-
+				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
+				showToast(axis == yDir ? "yDir" : "xDir", "same");
 			}
 
 			current.length = 0;
