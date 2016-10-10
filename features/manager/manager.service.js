@@ -56,6 +56,7 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 				if (games[id].zeroTime()) {
 					stopInstance(id);
+					resetInstance(id);
 				}
 			}
 
