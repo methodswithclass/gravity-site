@@ -289,7 +289,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			if (check) {
 
-				g.setDirection(axis, axis == yDir ? 1: -1);
+				g.setDirection(axis, -1);
 
 				console.log("calibrate", (axis == yDir ? "y": "x"), "direction", (axis == yDir ? "SWITCHED": "SAME"));
 				showToast((axis == yDir ? "yDir": "xDir"), (axis == yDir ? "switched": "same"));
