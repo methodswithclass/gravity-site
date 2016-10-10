@@ -67,21 +67,8 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 								left:"right0"
 							}
 						}
-					},
-					none:{
-						src:"",
-						instructions:"continue",
-						pos:{
-							image:{
-								top:"top200",
-								left:"left0"
-							},
-							continue:{
-								top:"top0",
-								left:"right0"
-							}
-						}
 					}
+
 				}
 
 				$scope.progress = "0%";
@@ -95,13 +82,31 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 					$btn = $("#continue");
 					$btn.hide();
 
+					//console.log($btn[0]);
+
 				}, 1000);
 
 				$scope.continue = function () {
 
-					calibrate.toggleRunning();
+					//$btn.addClass("hidden");
 					$btn.hide();
+					events.dispatch("progress-start");
+					events.dispatch("cal-service-accel");
+					//events.dispatch("calibrate-start");
 				}
+
+				events.on("calibrate-pause", function () {
+
+					console.log("progress stopped, allow continue");
+
+					events.dispatch("progress-stop");
+					//events.dispatch("calibrate-stop");
+
+					//$btn.removeClass("hidden");
+					$btn.show();
+
+					//$scope.$apply();
+				})
 
 				events.on("calibrate-start", function () {
 
@@ -151,11 +156,6 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 					$scope.phase = phases.left;
 					//$scope.$apply();
 				});
-
-				events.on("tiltnone", function () {
-
-					$scope.phase = phases.none;
-				})
 
 			}
 
