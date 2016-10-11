@@ -2,28 +2,28 @@
 <html>
   <head>
 
-    <link rel="stylesheet" href="vendor/css/angular-material.min.css">
-    <link rel="stylesheet" href="vendor/css/bootstrap.css">
-    <link rel="stylesheet" href="vendor/css/jquery-ui-1.12.1.css">
+    <link rel="stylesheet" href="libs/css/angular-material.min.css">
+    <link rel="stylesheet" href="libs/css/bootstrap.css">
+    <link rel="stylesheet" href="libs/css/jquery-ui-1.12.1.css">
     
     <link rel="stylesheet" href="http://code.methodswithclass.com/api/classes.css">
     <link rel="stylesheet" href="css/museo300.css" type="text/css" charset="utf-8">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script src="vendor/js/jquery-1.12.4.js"></script>
-    <script src="vendor/js/jquery-ui-1.12.1.js"></script>
-    <script src="vendor/js/jquery.scrollto.js"></script>
-    <script src="vendor/js/angular.min.js"></script>
-    <script src="vendor/js/hammer.js"></script>
-    <script src="vendor/js/jquery.hammer.js"></script>
-    <script src="vendor/js/angular.hammer.js"></script>
-    <script src="vendor/js/angular-route.min.js"></script>
-    <script src="vendor/js/angular.ui-router.min.js"></script>
-    <script src="vendor/js/angular-animate-1.5.5.min.js"></script>
-    <script src="vendor/js/angular-aria-1.5.5.min.js"></script>
-    <script src="vendor/js/angular-messages-1.5.5.min.js"></script>
-    <script src="vendor/js/angular-material-1.1.0.min.js"></script>
+    <script src="libs/js/jquery-1.12.4.js"></script>
+    <script src="libs/js/jquery-ui-1.12.1.js"></script>
+    <script src="libs/js/jquery.scrollto.js"></script>
+    <script src="libs/js/angular.min.js"></script>
+    <script src="libs/js/hammer.js"></script>
+    <script src="libs/js/jquery.hammer.js"></script>
+    <script src="libs/js/angular.hammer.js"></script>
+    <script src="libs/js/angular-route.min.js"></script>
+    <script src="libs/js/angular.ui-router.min.js"></script>
+    <script src="libs/js/angular-animate-1.5.5.min.js"></script>
+    <script src="libs/js/angular-aria-1.5.5.min.js"></script>
+    <script src="libs/js/angular-messages-1.5.5.min.js"></script>
+    <script src="libs/js/angular-material-1.1.0.min.js"></script>
 
 
     <base href="/">
