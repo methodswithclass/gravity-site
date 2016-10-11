@@ -13,6 +13,7 @@
 
     <script src="libs/js/jquery-1.12.4.js"></script>
     <script src="libs/js/jquery-ui-1.12.1.js"></script>
+    <script src="libs/js/jquery-ui-touch_punch.js"></script>
     <script src="libs/js/jquery.scrollto.js"></script>
     <script src="libs/js/angular.min.js"></script>
     <script src="libs/js/hammer.js"></script>

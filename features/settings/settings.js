@@ -10,7 +10,7 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 
 			var setValue = function (val) {
 
-		    	$("#amount").val(g.truncate(val*100,0));
+		    	$("#amount").html(g.truncate(val*100,0));
 		    	g.setSessionFactor(val);
 		    }
 
@@ -24,10 +24,11 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    	$( "#slider-vertical" ).slider({
 					orientation: "vertical",
 					//range: "min",
-					min: 0,
-					max: 1,
+					max: 2,
+					min: 0.2,
 					step:0.01,
 					//height:"400px",
+					animate:true,
 					value: g.getSessionFactor(),
 					slide: function( event, ui ) {
 						setValue(ui.value);
