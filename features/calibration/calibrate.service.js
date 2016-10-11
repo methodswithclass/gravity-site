@@ -369,39 +369,39 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		},
 		{
 			index:1,
-			id:"checkY",
-			message:"check y axis",
+			id:"checkFactor",
+			message:"calibrate factor",
 			percent:2/num_phases,
 			start:function () {
 				
-				checkAxis.start(1, yDir);
+				checkFactor.start(1);
 			},
 			update:function (interval, percent) {
 
-				return percent + checkAxis.check(1, yDir);
+				return percent + checkFactor.check(1, interval);
 			},
 			complete:function () {
+				
+				checkFactor.complete(1);
 
-				checkAxis.complete(1, yDir);
 			}
 		},
 		{
 			index:2,
-			id:"checkFactor",
-			message:"calibrate factor",
+			id:"checkY",
+			message:"check y axis",
 			percent:3/num_phases,
 			start:function () {
 				
-				checkFactor.start(2);
+				checkAxis.start(2, yDir);
 			},
 			update:function (interval, percent) {
 
-				return percent + checkFactor.check(2, interval);
+				return percent + checkAxis.check(2, yDir);
 			},
 			complete:function () {
-				
-				checkFactor.complete(2);
 
+				checkAxis.complete(2, yDir);
 			}
 		},
 		{
