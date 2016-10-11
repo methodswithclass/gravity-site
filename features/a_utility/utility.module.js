@@ -12,10 +12,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var xDir = 1;
 
 	var con = {
-		// playAsset:"img/play.png",
-		// stopAsset:"img/stop.png",
-		// backAsset:"img/back.png",
-		// loadingAsset:"img/loading.png",
 		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
@@ -75,14 +71,39 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return status;
 	}
 
-	var setGlobalFactor = function (_factor) {
+	var setGlobalFactor = function (_$factor) {
 
-		factor.global = _factor;
+		var _factor = Math.abs(_$factor);
+
+		factor.global = _factor <= 1 ? _factor : _factor/100;
 	}
 
-	var setSessionFactor = function (_factor) {
+	var setSessionFactor = function (_$factor) {
 
-		factor.session = _factor;
+		var _factor = Math.abs(_$factor);
+
+		factor.session = _factor <= 1 ? _factor : _factor/100;
+	}
+
+	var getGlobalFactor = function () {
+
+		var _factor = Math.abs(factor.global);
+
+		return _factor <= 1 ? _factor : _factor/100;
+	}
+
+	var getSessionFactor = function () {
+
+		var _factor = Math.abs(factor.session);
+
+		return _factor <= 1 ? _factor : _factor/100;
+	}
+
+	var getFactor = function () {
+
+		var _factor = Math.abs(factor.global*factor.session)
+
+		return _factor <= 1 ? _factor : _factor/100;
 	}
 
 	var setDirection = function (direction, value) {
@@ -94,21 +115,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 			yDir = value >= 0 ? 1 : -1;
 		}
 
-	}
-
-	var getGlobalFactor = function () {
-
-		return Math.abs(factor.global);
-	}
-
-	var getSessionFactor = function () {
-
-		return Math.abs(factor.session);
-	}
-
-	var getFactor = function () {
-
-		return Math.abs(factor.global*factor.session);
 	}
 
 	var getDirection = function (direction) {

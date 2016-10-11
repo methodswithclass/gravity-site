@@ -64,7 +64,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	var movePage = function (input) {
 		
-		console.log("move to page", input.name, "delay", input.delay, "duration", input.duration);
+		//console.log("move to page", input.name, "delay", input.delay, "duration", input.duration);
 
 		setTimeout(function () {
 
@@ -73,7 +73,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 			elem = $(elements["page" + input.name]);
 			bodyElem = $(body["body"]);
 
-			console.log("move", bodyElem[0], "to element", elem[0]);
+			//console.log("move", bodyElem[0], "to element", elem[0]);
 
 			bodyElem.removeClass("cutoff").addClass("scroll");
 

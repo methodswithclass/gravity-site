@@ -2,30 +2,28 @@
 <html>
   <head>
 
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  	<link rel="stylesheet" href="css/museo/museo300.css" type="text/css" charset="utf-8">
-    <link rel="stylesheet" href="http://code.methodswithclass.com/api/classes.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="vendor/css/angular-material.min.css">
+    <link rel="stylesheet" href="vendor/css/bootstrap.css">
+    <link rel="stylesheet" href="vendor/css/jquery-ui-1.12.1.css">
     
+    <link rel="stylesheet" href="http://code.methodswithclass.com/api/classes.css">
+    <link rel="stylesheet" href="css/museo300.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="libs/jquery.scrollto.js"></script>
-    <script src="libs/hammer.js"></script>
-    <script src="libs/angular.min.js"></script>
-    <script src="libs/angular-route.min.js"></script>
-    <script src="libs/angular.ui-router.min.js"></script>
-    <script src="libs/angular.hammer.js"></script>
-    <script src="libs/jquery.hammer.js"></script>
-
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="vendor/js/jquery-1.12.4.js"></script>
+    <script src="vendor/js/jquery-ui-1.12.1.js"></script>
+    <script src="vendor/js/jquery.scrollto.js"></script>
+    <script src="vendor/js/angular.min.js"></script>
+    <script src="vendor/js/hammer.js"></script>
+    <script src="vendor/js/jquery.hammer.js"></script>
+    <script src="vendor/js/angular.hammer.js"></script>
+    <script src="vendor/js/angular-route.min.js"></script>
+    <script src="vendor/js/angular.ui-router.min.js"></script>
+    <script src="vendor/js/angular-animate-1.5.5.min.js"></script>
+    <script src="vendor/js/angular-aria-1.5.5.min.js"></script>
+    <script src="vendor/js/angular-messages-1.5.5.min.js"></script>
+    <script src="vendor/js/angular-material-1.1.0.min.js"></script>
 
 
     <base href="/">
@@ -58,7 +56,7 @@
 
     <!-- Utility -->
 
-    <script src="features/utility/utility.module.js"></script>
+    <script src="features/a_utility/utility.module.js"></script>
 
 
     <!-- Touch -->

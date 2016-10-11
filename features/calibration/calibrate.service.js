@@ -55,9 +55,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		accel = input.accel;
 		obj = accel.obj;
 
-		console.log("screen", obj.screenPos());
-		console.log("relative", obj.relativePos());
-		console.log("absolute", obj.absolutePos());
+		// console.log("screen", obj.screenPos());
+		// console.log("relative", obj.relativePos());
+		// console.log("absolute", obj.absolutePos());
 
 		progress.loadScheme(scheme);
 
