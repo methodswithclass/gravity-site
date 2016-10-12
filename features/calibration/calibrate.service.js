@@ -119,7 +119,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				    		"</div>" +
 						"</md-toast>",
 			autoWrap:false,
-			hideDelay:500
+			hideDelay:100
 		});
 	}
 

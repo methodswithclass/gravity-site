@@ -9,35 +9,27 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
 
     var state = states.current();
 
-    // if (state.name != "validity") {
 
-        //console.log("page controller", state.state, "state is a page");
-        
-        // ===================== SETUP ======================
+    //console.log("page controller", state.state, "state is a page");
+    
+    // ===================== SETUP ======================
 
-        states.setupReceivers();
-        manager.setupReceivers();
+    states.setupReceivers();
+    manager.setupReceivers();
 
-    // }
-    // else {
+    console.log(" ");
+    if (util.isValid()) {
+        console.log("########## is valid ############");
+        //self.valid = true;
 
-        //console.log("page controller", state.state, "state is not a page");
-
-        console.log(" ");
-        if (util.isValid()) {
-            console.log("########## is valid ############");
-            //self.valid = true;
-
-            setTimeout(function () {
-                states.go("page.calibrate");
-            }, 2000);
-        }
-        else {
-            console.log("########## is invalid ############");
-        }
-        console.log(" ");
-
-    // }
+        setTimeout(function () {
+            states.go("page.calibrate");
+        }, 2000);
+    }
+    else {
+        console.log("########## is invalid ############");
+    }
+    console.log(" ");
 
     // ===================== EVENTS ===================== 
 
