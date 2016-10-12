@@ -27,7 +27,7 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 					orientation: "vertical",
 					//range: "min",
 					max: 2,
-					min: 0.2,
+					min: 0.01,
 					step:0.01,
 					//height:"400px",
 					animate:true,
