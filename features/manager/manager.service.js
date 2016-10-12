@@ -23,11 +23,13 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 	var setStats = function (id) {
 
 		displays[id].stats.html(
-			  "x:" + accel.unfiltered().x + "<br>"
-			+ "y: " + accel.unfiltered().y + "<br>"
-			+ "factor: " + util.getFactor() + "<br>"
-			+ "xDir: " + util.getDirection("i") + "<br>"
-			+ "yDir: " + util.getDirection("j") + "<br>"
+			"x: " + accel.unfiltered().x + "<br>" + 
+			"y: " + accel.unfiltered().y + "<br>" + 
+			"global factor: " + util.getFactor(util.c.factorG) + "<br>" + 
+			"session factor: " + util.getFactor(util.c.factorS) + "<br>" +
+			"factor: " + util.getFactor() + "<br>" + 
+			"xDir: " + util.getDirection("i") + "<br>" + 
+			"yDir: " + util.getDirection("j") + "<br>"
 		);
 	}
 

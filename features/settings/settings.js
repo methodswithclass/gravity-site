@@ -10,8 +10,10 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 
 			var setValue = function (val) {
 
+				console.log("set value", val);
+
 		    	$("#amount").html(g.truncate(val*100,0));
-		    	g.setSessionFactor(val);
+		    	g.setFactor(g.c.factorS, val);
 		    }
 
 		    var getValue = function () {
@@ -29,7 +31,7 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 					step:0.01,
 					//height:"400px",
 					animate:true,
-					value: g.getSessionFactor(),
+					value: g.getFactor(g.c.factorS),
 					slide: function( event, ui ) {
 						setValue(ui.value);
 					}

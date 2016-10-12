@@ -12,6 +12,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var xDir = 1;
 
 	var con = {
+		factorG:"global",
+		factorS:"session",
 		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
@@ -71,39 +73,15 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return status;
 	}
 
-	var setGlobalFactor = function (_$factor) {
+	var setFactor = function (type, _factor) {
 
-		var _factor = Math.abs(_$factor);
-
-		factor.global = _factor <= 1 ? _factor : _factor/100;
+		factor[type] = Math.abs(_factor);
 	}
 
-	var setSessionFactor = function (_$factor) {
+	var getFactor = function (type) {
 
-		var _factor = Math.abs(_$factor);
-
-		factor.session = _factor <= 1 ? _factor : _factor/100;
-	}
-
-	var getGlobalFactor = function () {
-
-		var _factor = Math.abs(factor.global);
-
-		return _factor <= 1 ? _factor : _factor/100;
-	}
-
-	var getSessionFactor = function () {
-
-		var _factor = Math.abs(factor.session);
-
-		return _factor <= 1 ? _factor : _factor/100;
-	}
-
-	var getFactor = function () {
-
-		var _factor = Math.abs(factor.global*factor.session)
-
-		return _factor <= 1 ? _factor : _factor/100;
+		if (type) return Math.abs(factor[type])
+		else return Math.abs(factor.global*factor.session)
 	}
 
 	var setDirection = function (direction, value) {
@@ -279,12 +257,9 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	return {
 		c:con,
-		setGlobalFactor:setGlobalFactor,
-		setSessionFactor:setSessionFactor,
+		setFactor:setFactor,
+		getFactor:getFactor,
     	setDirection:setDirection,
-    	getGlobalFactor:getGlobalFactor,
-    	getSessionFactor:getSessionFactor,
-    	getFactor:getFactor,
     	getDirection:getDirection,
     	forceValidity:forceValidity,
     	setValidity:setValidity,

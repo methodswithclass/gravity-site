@@ -73,8 +73,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		console.log("calibrate start");
 
-		g.setGlobalFactor(1);
-		g.setSessionFactor(1);
+		g.setFactor(g.c.factorG, 1);
+		g.setFactor(g.c.factorS, 0.5);
 		g.setDirection(yDir, 1);
 		g.setDirection(xDir, 1);
 
@@ -119,7 +119,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 				    		"</div>" +
 						"</md-toast>",
 			autoWrap:false,
-			hideDelay:2000
+			hideDelay:500
 		});
 	}
 
@@ -267,9 +267,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			var objaccel = Math.abs(obj.acceleration.y);
 			objaccel = objaccel != 0 ? objaccel : 1;
 
-			g.setGlobalFactor(g.c.dist*1e9/time/objaccel);
+			g.setFactor(g.c.factorG, g.c.dist*1e9/time/objaccel);
 
-			console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getGlobalFactor());
+			console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.c.factorG));
 
 			next(index);
 			

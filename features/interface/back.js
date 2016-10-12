@@ -1,4 +1,4 @@
-uiModule.directive("back", ['states', 'send', 'manager', 'settings.service', function (states, send, manager, settings) {
+uiModule.directive("back", ['states', 'send', 'manager', function (states, send, manager) {
 
 	return {
 		scope:false,
@@ -12,10 +12,6 @@ uiModule.directive("back", ['states', 'send', 'manager', 'settings.service', fun
 			$scope.onPressup = function () {
 
 				console.log("return home");
-
-				if (info.id == "settings") {
-					settings.save();
-				}
 
 				states.go("page.home");
 			}
