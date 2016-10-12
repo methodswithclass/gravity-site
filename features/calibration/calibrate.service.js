@@ -353,7 +353,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		{
 			index:0,
 			id:"loading",
-			message:"load calibration",
+			message:"loading calibration",
 			percent:1/num_phases,
 			start:function() {
 				begin(0);
@@ -370,7 +370,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		{
 			index:1,
 			id:"checkY",
-			message:"check y axis",
+			message:"checking y axis",
 			percent:2/num_phases,
 			start:function () {
 				
@@ -388,7 +388,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		{
 			index:2,
 			id:"checkFactor",
-			message:"calibrate factor",
+			message:"calibrating factor",
 			percent:3/num_phases,
 			start:function () {
 				
@@ -407,7 +407,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		{
 			index:3,
 			id:"checkX",
-			message:"check x axis",
+			message:"checking x axis",
 			percent:4/num_phases,
 			start:function () {
 				
@@ -425,7 +425,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 		{
 			index:4,
 			id:"finish",
-			message:"finish up calibration",
+			message:"finishing up calibration",
 			percent:5/num_phases,
 			start:function() {
 

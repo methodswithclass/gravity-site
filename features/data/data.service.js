@@ -82,8 +82,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"black-back",
 			fore:"white-back",
-			menu:"color1-back",
-			// button:"transparent",
+			menu:{
+				title:"settings",
+				color:"color1-back"
+			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-top',
@@ -130,8 +132,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color1-back",
 			fore:"white-back",
-			menu:"color1-back",
-			// button:"transparent",
+			menu:{
+				title:"re-calibrate",
+				color:"color1-back"
+			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
@@ -178,8 +182,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color2-back",
 			fore:"white-back",
-			menu:"color2-back",
-			button:"transparent",
+			menu:{
+				title:"gravity",
+				color:"color2-back"
+			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:"left",
@@ -211,8 +217,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		}
 	},
 	{
-		id:"float",
-		title:"float", 
+		id:"slide",
+		title:"slide", 
 		index:g.c.floatIndex,
 		type:{
 			option:true,
@@ -225,8 +231,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color3-back",
 			fore:"white-back",
-			menu:"color3-back",
-			button:"transparent",
+			menu:{
+				title:"slide",
+				color:"color3-back"
+			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:"left",
@@ -272,8 +280,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color4-back",
 			fore:"white-back",
-			menu:"color4-back",
-			button:"transparent",
+			menu:{
+				title:"enemies",
+				color:"color4-back"
+			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				icon:"up",
@@ -319,8 +329,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color5-back",
 			fore:"white-back",
-			menu:"color5-back",
-			button:"transparent",
+			menu:{
+				title:"balance",
+				color:"color5-back"
+			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:"up",
@@ -366,7 +378,10 @@ dataModule.factory("data.service", ['utility', function (g) {
 			view:"page.html",
 			back:"color6-back",
 			fore:"black-back",
-			menu:"color6-back",
+			menu:{
+				title:"space",
+				color:"color6-back"
+			},
 			button:"white-back",
 			backButton:{
 				loc:{top:"10px", left:"10px"},

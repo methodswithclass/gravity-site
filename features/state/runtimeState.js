@@ -70,7 +70,7 @@ stateModule.provider("runtime.state", function ($stateProvider) {
         url:"/gravity"
     },
     {
-        name:"page.float",
+        name:"page.slide",
         url:"/float"
     },
     {

@@ -8,8 +8,8 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 
 			var elem = "<div id='screenwarn" + id + "' class='absolute width height z-100'>" +
 							"<div class='absolute width height black-back opacity90'></div>" + 
-							"<div class='absolute width60 center font-50 white'>" + 
-								"lock your screen in portrait mode to play this game" +
+							"<div class='absolute width60 center font-40 white'>" + 
+								"lock your screen in portrait mode <br> in your phone's settings <br> to play this game" +
 							"</div>" + 
 						"</div>";
 
