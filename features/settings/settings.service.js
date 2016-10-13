@@ -1,5 +1,23 @@
 settingsModule.factory("settings.service", ['utility', function (g) {
 
+	var _open;
+	var _close;
+
+	var scope = function (_scope) {
+
+		$scope = _scope;
+	}
+
+
+	var open = function ($open) {
+
+		if ($open) {
+			_open = $open;
+		}
+		else {
+			_open();
+		}
+	}
 
 	var save = function () {
 
@@ -13,8 +31,20 @@ settingsModule.factory("settings.service", ['utility', function (g) {
 		g.setDirection("yDir", ySelect == "up" ? 1 : -1);
 	}
 
+	var close = function ($close) {
+
+		if ($close) {
+			_close = $close;
+		}
+		else {
+			_close();
+		}
+	}
+
 	return {
-		save:save
+		scope:scope,
+		open:open,
+		close:close
 	}
 
 }]);

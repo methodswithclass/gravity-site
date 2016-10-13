@@ -8,6 +8,8 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		link:function ($scope, element, attr) {
 
 			
+			settings.scope($scope);
+
 
 			/*********************  session factor  ***************************/
 
@@ -44,10 +46,10 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 
 		    }, 500);
 			
-
-
 		    
 		    /*********************  axes  ***************************/
+
+
 
 		    $scope.directions = {
 		    	x:g.c.xDir,
@@ -59,10 +61,13 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    	y:(g.getDirection(g.c.yDir) < 0 ? true : false)
 		    }
 
-		 //    $scope.axesOptions = [
-			// 	"standard",
-			// 	"reversed"
-			// ];
+		    settings.open(function () {
+
+		    	$scope.axisSwitched = {
+			    	x:(g.getDirection(g.c.xDir) < 0 ? true : false),
+			    	y:(g.getDirection(g.c.yDir) < 0 ? true : false)
+			    }
+		    });
 
 			$scope.changeDirection = function (dir) {
 
@@ -74,35 +79,6 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 
 				g.setDirection(dir, dir == g.c.xDir ? ($scope.axisSwitched.x ? -1 : 1) : ($scope.axisSwitched.y ? -1 : 1));
 			}
-
-			var x;
-			var y;
-
-			setTimeout(function () {
-
-				// $("[name='setting-x-axis-switch']").bootstrapSwitch();
-		  //   	$("[name='setting-y-axis-switch']").bootstrapSwitch();
-
-			 //    x = $("#setting-x-axis")[0];
-				// y = $("#setting-y-axis")[0];
-
-				// x.onchange = function () {
-
-				// 	var select = this.options[this.selectedIndex].value;
-
-				// 	g.setDirection(g.c.xDir, select == "up" ? 1 : -1);
-
-				// };
-
-				// y.onchange = function () {
-
-				// 	var select = this.options[this.selectedIndex].value;
-
-				// 	g.setDirection(g.c.yDir, select == "up" ? 1 : -1);
-
-				// };
-
-		    }, 500);
 
 		}
 	}

@@ -1,4 +1,4 @@
-controllerModule.controller("PageController", ['$scope', 'data.service', 'utility', 'states', 'events', 'manager', function ($scope, data, util, states, events, manager) {
+controllerModule.controller("PageController", ['$scope', 'data.service', 'utility', 'states', 'events', 'manager', 'settings.service', function ($scope, data, util, states, events, manager, settings) {
 
     var self = this;
 
@@ -36,5 +36,9 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
     events.on("gohome", function () {
         states.go("page.home");
     });
+
+    if (state.name == "settings") {
+        settings.open();
+    }
 
 }])
