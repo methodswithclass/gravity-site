@@ -2,27 +2,121 @@
 	<div class="absolute width-2000 height vcenter" id="settings-body">
 		<div class="absolute width80 height80 white-back raised-dark border center" id="settings-inner">
 			
-			<div class="absolute width80 height80 center">
+			<div class="absolute width80 height80 center font-50">
 
-				<div class="relative width-200 height-800" id="settings-sessionfactor">
+				<div class="relative width-400 height border rounded40 inline" id="setting-sessionfactor">
 
-					<div class="relative width height-50 hcenter margin-v-50">
-						<div class="absolute text-center center font-70">Sensitivity</div>
-					</div>
+					<div class="absolute width80 height80 center">
 
-					<div class="relative width height-50 hcenter margin-v-50 font-40">
-						<div class="absolute height width50 left0">
-							<div class="absolute width vcenter text-right" id="amount"></div>
+						<div class="relative width height20">
+							
+							<div class="relative width height50">
+								<div class="absolute text-center center">sensitivity</div>
+							</div>
+
+							<div class="relative width height50 font-40">
+								<div class="absolute width50 height left0">
+									<div class="absolute width vcenter text-right" id="amount"></div>
+								</div>
+								<div class="absolute width50 height right0">
+									<div class="absolute width vcenter">%</div>
+								</div>
+							</div>
+
 						</div>
-						<div class="absolute height width50 right0">
-							<div class="absolute vcenter">%</div>
+						
+						<div class="relative width height80">
+							<div class="absolute width-100 height80 center">
+								<div class="absolute hcenter" id="slider-vertical"></div>
+							</div>
 						</div>
+
 					</div>
 					
-					<div class="relative width-100 hcenter height margin-v-50">
-						<div class="absolute hcenter" id="slider-vertical"></div>
+				</div>
+
+				<div class="relative width-400 height border rounded40 inline" id="setting-axes">
+
+					<div class="absolute width80 height80 center">
+
+						<div class="relative width height20">
+
+							<div class="absolute center">axis switched</div>
+
+						</div>
+
+						<div class="relative width height50 font-40">
+
+							<div class="relative width height50">
+
+								<div class="absolute width30 height">
+									<div class="absolute width vcenter text-right">
+										x
+									</div>
+								</div>
+
+								<div class="absolute width60 height right0">
+									<div class="absolute center">
+										<input class="absolute center" bs-switch
+											    ng-model="axisSwitched.x"
+											    type="checkbox"
+											    switch-size="large"
+											    switch-animate="true"
+											    switch-change="changeDirection(directions.x)"
+											    ng-true-value="true"
+											    ng-false-value="false">
+									</div>
+									
+
+									<!-- <select class="absolute width height50 vcenter" id="setting-x-axis">
+										<option ng-repeat="item in axesOptions" value="{{item}}">
+											{{item}}
+										</option>
+									</select> -->
+
+
+								</div>
+
+							</div>
+
+							<div class="relative width height50">
+
+								<div class="absolute width30 height">
+									<div class="absolute width vcenter text-right">
+										y
+									</div>
+								</div>
+
+								<div class="absolute width60 height right0">
+									<div class="absolute center">
+										<input bs-switch
+											    ng-model="axisSwitched.y"
+											    type="checkbox"
+											    switch-size="large"
+											    switch-animate="true"
+											    switch-on-text="{{axesOptions[1]}}"
+											    switch-off-text="{{axesOptions[0]}}"
+											    switch-change="changeDirection(directions.y)"
+											    ng-true-value="true"
+											    ng-false-value="false">
+									</div>
+
+									
+									<!-- <select class="absolute width height50 vcenter" id="setting-y-axis">
+										<option ng-repeat="item in axesOptions" value="{{item}}">
+											{{item}}
+										</option>
+									</select> -->
+
+
+								</div>
+
+							</div>
+
+						</div>
+
 					</div>
-					
+
 				</div>
 
 			</div>

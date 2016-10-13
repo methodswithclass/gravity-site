@@ -4,6 +4,7 @@
 
     <link rel="stylesheet" href="libs/css/angular-material.min.css">
     <link rel="stylesheet" href="libs/css/bootstrap.css">
+    <link rel="stylesheet" href="libs/css/bootstrap-switch.css">
     <link rel="stylesheet" href="libs/css/jquery-ui-1.12.1.css">
     
     <link rel="stylesheet" href="http://code.methodswithclass.com/api/classes.css">
@@ -25,6 +26,8 @@
     <script src="libs/js/angular-aria-1.5.5.min.js"></script>
     <script src="libs/js/angular-messages-1.5.5.min.js"></script>
     <script src="libs/js/angular-material-1.1.0.min.js"></script>
+    <script src="libs/js/bootstrap-switch.js"></script>
+    <script src="libs/js/angular-bootstrap-switch.js"></script>
 
 
     <base href="/">

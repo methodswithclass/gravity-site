@@ -14,6 +14,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var con = {
 		factorG:"global",
 		factorS:"session",
+		xDir:"i",
+		yDir:"j",
 		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
