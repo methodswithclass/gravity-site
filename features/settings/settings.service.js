@@ -1,7 +1,7 @@
 settingsModule.factory("settings.service", ['utility', function (g) {
 
-	var _open;
-	var _close;
+	var _open = function () {};
+	var _close = function () {};
 
 	var scope = function (_scope) {
 
