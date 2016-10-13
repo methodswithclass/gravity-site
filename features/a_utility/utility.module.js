@@ -95,6 +95,8 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 			yDir = value >= 0 ? 1 : -1;
 		}
 
+		console.log("utility set direction", "xDir", xDir, "yDir", yDir);
+
 	}
 
 	var getDirection = function (direction) {

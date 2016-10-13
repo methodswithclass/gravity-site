@@ -56,16 +56,16 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    	y:g.c.yDir
 		    }
 
-		    $scope.axisSwitched = {
-		    	x:false,
-		    	y:false
+		    $scope.axis = {
+		    	x:1,
+		    	y:1
 		    }
 		    
 		    var setSwitched = function () {
 
-			    $scope.axisSwitched = {
-			    	x:(g.getDirection(g.c.xDir) < 0 ? true : false),
-			    	y:(g.getDirection(g.c.yDir) < 0 ? true : false)
+			    $scope.axis = {
+			    	x:(g.getDirection(g.c.xDir)),
+			    	y:(g.getDirection(g.c.yDir))
 			    }
 
 			}
@@ -74,13 +74,9 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 
 			$scope.changeDirection = function (dir) {
 
-				console.log("set direction", dir, dir == g.c.xDir ? $scope.axisSwitched.x : $scope.axisSwitched.y);
+				console.log("settings set direction", dir, dir == g.c.xDir ? $scope.axis.x : $scope.axis.y);
 
-				// var current = $scope.axisSwitched[dir == g.c.xDir ? "x" : "y"];
-
-				// $scope.axisSwitched[dir == g.c.xDir ? "x" : "y"] = !current;
-
-				g.setDirection(dir, dir == g.c.xDir ? ($scope.axisSwitched.x ? -1 : 1) : ($scope.axisSwitched.y ? -1 : 1));
+				g.setDirection(dir, dir == g.c.xDir ? $scope.axis.x : $scope.axis.y);
 			}
 
 		}

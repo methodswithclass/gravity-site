@@ -58,13 +58,13 @@
 								<div class="absolute width60 height right0">
 									<div class="absolute center">
 										<input class="absolute center" bs-switch
-											    ng-model="axisSwitched.x"
+											    ng-model="axis.x"
 											    type="checkbox"
 											    switch-size="large"
 											    switch-animate="true"
 											    switch-change="changeDirection(directions.x)"
-											    ng-true-value="true"
-											    ng-false-value="false">
+											    ng-true-value="-1"
+											    ng-false-value="1">
 									</div>
 									
 
@@ -90,15 +90,13 @@
 								<div class="absolute width60 height right0">
 									<div class="absolute center">
 										<input bs-switch
-											    ng-model="axisSwitched.y"
+											    ng-model="axis.y"
 											    type="checkbox"
 											    switch-size="large"
 											    switch-animate="true"
-											    switch-on-text="{{axesOptions[1]}}"
-											    switch-off-text="{{axesOptions[0]}}"
 											    switch-change="changeDirection(directions.y)"
-											    ng-true-value="true"
-											    ng-false-value="false">
+											    ng-true-value="-1"
+											    ng-false-value="1">
 									</div>
 
 									
