@@ -75,7 +75,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			option:false,
 			motion:false,
 			accel:false,
-			stages:false,
+			stages:true,
 			game:false
 		},
 		page:{

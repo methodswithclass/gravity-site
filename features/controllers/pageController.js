@@ -37,8 +37,4 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
         states.go("page.home");
     });
 
-    if (state.name == "settings") {
-        settings.open();
-    }
-
 }])

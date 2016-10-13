@@ -3,12 +3,6 @@ settingsModule.factory("settings.service", ['utility', function (g) {
 	var _open = function () {};
 	var _close = function () {};
 
-	var scope = function (_scope) {
-
-		$scope = _scope;
-	}
-
-
 	var open = function ($open) {
 
 		if ($open) {
@@ -41,8 +35,54 @@ settingsModule.factory("settings.service", ['utility', function (g) {
 		}
 	}
 
+	/* =======================================================================================*/
+	/* ================================   Stage Functions   ==================================*/
+	/* =======================================================================================*/
+
+	var update = function (object, interval) {
+
+
+	}
+
+	var reset = function () {
+
+		
+	}
+
+	var onCreate = function (input) {
+
+	}
+
+	var onEnter = function () {
+
+		open();
+	}
+
+	var onStart = function () {
+
+
+	}
+
+	var onEnd = function () {
+
+	}
+
+	var onLeave = function () {
+
+	}
+
+	/* =======================================================================================*/
+	/* =======================================     End      ==================================*/
+	/* =======================================================================================*/
+
 	return {
-		scope:scope,
+		onCreate:onCreate,
+		onEnter:onEnter,
+		onStart:onStart,
+		onEnd:onEnd,
+		onLeave:onLeave,
+		update:update,
+		reset:reset,
 		open:open,
 		close:close
 	}

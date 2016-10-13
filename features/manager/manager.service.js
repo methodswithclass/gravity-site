@@ -1,4 +1,4 @@
-managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'games.library', 'utility', function (accelerometer, objectFact, data, send, games, util) {
+managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'settings.service', 'games.library', 'utility', function (accelerometer, objectFact, data, send, settings, games, util) {
 
 	var object;
 	var accel;

@@ -7,10 +7,6 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		templateUrl:"features/settings/settings.html",
 		link:function ($scope, element, attr) {
 
-			
-			settings.scope($scope);
-
-
 			/*********************  session factor  ***************************/
 
 			var setValue = function (val) {
@@ -62,6 +58,8 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    }
 		    
 		    var setSwitched = function () {
+
+		    	console.log("set switched");
 
 			    $scope.axis = {
 			    	x:(g.getDirection(g.c.xDir)),
