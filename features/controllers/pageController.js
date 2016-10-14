@@ -23,7 +23,7 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
         //self.valid = true;
 
         setTimeout(function () {
-            states.go("page.settings");
+            states.go("page.calibrate");
         }, 2000);
     }
     else {
