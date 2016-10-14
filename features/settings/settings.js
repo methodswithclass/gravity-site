@@ -7,35 +7,75 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		templateUrl:"features/settings/settings.html",
 		link:function ($scope, element, attr) {
 
+			var x;
+			var y;
 
-		    $scope.directions = {
-		    	x:g.c.xDir,
-		    	y:g.c.yDir
+		    // $scope.directions = {
+		    // 	x:g.c.xDir,
+		    // 	y:g.c.yDir
+		    // }
+
+		    // $scope.axis = {
+		    // 	x:1,
+		    // 	y:1
+		    // }
+
+		    var getState = function (dir) {
+
+		    	return dir < 0 ? true : false;
 		    }
 
-		    $scope.axis = {
-		    	x:1,
-		    	y:1
+		    var getDir = function (state) {
+
+		    	return state ? -1 : 1;
 		    }
+
+		    var changeDirection = function (dir, state) {
+
+				console.log("settings set direction", dir, "state", getDir(state));
+
+				g.setDirection(dir, getDir(state));
+			}
 		    
 		    var setSwitched = function () {
 
 		    	console.log("set switched");
 
-			    $scope.axis = {
-			    	x:(g.getDirection(g.c.xDir)),
-			    	y:(g.getDirection(g.c.yDir))
-			    }
+		    	x = $("[name='setting-x-axis']");
+		    	y = $("[name='setting-y-axis']");
 
-			    console.log("set switched", "xDir", $scope.axis.x, "yDir", $scope.axis.y);
+		    	x.bootstrapSwitch({
+		    		state:getState(g.getDirection(g.c.xDir)),
+		    		animate:true,
+		    		// baseClass:"absolute width height",
+		    		// wrapperClass:"absolute width height",
+		    		onText:"switched",
+		    		offText:"standard",
+		    		handleWidth:"150px",
+		    		//labelWidth:"150px",
+		    		onSwitchChange:function (event, state) {
+		    			changeDirection(g.c.xDir, state);
+		    		}
+		    	});
 
-			}
+		    	y.bootstrapSwitch({
+		    		state:getState(g.getDirection(g.c.yDir)),
+		    		animate:true,
+		    		// baseClass:"absolute width height",
+		    		// wrapperClass:"absolute width height",
+		    		onText:"switched",
+		    		offText:"standard",
+		    		handleWidth:"150px",
+		    		//labelWidth:"150px",
+		    		onSwitchChange:function (event, state) {
+		    			changeDirection(g.c.yDir, state);
+		    		}
 
-			$scope.changeDirection = function (dir) {
+		    	});
 
-				console.log("settings set direction", dir, dir == g.c.xDir ? $scope.axis.x : $scope.axis.y);
+		    	// x.bootstrapSwitch();
+		    	// y.bootstrapSwitch();
 
-				g.setDirection(dir, dir == g.c.xDir ? $scope.axis.x : $scope.axis.y);
 			}
 
 			setTimeout(function () {

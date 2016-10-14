@@ -1,0 +1,73 @@
+<div class="absolute width height">
+
+
+	<div id="{{'pagetitle' + info.id}}" ng-hide="info.id == 'validity'" class="absolute height10 width text-center font-60">
+		<div class="absolute center">{{info.title}}</div>
+	</div>
+
+
+	<object ng-hide="true" ng-attr-id="{{'object' + info.id}}"></object>
+	<display ng-hide="true"></display>
+
+	<div class="absolute width height85 top15 hcenter">
+
+		<div class="relative width90 height20 hcenter">
+
+			<div class="relative width height50 border cutoff rounded10">
+				<div class="relative height blue4-back rounded10" ng-style="{'width': progress}" id="progress"></div>
+			</div>
+
+			<div class="relative width font-50" id="message">
+				{{message}} {{accel}}
+			</div>
+
+		</div>
+
+		<div class="relative width90 height80 hcenter">
+
+			<div class="relative width height80">
+
+				<div class="absolute width70 height80 {{phase.pos.image.top}} {{phase.pos.image.left}}">
+					<img class="absolute width-auto height center" ng-src="{{phase.src}}" />
+				</div>
+
+				<div class="absolute width60 height60 {{phase.pos.continue.top}} {{phase.pos.continue.left}} pointer" ng-click="continue()" id="{{'btn' + info.id}}">
+
+					<div class="absolute width height black-back opacity70 rounded40"></div>
+
+					<div class="absolute width90 height90 center">
+
+						<div class="absolute width height30 white font-50">
+							<div class="absolute text-center center">tap to continue</div>
+						</div>
+
+						<div class="absolute width height70 bottom0">
+
+							<div class="absolute width-200 height-200 rounded100 white-back center font-200">
+								<div class="absolute center">
+									<i class="fa fa-arrow-circle-right"></i>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="relative width90 height20 hcenter">
+
+				<div class="absolute center font-70">
+					{{phase.instructions}}
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
