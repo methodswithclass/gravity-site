@@ -47,11 +47,11 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    	x.bootstrapSwitch({
 		    		state:getState(g.getDirection(g.c.xDir)),
 		    		animate:true,
-		    		// baseClass:"absolute width height",
-		    		// wrapperClass:"absolute width height",
+		    		//baseClass:"height",
+		    		//wrapperClass:"height",
 		    		onText:"switched",
 		    		offText:"standard",
-		    		handleWidth:"150px",
+		    		handleWidth:"250px",
 		    		//labelWidth:"150px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(g.c.xDir, state);
@@ -65,13 +65,18 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		    		// wrapperClass:"absolute width height",
 		    		onText:"switched",
 		    		offText:"standard",
-		    		handleWidth:"150px",
+		    		handleWidth:"250px",
 		    		//labelWidth:"150px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(g.c.yDir, state);
 		    		}
 
 		    	});
+
+		    	$(".bootstrap-switch").css({height:"80%", top:"10%"});
+		    	$(".bootstrap-switch-container").css({height:"100%"});
+		    	$(".bootstrap-switch-handle-on").css({top:"50%", translateY:"-50%", fontSize:"40px"});
+		    	$(".bootstrap-switch-handle-off").css({top:"50%", translateY:"-50%", fontSize:"40px"});
 
 		    	// x.bootstrapSwitch();
 		    	// y.bootstrapSwitch();
