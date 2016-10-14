@@ -27,6 +27,8 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 			    	y:(g.getDirection(g.c.yDir))
 			    }
 
+			    console.log("set switched", "xDir", $scope.axis.x, "yDir", $scope.axis.y);
+
 			}
 
 			$scope.changeDirection = function (dir) {
