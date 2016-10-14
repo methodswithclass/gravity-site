@@ -79,10 +79,10 @@ md-toast {
 }
 
 .ui-slider .ui-slider-handle {
-	height:50px;
+	height:100px;
     width:130%;
-    margin-top:-25px;
-    margin-left:0;
+    margin-top:-50px;
+    margin-left:-7.5%;
     
 }
 
