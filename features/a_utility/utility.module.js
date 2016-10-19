@@ -104,33 +104,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		return direction == "i" ? (xDir >= 0 ? 1 : -1) : (yDir >= 0 ? 1 : -1);
 	}
 
-	var average = function (array) {
-
-		var sumX = 0;
-		var sumY = 0;
-		
-		for (i in array) {
-			sumX += array[i].x;
-			sumY += array[i].y;
-		}
-		
-		return new vector(sumX/array.length, sumY/array.length, array[array.length-1].time);
-	}
-
-	var truncate = function (number, decimal) {
-	
-		var value = Math.floor(number*Math.pow(10, decimal))/Math.pow(10, decimal);
-		
-		return value;
-	}
-
-	var round = function (number, order) {
-
-		var value = Math.round(number/order)*order;
-
-		return value;
-	}
-
 	var getRandomPosition = function (arena, distance) {
 		var side = Math.random();
 		var loc = Math.random();
@@ -245,20 +218,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	}
 
-	var resolveDigit = function (digit) {
-		if (digit < 10) {
-			return "0" + digit;	
-		}
-		else {
-			return "" + digit;	
-		}
-	}
-
-	var len = function (vector) {
-
-		return Math.sqrt(vector.x*vector.x + vector.y*vector.y);
-	}
-
 	return {
 		c:con,
 		setFactor:setFactor,
@@ -275,8 +234,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 		round:round,
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
-		resolveDigit:resolveDigit,
-		len:len,
 		intersectShape:intersectShape,
 		intersectRect:intersectRect,
 		overlapShape:overlapShape,
