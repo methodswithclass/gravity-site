@@ -109,13 +109,11 @@
 
     <script src="features/calibration/calibrate.module.js"></script>
     <script src="features/calibration/calibrate.service.js"></script>
-    <script src="features/calibration/calibrate.js"></script>
     <script src="features/calibration/progress.service.js"></script>
 
     <!-- Settings -->
 
     <script src="features/settings/settings.module.js"></script>
-    <script src="features/settings/settings.js"></script>
     <script src="features/settings/settings.service.js"></script>
     <script src="features/settings/settings-btn.js"></script>
 
