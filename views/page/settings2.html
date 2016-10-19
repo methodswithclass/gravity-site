@@ -1,8 +1,11 @@
-<div class="absolute width height scroll" id="settings-content">
+
+
+<div class="absolute fill scroll" id="settings-content" ng-controller="SettingsController">
+	
 	<div class="absolute width-4000 height vcenter" id="settings-body">
 		<div class="absolute width95 height80 white-back raised-dark border center" id="settings-inner">
 			
-			<div class="absolute width95 height80 center font-70">
+			<div class="absolute width95 height80 center font-50">
 
 				<div class="relative width-600 height border rounded40 inline" id="setting-sessionfactor">
 
@@ -14,7 +17,7 @@
 								<div class="absolute text-center center">sensitivity</div>
 							</div>
 
-							<div class="relative width height50 font-50">
+							<div class="relative width height50 font-40">
 								<div class="absolute width50 height left0">
 									<div class="absolute width vcenter text-right" id="amount"></div>
 								</div>
@@ -45,36 +48,53 @@
 
 						</div>
 
-						<div class="relative width height60 top10 font-50">
+						<div class="relative width height50 font-40">
 
 							<div class="relative width height50">
 
-								<div class="absolute width10 height">
+								<div class="absolute width30 height">
 									<div class="absolute width vcenter text-right">
 										x
 									</div>
 								</div>
 
-								<div class="absolute width80 height80 vcenter right0">
-									<div class="absolute height hcenter">
-										<input type="checkbox" name="setting-x-axis" checked>
-									</div>
+								<div class="absolute width60 height right0">
+									<!-- <div class="absolute width height center"> -->
+										<!-- <input class="absolute width height" bs-switch
+											    ng-model="axis.x"
+											    type="checkbox"
+											    switch-size="large"
+											    switch-wrapper="absolute width height80 center"
+											    switch-animate="true"
+											    switch-change="changeDirection(directions.x)"
+											    ng-true-value="-1"
+											    ng-false-value="1"> -->
+										<input type="checkbox" id="setting-x-axis" checked>
+									<!-- </div> -->
 								</div>
 
 							</div>
 
 							<div class="relative width height50">
 
-								<div class="absolute width10 height">
+								<div class="absolute width30 height">
 									<div class="absolute width vcenter text-right">
 										y
 									</div>
 								</div>
 
-								<div class="absolute width80 height80 vcenter right0">
-									<div class="absolute height hcenter">
-										<input type="checkbox" name="setting-y-axis" checked>
-									</div>
+								<div class="absolute width60 height right0">
+									<!-- <div class="absolute center"> -->
+										<!-- <input bs-switch
+											    ng-model="axis.y"
+											    type="checkbox"
+											    switch-size="large"
+											    switch-animate="true"
+											    switch-change="changeDirection(directions.y)"
+											    ng-true-value="-1"
+											    ng-false-value="1"> -->
+										<input type="checkbox" id="setting-y-axis" checked>
+									<!-- </div> -->
 								</div>
 
 							</div>
@@ -101,4 +121,9 @@
 
 		</div>
 	</div>
+
+	
+	<back ng-attr-id="{{'back.' + page.id}}"></back>
+
 </div>
+

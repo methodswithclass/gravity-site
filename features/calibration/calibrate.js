@@ -7,6 +7,17 @@ calibrateModule.directive("calibrate", ["calibrate.service", "events", "$state",
 		templateUrl:"features/calibration/calibrate.html",
 		link:function ($scope, $element, attr) {
 
+			
+			/*
+
+				
+				Will be replaced by calibrateController
+	
+
+			*/
+
+
+
 			var id = $scope.info.id;
 
 			if (id == 'calibrate') {

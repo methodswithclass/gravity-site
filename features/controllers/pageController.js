@@ -4,32 +4,21 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
 
     // ===================== DATA ======================
 
-    //self.valid = false;
     self.pages = data.pages;
 
     var state = states.current();
+    var page = $scope.page;
 
 
-    //console.log("page controller", state.state, "state is a page");
-    
+    // =================================================
+
+    console.log(" ");
+    console.log("page controller", state.state, "state is page:", state.page);
+
     // ===================== SETUP ======================
 
     states.setupReceivers();
     manager.setupReceivers();
-
-    console.log(" ");
-    if (util.isValid()) {
-        console.log("########## is valid ############");
-        //self.valid = true;
-
-        setTimeout(function () {
-            states.go("page.calibrate");
-        }, 2000);
-    }
-    else {
-        console.log("########## is invalid ############");
-    }
-    console.log(" ");
 
     // ===================== EVENTS ===================== 
 

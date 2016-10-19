@@ -79,7 +79,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:false
 		},
 		page:{
-			view:"page.html",
+			view:"settings.html",
 			back:"black-back",
 			fore:"white-back",
 			menu:{
@@ -129,7 +129,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:false
 		},
 		page:{
-			view:"page.html",
+			view:"calibrate.html",
 			back:"color1-back",
 			fore:"white-back",
 			menu:{
@@ -179,7 +179,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:false
 		},
 		page:{
-			view:"page.html",
+			view:"motion.html",
 			back:"color2-back",
 			fore:"white-back",
 			menu:{
@@ -228,7 +228,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:false
 		},
 		page:{
-			view:"page.html",
+			view:"motion.html",
 			back:"color3-back",
 			fore:"white-back",
 			menu:{
@@ -266,8 +266,8 @@ dataModule.factory("data.service", ['utility', function (g) {
 		}
 	},
 	{
-		id:"enemies",
-		title:"enemies", 
+		id:"enemy",
+		title:"enemy", 
 		index:g.c.enemiesIndex,
 		type:{
 			option:true,
@@ -277,11 +277,11 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:true
 		},
 		page:{
-			view:"page.html",
+			view:"game.html",
 			back:"color4-back",
 			fore:"white-back",
 			menu:{
-				title:"enemies",
+				title:"enemy",
 				color:"color4-back"
 			},
 			backButton:{
@@ -326,7 +326,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:true
 		},
 		page:{
-			view:"page.html",
+			view:"game.html",
 			back:"color5-back",
 			fore:"white-back",
 			menu:{
@@ -375,7 +375,7 @@ dataModule.factory("data.service", ['utility', function (g) {
 			game:true
 		},
 		page:{
-			view:"page.html",
+			view:"game.html",
 			back:"color6-back",
 			fore:"black-back",
 			menu:{

@@ -7,6 +7,15 @@ settingsModule.directive("settings", ['states', 'send', 'settings.service', 'uti
 		templateUrl:"features/settings/settings.html",
 		link:function ($scope, element, attr) {
 
+			/*
+
+				
+				Will be replaced by settingsController
+	
+
+			*/
+
+
 			var x;
 			var y;
 

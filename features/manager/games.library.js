@@ -1,4 +1,4 @@
-managerModule.factory("games.library", ["data.service", "enemy.game", 'balance.game', 'space.game', 'calibrate.service', 'settings.service', function (data, enemies, balance, space, calibrate, settings) {
+managerModule.factory("games.library", ["data.service", "enemy.game", 'balance.game', 'space.game', 'calibrate.service', 'settings.service', function (data, enemy, balance, space, calibrate, settings) {
 
 	var library = {};
 
@@ -6,7 +6,7 @@ managerModule.factory("games.library", ["data.service", "enemy.game", 'balance.g
 	library["settings"] = settings;
 	library["calibrate"] = calibrate;
 	library["space"] = space;
-	library["enemies"] = enemies;
+	library["enemy"] = enemy;
 	library["balance"] = balance;
 
 

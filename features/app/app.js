@@ -14,8 +14,16 @@ app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvi
 
 }]).run(function (states, utility) {
 
+	//for desktop debugging when no accelerometer is present, comment out this line for production
     utility.forceValidity(true);
     
+
+    //1. check existence of device accelerometer
     console.log("go to checking");
     states.go("checking");
+
+    //2. route to validController and display results of accelerometer check
+
+    //3. route to next state (calibrate) if valid, stop progression through app if invalid
+
 });

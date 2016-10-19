@@ -38,13 +38,14 @@ stateModule.provider("runtime.state", function ($stateProvider) {
     {
         name:"checking",
         url:"/checking",
-        template:"<div ng-include='getContentUrl()'></div>",
-        controller:"CheckingController"
+        templateUrl:'views/body/checking.html',
+        controller:"CheckingController",
+        controllerAs:"main"
     },
     {
         name:"page",
         url:"",
-        templateUrl:"views/content.html",
+        templateUrl:"views/body/content.html",
         controller:"PageController",
         controllerAs:"main",
         abstract:true
@@ -74,7 +75,7 @@ stateModule.provider("runtime.state", function ($stateProvider) {
         url:"/float"
     },
     {
-        name:"page.enemies",
+        name:"page.enemy",
         url:"/enemies"
     },
     {

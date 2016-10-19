@@ -1,16 +1,16 @@
 objectModule.directive("object", ['send', 'data.service', 'object.generator', 'utility', function (send, data, object, g) {
 
 	return {
+		restrict:'E',
 		scope:false,
 		replace:true,
-		restrict:'E',
 		template:"<div class='absolute'></div>",
 		link:function ($scope, element, attr) {
 
-			var pageName = $scope.info.id;
+			var page = $scope.page;
 
-			if (pageName != "home") {
-				var page = data.getPageById(pageName);
+			if (page.id != "home") {
+				//var page = data.getPageById(pageName);
 
 				var params = page.obj;
 

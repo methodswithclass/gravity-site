@@ -1,32 +1,30 @@
-uiModule.directive("page", ["manager", 'calibrate.service', 'events', 'states', function (manager, calibrate, events, states) {
+uiModule.directive("page", ["manager", 'events', 'states', function (manager, events, states) {
 
 	return {
 		restrict:'E',
-		scope:{
-			info:'=',
-			view:'@'
-		},
+		scope:false,
+		replace:true,
 		template:'<div ng-include="getContentUrl()"></div>',
 		link:function ($scope, element, attr) {
 
-			console.log("in page, name:", $scope.info.id, "view:", $scope.view);
+			var page = $scope.page;
+
+			console.log("in page, name:", page.id, "view:", page.page.view);
 
 			$scope.getContentUrl = function() {
-                return 'views/' + $scope.view;
+                return 'views/page/' + page.page.view;
             }
 
-            var info = $scope.info;
-
-         	if (info.id != "home" && info.id != "validity") {
+         	if (page.type.accel) {
             	setTimeout(function() {
 		            
 		            manager.addInstance({
-		            	id:info.id, 
-		            	parent:$("#arena" + info.id)[0], 
-		            	object:$("#object" + info.id)[0]
+		            	id:page.id, 
+		            	parent:$("#arena" + page.id)[0], 
+		            	object:$("#object" + page.id)[0]
 		            });
 
-	        	},500);	
+	        	},500);
 	        }
 
 		}

@@ -7,18 +7,18 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 		templateUrl:"features/manager/toggle.html",
 		link:function ($scope, element, attr) {
 
-			var id = $scope.info.id;
+			var page = $scope.page;
 
 			var playing = false;
 
 			setTimeout(function() {
 
-				var play = $("#play" + id);
-				var stop = $("#stop" + id);
+				var play = $("#play" + page.id);
+				var stop = $("#stop" + page.id);
 
 				var toggle = {play:play, stop:stop};
 
-				send.retrieve.accum({name:"toggle", id:id, data:toggle});
+				send.retrieve.accum({name:"toggle", id:page.id, data:toggle});
 
 			}, 500);
 
@@ -27,13 +27,13 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 				if (playing) {
 
 					playing = false;
-					manager.stopInstance(id);
-					manager.resetInstance(id);
+					manager.stopInstance(page.id);
+					manager.resetInstance(page.id);
 				}
 				else {
 
 					playing = true;
-					manager.startInstance(id);
+					manager.startInstance(page.id);
 				}
 
 			}

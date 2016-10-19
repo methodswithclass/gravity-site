@@ -4,7 +4,7 @@ uiModule.directive("rotation", ['global', '$window', function (g, $window) {
 		scope:false,
 		link:function ($scope, element, attr) {
 
-			var id = $scope.info.id;
+			var id = $scope.page.id;
 
 			var elem = "<div id='screenwarn" + id + "' class='absolute width height z-100'>" +
 							"<div class='absolute width height black-back opacity90'></div>" + 

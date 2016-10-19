@@ -4,7 +4,7 @@ uiModule.directive("option", ['states', 'send', function (states, send) {
 		restrict:'E',
 		scope:false,
 		replace:true,
-		templateUrl:"views/option.html",
+		templateUrl:"views/sub-page/option.html",
 		link:function ($scope, element, attr) {
 
 			var self = this;

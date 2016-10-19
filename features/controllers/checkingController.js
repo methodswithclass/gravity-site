@@ -1,13 +1,8 @@
 controllerModule.controller("CheckingController", ['$scope', '$document', 'validate.wrapper', 'states', 'events', 'con', 'utility', function ($scope, $document, validation, states, events, con, util) {
 
+    console.log(" ");
     console.log("checking controller");
 
-    $scope.getContentUrl = function() {
-    
-        var view = "checking.html";
-
-        return 'views/' + view;
-    }
 
     events.on("console", function () {
         return con.isRegistered();
@@ -22,23 +17,19 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
         result = validation.run();
     }
 
-    setTimeout(function () {
+    result.then( 
+    function (path) {
+        console.log("device valid");
 
-        result.then( 
-        function (path) { //valid
-            console.log("device valid");
-            // states.go("modal.valid");
-            util.setValidity(true);
-            states.go("page.validity");
-        },
-        function (path) { //invalid
-            console.log("device invalid");
-            //states.go("modal.invalid");
-            util.setValidity(false);
-            states.go("page.validity");
-        });
+        util.setValidity(true);
+        states.go("page.validity");
+    },
+    function (path) {
+        console.log("device invalid");
 
-    }, 1000);
+        util.setValidity(false);
+        states.go("page.validity");
+    });
 
 
     // ===================== ON READY =====================

@@ -74,6 +74,9 @@
     <script src="features/controllers/checkingController.js"></script>
     <script src="features/controllers/validController.js"></script>
     <script src="features/controllers/pageController.js"></script>
+    <script src="features/controllers/homeController.js"></script>
+    <script src="features/controllers/settingsController.js"></script>
+    <script src="features/controllers/calibrateController.js"></script>
 
     <!-- States -->
 
@@ -121,14 +124,15 @@
     <script src="features/games/games.module.js"></script>
     <script src="features/games/keeper.js"></script>
     <script src="features/games/display.js"></script>
+    <script src="features/games/preview.js"></script>
 
     <!-- Enemy -->
 
     <script src="features/games/enemy/enemy.module.js"></script>
     <script src="features/games/enemy/enemy.game.js"></script>
     <script src="features/games/enemy/enemy.service.js"></script>
-    <script src="features/games/enemy/preview.js"></script>
-    <script src="features/games/enemy/info.js"></script>
+    <script src="features/games/enemy/enemy-modal.js"></script>
+    <script src="features/games/enemy/enemy-info.js"></script>
 
     <!-- Balance -->
 
@@ -136,11 +140,13 @@
     <script src="features/games/balance/balance.game.js"></script>
     <script src="features/games/balance/target.service.js"></script>
     <script src="features/games/balance/meter.service.js"></script>
+    <script src="features/games/balance/balance-modal.js"></script>
 
     <!-- Space -->
 
     <script src="features/games/space/space.module.js"></script>
     <script src="features/games/space/space.game.js"></script>
+    <script src="features/games/space/space-modal.js"></script>
 
     <!-- Data -->
 

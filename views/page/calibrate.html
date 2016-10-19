@@ -1,15 +1,10 @@
-<div class="absolute width height">
 
-
-	<div id="{{'pagetitle' + info.id}}" ng-hide="info.id == 'validity'" class="absolute height10 width text-center font-60">
-		<div class="absolute center">{{info.title}}</div>
-	</div>
-
-
-	<object ng-hide="true" ng-attr-id="{{'object' + info.id}}"></object>
-	<display ng-hide="true"></display>
+<div class="absolute fill" ng-controller="CalibrateController">
 
 	<div class="absolute width height85 top15 hcenter">
+
+		<object ng-attr-id="{{'object' + page.id}}"></object>
+		<display></display>
 
 		<div class="relative width90 height20 hcenter">
 
@@ -31,7 +26,7 @@
 					<img class="absolute width-auto height center" ng-src="{{phase.src}}" />
 				</div>
 
-				<div class="absolute width60 height60 {{phase.pos.continue.top}} {{phase.pos.continue.left}} pointer" ng-click="continue()" id="{{'btn' + info.id}}">
+				<div class="absolute width60 height60 {{phase.pos.continue.top}} {{phase.pos.continue.left}} pointer" ng-click="continue()" id="{{'btn' + page.id}}">
 
 					<div class="absolute width height black-back opacity70 rounded40"></div>
 

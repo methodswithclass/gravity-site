@@ -1,4 +1,4 @@
-enemyModule.directive("info", ['data.service', function (data) {
+enemyModule.directive("enemyInfo", ['data.service', function (data) {
 
 	return {
 		restrict:"E",
