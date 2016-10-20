@@ -2,6 +2,8 @@
 <html>
   <head>
 
+    <title>Gravity</title>
+
     <link rel="stylesheet" href="libs/css/angular-material.min.css">
     <link rel="stylesheet" href="libs/css/bootstrap.css">
     <link rel="stylesheet" href="libs/css/jquery-ui-1.12.1.css">
