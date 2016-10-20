@@ -118,7 +118,7 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 
 		objects[input.id] = object;
 		accels[input.id] = accel;
-		arenas[input.id] = input.parent;
+		arenas[input.id] = object.el().parent();
 
 	}
 

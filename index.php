@@ -64,6 +64,10 @@
     <script src="http://code.methodswithclass.com/api/shared-2.js"></script>
     <script src="http://code.methodswithclass.com/api/mcshared-1.js"></script>
 
+    <!-- Acceleration -->
+
+    <script src="http://code.methodswithclass.com/api/accelerometer-1.js"></script>
+    
     <!-- App -->
     
     <script src="features/app/app.js"></script>
@@ -101,11 +105,6 @@
     <script src="features/validate/validate.service.js"></script>
     <script src="features/validate/validate.wrapper.js"></script>
     <script src="features/validate/valid.js"></script>
-
-
-    <!-- Acceleration -->
-
-    <script src="http://code.methodswithclass.com/api/accelerometer-1.js"></script>
 
     <!-- Object -->
 

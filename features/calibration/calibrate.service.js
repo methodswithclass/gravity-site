@@ -1,11 +1,13 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'events', '$mdToast', function (progress, g, events, $mdToast) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$mdToast', function (progress, events, $mdToast) {
+
+	var g = mcaccel.utility;
 
 	var accel;
 	var obj;
 	var parent;
 
-	var yDir = "j";
-	var xDir = "i";
+	var yDir = g.const.y;
+	var xDir = g.const.x;
 
 	var calDir = yDir;
 
@@ -51,13 +53,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		console.log("calibrate init");
 
-		parent = input.object.el().parent();
+		obj = input.object;
 		accel = input.accel;
-		obj = accel.obj;
-
-		// console.log("screen", obj.screenPos());
-		// console.log("relative", obj.relativePos());
-		// console.log("absolute", obj.absolutePos());
+		parent = input.object.el().parent();
 
 		progress.loadScheme(scheme);
 
@@ -73,10 +71,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 		console.log("calibrate start");
 
-		g.setFactor(g.c.factorG, 1);
-		g.setFactor(g.c.factorS, 0.5);
-		g.setDirection(yDir, 1);
-		g.setDirection(xDir, 1);
+		g.setFactor(g.const.factorG, 1);
+		g.setFactor(g.const.factorS, 0.5);
+		g.setAxis(g.const.y, 1);
+		g.setAxis(g.const.x, 1);
 
 		setTimeout(function() {
 
@@ -247,11 +245,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 				time += interval;
 
-				accel.motion({accelerationIncludingGravity:acc, timeStamp:time});
+				accel.motion({accelerationIncludingGravity:acc, acceleration:acc, timeStamp:time});
 
 				position = obj.absolutePos();
 				
-				phase_p =  Math.abs(position.y)/obj.bounds.y;
+				phase_p =  Math.abs(position.y)/accel.bounds.y/2;
 
 			}
 			else {
@@ -267,9 +265,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			var objaccel = Math.abs(obj.acceleration.y);
 			objaccel = objaccel != 0 ? objaccel : 1;
 
-			g.setFactor(g.c.factorG, g.c.dist*1e9/time/objaccel);
+			g.setFactor(g.const.factorG, g.const.dist*1e9/time/objaccel);
 
-			console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.c.factorG));
+			console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.const.factorG));
 
 			next(index);
 			
@@ -295,7 +293,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 				console.log("running phase", index);
 
-				current.push(accel.getRaw());
+				current.push(accel.raw());
 
 				phase_p += 1/100/100;
 
@@ -315,7 +313,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 
 			if (curr < 0) {
 
-				g.setDirection(axis == yDir ? yDir : xDir, -1);
+				g.setAxis(axis == yDir ? yDir : xDir, -1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
 				showToast(axis == yDir ? "yDir" : "xDir", "switched");
@@ -323,7 +321,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'utility', 'ev
 			}
 			else {
 
-				g.setDirection(axis == yDir ? yDir : xDir, 1);
+				g.setAxis(axis == yDir ? yDir : xDir, 1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
 				showToast(axis == yDir ? "yDir" : "xDir", "same");
