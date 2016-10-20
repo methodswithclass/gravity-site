@@ -1,5 +1,6 @@
-controllerModule.controller("SettingsController", ['$scope', 'global', 'states', 'data.service', 'settings.service', 'utility', function ($scope, g, states, data, settings, util) {
+controllerModule.controller("SettingsController", ['$scope', 'global', 'states', 'data.service', 'settings.service', function ($scope, g, states, data, settings) {
 
+    var util = mcaccel.utility;
 
 	console.log(" ");
 	console.log("settings controller");
@@ -21,7 +22,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
 		console.log("settings set direction", dir, "state", getDir(state));
 
-		util.setDirection(dir, getDir(state));
+		util.setAxis(dir, getDir(state));
 	}
     
     var setSwitched = function () {
@@ -32,20 +33,20 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	y = $("[name='setting-y-axis']");
 
     	x.bootstrapSwitch({
-    		state:getState(util.getDirection(util.c.xDir)),
+    		state:getState(util.getAxis(util.axis.y)),
     		animate:true,
     		handleWidth:"350px",
     		onSwitchChange:function (event, state) {
-    			changeDirection(util.c.xDir, state);
+    			changeDirection(util.axis.x, state);
     		}
     	});
 
     	y.bootstrapSwitch({
-    		state:getState(util.getDirection(util.c.yDir)),
+    		state:getState(util.getAxis(util.axis.y)),
     		animate:true,
     		handleWidth:"350px",
     		onSwitchChange:function (event, state) {
-    			changeDirection(util.c.yDir, state);
+    			changeDirection(util.axis.y, state);
     		}
 
     	});

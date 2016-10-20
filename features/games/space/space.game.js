@@ -1,11 +1,13 @@
-spaceModule.factory("space.game", ['keeper', 'global', 'vector', function (keeperFactory, g, vector) {
+spaceModule.factory("space.game", ['keeper', 'global', function (keeperFactory, g) {
+
+	var vector = mcaccel.vector;
 
 	var keeper;
 	var arena;
 
 	var onCreate = function (input) {
 
-		if (input) arena = input.arena;
+		if (input) arena = input.object.el().parent();
 
 		keeper = new keeperFactory();
 		keeper.setTotalTime(60000);

@@ -115,7 +115,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', 'global', function
 
 	var onCreate = function (input) {
 
-		if (input) arena = input.arena;
+		if (input) arena = input.object.el().parent();
 
 		keeper = new keeperFactory();
 

@@ -1,4 +1,6 @@
-balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 'vector', 'meter', function (Target, keeperFactory, g, vector, meterFactory) {
+balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 'meter', function (Target, keeperFactory, g, meterFactory) {
+
+	var vector = mcaccel.vector;
 
 	var keeper;
 	var arena;
@@ -9,7 +11,7 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 've
 
 	var onCreate = function (input) {
 
-		if (input) arena = input.arena;
+		if (input) arena = input.object.el().parent();
 
 		keeper = new keeperFactory();
 		keeper.setTotalTime(60000);

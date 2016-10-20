@@ -1,4 +1,7 @@
-settingsModule.factory("settings.service", ['utility', function (g) {
+settingsModule.factory("settings.service", [function () {
+
+	var g = mcshared.utility;
+	var util = mcaccel.utility;
 
 	var _open = function () {};
 	var _close = function () {};
@@ -8,7 +11,7 @@ settingsModule.factory("settings.service", ['utility', function (g) {
 		console.log("set value", val);
 
     	$("#amount").html(g.truncate(val*100,0));
-    	g.setFactor(g.c.factorS, val);
+    	util.setFactor(util.const.factorS, val);
     }
 
     var getValue = function () {
@@ -26,7 +29,7 @@ settingsModule.factory("settings.service", ['utility', function (g) {
 				min: 0.01,
 				step:0.01,
 				animate:true,
-				value: g.getFactor(g.c.factorS),
+				value: util.getFactor(util.const.factorS),
 				slide: function( event, ui ) {
 					setValue(ui.value);
 				}

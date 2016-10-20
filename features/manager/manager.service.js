@@ -1,4 +1,6 @@
-managerModule.factory("manager", ["accelerometer", "object.service", "data.service", 'send', 'settings.service', 'games.library', 'utility', function (accelerometer, objectFact, data, send, settings, games, util) {
+managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'games.library', function (data, send, settings, games) {
+
+	var util = mcaccel.utility;
 
 	var object;
 	var accel;
@@ -25,11 +27,11 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 		displays[id].stats.html(
 			"x: " + accel.unfiltered().x + "<br>" + 
 			"y: " + accel.unfiltered().y + "<br>" + 
-			"global factor: " + util.getFactor(util.c.factorG) + "<br>" + 
-			"session factor: " + util.getFactor(util.c.factorS) + "<br>" +
+			"global factor: " + util.getFactor(util.const.factorG) + "<br>" + 
+			"session factor: " + util.getFactor(util.const.factorS) + "<br>" +
 			"factor: " + util.getFactor() + "<br>" + 
-			"xDir: " + util.getDirection("i") + "<br>" + 
-			"yDir: " + util.getDirection("j") + "<br>"
+			"xDir: " + util.getAxis("i") + "<br>" + 
+			"yDir: " + util.getAxis("j") + "<br>"
 		);
 	}
 
@@ -93,24 +95,26 @@ managerModule.factory("manager", ["accelerometer", "object.service", "data.servi
 
 		var page = data.getPageById(input.id);
 
-		object = new objectFact({
+		object = new mcaccel.object({
 			id:input.id,
 			object:input.object,
-			arena:input.parent,
-			params:page
+			params:page.obj
 		});
 			
-		accel = new accelerometer({
+		accel = new mcaccel.accelerometer({
 			id:input.id,
-			params:page.params,
-			object:object
+			object:object,
+			params:page.params
 		});
 
-		accel.initialize({
-			arena:input.parent
-		});
+		accel.getMotion(function (pos, vel, accel) {
 
-		if (page.type.stages) games[page.id].onCreate({arena:input.parent, object:object, accel:accel});
+			object.setPosition(pos);
+			object.setVelocity(vel);
+			object.setAcceleration(accel);
+		})
+
+		if (page.type.stages) games[page.id].onCreate({object:object, accel:accel});
 
 		objects[input.id] = object;
 		accels[input.id] = accel;

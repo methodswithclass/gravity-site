@@ -1,4 +1,6 @@
-enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'utility', function(utility, data, vector, g) {
+enemyModule.factory("enemy.service", ['utility', 'data.service', function(g, data) {
+
+	var vector = mcaccel.vector;
 
 	var special = function (input) {
 
@@ -97,8 +99,8 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 		self.radius = self.type.size;
 		self.bounds = {x:$(input.arena).width(), y:$(input.arena).height()};
 		var distance = 350;
-		self.position = utility.getRandomPosition(input.arena, distance);
-		self.velocity = utility.getRandomVelocity(input.arena, self.position, self.type.speed);
+		self.position = g.getRandomPosition(input.arena, distance);
+		self.velocity = g.getRandomVelocity(input.arena, self.position, self.type.speed);
 
 		self.moving = true;
 
@@ -163,7 +165,7 @@ enemyModule.factory("enemy.service", ['utility', 'data.service', 'vector', 'util
 
 		self.intersect = function (object) {
 
-			var result = utility.intersectShape(self, object);
+			var result = g.intersectShape(self, object);
 
 			self.moving = !result;
 

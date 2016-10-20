@@ -1,21 +1,11 @@
-angular.module("utility.module", ['sharedModule', 'accelModule'])
+angular.module("utility.module", ['sharedModule'])
 
 
-.factory("utility", ['vector', function (vector) {
+.factory("utility", [function () {
 
-	var factor = {
-		global:1,
-		session:0.5
-	};
-
-	var yDir = 1;
-	var xDir = 1;
+	var vector = mcaccel.vector;
 
 	var con = {
-		factorG:"global",
-		factorS:"session",
-		xDir:"i",
-		yDir:"j",
 		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
@@ -73,35 +63,6 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 	var deviceStatus = function () {
 
 		return status;
-	}
-
-	var setFactor = function (type, _factor) {
-
-		factor[type] = Math.abs(_factor);
-	}
-
-	var getFactor = function (type) {
-
-		if (type) return Math.abs(factor[type])
-		else return Math.abs(factor.global*factor.session)
-	}
-
-	var setDirection = function (direction, value) {
-
-		if (direction == "i") {
-			xDir = value >= 0 ? 1 : -1;
-		}
-		else if (direction == "j") {
-			yDir = value >= 0 ? 1 : -1;
-		}
-
-		console.log("utility set direction", "xDir", xDir, "yDir", yDir);
-
-	}
-
-	var getDirection = function (direction) {
-
-		return direction == "i" ? (xDir >= 0 ? 1 : -1) : (yDir >= 0 ? 1 : -1);
 	}
 
 	var getRandomPosition = function (arena, distance) {
@@ -220,18 +181,11 @@ angular.module("utility.module", ['sharedModule', 'accelModule'])
 
 	return {
 		c:con,
-		setFactor:setFactor,
-		getFactor:getFactor,
-    	setDirection:setDirection,
-    	getDirection:getDirection,
     	forceValidity:forceValidity,
     	setValidity:setValidity,
     	isForced:isForced,
     	deviceStatus:deviceStatus,
     	isValid:isValid,
-		average:average,
-		truncate:truncate,
-		round:round,
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
 		intersectShape:intersectShape,

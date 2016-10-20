@@ -1,4 +1,4 @@
-objectModule.directive("object", ['send', 'data.service', 'object.generator', 'utility', function (send, data, object, g) {
+objectModule.directive("object", ['send', 'data.service', 'utility', function (send, data, object, g) {
 
 	return {
 		restrict:'E',
@@ -16,11 +16,11 @@ objectModule.directive("object", ['send', 'data.service', 'object.generator', 'u
 
 				element.css({height:params.size, width:params.size, borderRadius:params.size/2, backgroundColor:params.color});
 
-				if (params.shape == g.c.cross) {
+				// if (params.shape == g.c.cross) {
 
-					object.cross(element, params);
+				// 	object.cross(element, params);
 
-				}
+				// }
 
 				send.retrieve.accum({name:"objects", id:attr.id, data:element[0]});
 			}

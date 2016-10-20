@@ -1,1 +1,1 @@
-var managerModule = angular.module("managerModule", ["sharedModule", 'utility.module', "accelModule", "objectModule", "enemyModule", "balanceModule", "spaceModule", "calibrate.module"]);
+var managerModule = angular.module("managerModule", ["sharedModule", 'utility.module', "enemyModule", "balanceModule", "spaceModule", "calibrate.module"]);

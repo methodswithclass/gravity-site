@@ -62,7 +62,7 @@
     <!-- Shared -->
 
     <script src="http://code.methodswithclass.com/api/shared-2.js"></script>
-
+    <script src="http://code.methodswithclass.com/api/mcshared-1.js"></script>
 
     <!-- App -->
     
@@ -105,15 +105,11 @@
 
     <!-- Acceleration -->
 
-    <script src="features/acceleration/accel.module.js"></script>
-    <script src="features/acceleration/vector.js"></script>
-    <script src="features/acceleration/accelerometer.js"></script>
+    <script src="http://code.methodswithclass.com/api/accelerometer-1.js"></script>
 
     <!-- Object -->
 
     <script src="features/object/object.module.js"></script>
-    <script src="features/object/object.service.js"></script>
-    <script src="features/object/object.generator.js"></script>
     <script src="features/object/object.js"></script>
 
     <!-- Calibration -->

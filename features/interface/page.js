@@ -20,7 +20,7 @@ uiModule.directive("page", ["manager", 'events', 'states', function (manager, ev
 		            
 		            manager.addInstance({
 		            	id:page.id, 
-		            	parent:$("#arena" + page.id)[0], 
+		            	// parent:$("#arena" + page.id)[0], 
 		            	object:$("#object" + page.id)[0]
 		            });
 
