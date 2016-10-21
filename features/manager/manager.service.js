@@ -107,11 +107,13 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 			params:page.params
 		});
 
-		accel.getMotion(function (pos, vel, accel) {
+		accel.getMotion(input.id, function (id, pos, vel, acc) {
+
+			console.log("set position", id, pos);
 
 			object.setPosition(pos);
 			object.setVelocity(vel);
-			object.setAcceleration(accel);
+			object.setAcceleration(acc);
 		})
 
 		if (page.type.stages) games[page.id].onCreate({object:object, accel:accel});
@@ -128,8 +130,11 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 
 		var page = data.getPageById(id);
 
-		if (page.type.accel) accels[id].reset();
-			
+		if (page.type.accel) {
+			console.log("has type accel");
+			accels[id].reset();
+		}
+
 		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
 		if (page.type.accel) setStats(id);

@@ -52,7 +52,7 @@
     
     </div>
     
-    <console ng-attr-vis="hide"><console>
+    <console ng-attr-vis="show"><console>
     
 
     <!-- Console -->
@@ -67,7 +67,7 @@
     <!-- Acceleration -->
 
     <script src="http://code.methodswithclass.com/api/accelerometer-1.js"></script>
-    
+
     <!-- App -->
     
     <script src="features/app/app.js"></script>

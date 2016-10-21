@@ -46,7 +46,7 @@ controllerModule.controller("CalibrateController", ['$scope', 'global', 'states'
                     left:"left0"
                 },
                 continue:{
-                    top:"bottom0",
+                    top:"top0",
                     left:"right0"
                 }
             }
