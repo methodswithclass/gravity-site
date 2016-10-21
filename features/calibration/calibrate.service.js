@@ -260,7 +260,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 		},
 		complete:function (index) {
 
-			console.log("calibrate", "reached y boundary");
+			console.log("calibrate", "reached y boundary", obj)
+			console.log("acceleration", obj.acceleration);
+			console.log("accel y", obj.acceleration.y);
 
 			var objaccel = Math.abs(obj.acceleration.y);
 			objaccel = objaccel != 0 ? objaccel : 1;

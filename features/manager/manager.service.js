@@ -107,20 +107,20 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 			params:page.params
 		});
 
-		accel.getMotion(input.id, function (id, pos, vel, acc) {
-
-			console.log("set position", id, pos);
-
-			object.setPosition(pos);
-			object.setVelocity(vel);
-			object.setAcceleration(acc);
-		})
-
 		if (page.type.stages) games[page.id].onCreate({object:object, accel:accel});
 
 		objects[input.id] = object;
 		accels[input.id] = accel;
 		arenas[input.id] = object.el().parent();
+
+		accels[input.id].getMotion(input.id, function (id, pos, vel, acc) {
+
+			console.log("set position", id, pos);
+
+			objects[input.id].setPosition(pos);
+			objects[input.id].setVelocity(vel);
+			objects[input.id].setAcceleration(acc);
+		})
 
 	}
 
