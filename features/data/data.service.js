@@ -289,7 +289,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:100,
+			size:150,
 			color:"black"
 		},
 		params:{
@@ -486,7 +486,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"gold mine"
 		},
 		shape:util.c.circle,
-		size:100,
+		size:200,
 		color:"yellow",
 		speed:0.05,
 		hit:0.2,
@@ -517,7 +517,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"doesn't come out to play much"
 		},
 		shape:util.c.circle,
-		size:75,
+		size:100,
 		color:"green",
 		speed:0.3,
 		hit:103,
