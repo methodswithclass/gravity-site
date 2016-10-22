@@ -103,20 +103,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 				width:1,
 				radius:0
 			}	
-		},
-		obj:{
-			shape:util.c.circle,
-			size:50,
-			color:"black"
-		},
-		params:{
-			interval:2,
-			filterSize:3,
-			factor:1,
-			mu:0.1,
-			damp:0.4,
-			gravity:true,
-			bounce:false
 		}
 	},
 	{
@@ -156,7 +142,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:30,
+			size:50,
 			color:"black"
 		},
 		params:{
@@ -205,7 +191,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:200,
+			size:100,
 			color:"black"
 		},
 		params:{
@@ -254,7 +240,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:200,
+			size:100,
 			color:"black"
 		},
 		params:{
@@ -303,7 +289,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:200,
+			size:100,
 			color:"black"
 		},
 		params:{
@@ -483,7 +469,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"this will ruin you"
 		},
 		shape:util.c.circle,
-		size:90,
+		size:30,
 		color:"red",
 		speed:0.3,
 		hit:-0.8,
@@ -500,7 +486,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"gold mine"
 		},
 		shape:util.c.circle,
-		size:90,
+		size:100,
 		color:"yellow",
 		speed:0.05,
 		hit:0.2,
@@ -517,7 +503,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"everyday passerby"
 		},
 		shape:util.c.circle,
-		size:75,
+		size:50,
 		color:"blue",
 		speed:0.1,
 		hit:83,
@@ -531,7 +517,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			description:"doesn't come out to play much"
 		},
 		shape:util.c.circle,
-		size:100,
+		size:75,
 		color:"green",
 		speed:0.3,
 		hit:103,
