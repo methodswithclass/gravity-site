@@ -295,7 +295,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
 				console.log("running phase", index);
 
-				current.push(accel.raw());
+				current.push(accel.raw().gravity);
 
 				phase_p += 1/100/100;
 
