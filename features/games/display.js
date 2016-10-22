@@ -5,7 +5,7 @@ gamesModule.directive("display", ['send', function (send) {
 		scope:false,
 		restrict:"E",
 		replace:true,
-		templateUrl:"features/games/display.html",
+		templateUrl:"views/sub-page/display.html",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;
@@ -18,9 +18,11 @@ gamesModule.directive("display", ['send', function (send) {
 
 				var display = {time:time, points:points, stats:stats};
 
+				console.log("get display", page.id, time[0], points[0], stats[0])
+
 				send.retrieve.accum({name:"display", id:page.id, data:display});
 
-			}, 300);
+			}, 2000);
 
 		}
 	}

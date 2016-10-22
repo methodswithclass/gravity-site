@@ -19,8 +19,7 @@ uiModule.directive("page", ["manager", 'events', 'states', function (manager, ev
             	setTimeout(function() {
 		            
 		            manager.addInstance({
-		            	id:page.id, 
-		            	// parent:$("#arena" + page.id)[0], 
+		            	id:page.id,
 		            	object:$("#object" + page.id)[0]
 		            });
 

@@ -9,9 +9,9 @@
 	<div class="absolute fill z-100" ng-class="{hidden:hideinfo}">
 		
 		<div class="absolute fill black-back opacity90"></div>
-		<div class="absolute rounded20 white-back center" id="{{'preview' + info.id}}">
+		<div class="absolute rounded20 white-back center" id="{{'preview' + page.id}}">
 			<div class="absolute width90 height90 center border rounded20 cutoff" ng-click="toggleinfo('hide')">
-				<div class="absolute height" touch dir="x" width="{{infowidth}}" id="{{'info' + info.id}}">
+				<div class="absolute height" touch dir="x" width="{{infowidth}}" id="{{'info' + page.id}}">
 					<div ng-repeat="type in types">
 						<info></info>
 					</div>

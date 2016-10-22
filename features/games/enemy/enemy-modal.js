@@ -24,7 +24,7 @@ enemyModule.directive("enemyModal", ['data.service', 'events', function (data, e
 			}, 1000);
 			
 			$scope.hidemessage = false;
-			$scope.hideinfo = $scope.info.id != "enemies";
+			$scope.hideinfo = $scope.page.id != "enemies";
 
 			$scope.togglemessage = function (action) {
 

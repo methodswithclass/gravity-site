@@ -4,7 +4,7 @@ managerModule.directive("toggle", ["manager", 'send',function (manager, send) {
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"features/manager/toggle.html",
+		templateUrl:"views/sub-page/toggle.html",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;
