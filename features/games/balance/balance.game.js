@@ -57,6 +57,11 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 'me
 		meter.reset();
 	}
 
+	var reset = function () {
+
+		
+	}
+
 
 	var update = function (object, interval) {
 
@@ -106,6 +111,7 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 'me
 		onStart:onStart,
 		onEnd:onEnd,
 		onLeave:onLeave,
+		reset:reset,
 		update:update,
 		clock:clock,
 		zeroTime:zeroTime,

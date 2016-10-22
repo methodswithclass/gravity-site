@@ -1,6 +1,4 @@
-spaceModule.factory("space.game", ['keeper', 'global', function (keeperFactory, g) {
-
-	var vector = mcaccel.vector;
+spaceModule.factory("space.game", ['keeper', function (keeperFactory) {
 
 	var keeper;
 	var arena;
@@ -33,6 +31,11 @@ spaceModule.factory("space.game", ['keeper', 'global', function (keeperFactory, 
 	var onLeave = function () {
 
 		keeper.reset();
+	}
+
+	var reset = function () {
+
+		
 	}
 
 
@@ -68,6 +71,7 @@ spaceModule.factory("space.game", ['keeper', 'global', function (keeperFactory, 
 		onStart:onStart,
 		onEnd:onEnd,
 		onLeave:onLeave,
+		reset:reset,
 		update:update,
 		clock:clock,
 		zeroTime:zeroTime,

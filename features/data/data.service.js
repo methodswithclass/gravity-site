@@ -403,8 +403,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		obj:{
 			shape:util.c.cross,
 			size:300,
-			color:"transparent",
-			color2:"red"
+			color:"red"
 		},
 		params:{
 			interval:1,

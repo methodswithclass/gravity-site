@@ -28,8 +28,7 @@ angular.module("utility.module", ['sharedModule'])
 		back:"back",
 		body:"body",
 		option:"option",
-		home:"home",
-		dist:20
+		home:"home"
 	}
 
 	var forced = false;
