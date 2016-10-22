@@ -33,7 +33,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	y = $("[name='setting-y-axis']");
 
     	x.bootstrapSwitch({
-    		state:getState(util.getAxis(util.const.y)),
+    		state:getState(util.getAxis(util.const.x)),
     		animate:true,
     		handleWidth:"350px",
     		onSwitchChange:function (event, state) {
