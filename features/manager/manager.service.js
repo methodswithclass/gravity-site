@@ -2,9 +2,6 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 
 	var util = mcaccel.utility;
 
-	var object;
-	var accel;
-
 	var objects = {};
 	var accels = {};
 	var arenas = {};
@@ -25,8 +22,8 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 	var setStats = function (id) {
 
 		displays[id].stats.html(
-			"x: " + accel.unfiltered().x + "<br>" + 
-			"y: " + accel.unfiltered().y + "<br>" + 
+			"x: " + accels[id].unfiltered().x + "<br>" + 
+			"y: " + accels[id].unfiltered().y + "<br>" + 
 			"global factor: " + util.getFactor(util.const.factorG) + "<br>" + 
 			"session factor: " + util.getFactor(util.const.factorS) + "<br>" +
 			"factor: " + util.getFactor() + "<br>" + 

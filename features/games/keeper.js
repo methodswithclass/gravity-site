@@ -1,5 +1,6 @@
-gamesModule.factory("keeper", ['utility', function (utility) {
-
+gamesModule.factory("keeper", [function () {
+	
+	var utility = mcshared.utility;
 
 	var keeper = function () {
 
