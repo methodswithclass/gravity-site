@@ -64,7 +64,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'keeper', function(Enemy, ke
 					destroy(i, true);
 				}
 
-			}, 0);
+			}, 50);
 
 			
 		}
