@@ -55,7 +55,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
 		obj = input.object;
 		accel = input.accel;
-		parent = input.object.el().parent();
+		parent = $(input.object.el()).parent();
 
 		progress.loadScheme(scheme);
 

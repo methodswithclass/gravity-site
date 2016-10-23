@@ -98,7 +98,7 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 			params:page.obj
 		});
 
-		arenas[input.id] = objects[input.id].el().parent();
+		arenas[input.id] = $(objects[input.id].el()).parent();
 			
 		accels[input.id] = new mcaccel.accelerometer({
 			id:input.id,

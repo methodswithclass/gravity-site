@@ -1,4 +1,4 @@
-uiModule.directive("option", ['states', 'send', function (states, send) {
+uiModule.directive("option", ['states', function (states) {
 
 	return {
 		restrict:'E',
@@ -8,8 +8,6 @@ uiModule.directive("option", ['states', 'send', function (states, send) {
 		link:function ($scope, element, attr) {
 
 			var self = this;
-
-			//send.accum({name:attr.dir, id:attr.id, data:element[0]});
 
 			$scope.onPressup = function () {
 

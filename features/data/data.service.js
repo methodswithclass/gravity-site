@@ -2,24 +2,27 @@ dataModule.factory("data.service", ['utility', function (util) {
 
 	var g = mcshared.utility;
 
-	var class1 = {
-		left:' padding-left',
-		right:'absolute white-back border rounded10 ',
-		up:'absolute white-back border rounded10 padding-up'
-	}
+	// var class1 = {
+	// 	left:' padding-left',
+	// 	right:'absolute white-back border rounded10 ',
+	// 	up:'absolute white-back border rounded10 padding-up'
+	// }
 
-	var class2 = {
-		left:'',
-		right:'fa fa-5x fa-chevron-right',
-		up:'fa fa-5x '
-	}
+	// var class2 = {
+	// 	left:'',
+	// 	right:'fa fa-5x fa-chevron-right',
+	// 	up:'fa fa-5x '
+	// }
 
-	var iconSize = "font-70";
+	// var iconSize = "font-70";
 
 	var pages = [
 	{
 		id:"home",
-		title:"home",
+		title:{
+			text:"home",
+			class:"black"
+		},
 		index:util.c.homeIndex,
 		type:{
 			option:false,
@@ -45,7 +48,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"validity",
-		title:"validity",
+		title:{
+			text:"validity",
+			class:"black"
+		},
 		index:util.c.validIndex,
 		type:{
 			option:false,
@@ -71,7 +77,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"settings",
-		title:"settings",
+		title:{
+			text:"settings",
+			class:"black"
+		},
 		index:util.c.settingsIndex,
 		type:{
 			option:false,
@@ -107,7 +116,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"calibrate",
-		title:"calibrate",
+		title:{
+			text:"calibrate",
+			class:"black"
+		},
 		index:util.c.calibrateIndex,
 		type:{
 			option:true,
@@ -157,7 +169,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"gravity",
-		title:"gravity", 
+		title:{
+			text:"gravity",
+			class:"black"
+		},
 		index:util.c.gravIndex,
 		type:{
 			option:true,
@@ -206,7 +221,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"slide",
-		title:"slide", 
+		title:{
+			text:"slide",
+			class:"black"
+		},
 		index:util.c.floatIndex,
 		type:{
 			option:true,
@@ -255,7 +273,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"enemy",
-		title:"enemy", 
+		title:{
+			text:"enemy",
+			class:"black"
+		},
 		index:util.c.enemiesIndex,
 		type:{
 			option:true,
@@ -304,7 +325,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"balance",
-		title:"balance", 
+		title:{
+			text:"balance",
+			class:"black"
+		},
 		index:util.c.balanceIndex,
 		type:{
 			option:true,
@@ -353,7 +377,10 @@ dataModule.factory("data.service", ['utility', function (util) {
 	},
 	{
 		id:"space",
-		title:"space",
+		title:{
+			text:"space",
+			class:"white"
+		},
 		index:util.c.spaceIndex,
 		type:{
 			option:true,
@@ -562,7 +589,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 
 
 	return {
-		bodyDir:util.c.body,
 		pages:pages,
 		enemydata:EnemyType,
 		getPageById:getPageById,

@@ -1,4 +1,4 @@
-uiModule.directive("page", ["manager", 'events', 'states', function (manager, events, states) {
+uiModule.directive("page", ["manager", function (manager) {
 
 	return {
 		restrict:'E',

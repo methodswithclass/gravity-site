@@ -1,16 +1,16 @@
 
 <div class="absolute fill" ng-controller="HomeController">
 
-	<div class="absolute corner width height scrollY touch" ng-attr-dir="home" ng-attr-id="home" home>
+	<div class="absolute corner width height scrollY touch">
 
 		<div class="absolute width">
 
-			<settings-btn></settings-btn>
+			<settings-btn />
 
 			<div class="absolute top-300 width">
 
 				<div ng-repeat="page in page.pages">
-					<option ng-click="onPressup()" ng-attr-dir="option" ng-attr-id="{{'option.' + page.id}}"></option>
+					<option ng-click="onPressup()" />
 				</div>
 
 			</div>

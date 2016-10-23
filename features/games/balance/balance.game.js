@@ -11,7 +11,7 @@ balanceModule.factory("balance.game", ['target.service', 'keeper', 'global', 'me
 
 	var onCreate = function (input) {
 
-		if (input) arena = input.object.el().parent();
+		if (input) arena = $(input.object.el()).parent();
 
 		keeper = new keeperFactory();
 		keeper.setTotalTime(60000);

@@ -5,7 +5,7 @@ spaceModule.factory("space.game", ['keeper', function (keeperFactory) {
 
 	var onCreate = function (input) {
 
-		if (input) arena = input.object.el().parent();
+		if (input) arena = $(input.object.el()).parent();
 
 		keeper = new keeperFactory();
 		keeper.setTotalTime(60000);

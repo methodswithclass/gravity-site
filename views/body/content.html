@@ -8,12 +8,12 @@
 			<div ng-repeat="page in main.pages">
 				<div class="absolute width25 height25 cutoff" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
 					<div class="absolute width height center {{page.page.back}} border-white">
-						<div class="absolute inset-mobile-2 center lowered-dark {{page.page.fore}} cutoff">
+						<div class="absolute inset-mobile-2 center lowered-dark {{page.page.fore}} {{page.title.class}} cutoff">
 								
 							<div class="absolute fill" id="{{'arena' + page.id}}" rotation>
 
 								<div id="{{'pagetitle' + page.id}}" class="absolute height10 width text-center font-60">
-									<div class="absolute center">{{page.title}}</div>
+									<div class="absolute center">{{page.title.text}}</div>
 								</div>
 								<page></page>
 

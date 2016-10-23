@@ -6,7 +6,6 @@ angular.module("utility.module", ['sharedModule'])
 	var vector = mcaccel.vector;
 
 	var con = {
-		landClockwise:"landClockwise",
 		valid:"valid",
 		invalid:"invalid",
 		portrait:"portrait",
@@ -26,7 +25,7 @@ angular.module("utility.module", ['sharedModule'])
 		balanceIndex:5,
 		spaceIndex:6,
 		back:"back",
-		body:"body",
+		// body:"body",
 		option:"option",
 		home:"home"
 	}
@@ -187,10 +186,10 @@ angular.module("utility.module", ['sharedModule'])
     	isValid:isValid,
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
+		getDestroyPosition:getDestroyPosition,
 		intersectShape:intersectShape,
 		intersectRect:intersectRect,
-		overlapShape:overlapShape,
-		getDestroyPosition:getDestroyPosition
+		overlapShape:overlapShape
 	}
 
 }]);
