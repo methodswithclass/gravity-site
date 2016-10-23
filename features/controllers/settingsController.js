@@ -35,7 +35,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	x.bootstrapSwitch({
     		state:getState(util.getAxis(util.const.x)),
     		animate:true,
-    		handleWidth:"350px",
+    		handleWidth:"250px",
     		onSwitchChange:function (event, state) {
     			changeDirection(util.const.x, state);
     		}
@@ -44,7 +44,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	y.bootstrapSwitch({
     		state:getState(util.getAxis(util.const.y)),
     		animate:true,
-    		handleWidth:"350px",
+    		handleWidth:"250px",
     		onSwitchChange:function (event, state) {
     			changeDirection(util.const.y, state);
     		}
