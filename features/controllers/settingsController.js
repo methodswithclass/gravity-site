@@ -10,8 +10,14 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 	var x;
 	var y;
 
-    $scope.xswitched;
-    $scope.yswitched;
+    $scope.xswitched = "standard";
+    $scope.yswitched = "standard";
+
+    var setSwitched = function (getaxis) {
+
+        $scope.xswitched = getaxis(util.const.x) > 0 ? "standard" : "switched";
+        $scope.yxswitched = getaxis(util.const.y) > 0 ? "standard" : "switched";
+    }
 
     var getState = function (dir) {
 
@@ -33,9 +39,6 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     var setSwitched = function () {
 
     	console.log("set switched");
-
-        $scope.xswitched = util.getAxis(util.const.x) > 0 ? "standard" : "switched";
-        $scope.yswitched = util.getAxis(util.const.y) > 0 ? "standard" : "switched";
 
     	x = $("[name='setting-x-axis']");
     	y = $("[name='setting-y-axis']");
@@ -70,6 +73,8 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     	settings.setup.factor();
     	settings.setup.direction(setSwitched);
+
+        setSwithced(util.getAxis);
 
     }, 500);
 
