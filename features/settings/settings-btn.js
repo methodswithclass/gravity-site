@@ -1,4 +1,4 @@
-settingsModule.directive("settingsBtn", ['states', 'send', function (states, send) {
+settingsModule.directive("settingsBtn", ['states', function (states) {
 
 	return {
 		restrict:'E',

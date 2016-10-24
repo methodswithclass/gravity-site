@@ -6,6 +6,17 @@ settingsModule.factory("settings.service", [function () {
 	var _open = function () {};
 	var _close = function () {};
 
+	var deviceStandard = {
+        standard:{
+            text:"standard",
+            color:"white-back"
+        },
+        switched:{
+            text:"switched",
+            color:"color7-back"
+        }
+    }
+
 	var setValue = function (val) {
 
 		console.log("set value", val);
@@ -17,6 +28,14 @@ settingsModule.factory("settings.service", [function () {
     var getValue = function () {
 
     	return $("#slider-vertical").slider("value");
+    }
+
+    var setDevice = function (getaxis) {
+
+        return {
+            x:getaxis(util.const.x) > 0 ? deviceStandard.standard : deviceStandard.switched;
+            y:getaxis(util.const.y) > 0 ? deviceStandard.standard : deviceStandard.switched;
+        }
     }
 
 	var setup = {
@@ -42,6 +61,7 @@ settingsModule.factory("settings.service", [function () {
 
 			if ($open) {
 				_open = $open;
+				setDevice();
 			}
 			else {
 				_open();

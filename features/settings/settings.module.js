@@ -1,1 +1,1 @@
-var settingsModule = angular.module("settingsModule", ['sharedModule', 'stateModule', 'utility.module', 'frapontillo.bootstrap-switch', 'ng']);
+var settingsModule = angular.module("settingsModule", ['sharedModule', 'stateModule', 'frapontillo.bootstrap-switch', 'ng']);
