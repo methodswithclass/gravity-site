@@ -16,7 +16,9 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     var setDevice = function (getaxis) {
 
         $scope.xswitched = getaxis(util.const.x) > 0 ? "standard" : "switched";
-        $scope.yxswitched = getaxis(util.const.y) > 0 ? "standard" : "switched";
+        $scope.yswitched = getaxis(util.const.y) > 0 ? "standard" : "switched";
+
+        $scope.$apply();
     }
 
     var getState = function (dir) {
