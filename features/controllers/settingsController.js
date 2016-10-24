@@ -13,7 +13,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     $scope.xswitched = "standard";
     $scope.yswitched = "standard";
 
-    var setSwitched = function (getaxis) {
+    var setDevice = function (getaxis) {
 
         $scope.xswitched = getaxis(util.const.x) > 0 ? "standard" : "switched";
         $scope.yxswitched = getaxis(util.const.y) > 0 ? "standard" : "switched";
@@ -40,7 +40,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     	console.log("set switched");
 
-        setSwithced(util.getAxis);
+        setDevice(util.getAxis);
 
     	x = $("[name='setting-x-axis']");
     	y = $("[name='setting-y-axis']");
