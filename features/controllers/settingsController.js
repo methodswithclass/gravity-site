@@ -10,13 +10,24 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 	var x;
 	var y;
 
-    $scope.xswitched = "standard";
-    $scope.yswitched = "standard";
+    var deviceStandard = {
+        standard:{
+            text:"standard",
+            color:"white-back"
+        },
+        switched:{
+            text:"switched",
+            color:"color7-back"
+        }
+    }
+
+    $scope.xswitched = deviceStandard.standard;
+    $scope.yswitched = deviceStandard.standard;
 
     var setDevice = function (getaxis) {
 
-        $scope.xswitched = getaxis(util.const.x) > 0 ? "standard" : "switched";
-        $scope.yswitched = getaxis(util.const.y) > 0 ? "standard" : "switched";
+        $scope.xswitched = getaxis(util.const.x) > 0 ? deviceStandard.standard : deviceStandard.switched;
+        $scope.yswitched = getaxis(util.const.y) > 0 ? deviceStandard.standard : deviceStandard.switched;
 
         $scope.$apply();
     }
