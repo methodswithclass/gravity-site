@@ -1,5 +1,7 @@
 controllerModule.controller("SettingsController", ['$scope', 'global', 'states', 'data.service', 'settings.service', function ($scope, g, states, data, settings) {
 
+    var self = this;
+
     var util = mcaccel.utility;
 
 	console.log(" ");
@@ -7,6 +9,9 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 	
 	var x;
 	var y;
+
+    $scope.xswitched = util.getAxis(util.const.x) > 0 ? "standard" : "switched";
+    $scope.yswitched = util.getAxis(util.const.y) > 0 ? "standard" : "switched";
 
     var getState = function (dir) {
 
@@ -35,7 +40,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	x.bootstrapSwitch({
     		state:getState(util.getAxis(util.const.x)),
     		animate:true,
-    		handleWidth:"250px",
+    		handleWidth:"350px",
     		onSwitchChange:function (event, state) {
     			changeDirection(util.const.x, state);
     		}
@@ -44,7 +49,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	y.bootstrapSwitch({
     		state:getState(util.getAxis(util.const.y)),
     		animate:true,
-    		handleWidth:"250px",
+    		handleWidth:"350px",
     		onSwitchChange:function (event, state) {
     			changeDirection(util.const.y, state);
     		}
