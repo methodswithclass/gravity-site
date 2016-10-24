@@ -53,8 +53,6 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     	console.log("set switched");
 
-        setDevice(util.getAxis);
-
     	x = $("[name='setting-x-axis']");
     	y = $("[name='setting-y-axis']");
 
@@ -88,6 +86,8 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     	settings.setup.factor();
     	settings.setup.direction(setSwitched);
+
+        setDevice(util.getAxis);
 
     }, 500);
 
