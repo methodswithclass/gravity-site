@@ -1,4 +1,4 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$mdToast', function (progress, events, $mdToast) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$mdToast', 'settings.service', function (progress, events, $mdToast, settings) {
 
 	var g = mcaccel.utility;
 
@@ -82,7 +82,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 			progress.startProgress();
 
 		}, 500);
-
 
 	}
 
@@ -317,6 +316,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
 				g.setAxis(axis == yDir ? yDir : xDir, -1);
 
+				settings.setDevice(axis, -1);
+
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
 				showToast(axis == yDir ? "yDir" : "xDir", "switched");
 				
@@ -324,6 +325,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 			else {
 
 				g.setAxis(axis == yDir ? yDir : xDir, 1);
+
+				settings.setDevice(axis, 1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
 				showToast(axis == yDir ? "yDir" : "xDir", "same");

@@ -13,6 +13,11 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     $scope.xswitched = utility.deviceStandard.standard;
     $scope.yswitched = utility.deviceStandard.standard;
 
+    var setDevice = function (axes, dir) {
+
+        $scope[axes == util.const.x ? "xswitched" : "yswitched"] = dir > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched;
+    }
+
 
     var getState = function (dir) {
 
@@ -67,12 +72,12 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 	setTimeout(function () {
 
     	settings.setup.factor();
-    	settings.setup.direction(setSwitched);
+    	settings.setup.direction(setSwitched, setDevice);
 
-        var device = settings.setDevice(util.getAxis);
+        // var device = settings.setDevice(util.getAxis);
 
-        $scope.xswitched = device.x;
-        $scope.yswitched = device.y;
+        // $scope.xswitched = device.x;
+        // $scope.yswitched = device.y;
 
     }, 500);
 

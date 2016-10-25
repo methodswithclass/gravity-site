@@ -24,11 +24,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"25%",
 				left:"25%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
 			}
 		}
 	},
@@ -53,11 +48,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:0,
 				left:0
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
 			}
 		}
 	},
@@ -79,24 +69,14 @@ dataModule.factory("data.service", ['utility', function (util) {
 			view:"settings.html",
 			back:"black-back",
 			fore:"white-back",
-			menu:{
-				title:"settings",
-				color:"color1-back"
-			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				padding:'padding-top',
 				icon:"down"
 			},
 			rect:{
 				top:0,
 				left:"25%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
-			}	
+			}
 		}
 	},
 	{
@@ -123,18 +103,12 @@ dataModule.factory("data.service", ['utility', function (util) {
 			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
-				padding:'padding-right',
 				icon:"right"
 			},
 			rect:{
 				top:"25%",
 				left:0
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
-			}	
+			}
 		},
 		obj:{
 			shape:util.c.circle,
@@ -180,12 +154,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"25%",
 				left:"50%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
-			}	
+			}
 		},
 		obj:{
 			shape:util.c.circle,
@@ -231,12 +200,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"25%",
 				left:"75%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
-			}	
+			}
 		},
 		obj:{
 			shape:util.c.circle,
@@ -282,12 +246,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"50%",
 				left:0
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
-			}	
+			}
 		},
 		obj:{
 			shape:util.c.circle,
@@ -333,11 +292,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"50%",
 				left:"25%"
-			},
-			border:{
-				color:"black",
-				width:1,
-				radius:0
 			}	
 		},
 		obj:{
@@ -377,7 +331,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 				title:"space",
 				color:"color6-back"
 			},
-			button:"white-back",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:'up'
@@ -385,12 +338,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			rect:{
 				top:"50%",
 				left:"50%"
-			},
-			border:{
-				color:"green-back",
-				width:3,
-				radius:20
-			}	
+			}
 		},
 		obj:{
 			shape:util.c.cross,

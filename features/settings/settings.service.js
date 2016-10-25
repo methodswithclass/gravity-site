@@ -6,6 +6,8 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 	var _open = function () {};
 	var _close = function () {};
 
+	var _setDevice = function () {};
+
 	var setValue = function (val) {
 
 		console.log("set value", val);
@@ -19,12 +21,9 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
     	return $("#slider-vertical").slider("value");
     }
 
-    var setDevice = function (getaxis) {
+    var setDevice = function (axes, dir) {
 
-        return {
-            x:getaxis(util.const.x) > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched,
-            y:getaxis(util.const.y) > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched
-        }
+        _setDevice(axes, dir);
     }
 
 	var setup = {
@@ -46,11 +45,11 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    setValue(getValue());
 		},
 
-		direction:function ($open) {
+		direction:function ($open, $setdevice) {
 
 			if ($open) {
 				_open = $open;
-				//setDevice();
+				_setDevice = $setdevice;
 			}
 			else {
 				_open();
