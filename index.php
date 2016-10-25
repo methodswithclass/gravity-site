@@ -54,7 +54,7 @@
     
     </div>
     
-    <console ng-attr-vis="hide"><console>
+    <console ng-attr-vis="show"><console>
     
 
     <!-- Console -->

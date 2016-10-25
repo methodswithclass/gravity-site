@@ -36,7 +36,7 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
 
     angular.element($document).ready(function () {
         con.register($("#consoleContainer"));
-        //con.attach();
+        con.attach();
     });
 
 }])

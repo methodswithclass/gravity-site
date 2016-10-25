@@ -110,7 +110,7 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 
 		accels[input.id].getMotion(input.id, function (id, pos, vel, acc) {
 
-			//console.log("set position", id, pos);
+			console.log("set position", id, pos.x, pos.y);
 
 			objects[id].setPosition(pos);
 			objects[id].setVelocity(vel);
