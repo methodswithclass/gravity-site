@@ -34,9 +34,9 @@ controllerModule.controller("CheckingController", ['$scope', '$document', 'valid
 
     // ===================== ON READY =====================
 
-    // angular.element($document).ready(function () {
-    //     con.register($("#consoleContainer"));
-    //     con.attach();
-    // });
+    angular.element($document).ready(function () {
+        con.register($("#consoleContainer"));
+        //con.attach();
+    });
 
 }])
