@@ -1,4 +1,4 @@
-controllerModule.controller("SettingsController", ['$scope', 'global', 'states', 'data.service', 'settings.service', function ($scope, g, states, data, settings) {
+controllerModule.controller("SettingsController", ['$scope', 'global', 'states', 'data.service', 'settings.service', 'utility', function ($scope, g, states, data, settings, utility) {
 
     var self = this;
 
@@ -10,10 +10,9 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 	var x;
 	var y;
 
-    $scope.xswitched = deviceStandard.standard;
-    $scope.yswitched = deviceStandard.standard;
+    $scope.xswitched = utility.deviceStandard.standard;
+    $scope.yswitched = utility.deviceStandard.standard;
 
-    
 
     var getState = function (dir) {
 
@@ -70,7 +69,10 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     	settings.setup.factor();
     	settings.setup.direction(setSwitched);
 
-        setDevice(util.getAxis);
+        var device = settings.setDevice(util.getAxis);
+
+        $scope.xswitched = device.x;
+        $scope.yswitched = device.y;
 
     }, 500);
 

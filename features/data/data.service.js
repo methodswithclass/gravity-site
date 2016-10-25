@@ -2,20 +2,6 @@ dataModule.factory("data.service", ['utility', function (util) {
 
 	var g = mcshared.utility;
 
-	// var class1 = {
-	// 	left:' padding-left',
-	// 	right:'absolute white-back border rounded10 ',
-	// 	up:'absolute white-back border rounded10 padding-up'
-	// }
-
-	// var class2 = {
-	// 	left:'',
-	// 	right:'fa fa-5x fa-chevron-right',
-	// 	up:'fa fa-5x '
-	// }
-
-	// var iconSize = "font-70";
-
 	var pages = [
 	{
 		id:"home",
@@ -100,8 +86,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				padding:'padding-top',
-				icon:"down",
-				directive:util.c.back
+				icon:"down"
 			},
 			rect:{
 				top:0,
@@ -139,8 +124,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			backButton:{
 				loc:{top:"10px", right:"10px"},
 				padding:'padding-right',
-				icon:"right",
-				directive:util.c.back
+				icon:"right"
 			},
 			rect:{
 				top:"25%",
@@ -191,8 +175,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"left",
-				directive:util.c.back
+				icon:"left"
 			},
 			rect:{
 				top:"25%",
@@ -243,8 +226,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"left",
-				directive:util.c.back
+				icon:"left"
 			},
 			rect:{
 				top:"25%",
@@ -295,8 +277,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
-				icon:"up",
-				directive:util.c.back
+				icon:"up"
 			},
 			rect:{
 				top:"50%",
@@ -347,8 +328,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:"up",
-				directive:util.c.back
+				icon:"up"
 			},
 			rect:{
 				top:"50%",
@@ -400,8 +380,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 			button:"white-back",
 			backButton:{
 				loc:{top:"10px", left:"10px"},
-				icon:'up',
-				directive:util.c.back
+				icon:'up'
 			},
 			rect:{
 				top:"50%",
@@ -444,8 +423,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 					title:pages[i].title,
 					index:pages[i].index,
 					menu:pages[i].page.menu,
-					rect:pages[i].page.rect,
-					directive:util.c.option
+					rect:pages[i].page.rect
 				};
 			}
 

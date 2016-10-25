@@ -23,12 +23,19 @@ angular.module("utility.module", ['sharedModule'])
 		floatIndex:3,
 		enemiesIndex:4,
 		balanceIndex:5,
-		spaceIndex:6,
-		back:"back",
-		// body:"body",
-		option:"option",
-		home:"home"
+		spaceIndex:6
 	}
+
+	var deviceStandard = {
+        standard:{
+            text:"standard",
+            color:"white-back"
+        },
+        switched:{
+            text:"switched",
+            color:"color7-back"
+        }
+    }
 
 	var forced = false;
 	var valid = false;
@@ -179,6 +186,7 @@ angular.module("utility.module", ['sharedModule'])
 
 	return {
 		c:con,
+		deviceStandard:deviceStandard,
     	forceValidity:forceValidity,
     	setValidity:setValidity,
     	isForced:isForced,

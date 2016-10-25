@@ -1,21 +1,10 @@
-settingsModule.factory("settings.service", [function () {
+settingsModule.factory("settings.service", ['utility', function (utility) {
 
 	var g = mcshared.utility;
 	var util = mcaccel.utility;
 
 	var _open = function () {};
 	var _close = function () {};
-
-	var deviceStandard = {
-        standard:{
-            text:"standard",
-            color:"white-back"
-        },
-        switched:{
-            text:"switched",
-            color:"color7-back"
-        }
-    }
 
 	var setValue = function (val) {
 
@@ -33,8 +22,8 @@ settingsModule.factory("settings.service", [function () {
     var setDevice = function (getaxis) {
 
         return {
-            x:getaxis(util.const.x) > 0 ? deviceStandard.standard : deviceStandard.switched;
-            y:getaxis(util.const.y) > 0 ? deviceStandard.standard : deviceStandard.switched;
+            x:getaxis(util.const.x) > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched,
+            y:getaxis(util.const.y) > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched
         }
     }
 
@@ -61,7 +50,7 @@ settingsModule.factory("settings.service", [function () {
 
 			if ($open) {
 				_open = $open;
-				setDevice();
+				//setDevice();
 			}
 			else {
 				_open();
@@ -140,7 +129,8 @@ settingsModule.factory("settings.service", [function () {
 		update:update,
 		reset:reset,
 		setup:setup,
-		save:save
+		save:save,
+		setDevice:setDevice
 	}
 
 }]);
