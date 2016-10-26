@@ -113,7 +113,7 @@ dataModule.factory("data.service", ['utility', function (util) {
 		obj:{
 			shape:util.c.circle,
 			size:50,
-			color:"black"
+			color:"transparent"
 		},
 		params:{
 			interval:2,
