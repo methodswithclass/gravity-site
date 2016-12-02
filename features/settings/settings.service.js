@@ -55,7 +55,10 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 			    setValue(getValue());
 
-    		}
+    		},
+    		loadProcess:[
+    			"setup"
+    		]
     	},
     	direction:{
     		setSwitched:function () {
@@ -99,7 +102,11 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 			setup:function (axis, dir) {
 
 				
-			}
+			},
+			loadProcess:[
+				"setSwitched",
+				"setup"
+			]
 
     	}
 
@@ -130,9 +137,12 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 		for (i in settings) {
 
-			console.log("settings", i);
+			for (j in settings[i]["loadProcess"]) {
 
-			settings[i].setup();
+				console.log("settings", j);
+
+				settings[i][j]();
+			}
 
 		}
 
