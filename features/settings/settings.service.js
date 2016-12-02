@@ -3,10 +3,8 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 	var g = mcshared.utility;
 	var util = mcaccel.utility;
 
-	var _open = function () {};
-	var _close = function () {};
-
-	var _setDevice = function () {};
+   	var x;
+	var y;
 
 	var setValue = function (val) {
 
@@ -21,63 +19,92 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
     	return $("#slider-vertical").slider("value");
     }
 
-    var setDevice = function (axes, dir) {
+	var getState = function (dir) {
 
-        _setDevice(axes, dir);
+    	return dir < 0 ? true : false;
     }
 
-	var setup = {
+	var getDir = function (state) {
 
-		factor:function () {
+    	return state < 0 ? -1 : 1;
+    }
 
-			$( "#slider-vertical" ).slider({
-				orientation: "vertical",
-				max: 2,
-				min: 0.01,
-				step:0.01,
-				animate:true,
-				value: util.getFactor(util.const.factorS),
-				slide: function( event, ui ) {
-					setValue(ui.value);
-				}
-		    });
+    var changeDirection = function (dir, state) {
 
-		    setValue(getValue());
-		},
+		console.log("settings set direction", dir, "state", getDir(state));
 
-		direction:function ($open, $setdevice) {
-
-			if ($open) {
-				_open = $open;
-				_setDevice = $setdevice;
-			}
-			else {
-				_open();
-			}
-
-		}
-
+		util.setAxis(dir, getDir(state));
 	}
 
-	var save = {
+    var settings = {
 
-		factor:function () {
+    	factor:{
+    		setup:function () {
 
-			
-		},
+    			$( "#slider-vertical" ).slider({
+					orientation: "vertical",
+					max: 2,
+					min: 0.01,
+					step:0.01,
+					animate:true,
+					value: util.getFactor(util.const.factorS),
+					slide: function( event, ui ) {
+						setValue(ui.value);
+					}
+			    });
 
-		direction:function ($close) {
+			    setValue(getValue());
 
-			if ($close) {
-				_close = $close;
+    		}
+    	},
+    	direction:{
+    		setSwitched:function () {
+
+		    	console.log("set switched");
+
+		    	x = $("[name='setting-x-axis']");
+		    	y = $("[name='setting-y-axis']");
+
+		    	x.bootstrapSwitch({
+		    		state:getState(util.getAxis(util.const.x)),
+		    		animate:true,
+		    		handleWidth:"350px",
+		    		onSwitchChange:function (event, state) {
+		    			changeDirection(util.const.x, state);
+		    		}
+		    	});
+
+		    	y.bootstrapSwitch({
+		    		state:getState(util.getAxis(util.const.y)),
+		    		animate:true,
+		    		handleWidth:"350px",
+		    		onSwitchChange:function (event, state) {
+		    			changeDirection(util.const.y, state);
+		    		}
+
+		    	});
+
+		    	$(".bootstrap-switch").css({height:"80%", top:"10%"});
+		    	$(".bootstrap-switch-container").css({height:"100%"});
+		    	$(".bootstrap-switch-handle-on").html("<div class='absolute vcenter font-50'>switched</div>");
+		    	$(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
+
+			},
+			setDevice:function (inner) {
+
+				console.log("setdevice", inner);
+
+				settings.direction.setup = inner;
+			},
+			setup:function (axis, dir) {
+
+				
 			}
-			else {
-				_close();
-			}
-			
-		}
 
-	}
+    	}
+
+
+    }
 
 	/* =======================================================================================*/
 	/* ================================   Stage Functions   ==================================*/
@@ -99,7 +126,16 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 	var onEnter = function () {
 
-		setup.direction();
+		console.log(settings);
+
+		for (i in settings) {
+
+			console.log("settings", i);
+
+			settings[i].setup();
+
+		}
+
 	}
 
 	var onStart = function () {
@@ -127,9 +163,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		onLeave:onLeave,
 		update:update,
 		reset:reset,
-		setup:setup,
-		save:save,
-		setDevice:setDevice
+		settings:settings
 	}
 
 }]);
