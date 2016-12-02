@@ -61,7 +61,8 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
     		]
     	},
     	direction:{
-    		setSwitched:function () {
+    		setDirection:changeDirection,
+    		activate:function (setDevice) {
 
 		    	console.log("set switched");
 
@@ -74,6 +75,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.x, state);
+		    			setDevice(util.const.x, state);
 		    		}
 		    	});
 
@@ -83,6 +85,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.y, state);
+		    			setDevice(util.const.y, state);
 		    		}
 
 		    	});
@@ -93,20 +96,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    	$(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
 
 			},
-			setDevice:function (inner) {
-
-				console.log("setdevice", inner);
-
-				settings.direction.setup = inner;
-			},
-			setup:function (axis, dir) {
-
-				
-			},
-			loadProcess:[
-				"setSwitched",
-				"setup"
-			]
+			loadProcess:[]
 
     	}
 

@@ -14,15 +14,15 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     var setDevice = function (axes, dir) {
 
+        console.log("new setup", axes, dir);
+
         $scope[axes == util.const.x ? "xswitched" : "yswitched"] = dir > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched;
     }
 
 
 	setTimeout(function () {
 
-    	//settings.factor.setup();
-        settings.settings.direction.setSwitched();
-    	settings.settings.direction.setDevice(setDevice);
+    	settings.settings.direction.activate(setDevice);
 
     }, 500);
 
