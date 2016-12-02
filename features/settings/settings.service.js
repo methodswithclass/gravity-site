@@ -139,9 +139,11 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 			for (j in settings[i]["loadProcess"]) {
 
-				console.log("settings", j);
+				console.log("settings", j, settings[i]["loadProcess"][j]);
 
-				settings[i][j]();
+				var func_name = settings[i]["loadProcess"][j];
+
+				settings[i][func_name].call();
 			}
 
 		}
