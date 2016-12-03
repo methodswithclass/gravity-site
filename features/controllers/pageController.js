@@ -12,8 +12,8 @@ controllerModule.controller("PageController", ['$scope', 'data.service', 'utilit
 
     // =================================================
 
-    console.log(" ");
-    console.log("page controller", state.state, "state is page:", state.page);
+    //console.log(" ");
+    console.log("page controller", state.state);
 
     // ===================== SETUP ======================
 

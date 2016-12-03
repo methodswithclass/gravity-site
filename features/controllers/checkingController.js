@@ -1,6 +1,6 @@
 controllerModule.controller("CheckingController", ['$scope', '$document', 'validate.wrapper', 'states', 'events', 'con', 'utility', function ($scope, $document, validation, states, events, con, util) {
 
-    console.log(" ");
+    //console.log(" ");
     console.log("checking controller");
 
 

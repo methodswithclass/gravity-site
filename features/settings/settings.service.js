@@ -53,16 +53,27 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 					}
 			    });
 
-			    setValue(getValue());
+    		},
+    		enter:function () {
 
+    			setValue(getValue());
     		},
     		loadProcess:[
-    			"setup"
+    			"setup",
+    			"enter"
     		]
     	},
     	direction:{
-    		setDirection:changeDirection,
-    		activate:function (setDevice) {
+    		addSetter:function (setDevice) {
+
+    			settings.direction.setDevice = setDevice;
+    		},
+    		setDevice:function (axis, dir) {
+
+    			console.log("old setDevice", axis, dir);
+
+			},
+    		activate:function () {
 
 		    	console.log("set switched");
 
@@ -75,7 +86,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.x, state);
-		    			setDevice(util.const.x, state);
+		    			settings.direction.setDevice(util.const.x, state);
 		    		}
 		    	});
 
@@ -85,7 +96,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.y, state);
-		    			setDevice(util.const.y, state);
+		    			settings.direction.setDevice(util.const.y, state);
 		    		}
 
 		    	});
@@ -96,7 +107,9 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    	$(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
 
 			},
-			loadProcess:[]
+			loadProcess:[
+				"activate"
+			]
 
     	}
 

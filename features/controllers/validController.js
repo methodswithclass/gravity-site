@@ -1,6 +1,6 @@
 controllerModule.controller("ValidController", ['$scope', 'global', 'states', 'data.service', 'utility', function ($scope, g, states, data, util) {
 
-	console.log(" ");
+	//console.log(" ");
 	console.log("valid controller");
 
     if (util.isValid()) {

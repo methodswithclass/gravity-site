@@ -15,7 +15,18 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	var state;
 	var isPage = false;
 
-	send.setup.receiver({name:"body", receiver:body});
+	// console.log("states", "setup body receiver");
+	// send.setup.receiver({name:"body", receiver:body});
+
+	var setupReceivers = function () {
+
+		console.log("setup state receivers");
+
+		send.setup.receiver({name:"body", receiver:body});
+		send.setup.receiver({name:"pages", receiver:elements});
+		send.setup.receiver({name:"objects", receiver:objects});
+		
+	}
 
 	var go = function (state) {
 
@@ -63,8 +74,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	}
 
 	var movePage = function (input) {
-		
-		//console.log("move to page", input.name, "delay", input.delay, "duration", input.duration);
+
 
 		setTimeout(function () {
 
@@ -72,8 +82,6 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 			elem = $(elements["page" + input.name]);
 			bodyElem = $(body["body"]);
-
-			//console.log("move", bodyElem[0], "to element", elem[0]);
 
 			bodyElem.removeClass("cutoff").addClass("scroll");
 
@@ -107,7 +115,9 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	$rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
 	{
 
-		console.log("start state change", "from state", fs.name, "to state", ts.name);
+		console.log(" ");
+		console.log("#######################################")
+		console.log("START state change from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
 
 		ps = fs;
 
@@ -115,7 +125,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 		if (fso.page) {
 
-			console.log("from state", fso.name, "is a page");
+			//console.log("from state", fso.name, "is a page");
 
 			var fp = data.getPageById(fso.name);
 	   		manager.stopInstance(fp.id);
@@ -123,7 +133,7 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	   	}
 	   	else {
-	   		console.log("from state", fso.name, "is not a page");
+	   		//console.log("from state", fso.name, "is not a page");
 	   	}
 
 	});
@@ -131,14 +141,14 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 	$rootScope.$on('$stateChangeSuccess', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
 	{
 
-		console.log("complete state change", "from state", fs.name, "to state", ts.name);
+		//console.log("complete state change", "from state", fs.name, "to state", ts.name);
 
 		var fso = getStateParams(fs.name);
 		var tso = getStateParams(ts.name);
 		
 	   	if (tso.page) {
 
-	   		console.log("to state", tso.name, "is a page");
+	   		//console.log("to state", tso.name, "is a page");
 
 	   		var delay = 0;
 
@@ -151,7 +161,11 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
                 delay:delay,
                 duration:100,
                 complete:function (input) {
-                    console.log("move complete");
+                    
+                    console.log("END state change WITH MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+					console.log("#######################################");
+					console.log(" ");
+                    
                     input.body.removeClass("scroll").addClass("cutoff");
                     if (tso.name == "calibrate") input.manager.startInstance(tso.name);
                 }
@@ -159,21 +173,12 @@ stateModule.factory("states", ['$q', 'runtime.state', '$state', '$rootScope', 'd
 
 	   	}
 	   	else {
-	   		console.log("to state", tso.name, "is not a page");
+	   		console.log("END state change WITHOUT MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+			console.log("#######################################");
+			console.log(" ");
 	   	}
 
 	});
-
-	var setupReceivers = function () {
-
-		console.log("setup state receivers");
-
-		send.setup.receiver({name:"body", receiver:body});
-		send.setup.receiver({name:"pages", receiver:elements});
-		send.setup.receiver({name:"objects", receiver:objects});
-
-		
-	}
 	
 	angular.element($window).bind('resize', function () {
 		resize();

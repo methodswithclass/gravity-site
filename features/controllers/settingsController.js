@@ -4,7 +4,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     var util = mcaccel.utility;
 
-	console.log(" ");
+	//console.log(" ");
 	console.log("settings controller");
 	
 
@@ -14,7 +14,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
     var setDevice = function (axes, dir) {
 
-        console.log("new setup", axes, dir);
+        console.log("new setDevice", axes, dir);
 
         $scope[axes == util.const.x ? "xswitched" : "yswitched"] = dir > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched;
     }
@@ -22,7 +22,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
 	setTimeout(function () {
 
-    	settings.settings.direction.activate(setDevice);
+    	settings.settings.direction.addSetter(setDevice);
 
     }, 500);
 

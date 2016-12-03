@@ -9,7 +9,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 			isRegistered = events.dispatch("console");
 
-			console.log("valid wrapper", "registered", isRegistered);
+			console.log("valid wrapper", "console registered", isRegistered);
 
 			if (isRegistered) {
 
@@ -38,7 +38,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 	var forceValidation = function (resolve, reject) {
 
-		console.log("valid wrapper", "force validation");
+		//console.log("valid wrapper", "force validation");
 
 		if (g.isValid()) {
 
@@ -74,7 +74,7 @@ validateModule.factory("validate.wrapper", ['$q', 'validate.service', 'events', 
 
 	var force = function () {
 
-		console.log("valid wrapper", "force");
+		console.log("valid wrapper", "force validation");
 
 		return $q(function (resolve, reject) {
 		

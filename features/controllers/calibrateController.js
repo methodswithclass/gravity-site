@@ -1,6 +1,6 @@
 controllerModule.controller("CalibrateController", ['$scope', 'global', 'states', 'events', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
 
-	console.log(" ");
+	//console.log(" ");
 	console.log("calibrate controller");
     
 
