@@ -12,7 +12,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
     $scope.xswitched = utility.deviceStandard.standard;
     $scope.yswitched = utility.deviceStandard.standard;
 
-    var setDevice = function (axes, dir) {
+    var setDirection = function (axes, dir) {
 
         console.log("new setDevice", axes, dir);
 
@@ -22,7 +22,7 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
 	setTimeout(function () {
 
-    	settings.settings.direction.addSetter(setDevice);
+    	settings.settings.direction.registerSetter(setDirection);
 
     }, 500);
 

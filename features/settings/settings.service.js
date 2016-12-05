@@ -41,7 +41,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
     	factor:{
     		setup:function () {
 
-    			$( "#slider-vertical" ).slider({
+    			$("#slider-vertical").slider({
 					orientation: "vertical",
 					max: 2,
 					min: 0.01,
@@ -58,17 +58,20 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
     			setValue(getValue());
     		},
-    		loadProcess:[
+    		createRegistry:[
     			"setup",
     			"enter"
+    		],
+    		enterRegistry:[
+    			
     		]
     	},
     	direction:{
-    		addSetter:function (setDevice) {
+    		registerSetter:function (setter) {
 
-    			settings.direction.setDevice = setDevice;
+    			settings.direction.setDirection = setter;
     		},
-    		setDevice:function (axis, dir) {
+    		setDirection:function (axis, dir) {
 
     			console.log("old setDevice", axis, dir);
 
@@ -86,7 +89,6 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.x, state);
-		    			settings.direction.setDevice(util.const.x, state);
 		    		}
 		    	});
 
@@ -96,7 +98,6 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    		handleWidth:"350px",
 		    		onSwitchChange:function (event, state) {
 		    			changeDirection(util.const.y, state);
-		    			settings.direction.setDevice(util.const.y, state);
 		    		}
 
 		    	});
@@ -107,8 +108,11 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 		    	$(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
 
 			},
-			loadProcess:[
+			createRegistry:[
 				"activate"
+    		],
+			enterRegistry:[
+				
 			]
 
     	}
@@ -132,19 +136,32 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 	var onCreate = function (input) {
 
+		for (i in settings) {
+
+			for (j in settings[i]["createRegistry"]) {
+
+				//console.log("settings", j, settings[i]["loadProcess"][j]);
+
+				var func_name = settings[i]["createRegistry"][j];
+
+				settings[i][func_name].call();
+			}
+
+		}
+
 	}
 
 	var onEnter = function () {
 
-		console.log(settings);
+		//console.log(settings);
 
 		for (i in settings) {
 
-			for (j in settings[i]["loadProcess"]) {
+			for (j in settings[i]["enterRegistry"]) {
 
-				console.log("settings", j, settings[i]["loadProcess"][j]);
+				//console.log("settings", j, settings[i]["loadProcess"][j]);
 
-				var func_name = settings[i]["loadProcess"][j];
+				var func_name = settings[i]["enterRegistry"][j];
 
 				settings[i][func_name].call();
 			}

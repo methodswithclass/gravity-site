@@ -92,30 +92,37 @@ managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'g
 
 		var page = data.getPageById(input.id);
 
-		objects[input.id] = new mcaccel.object({
-			id:input.id,
-			object:input.object,
-			params:page.obj
-		});
-
-		arenas[input.id] = $(objects[input.id].el()).parent();
+		if (page.type.accel) {
 			
-		accels[input.id] = new mcaccel.accelerometer({
-			id:input.id,
-			object:objects[input.id],
-			params:page.params
-		});
+			objects[input.id] = new mcaccel.object({
+				id:input.id,
+				object:input.object,
+				params:page.obj
+			});
+
+			arenas[input.id] = $(objects[input.id].el()).parent();
+				
+			accels[input.id] = new mcaccel.accelerometer({
+				id:input.id,
+				object:objects[input.id],
+				params:page.params
+			});
+
+		}
 
 		if (page.type.stages) games[page.id].onCreate({object:objects[input.id], accel:accels[input.id]});
 
-		accels[input.id].getMotion(input.id, function (id, pos, vel, acc) {
+		if (page.type.accel) {
+			
+			accels[input.id].getMotion(input.id, function (id, pos, vel, acc) {
 
-			//console.log("set position", id, pos.x, pos.y);
+				//console.log("set position", id, pos.x, pos.y);
 
-			objects[id].setPosition(pos);
-			objects[id].setVelocity(vel);
-			objects[id].setAcceleration(acc);
-		})
+				objects[id].setPosition(pos);
+				objects[id].setVelocity(vel);
+				objects[id].setAcceleration(acc);
+			});
+		}
 
 	}
 

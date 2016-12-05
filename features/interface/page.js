@@ -15,16 +15,14 @@ uiModule.directive("page", ["manager", function (manager) {
                 return 'views/page/' + page.page.view;
             }
 
-         	if (page.type.accel) {
-            	setTimeout(function() {
-		            
-		            manager.addInstance({
-		            	id:page.id,
-		            	object:$("#object" + page.id)[0]
-		            });
+        	setTimeout(function() {
+	            
+	            manager.addInstance({
+	            	id:page.id,
+	            	object:$("#object" + page.id)[0]
+	            });
 
-	        	},500);
-	        }
+        	},500);
 
 		}
 
