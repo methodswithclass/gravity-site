@@ -109,10 +109,10 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 			},
 			createRegistry:[
-				
+				"activate"
     		],
 			enterRegistry:[
-				"activate"
+				
 			]
 
     	}
