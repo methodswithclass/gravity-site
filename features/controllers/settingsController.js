@@ -16,6 +16,8 @@ controllerModule.controller("SettingsController", ['$scope', 'global', 'states',
 
         console.log("new setDevice", axes, dir);
 
+        settings.settings.direction.changeDirection(axes, dir);
+
         $scope[axes == util.const.x ? "xswitched" : "yswitched"] = dir > 0 ? utility.deviceStandard.standard : utility.deviceStandard.switched;
     }
 

@@ -71,6 +71,11 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
     			settings.direction.setDirection = setter;
     		},
+    		changeDirection:function (axis, dir) {
+
+    			changeDirection(axis, getState(dir));
+
+    		},
     		setDirection:function (axis, dir) {
 
     			console.log("old setDevice", axis, dir);
