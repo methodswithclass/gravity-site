@@ -29,11 +29,13 @@ angular.module("utility.module", ['sharedModule'])
 	var deviceStandard = {
         standard:{
             text:"standard",
-            color:"white-back"
+            color:"white-back",
+            "text_color":"black"
         },
         switched:{
             text:"switched",
-            color:"color7-back"
+            color:"color7-back",
+            "text_color":"white"
         }
     }
 
