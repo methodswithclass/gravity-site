@@ -26,7 +26,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 
 	var getDir = function (state) {
 
-    	return state < 0 ? -1 : 1;
+    	return state ? -1 : 1;
     }
 
     var changeDirection = function (dir, state) {
@@ -78,7 +78,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
 			},
     		activate:function () {
 
-		    	console.log("set switched");
+    			console.log("activate");
 
 		    	x = $("[name='setting-x-axis']");
 		    	y = $("[name='setting-y-axis']");
