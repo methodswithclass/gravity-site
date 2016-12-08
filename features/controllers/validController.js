@@ -8,7 +8,7 @@ controllerModule.controller("ValidController", ['$scope', 'global', 'states', 'd
         //self.valid = true;
 
         setTimeout(function () {
-            states.go("page.settings");
+            states.go("page.calibrate");
         }, 2000);
     }
     else {
