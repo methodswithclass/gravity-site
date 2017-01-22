@@ -69,7 +69,7 @@ settingsModule.factory("settings.service", ['utility', function (utility) {
     	direction:{
     		registerSetter:function (setter) {
 
-    			settings.direction.setDirection = setter;
+    			settings.sdirection.setDirection = setter;
     		},
     		changeDirection:function (axis, dir) {
 
