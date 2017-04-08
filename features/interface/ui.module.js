@@ -1,1 +1,0 @@
-var uiModule = angular.module("uiModule", ['sharedModule', 'stateModule', 'managerModule', 'calibrate.module']);
