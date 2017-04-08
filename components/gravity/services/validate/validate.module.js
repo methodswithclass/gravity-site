@@ -1,1 +1,1 @@
-var validateModule = angular.module("validateModule", ['sharedModule', 'utility.module']);
+var validateModule = angular.module("validate.module", ['shared.module', 'utility.module']);

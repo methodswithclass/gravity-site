@@ -1,4 +1,4 @@
-calibrateModule.factory("progress.service", ['events', function (events) {
+calibrateModule.factory("progress.service", ['events.service', function (events) {
 
 	var percentArray = [];
 	var percent = 0;

@@ -1,4 +1,4 @@
-balanceModule.factory("target.service", ['utility', function (utility) {
+balanceModule.factory("target.service", ['utility.service', function (utility) {
 
 	var target = function (input) {
 

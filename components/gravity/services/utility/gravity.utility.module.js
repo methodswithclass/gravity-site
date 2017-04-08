@@ -1,7 +1,7 @@
-angular.module("utility.module", ['sharedModule'])
+angular.module("utility.module", ['shared.module'])
 
 
-.factory("utility", [function () {
+.factory("utility.service", [function () {
 
 	var vector = mcaccel.vector;
 

@@ -1,4 +1,4 @@
-validateModule.factory("validate.service", ['$q', 'utility', function ($q, g) {
+validateModule.factory("validate.service", ['$q', 'utility.service', function ($q, g) {
 
 	var self = this;
 

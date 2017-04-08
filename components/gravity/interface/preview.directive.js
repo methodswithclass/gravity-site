@@ -1,4 +1,4 @@
-gamesModule.directive("preview", ['data.service', "manager", 'events', 'states', function (data, manager, events, states) {
+gamesModule.directive("preview.service", ['data.service', "manager.service", 'events.service', 'states.service', function (data, manager, events, states) {
 
 	return {
 		restrict:'E',

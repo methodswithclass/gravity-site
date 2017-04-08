@@ -1,1 +1,1 @@
-var balanceModule = angular.module("balanceModule", ['sharedModule', "gamesModule"]);
+var balanceModule = angular.module("balance.module", ['shared.module', "games.module"]);

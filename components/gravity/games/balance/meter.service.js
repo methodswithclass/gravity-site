@@ -1,4 +1,4 @@
-balanceModule.factory("meter", function () {
+balanceModule.factory("meter.service", function () {
 	
 	var meter = function (input) {
 

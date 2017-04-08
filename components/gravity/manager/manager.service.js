@@ -1,4 +1,4 @@
-managerModule.factory("manager", ["data.service", 'send', 'settings.service', 'games.library', function (data, send, settings, games) {
+managerModule.factory("manager.service", ["data.service", 'send.service', 'settings.service', 'games.library', function (data, send, settings, games) {
 
 	var util = mcaccel.utility;
 

@@ -1,4 +1,4 @@
-interface.module.directive("rotation", ['global', '$window', function (g, $window) {
+interfaceModule.directive("rotation", ['global', '$window', function (g, $window) {
 
 	return {
 		scope:false,

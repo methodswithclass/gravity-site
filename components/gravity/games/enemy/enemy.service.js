@@ -1,4 +1,4 @@
-enemyModule.factory("enemy.service", ['utility', 'data.service', function(g, data) {
+enemyModule.factory("enemy.service", ['utility.service', 'data.service', function(g, data) {
 
 	var vector = mcaccel.vector;
 

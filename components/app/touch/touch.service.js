@@ -1,4 +1,4 @@
-touch.module.directive("touch", function () {
+touchModule.directive("touch", function () {
 
 	return {
 		scope:{

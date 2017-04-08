@@ -1,4 +1,4 @@
-gamesModule.directive("display", ['send', function (send) {
+gameeModule.directive("display", ['send.service', function (send) {
 
 	return {
 

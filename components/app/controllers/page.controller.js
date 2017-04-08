@@ -1,4 +1,4 @@
-controller.module.controller("page.controller", ['$scope', 'data.service', 'gravity-utility.service', 'state.service', 'events.service', 'manager.service', 'settings.service', function ($scope, data, util, states, events, manager, settings) {
+controllerModule.controller("page.controller", ['$scope', 'data.service', 'gravity-utility.service', 'state.service', 'events.service', 'manager.service', 'settings.service', function ($scope, data, util, states, events, manager, settings) {
 
     var self = this;
 

@@ -1,4 +1,4 @@
-balanceModule.directive("balanceModal", ['data.service', 'events', function (data, events) {
+balanceModule.directive("balanceModal", ['data.service', 'events.service', function (data, events) {
 		
 	return {
 		restrict:"E",

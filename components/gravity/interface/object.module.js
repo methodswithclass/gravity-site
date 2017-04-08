@@ -1,1 +1,1 @@
-var objectModule = angular.module("objectModule", ["sharedModule"]);
+var objectModule = angular.module("object.module", ["shared.module"]);

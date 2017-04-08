@@ -1,4 +1,4 @@
-spaceModule.factory("space.game", ['keeper', function (keeperFactory) {
+spaceModule.factory("space.game", ['time-keeper.service', function (keeperFactory) {
 
 	var keeper;
 	var arena;

@@ -1,4 +1,4 @@
-interface.module.directive("option", ['state.service', function (states) {
+interfaceModule.directive("option", ['state.service', function (states) {
 
 	return {
 		restrict:'E',

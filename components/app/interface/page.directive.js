@@ -1,4 +1,4 @@
-interface.module.directive("page", ["manager.service", function (manager) {
+interfaceModule.directive("page", ["manager.service", function (manager) {
 
 	return {
 		restrict:'E',

@@ -1,1 +1,1 @@
-var calibrateModule = angular.module("calibrate.module", ['sharedModule', 'settingsModule', 'ngMaterial']);
+var calibrateModule = angular.module("calibrate.module", ['shared.module', 'settings.module', 'ngMaterial']);

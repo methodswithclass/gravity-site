@@ -1,4 +1,4 @@
-gamesModule.factory("keeper", [function () {
+gamesModule.factory("time-keeper.service", [function () {
 	
 	var utility = mcshared.utility;
 

@@ -1,4 +1,4 @@
-settingsModule.factory("settings.service", ['utility', function (utility) {
+settingsModule.factory("settings.service", ['utility.service', function (utility) {
 
 	var g = mcshared.utility;
 	var util = mcaccel.utility;
