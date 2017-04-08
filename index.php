@@ -59,7 +59,7 @@
 
     <!-- Console -->
 
-    <script src="http://code.methodswithclass.com/api/console-1.js"></script>
+    <script src="http://code.methodswithclass.com/api/console-1b.js"></script>
 
     <!-- Shared -->
 
@@ -75,27 +75,28 @@
     <script src="components/app/app/main.js"></script>
 
 
-    <!-- Utility -->
-
-    <script src="components/gravity/services/utility/gravity.utility.module.js"></script>
-
-
-    <!-- Touch -->
-
-    <script src="components/app/touch/touch.module.js"></script>
-    <script src="components/app/touch/touch.service.js"></script>
-
-
     <!-- Controllers -->
 
     <script src="components/app/controllers/controller.module.js"></script>
     <script src="components/app/controllers/page.controller.js"></script>
-    <script src="components/app/controllers/home.hontroller.js"></script>
-    
+    <script src="components/app/controllers/home.controller.js"></script>
 
-    <script src="components/gravity/services/device/checking.controller.js"></script>
-    <script src="components/gravity/services/settings/settings.controller.js"></script>
-    <script src="components/gravity/services/calbration/calibrate.controller.js"></script>
+
+    <!-- Data -->
+
+    <script src="components/app/data/data.module.js"></script>
+    <script src="components/app/data/data.service.js"></script>
+
+
+    <!-- Interface -->
+
+    <script src="components/app/interface/interface.module.js"></script>
+    <script src="components/app/interface/back.directive.js"></script>
+    <script src="components/app/interface/body.directive.js"></script>
+    <script src="components/app/interface/option.directive.js"></script>
+    <script src="components/app/interface/page.directive.js"></script>
+    <script src="components/app/interface/repeat.directive.js"></script>
+    <script src="components/app/interface/rotation.directive.js"></script>
 
 
     <!-- States -->
@@ -105,63 +106,23 @@
     <script src="components/app/state/state.provider.js"></script>
 
 
-    <!-- Validate -->
+    <!-- Touch -->
 
-    <script src="components/gravity/services/validate/validate.module.js"></script>
-    <script src="components/gravity/services/valildate/valid.controller.js"></script>
-    <script src="components/gravity/services/validate/validate.service.js"></script>
-    <script src="components/gravity/services/validate/validate-wrapper.service.js"></script>
-    <script src="components/gravity/services/validate/valid.service.js"></script>
-
-
-    <!-- Object -->
-
-    <script src="components/gravity/interface/object.module.js"></script>
-    <script src="components/gravity/interface/object.service.js"></script>
-
-
-    <!-- Calibration -->
-
-    <script src="components/gravity/services/calibration/calibrate.module.js"></script>
-    <script src="components/gravity/services/calibration/calibrate.service.js"></script>
-    <script src="components/gravity/services/calibration/progress.service.js"></script>
-
-
-    <!-- Settings -->
-
-    <script src="components/gravity/services/settings/settings.module.js"></script>
-    <script src="components/gravity/services/settings/settings.service.js"></script>
-    <script src="components/gravity/services/settings/settings-btn.directive.js"></script>
-
-    <!-- Data -->
-
-    <script src="components/app/data/data.module.js"></script>
-    <script src="components/app/data/data.service.js"></script>
-
-    <!-- Manager -->
-
-    <script src="components/gravity/manager/manager.module.js"></script>
-    <script src="components/gravity/manager/manager.service.js"></script>
-    <script src="components/gravity/games.library.js"></script>
-
-    <!-- Interface -->
-
-    <script src="components/app/interface/interface.module.js"></script>
-    <script src="components/app/interface/option.directive.js"></script>
-    <script src="components/app/interface/page.directive.js"></script>
-    <script src="components/app/interface/back.directive.js"></script>
-    <script src="components/app/interface/repeat.directive.js"></script>
-    <script src="components/app/interface/body.directive.js"></script>
-    <script src="components/app/interface/rotation.directive.js"></script>
-
-    <script src="components/gravity/interface/toggle.service.js"></script>
-    <script src="components/gravity/interface/time-keeper.directive.js"></script>
-    <script src="components/gravity/interface/display.directive.js"></script>
-    <script src="components/gravity/interface/preview.directive.js"></script>
+    <script src="components/app/touch/touch.module.js"></script>
+    <script src="components/app/touch/touch.directive.js"></script>
 
 
 
     <!-- Games -->
+
+
+    <!-- Balance -->
+
+    <script src="components/gravity/games/balance/balance.module.js"></script>
+    <script src="components/gravity/games/balance/balance.game.js"></script>
+    <script src="components/gravity/games/balance/target.service.js"></script>
+    <script src="components/gravity/games/balance/meter.service.js"></script>
+    <script src="components/gravity/games/balance/balance-modal.directive.js"></script>
 
 
     <!-- Enemy -->
@@ -173,19 +134,73 @@
     <script src="components/gravity/games/enemy/enemy-modal.directive.js"></script>
     <script src="components/gravity/games/enemy/enemy-info.directive.js"></script>
 
-    <!-- Balance -->
-
-    <script src="components/gravity/games/balance/balance.module.js"></script>
-    <script src="components/gravity/games/balance/balance.game.js"></script>
-    <script src="components/gravity/games/balance/target.service.js"></script>
-    <script src="components/gravity/games/balance/meter.service.js"></script>
-    <script src="components/gravity/games/balance/balance-modal.js"></script>
 
     <!-- Space -->
 
     <script src="components/gravity/games/space/space.module.js"></script>
     <script src="components/gravity/games/space/space.game.js"></script>
-    <script src="components/gravity/games/space/space-modal.js"></script>
+    <script src="components/gravity/games/space/space-modal.directive.js"></script>
+    
+
+
+    <!-- Interface -->
+
+    <script src="components/gravity/interface/display.directive.js"></script>
+    <script src="components/gravity/interface/object.module.js"></script>
+    <script src="components/gravity/interface/object.directive.js"></script>
+    <script src="components/gravity/interface/preview.directive.js"></script>
+    <script src="components/gravity/interface/time-keeper.service.js"></script>
+    <script src="components/gravity/interface/toggle.directive.js"></script>
+
+
+
+    <!-- Manager -->
+
+    <script src="components/gravity/manager/manager.module.js"></script>
+    <script src="components/gravity/manager/manager.service.js"></script>
+    <script src="components/gravity/manager/games.library.js"></script>
+
+
+    <!-- Services -->
+
+
+    <!-- Calibration -->
+
+    <script src="components/gravity/services/calibration/calibrate.module.js"></script>
+    <script src="components/gravity/services/calibration/calibrate.service.js"></script>
+    <script src="components/gravity/services/calibration/progress.service.js"></script>
+
+
+    <!-- Device -->
+
+    <script src="components/gravity/services/device/checking.controller.js"></script>
+
+
+
+    <!-- Settings -->
+
+
+    <script src="components/gravity/services/settings/settings.controller.js"></script>
+    <script src="components/gravity/services/settings/settings.module.js"></script>
+    <script src="components/gravity/services/settings/settings.service.js"></script>
+    <script src="components/gravity/services/settings/settings-btn.directive.js"></script>
+
+
+    <!-- Utility -->
+
+    <script src="components/gravity/services/utility/gravity.utility.module.js"></script>
+
+
+    <!-- Validate -->
+
+
+    <script src="components/gravity/services/validate/valid.controller.js"></script>
+    <script src="components/gravity/services/validate/validate.module.js"></script>
+    <script src="components/gravity/services/validate/validate.service.js"></script>
+    <script src="components/gravity/services/validate/valid.directive.js"></script>
+    <script src="components/gravity/services/validate/validate-wrapper.service.js"></script>
+
+
     
 
   </body>

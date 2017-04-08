@@ -1,4 +1,4 @@
-dataModule.factory("data.service", ['utility', function (util) {
+dataModule.factory("data.service", ['utility.service', function (util) {
 
 	var g = mcshared.utility;
 

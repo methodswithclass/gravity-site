@@ -1,4 +1,4 @@
-enemy.module.directive("enemyModal", ['data.service', 'events.service', function (data, events) {
+enemyModule.directive("enemyModal", ['data.service', 'events.service', function (data, events) {
 		
 	return {
 		restrict:"E",

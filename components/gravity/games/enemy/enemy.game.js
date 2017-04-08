@@ -1,4 +1,4 @@
-enemy.module.factory("enemy.game", ['enemy.service', 'time-keeper.service', function(Enemy, keeperFactory) {
+enemyModule.factory("enemy.game", ['enemy.service', 'time-keeper.service', function(Enemy, keeperFactory) {
 
 	var total = 8;
 	var enemies = [];

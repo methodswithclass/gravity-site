@@ -1,18 +1,18 @@
-var app = angular.module('gravity', ['sharedModule', 'stateModule', 'uiModule', 'utility.module', 'ngRoute', 'ui.router']);
+var app = angular.module('gravity', ['shared.module', 'state.module', 'interface.module', 'utility.module', 'ngRoute', 'ui.router']);
 
-app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvider, $locationProvider) {
+app.config(['state.providerProvider', '$locationProvider', function (stateProviderProvider, $locationProvider) {
   
 	console.log("config", "define states");
 
 	$locationProvider.html5Mode(true);
 
-	var states = runtimeProvider.states;
+	var states = stateProviderProvider.states;
 
 	for (var i = 0; i < states.length; i++) {
-		runtimeProvider.addState(states[i]);
+		stateProviderProvider.addState(states[i]);
 	}
 
-}]).run(function (states, utility) {
+}]).run(["state.service", "utility.service", function (states, utility) {
 
 	//for desktop debugging when no accelerometer is present, comment out this line for production
     utility.forceValidity(true);
@@ -26,4 +26,4 @@ app.config(['runtime.stateProvider', '$locationProvider', function (runtimeProvi
 
     //3. route to next state (calibrate) if valid, stop progression through app if invalid
 
-});
+}]);

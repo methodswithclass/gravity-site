@@ -1,4 +1,4 @@
-stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', function ($q, runtime, $state, $rootScope, data, send, events, g, calibrate, manager, $window) {
+stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', function ($q, stateProvider, $state, $rootScope, data, send, events, g, calibrate, manager, $window) {
 
 	var modalTime = 1000;
 
@@ -10,7 +10,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	var ps; //prevState
 
-	var states = runtime.states;
+	var states = stateProvider.states;
 
 	var state;
 	var isPage = false;

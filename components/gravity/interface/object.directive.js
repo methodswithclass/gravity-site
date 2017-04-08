@@ -1,4 +1,4 @@
-objectModule.directive("object.service", ['send.service', function (send) {
+objectModule.directive("object", ['send.service', function (send) {
 
 	return {
 		restrict:'E',

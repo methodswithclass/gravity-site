@@ -1,4 +1,4 @@
-validateModule.directive("valid.service", ['utility.service', function (util) {
+validateModule.directive("valid", ['utility.service', function (util) {
 
 	return {
 		restrict:'E',
