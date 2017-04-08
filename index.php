@@ -63,7 +63,7 @@
 
     <!-- Shared -->
 
-    <script src="http://code.methodswithclass.com/api/shared-2b.js"></script>
+    <script src="http://code.methodswithclass.com/api/shared-1b.js"></script>
     <script src="http://code.methodswithclass.com/api/mcshared-1.js"></script>
 
     <!-- Acceleration -->
