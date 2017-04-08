@@ -63,7 +63,7 @@
 
     <!-- Shared -->
 
-    <script src="http://code.methodswithclass.com/api/shared-2.js"></script>
+    <script src="http://code.methodswithclass.com/api/shared-2b.js"></script>
     <script src="http://code.methodswithclass.com/api/mcshared-1.js"></script>
 
     <!-- Acceleration -->
@@ -72,109 +72,120 @@
 
     <!-- App -->
     
-    <script src="features/app/app.js"></script>
+    <script src="components/app/app/main.js"></script>
 
 
     <!-- Utility -->
 
-    <script src="features/a_utility/utility.module.js"></script>
+    <script src="components/gravity/services/utility/gravity.utility.module.js"></script>
 
 
     <!-- Touch -->
 
-    <script src="features/touch/touchModule.js"></script>
-    <script src="features/touch/touch.js"></script>
+    <script src="components/app/touch/touch.module.js"></script>
+    <script src="components/app/touch/touch.service.js"></script>
+
 
     <!-- Controllers -->
 
-    <script src="features/controllers/controllers.module.js"></script>
-    <script src="features/controllers/checkingController.js"></script>
-    <script src="features/controllers/validController.js"></script>
-    <script src="features/controllers/pageController.js"></script>
-    <script src="features/controllers/homeController.js"></script>
-    <script src="features/controllers/settingsController.js"></script>
-    <script src="features/controllers/calibrateController.js"></script>
+    <script src="components/app/controllers/controller.module.js"></script>
+    <script src="components/app/controllers/page.controller.js"></script>
+    <script src="components/app/controllers/home.hontroller.js"></script>
+    
+
+    <script src="components/gravity/services/device/checking.controller.js"></script>
+    <script src="components/gravity/services/settings/settings.controller.js"></script>
+    <script src="components/gravity/services/calbration/calibrate.controller.js"></script>
+
 
     <!-- States -->
 
-    <script src="features/state/stateModule.js"></script>
-    <script src="features/state/states.js"></script>
-    <script src="features/state/runtimeState.js"></script>
+    <script src="components/app/state/state.module.js"></script>
+    <script src="components/app/state/state.service.js"></script>
+    <script src="components/app/state/state.provider.js"></script>
+
 
     <!-- Validate -->
 
-    <script src="features/validate/validateModule.js"></script>
-    <script src="features/validate/validate.service.js"></script>
-    <script src="features/validate/validate.wrapper.js"></script>
-    <script src="features/validate/valid.js"></script>
+    <script src="components/gravity/services/validate/validate.module.js"></script>
+    <script src="components/gravity/services/valildate/valid.controller.js"></script>
+    <script src="components/gravity/services/validate/validate.service.js"></script>
+    <script src="components/gravity/services/validate/validate-wrapper.service.js"></script>
+    <script src="components/gravity/services/validate/valid.service.js"></script>
+
 
     <!-- Object -->
 
-    <script src="features/object/object.module.js"></script>
-    <script src="features/object/object.js"></script>
+    <script src="components/gravity/interface/object.module.js"></script>
+    <script src="components/gravity/interface/object.service.js"></script>
+
 
     <!-- Calibration -->
 
-    <script src="features/calibration/calibrate.module.js"></script>
-    <script src="features/calibration/calibrate.service.js"></script>
-    <script src="features/calibration/progress.service.js"></script>
+    <script src="components/gravity/services/calibration/calibrate.module.js"></script>
+    <script src="components/gravity/services/calibration/calibrate.service.js"></script>
+    <script src="components/gravity/services/calibration/progress.service.js"></script>
+
 
     <!-- Settings -->
 
-    <script src="features/settings/settings.module.js"></script>
-    <script src="features/settings/settings.service.js"></script>
-    <script src="features/settings/settings-btn.js"></script>
-
-    <!-- Games -->
-
-    <script src="features/games/games.module.js"></script>
-    <script src="features/games/keeper.js"></script>
-    <script src="features/games/display.js"></script>
-    <script src="features/games/preview.js"></script>
-
-    <!-- Enemy -->
-
-    <script src="features/games/enemy/enemy.module.js"></script>
-    <script src="features/games/enemy/enemy.game.js"></script>
-    <script src="features/games/enemy/enemy.service.js"></script>
-    <script src="features/games/enemy/enemy-modal.js"></script>
-    <script src="features/games/enemy/enemy-info.js"></script>
-
-    <!-- Balance -->
-
-    <script src="features/games/balance/balance.module.js"></script>
-    <script src="features/games/balance/balance.game.js"></script>
-    <script src="features/games/balance/target.service.js"></script>
-    <script src="features/games/balance/meter.service.js"></script>
-    <script src="features/games/balance/balance-modal.js"></script>
-
-    <!-- Space -->
-
-    <script src="features/games/space/space.module.js"></script>
-    <script src="features/games/space/space.game.js"></script>
-    <script src="features/games/space/space-modal.js"></script>
+    <script src="components/gravity/services/settings/settings.module.js"></script>
+    <script src="components/gravity/services/settings/settings.service.js"></script>
+    <script src="components/gravity/services/settings/settings-btn.directive.js"></script>
 
     <!-- Data -->
 
-    <script src="features/data/data.module.js"></script>
-    <script src="features/data/data.service.js"></script>
+    <script src="components/app/data/data.module.js"></script>
+    <script src="components/app/data/data.service.js"></script>
 
     <!-- Manager -->
 
-    <script src="features/manager/manager.module.js"></script>
-    <script src="features/manager/manager.service.js"></script>
-    <script src="features/manager/toggle.js"></script>
-    <script src="features/manager/games.library.js"></script>
+    <script src="components/gravity/manager/manager.module.js"></script>
+    <script src="components/gravity/manager/manager.service.js"></script>
+    <script src="components/gravity/games.library.js"></script>
 
     <!-- Interface -->
 
-    <script src="features/interface/ui.module.js"></script>
-    <script src="features/interface/option.js"></script>
-    <script src="features/interface/page.js"></script>
-    <script src="features/interface/back.js"></script>
-    <script src="features/interface/repeat.directive.js"></script>
-    <script src="features/interface/body.js"></script>
-    <script src="features/interface/rotation.js"></script>
+    <script src="components/app/interface/interface.module.js"></script>
+    <script src="components/app/interface/option.directive.js"></script>
+    <script src="components/app/interface/page.directive.js"></script>
+    <script src="components/app/interface/back.directive.js"></script>
+    <script src="components/app/interface/repeat.directive.js"></script>
+    <script src="components/app/interface/body.directive.js"></script>
+    <script src="components/app/interface/rotation.directive.js"></script>
+
+    <script src="components/gravity/interface/toggle.service.js"></script>
+    <script src="components/gravity/interface/time-keeper.directive.js"></script>
+    <script src="components/gravity/interface/display.directive.js"></script>
+    <script src="components/gravity/interface/preview.directive.js"></script>
+
+
+
+    <!-- Games -->
+
+
+    <!-- Enemy -->
+
+    <script src="components/gravity/games/games.module.js"></script>
+    <script src="components/gravity/games/enemy/enemy.module.js"></script>
+    <script src="components/gravity/games/enemy/enemy.game.js"></script>
+    <script src="components/gravity/games/enemy/enemy.service.js"></script>
+    <script src="components/gravity/games/enemy/enemy-modal.directive.js"></script>
+    <script src="components/gravity/games/enemy/enemy-info.directive.js"></script>
+
+    <!-- Balance -->
+
+    <script src="components/gravity/games/balance/balance.module.js"></script>
+    <script src="components/gravity/games/balance/balance.game.js"></script>
+    <script src="components/gravity/games/balance/target.service.js"></script>
+    <script src="components/gravity/games/balance/meter.service.js"></script>
+    <script src="components/gravity/games/balance/balance-modal.js"></script>
+
+    <!-- Space -->
+
+    <script src="components/gravity/games/space/space.module.js"></script>
+    <script src="components/gravity/games/space/space.game.js"></script>
+    <script src="components/gravity/games/space/space-modal.js"></script>
     
 
   </body>
