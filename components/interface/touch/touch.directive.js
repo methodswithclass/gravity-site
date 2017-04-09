@@ -8,73 +8,165 @@ touchModule.directive("touch", function () {
 		},
 		link:function ($scope, element, attr) {
 
+
 			var dom = element[0];
-
-			//console.log("touch", dom);
-
-			var isDown = false;
+			var touch = false;
+			var velocity = false;
+			var scroll = false;
+			var duration = 5;
 			var initial = {x:0, y:0};
-			var pos;
-			var diff = {x:0, y:0};
+			var pos = {curr:{x:0, y:0}, last:{x:0, y:0}};
+			var speed = {curr:{x:0, y:0}, last:{x:0, y:0}};
 
-			var mouseDown = function (e) {
+			var point = {x:0, y:0};
 
-				console.log("touch down");
-						
-				if (!isDown) {
+			var min;
+			var max;			
 
-					isDown = true;
-					initial = {x:e.pageX - diff.x, y:e.pageY - diff.y};
+			setTimeout(function () {
+
+				min = {x:0, y:0};
+				max = {
+					x:-($scope.width ? $scope.width : $(element).width()), 
+					y:-($scope.height ? $scope.height : $(element).height())
+				};
+
+			}, 800);
+
+			
+
+			var limits = function (dim) {
+
+				//console.log("min x", min.x, "min y", min.y);
+				
+				
+
+				if (dim.x >= min.x) {
+					//console.log("fixed x");
+					dim.x = min.x;
 				}
+				else if (dim.x <= max.x) dim.x = max.x;
+
+				if (dim.y >= min.y) dim.y = min.y;
+				else if (dim.y <= max.y) dim.y = max.y;
+
+				//console.log("dim x", dim.x, "dim y", dim.y);
+
+				return {x:dim.x, y:dim.y};
 			}
 
-			var mouseMove = function (e) {
+			var constrain = function (dim) {
 
-				if (isDown) {
+				if ($scope.dir == "x") {
+					dim.y = 0;
+				}
+				else if ($scope.dir == "y") {
+					dim.x = 0;
+				}
 
-					pos = {x:e.pageX, y:e.pageY};
+				return dim;
+			}
+
+			var friction = function (dim) {
+
+				dim.x *= 0.99;
+				dim.y *= 0.99;
+
+				if (Math.abs(dim.x) < 0.001) dim.x = 0;
+				if (Math.abs(dim.y) < 0.001) dim.y = 0;
+
+				if (dim.x == 0 && dim.y == 0) {
+					velocity = false;
+					scroll = false;
+				}
+
+				return dim;
+			}
+
+			var down = function (e) {
+
+				console.log("touch down");
+				
+				scroll = true;
+				touch = true;
+				initial = {x:e.pageX, y:e.pageY};
+				pos.last = {x:initial.x, y:initial.y};
+			}
+
+			var move = function (e) {
+
+				if (touch) {
+
+					pos.curr = {x:e.pageX - initial.x, y:e.pageY - initial.y};
+
+					if (pos.curr.x >= min.x) pos.curr.x = min.x;
+					else if (pos.curr.x <= max.x) pos.curr.x = max.x;
+
+					if (pos.curr.y >= min.y) pos.curr.y = min.y;
+					else if (pos.curr.y <= max.y) pos.curr.y = max.y;
+
 
 					if ($scope.dir == "x") {
-						diff = {x:pos.x - initial.x, y:0};
+						pos.curr.y = 0;
 					}
 					else if ($scope.dir == "y") {
-						diff = {x:0, y:pos.y - initial.y};
-					}
-					else {
-						diff = {x:pos.x - initial.x, y:pos.y - initial.y};
+						pos.curr.x = 0;
 					}
 
-					//console.log("left", left);
-					console.log("diff y", diff.y, "diff x", diff.x);
-
-					if (diff.x <= -1*$scope.width) diff.x = -1*$scope.width;
-					else if (diff.x > 0) diff.x = 0;
-
-					if (diff.y <= -1*$scope.height) diff.y = -1*$scope.height;
-					else if (diff.y > 0) diff.y = 0;
-
-					console.log("after width", $scope.width);
-
-					$(element).css({left:diff.x, top:diff.y});
+					pos.last = pos.curr;
 
 				}
 				
 			}
 
-			var mouseUp = function (e) {
+			var up = function (e) {
 
 				console.log("touch up");
 
-				isDown = false;
+				speed.curr = {
+					x:(pos.curr.x - pos.last.x)/duration,
+					y:(pos.curr.y - pos.last.y)/duration
+				}
+
+				//velocity = true;
+				touch = false;
+				scroll = false;
 			}
 
-			dom.addEventListener("mousedown", mouseDown);
-			dom.addEventListener("mouseup", mouseUp);
-			//dom.addEventListener("mouseout", mouseUp);
-			dom.addEventListener("touchstart", mouseDown);
-			dom.addEventListener("touchend", mouseUp);
-			dom.addEventListener("mousemove", mouseMove);
-			dom.addEventListener("touchmove", mouseMove);
+			var scrollUpdate = setInterval(function () {
+
+				if (scroll) {
+					console.log("scroll");
+					$(element).css({left:pos.curr.x + "px", top:pos.curr.y + "px"});
+				}
+
+			}, duration);
+
+			var velocityUpdate = setInterval(function () {
+
+				if (velocity) {
+					pos.curr.x += speed.curr.x;
+					pos.curr.y += speed.curr.y;
+
+					console.log("pos x", pos.curr.x, "pos y", pos.curr.y);
+					console.log("speed x", speed.curr.x, "speed y", speed.curr.y);
+
+					speed.curr = friction(speed.curr);
+
+				}
+
+			}, duration);
+
+			dom.addEventListener("mousedown", down);
+			dom.addEventListener("touchstart", down);
+
+			dom.addEventListener("mousemove", move);
+			dom.addEventListener("touchmove", move);
+
+			dom.addEventListener("mouseup", up);
+			dom.addEventListener("touchend", up);
+
+			
 		}
 	}
 

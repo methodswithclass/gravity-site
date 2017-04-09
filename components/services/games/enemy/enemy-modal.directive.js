@@ -21,7 +21,7 @@ enemyModule.directive("enemyModal", ['data.service', 'events.service', function 
 
 				$(element[0].querySelector("#previewenemies")).css({width:width, height:height*0.8});
 				//$(element[0].querySelector("#infoenemies")).css({width:500*($scope.types.length-1)});
-			}, 1000);
+			}, 500);
 			
 			$scope.hidemessage = false;
 			$scope.hideinfo = $scope.page.id != "enemies";
