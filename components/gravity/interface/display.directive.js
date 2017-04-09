@@ -5,7 +5,7 @@ interfaceModule.directive("display", ['send.service', function (send) {
 		scope:false,
 		restrict:"E",
 		replace:true,
-		templateUrl:"views/sub-page/display.html",
+		templateUrl:"./display.view..html",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;

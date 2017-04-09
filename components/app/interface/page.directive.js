@@ -12,7 +12,7 @@ interfaceModule.directive("page", ["manager.service", function (manager) {
 			console.log("in page, name:", page.id, "view:", page.page.view);
 
 			$scope.getContentUrl = function() {
-                return 'views/page/' + page.page.view;
+                return "", + page.page.view;
             }
 
         	setTimeout(function() {

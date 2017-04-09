@@ -18,9 +18,14 @@
     <script src="libs/js/jquery-ui-1.12.1.js"></script>
     <script src="libs/js/jquery-ui-touch_punch.js"></script>
     <script src="libs/js/jquery.scrollto.js"></script>
-    <script src="libs/js/angular.min.js"></script>
+
+    
+    <script src="libs/js/bootstrap-switch.js"></script>
+    
     <script src="libs/js/hammer.js"></script>
     <script src="libs/js/jquery.hammer.js"></script>
+
+    <script src="libs/js/angular.min.js"></script>
     <script src="libs/js/angular.hammer.js"></script>
     <script src="libs/js/angular-route.min.js"></script>
     <script src="libs/js/angular.ui-router.min.js"></script>
@@ -28,13 +33,12 @@
     <script src="libs/js/angular-aria-1.5.5.min.js"></script>
     <script src="libs/js/angular-messages-1.5.5.min.js"></script>
     <script src="libs/js/angular-material-1.1.0.min.js"></script>
-    <script src="libs/js/bootstrap-switch.js"></script>
     <script src="libs/js/angular-bootstrap-switch.js"></script>
 
 
     <base href="/">
 
-    <script>
+   <!--  <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -43,7 +47,7 @@
         ga('create', 'UA-85962895-3', 'auto');
         ga('send', 'pageview');
 
-    </script>
+    </script> -->
 
   </head>
   <body ng-app="gravity">
@@ -59,16 +63,16 @@
 
     <!-- Console -->
 
-    <script src="http://code.methodswithclass.com/api/console-1b.js"></script>
+    <script src="http://code.methodswithclass.com/api/console/1.0/console.js"></script>
 
     <!-- Shared -->
 
-    <script src="http://code.methodswithclass.com/api/shared-1b.js"></script>
-    <script src="http://code.methodswithclass.com/api/mcshared-1.js"></script>
+    <script src="http://code.methodswithclass.com/api/shared/2.0/shared.js"></script>
+    <script src="http://code.methodswithclass.com/api/shared/1.0/mcshared.js"></script>
 
     <!-- Acceleration -->
 
-    <script src="http://code.methodswithclass.com/api/accelerometer-1.js"></script>
+    <script src="http://code.methodswithclass.com/api/accelerometer/1.0/accelerometer.js"></script>
 
     <!-- App -->
     

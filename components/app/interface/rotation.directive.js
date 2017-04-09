@@ -1,4 +1,4 @@
-interfaceModule.directive("rotation", ['global', '$window', function (g, $window) {
+interfaceModule.directive("rotation", ['global.service', '$window', function (g, $window) {
 
 	return {
 		scope:false,

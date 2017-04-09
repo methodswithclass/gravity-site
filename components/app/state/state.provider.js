@@ -20,7 +20,7 @@ stateModule.provider("state.provider", function ($stateProvider) {
         views:{
             "modal":{
                 templateUrl:"views/modal.valid.html",
-                controller:"ValidController"
+                controller:"valid.controller"
             }
         },
         
@@ -38,15 +38,15 @@ stateModule.provider("state.provider", function ($stateProvider) {
     {
         name:"checking",
         url:"/checking",
-        templateUrl:'views/body/checking.html',
-        controller:"CheckingController",
+        templateUrl:'../../gravity/services/device/checking.view.html',
+        controller:"checking.controller",
         controllerAs:"main"
     },
     {
         name:"page",
         url:"",
-        templateUrl:"views/body/content.html",
-        controller:"PageController",
+        templateUrl:"../../../components/app/controllers/content.view.html",
+        controller:"page.controller",
         controllerAs:"main",
         abstract:true
     },

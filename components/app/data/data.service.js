@@ -18,7 +18,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"home.html",
+			view:"home.view.html",
 			back:"black-back",
 			fore:"white-back",
 			rect:{
@@ -42,7 +42,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"validity.html",
+			view:"validity.view.html",
 			back:"black-back",
 			fore:"black-back",
 			rect:{
@@ -66,7 +66,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"settings.html",
+			view:"settings.view.html",
 			back:"black-back",
 			fore:"white-back",
 			backButton:{
@@ -94,7 +94,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"calibrate.html",
+			view:"calibrate.view.html",
 			back:"color1-back",
 			fore:"white-back",
 			menu:{
@@ -140,7 +140,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"motion.html",
+			view:"motion.view.html",
 			back:"color2-back",
 			fore:"white-back",
 			menu:{
@@ -186,7 +186,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:false
 		},
 		page:{
-			view:"motion.html",
+			view:"motion.view.html",
 			back:"color3-back",
 			fore:"white-back",
 			menu:{
@@ -232,7 +232,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:true
 		},
 		page:{
-			view:"game.html",
+			view:"game.view.html",
 			back:"color4-back",
 			fore:"white-back",
 			menu:{
@@ -278,7 +278,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:true
 		},
 		page:{
-			view:"game.html",
+			view:"game.view.html",
 			back:"color5-back",
 			fore:"white-back",
 			menu:{
@@ -324,7 +324,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			game:true
 		},
 		page:{
-			view:"game.html",
+			view:"game.view.html",
 			back:"color6-back",
 			fore:"black-back",
 			menu:{

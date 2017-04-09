@@ -1,4 +1,4 @@
-controllerModule.controller("checking.controller", ['$scope', '$document', 'validate.wrapper', 'states.service', 'events.service', 'con.service', 'utility.service', function ($scope, $document, validation, states, events, con, util) {
+controllerModule.controller("checking.controller", ['$scope', '$document', 'validate-wrapper.service', 'state.service', 'events.service', 'con.service', 'utility.service', function ($scope, $document, validation, states, events, con, util) {
 
     //console.log(" ");
     console.log("checking controller");

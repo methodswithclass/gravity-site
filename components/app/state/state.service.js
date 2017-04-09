@@ -1,4 +1,4 @@
-stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', function ($q, stateProvider, $state, $rootScope, data, send, events, g, calibrate, manager, $window) {
+stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager) {
 
 	var modalTime = 1000;
 
@@ -20,7 +20,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	var setupReceivers = function () {
 
-		console.log("setup state receivers");
+		console.log("setup state receivers", send);
 
 		send.setup.receiver({name:"body", receiver:body});
 		send.setup.receiver({name:"pages", receiver:elements});
