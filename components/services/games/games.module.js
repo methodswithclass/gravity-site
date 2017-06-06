@@ -1,1 +1,0 @@
-var gamesModule = angular.module("games.module", ['shared.module']);
