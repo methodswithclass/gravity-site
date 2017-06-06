@@ -1,4 +1,4 @@
-controllerModule.controller("calibrate.controller", ['$scope', 'global.service', 'states.service', 'events.service', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
+controllerModule.controller("calibrate.controller", ['$scope', 'global.service', 'state.service', 'events.service', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
 
 	//console.log(" ");
 	console.log("calibrate controller");
@@ -10,7 +10,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
     var phases = {
         over:{
-            src:"img/tilt-arrow-over.png",
+            src:"assets/img/tilt-arrow-over.png",
             instructions:"tilt down, away from you",
             pos:{
                 image:{
@@ -24,7 +24,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             }
         },
         under:{
-            src:"img/tilt-arrow-under.png",
+            src:"assets/img/tilt-arrow-under.png",
             instructions:"tilt up, toward you",
             pos:{
                 image:{
@@ -38,7 +38,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             }
         },
         right:{
-            src:"img/tilt-arrow-right.png",
+            src:"assets/img/tilt-arrow-right.png",
             instructions:"hold flat, tilt to the right",
             pos:{
                 image:{
@@ -52,7 +52,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             }
         },
         left:{
-            src:"img/tilt-arrow-left.png",
+            src:"assets/img/tilt-arrow-left.png",
             instructions:"hold flat, tilt to the left",
             pos:{
                 image:{

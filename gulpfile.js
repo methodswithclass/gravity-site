@@ -57,12 +57,23 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', ['vendor'], function() {
 	return gulp.src([
-	            "src/features/data/dataModule.js",
-	            "src/features/state/stateModule.js",
-	            "src/features/interface/uiModule.js",
-	            "!src/features/interface/parallax.js",
-	            "src/features/**/*.js",
-	            "src/features/app/app.js"
+					"src/components/controllers/controller.module.js",
+					"src/components/calibration/calibrate.module.js",
+					"src/components/interface/interface.module.js",
+					"src/components/interface/object/object.module.js",
+					"src/components/interface/touch/touch.module.js",
+					"src/components/services/data/data.module.js",
+					"src/components/games/games.module.js",
+					"src/components/games/balance/balance.module.js",
+					"src/components/games/enemy/enemy.module.js",
+					"src/components/games/space/space.module.js",
+					"src/components/manager/manager.module.js",
+					"src/components/settings/settings.module.js",
+					"src/components/state/state.module.js",
+					"src/components/utility/gravity.utility.module.js",
+					"src/components/validate/validate.module.js",
+					"src/components/**/*.js",
+					"src/components/main.js"
 	            ])
 	// .pipe(jshint('.jshintrc'))
 	// .pipe(jshint.reporter('default'))

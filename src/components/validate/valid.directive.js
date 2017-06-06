@@ -10,10 +10,10 @@ validateModule.directive("valid", ['utility.service', function (util) {
 			$scope.getContentUrl = function() {
 
 				if (util.isValid()) {
-					return "views/sub-page/validity.valid.html"
+					return "assets/views/validity-valid.view.html"
 				}
 				else {
-					return "views/sub-page/validity.invalid.html"
+					return "assets/views/validity-invalid.view.html"
 				}
             }
 			

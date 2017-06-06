@@ -4,7 +4,7 @@ interfaceModule.directive("option", ['state.service', function (states) {
 		restrict:'E',
 		scope:false,
 		replace:true,
-		templateUrl:"./option.view.html",
+		templateUrl:"assets/views/option.view.html",
 		link:function ($scope, element, attr) {
 
 			var self = this;

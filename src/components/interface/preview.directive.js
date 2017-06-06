@@ -10,7 +10,7 @@ interfaceModule.directive("preview", ['data.service', "manager.service", 'events
 			var page = $scope.page;
 
 			$scope.getContentUrl = function() {
-                return page.type.game ? "features/games/" + page.id + "/" + page.id + "-modal.html" : "";
+                return page.type.game ? "assets/views/games/" + page.id + "/" + page.id + "-modal.html" : "";
             }
 
 		}

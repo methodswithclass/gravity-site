@@ -1,4 +1,4 @@
-controllerModule.controller("settings.controller", ['$scope', 'global.service', 'states.service', 'data.service', 'settings.service', 'utility.service', function ($scope, g, states, data, settings, utility) {
+controllerModule.controller("settings.controller", ['$scope', 'global.service', 'state.service', 'data.service', 'settings.service', 'utility.service', function ($scope, g, states, data, settings, utility) {
 
     var self = this;
 

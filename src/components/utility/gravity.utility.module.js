@@ -64,7 +64,7 @@ angular.module("utility.module", ['shared.module'])
 
 	var isValid = function () {
 
-		return valid;
+		return forced ? true : valid;
 	}
 
 	var deviceStatus = function () {

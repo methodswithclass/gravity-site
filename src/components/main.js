@@ -1,4 +1,4 @@
-var app = angular.module('gravity', ['shared.module', 'state.module', 'interface.module', 'utility.module', 'ngRoute', 'ui.router']);
+var app = angular.module('gravity', ['shared.module', 'state.module', 'interface.module', 'utility.module', 'ui.router']);
 
 app.config(['state.providerProvider', '$locationProvider', function (stateProviderProvider, $locationProvider) {
   

@@ -4,7 +4,7 @@ interfaceModule.directive("back", ['state.service', 'send.service', 'events.serv
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"./back.view.html",
+		templateUrl:"assets/views/back.view.html",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;

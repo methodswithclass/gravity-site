@@ -30,6 +30,8 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	var go = function (state) {
 
+		console.log("go to state", state);
+
 		$state.go(state);
 		
 	}
@@ -77,6 +79,8 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 
 		setTimeout(function () {
+
+			console.log("move page", input.name);
 
 			manager.enterInstance(input.name);
 

@@ -1,10 +1,10 @@
-settingsModule.directive("settingsBtn", ['states.service', function (states) {
+settingsModule.directive("settingsBtn", ['state.service', function (states) {
 
 	return {
 		restrict:'E',
 		scope:false,
 		replace:true,
-		templateUrl:"features/settings/settings-btn.html",
+		templateUrl:"assets/views/settings-btn.html",
 		link:function ($scope, element, attr) {
 
 			$scope.onPressup = function () {

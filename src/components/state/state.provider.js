@@ -9,7 +9,7 @@ stateModule.provider("state.provider", function ($stateProvider) {
         name:"modal",
         views:{
             "modal":{
-                templateUrl:"views/modal.html"
+                templateUrl:"assets/views/modal.html"
             }
         },
         abstract:true
@@ -19,7 +19,7 @@ stateModule.provider("state.provider", function ($stateProvider) {
         url:"/valid",
         views:{
             "modal":{
-                templateUrl:"views/modal.valid.html",
+                templateUrl:"assets/views/modal.valid.html",
                 controller:"valid.controller"
             }
         },
@@ -30,7 +30,7 @@ stateModule.provider("state.provider", function ($stateProvider) {
         url:"/invalid",
         views:{
             "modal":{
-                templateUrl:"views/modal.invalid.html"
+                templateUrl:"assets/views/modal.invalid.html"
             }
         },
         
@@ -38,14 +38,14 @@ stateModule.provider("state.provider", function ($stateProvider) {
     {
         name:"checking",
         url:"/checking",
-        templateUrl:'../../gravity/services/device/checking.view.html',
+        templateUrl:'assets/views/checking.view.html',
         controller:"checking.controller",
         controllerAs:"main"
     },
     {
         name:"page",
         url:"",
-        templateUrl:"../../../components/app/controllers/content.view.html",
+        templateUrl:"assets/views/content.view.html",
         controller:"page.controller",
         controllerAs:"main",
         abstract:true

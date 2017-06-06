@@ -1,4 +1,4 @@
-controllerModule.controller("valid.controller", ['$scope', 'global.service', 'states.service', 'data.service', 'utility.service', function ($scope, g, states, data, util) {
+controllerModule.controller("valid.controller", ['$scope', 'global.service', 'state.service', 'data.service', 'utility.service', function ($scope, g, states, data, util) {
 
 	//console.log(" ");
 	console.log("valid controller");
