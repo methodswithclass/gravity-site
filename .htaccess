@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^(home|valid|invalid|checking|settings|calibrate|gravity|float|enemies|balance|space) / [R=302,NC,L]

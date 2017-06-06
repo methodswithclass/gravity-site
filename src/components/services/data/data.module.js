@@ -1,0 +1,1 @@
+var dataModule = angular.module("data.module", ['shared.module', 'utility.module']);

@@ -1,0 +1,51 @@
+{
+  "name": "methods1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "gulp build",
+    "watch": "gulp serve",
+    "postinstall": "bower install && gulp build",
+    "commit-deploy-dev": "git add * && git commit -m update && git push development master",
+    "commit-deploy": "git add * && git commit -m update && git push heroku master",
+    "deploy-dev": "git push development master",
+    "deploy": "git push heroku master"
+  },
+  "engines": {
+    "node": "6.9.2",
+    "npm": "3.10.9"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bower": "^1.8.0",
+    "del": "^2.2.2",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cache": "^0.4.6",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-filter": "^5.0.0",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-inject": "^4.2.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-livereload": "^3.8.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-order": "^1.1.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-server-livereload": "^1.9.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "jshint": "^2.9.4",
+    "main-bower-files": "^2.13.1",
+    "merge-stream": "^1.0.1",
+    "order": "^0.1.0"
+  }
+}
