@@ -1,0 +1,1 @@
+var controllerModule = angular.module("controller.module", ["shared.module", 'console.module', 'validate.module', 'calibrate.module', 'settings.module', 'manager.module', 'data.module', 'utility.module']);
