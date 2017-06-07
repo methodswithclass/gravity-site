@@ -55,8 +55,8 @@ var refresh = function () {
 
 
 app.use(refresh());
-if  (process.env.NODE_ENV == "production") app.use(forceSSL());
-else {console.log("environment development");}
+// if  (process.env.NODE_ENV == "production") app.use(forceSSL());
+// else {console.log("environment development");}
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
