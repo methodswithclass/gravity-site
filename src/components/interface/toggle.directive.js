@@ -4,7 +4,7 @@ interfaceModule.directive("toggle", ["manager.service", 'send.service',function 
 		scope:false,
 		replace:true,
 		restrict:'E',
-		templateUrl:"assets/views/toggle.view.html",
+		templateUrl:"/assets/views/toggle.view.html",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;

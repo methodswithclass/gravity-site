@@ -252,7 +252,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			}
 			else {
-				console.log("pausing phase 1");
+				//console.log("pausing phase 1");
 			}
 
 			return phase_p/num_phases;
@@ -302,7 +302,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			}
 			else {
-				console.log("pausing phase", index);
+				//console.log("pausing phase", index);
 				phase_p += 0;
 			}
 

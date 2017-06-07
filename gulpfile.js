@@ -57,22 +57,47 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', ['vendor'], function() {
 	return gulp.src([
-					"src/components/controllers/controller.module.js",
+					"src/components/utility/gravity.utility.module.js",
+
+	                "src/components/data/data.module.js",
+					"src/components/data/**/*.js",
+
+					"src/components/validate/validate.module.js",
+					"src/components/validate/**/*.js",
+
 					"src/components/calibration/calibrate.module.js",
+					"src/components/calibration/**/*.js",
+
+					"src/components/settings/settings.module.js",
+					"src/components/settings/**/*.js",
+
+					"src/components/games/games.module.js",
+
+					"src/components/games/balance/balance.module.js",
+					"src/components/games/balance/**/*.js",
+					
+					"src/components/games/enemy/enemy.module.js",
+					"src/components/games/enemy/**/*.js",
+
+					"src/components/games/space/space.module.js",
+					"src/components/games/space/**/*.js",
+
+					"src/components/manager/manager.module.js",
+					"src/components/manager/**/*.js",
+
 					"src/components/interface/interface.module.js",
 					"src/components/interface/object/object.module.js",
 					"src/components/interface/touch/touch.module.js",
-					"src/components/services/data/data.module.js",
-					"src/components/games/games.module.js",
-					"src/components/games/balance/balance.module.js",
-					"src/components/games/enemy/enemy.module.js",
-					"src/components/games/space/space.module.js",
-					"src/components/manager/manager.module.js",
-					"src/components/settings/settings.module.js",
+					"src/components/interface/**/*.js",
+
 					"src/components/state/state.module.js",
-					"src/components/utility/gravity.utility.module.js",
-					"src/components/validate/validate.module.js",
+					"src/components/state/**/*.js",
+
+					"src/components/controllers/controller.module.js",
+					"src/components/controllers/**/*.js",
+					
 					"src/components/**/*.js",
+					
 					"src/components/main.js"
 	            ])
 	// .pipe(jshint('.jshintrc'))

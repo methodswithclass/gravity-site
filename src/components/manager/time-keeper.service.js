@@ -1,4 +1,4 @@
-interfaceModule.factory("time-keeper.service", [function () {
+managerModule.factory("time-keeper.service", [function () {
 	
 	var utility = mcshared.utility;
 

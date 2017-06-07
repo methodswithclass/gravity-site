@@ -1,4 +1,4 @@
-stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager) {
+stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', '$transitions', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager, $transitions) {
 
 	var modalTime = 1000;
 
@@ -8,7 +8,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	var bodyElem;
 	var elem;
 
-	var ps; //prevState
+	var pso; //prevState
 
 	var states = stateProvider.states;
 
@@ -116,16 +116,17 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	}
 
-	$rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	$transitions.onStart({}, function(trans)
 	{
+
+		var fso = getStateParams(trans.$from().name);
+		var tso = getStateParams(trans.$to().name);
 
 		console.log(" ");
 		console.log("#######################################")
-		console.log("START state change from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+		console.log("START state change from", fso.name.toUpperCase(), "to", tso.name.toUpperCase());
 
-		ps = fs;
-
-		var fso = getStateParams(fs.name);
+		pso = fso;
 
 		if (fso.page) {
 
@@ -142,13 +143,13 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	});
 
-	$rootScope.$on('$stateChangeSuccess', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	$transitions.onSuccess({}, function(trans)
 	{
 
 		//console.log("complete state change", "from state", fs.name, "to state", ts.name);
 
-		var fso = getStateParams(fs.name);
-		var tso = getStateParams(ts.name);
+		var fso = getStateParams(trans.$from().name);
+		var tso = getStateParams(trans.$to().name);
 		
 	   	if (tso.page) {
 
@@ -166,7 +167,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
                 duration:100,
                 complete:function (input) {
                     
-                    console.log("END state change WITH MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+                    console.log("END state change WITH MOVE from", fso.name.toUpperCase(), "to", tso.name.toUpperCase());
 					console.log("#######################################");
 					console.log(" ");
                     
@@ -177,12 +178,80 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 	   	}
 	   	else {
-	   		console.log("END state change WITHOUT MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+	   		console.log("END state change WITHOUT MOVE from", fso.name.toUpperCase(), "to", tso.name.toUpperCase());
 			console.log("#######################################");
 			console.log(" ");
 	   	}
 
 	});
+
+	// $rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	// {
+
+	// 	console.log(" ");
+	// 	console.log("#######################################")
+	// 	console.log("START state change from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+
+	// 	ps = fs;
+
+	// 	var fso = getStateParams(fs.name);
+
+	// 	if (fso.page) {
+
+	// 		//console.log("from state", fso.name, "is a page");
+
+	// 		var fp = data.getPageById(fso.name);
+	//    		manager.stopInstance(fp.id);
+	//    		manager.leaveInstance(fp.id);
+
+	//    	}
+	//    	else {
+	//    		//console.log("from state", fso.name, "is not a page");
+	//    	}
+
+	// });
+
+	// $rootScope.$on('$stateChangeSuccess', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
+	// {
+
+	// 	//console.log("complete state change", "from state", fs.name, "to state", ts.name);
+
+	// 	var fso = getStateParams(fs.name);
+	// 	var tso = getStateParams(ts.name);
+		
+	//    	if (tso.page) {
+
+	//    		//console.log("to state", tso.name, "is a page");
+
+	//    		var delay = 0;
+
+	//    		if (tso.name == "calibrate" && fso.name != "home") {
+	//    			delay = 1000;
+	//    		}
+
+	//    		movePage({
+ //                name:tso.name,
+ //                delay:delay,
+ //                duration:100,
+ //                complete:function (input) {
+                    
+ //                    console.log("END state change WITH MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+	// 				console.log("#######################################");
+	// 				console.log(" ");
+                    
+ //                    input.body.removeClass("scroll").addClass("cutoff");
+ //                    if (tso.name == "calibrate") input.manager.startInstance(tso.name);
+ //                }
+ //            });
+
+	//    	}
+	//    	else {
+	//    		console.log("END state change WITHOUT MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
+	// 		console.log("#######################################");
+	// 		console.log(" ");
+	//    	}
+
+	// });
 	
 	angular.element($window).bind('resize', function () {
 		resize();

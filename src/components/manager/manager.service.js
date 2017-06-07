@@ -21,15 +21,15 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
 	var setStats = function (id) {
 
-		displays[id].stats.html(
-			"x: " + accels[id].unfiltered().x + "<br>" + 
-			"y: " + accels[id].unfiltered().y + "<br>" + 
-			"global factor: " + util.getFactor(util.const.factorG) + "<br>" + 
-			"session factor: " + util.getFactor(util.const.factorS) + "<br>" +
-			"factor: " + util.getFactor() + "<br>" + 
-			"xDir: " + util.getAxis("i") + "<br>" + 
-			"yDir: " + util.getAxis("j") + "<br>"
-		);
+		// displays[id].stats.html(
+		// 	"x: " + accels[id].unfiltered().x + "<br>" + 
+		// 	"y: " + accels[id].unfiltered().y + "<br>" + 
+		// 	"global factor: " + util.getFactor(util.const.factorG) + "<br>" + 
+		// 	"session factor: " + util.getFactor(util.const.factorS) + "<br>" +
+		// 	"factor: " + util.getFactor() + "<br>" + 
+		// 	"xDir: " + util.getAxis("i") + "<br>" + 
+		// 	"yDir: " + util.getAxis("j") + "<br>"
+		// );
 	}
 
 	var startStage = function (id) {
