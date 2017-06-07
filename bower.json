@@ -18,14 +18,8 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-ui-router": "^1.0.3",
-    "angular-material": "^1.1.4",
-    "angular-bootstrap-switch": "^0.5.2",
     "jquery": "latest",
     "jquery.scrollTo": "^2.1.2",
-    "jquery-hammerjs": "^2.0.0",
-    "jquery-ui": "^1.12.1"
-  },
-  "resolutions": {
-    "jquery": "2.1.x"
+    "angular-material": "^1.1.4"
   }
 }
