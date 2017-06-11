@@ -55,8 +55,8 @@ var refresh = function () {
 
 
 app.use(refresh());
-// if  (process.env.NODE_ENV == "production") app.use(forceSSL());
-// else {console.log("environment development");}
+if  (process.env.NODE_ENV == "production") app.use(forceSSL());
+else {console.log("environment development");}
 
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -66,13 +66,6 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use("/dist/assets/css", express.static(path.join(__dirname, "dist/assets/css")));
 app.use("/dist/assets/css/museo", express.static(path.join(__dirname, "dist/assets/css/museo")));
 app.use("/dist/assets/js", express.static(path.join(__dirname, "dist/assets/js")));
-
-// app.get('/*', function(req, res) {
-// 	console.log("return dist");
-// 	// res.sendFile(path.join(__dirname, 'dist'));
-// 	res.sendFile('index.html', {root: path.join(__dirname, 'dist')});
-// });
-
 app.use("/", express.static(path.join(__dirname, "dist")));
 
 

@@ -18,33 +18,6 @@ merge = require("merge-stream"),
 mainBowerFiles = require("main-bower-files");
 
 
-gulp.task('serve', function() {
-	gulp.src('./')
-	.pipe(server({
-		livereload: true,
-		directoryListing: false,
-		open: true
-	}));
-});
-
-// gulp.task('watch', function() {
-
-// 	// Create LiveReload server
-// 	livereload.listen();
-
-// 	// Watch any files in dist/, reload on change
-// 	gulp.watch(['src/features/**/*.js', "src/css/**/*.css", "src/**/*.html"]).on('change', livereload.changed);
-
-// 	// Watch .scss files
-// 	gulp.watch('src/css/**/*.css', ['styles']);
-
-// 	// Watch .js files
-// 	gulp.watch('src/features/**/*.js', ['scripts']);
-
-// 	// Watch image files
-// 	gulp.watch('src/img/**/*', ['images']);
-
-// });
 
 gulp.task('styles', function() {
 	return gulp.src('src/assets/css/**/*.css', { style: 'expanded' })
