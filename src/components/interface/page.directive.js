@@ -17,9 +17,12 @@ interfaceModule.directive("page", ["manager.service", function (manager) {
 
         	setTimeout(function() {
 	            
+        		// console.log("object", $("#object" + page.id)[0]);
+
 	            manager.addInstance({
 	            	id:page.id,
-	            	object:$("#object" + page.id)[0]
+	            	// object:$("#object" + page.id)[0]
+	            	arena:$("#arena" + page.id)[0]
 	            });
 
         	},500);

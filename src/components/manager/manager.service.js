@@ -93,15 +93,19 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 		var page = data.getPageById(input.id);
 
 		if (page.type.accel) {
+
+			// console.log("manager object", input.object);
 			
 			objects[input.id] = new mcaccel.object({
 				id:input.id,
-				object:input.object,
+				// object:input.object,
+				arena:input.arena,
 				params:page.obj
 			});
 
-			arenas[input.id] = $(objects[input.id].el()).parent();
-				
+			// arenas[input.id] = $(objects[input.id].el()).parent();
+			arenas[input.id] = input.arena;
+
 			accels[input.id] = new mcaccel.accelerometer({
 				id:input.id,
 				object:objects[input.id],

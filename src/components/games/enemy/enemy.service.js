@@ -106,20 +106,29 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		var container;
 		var context;
+		var inner;
 		var innerContext;
 
-		var drawEnemy = function () {
+		var drawInner = function () {
 
-			container = document.createElement("canvas");
-			context = container.getContext('2d');
-			context.beginPath();
-			context.rect(self.position.x, self.position.y, self.radius*2, self.radius*2);
-
-			var inner = document.createElement("canvas");
+			inner = document.createElement("canvas");
 			innerContext = inner.getContext('2d');
 			innerContext.arc(self.radius, self.radius, self.radius, 2*Math.pi, false);
 			innerContext.fillStyle = 'rgb(' + color.red + ', ' + color.green + ', ' + color.blue + ')';
 			innerContext.fill();
+
+			$(container).append(inner);
+		}
+
+		var drawEnemy = function (changeinner) {
+
+			container = document.createElement("canvas");
+			container.position = "absolute";
+			context = container.getContext('2d');
+			context.beginPath();
+			context.rect(self.position.x, self.position.y, self.radius*2, self.radius*2);
+
+			if (changeinner) drawInner();
 
 		}
 
@@ -128,15 +137,9 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 		var specials;
 		var color = {red:Math.floor(Math.random()*255), green:Math.floor(Math.random()*255), blue:Math.floor(Math.random()*255)};
 		
-		drawEnemy();
+		drawEnemy(true);
 
 		$(input.arena).append(container);
-
-		// inner.classList.add("enemyInner");
-		// inner.style.backgroundColor = this.type.color;
-		// if (this.shape == g.c.circle)
-		// 	inner.style.borderRadius = this.radius + "px";
-
 		
 		if (self.type.destroy == "standard") {
 			
@@ -153,7 +156,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		}
 
-		$(container).append(inner);
+		// $(container).append(inner);
 
 		self.el = function () {
 
@@ -166,7 +169,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		self.setPosition = function () {
 
-			context.clear(0,0,self.radius*2, self.radius*2);
+			context.clearRect(0,0,self.radius*2, self.radius*2);
 
 			drawEnemy();
 

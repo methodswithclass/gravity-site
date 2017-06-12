@@ -227,7 +227,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		start:function (index) {
 
-			console.log("begin phase", index);
+			console.log("begin factor phase", index);
 				
 			time = (new Date()).getTime();
 
@@ -240,7 +240,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			if (running) {
 
-				console.log("running phase", index);
+				console.log("running factor phase", index);
 
 				time += interval;
 
@@ -259,6 +259,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		},
 		complete:function (index) {
 
+			console.log("complete factor phase", index);
 			console.log("calibrate", "reached y boundary", obj)
 			console.log("acceleration", obj.acceleration);
 			console.log("accel y", obj.acceleration.y);
@@ -279,7 +280,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		start:function (index, axis) {
 
-			console.log("begin phase", index);
+			console.log("begin axis phase", axis, index);
 
 			events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
 			toggleRunning();
@@ -292,7 +293,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			if (running) {
 
-				console.log("running phase", index);
+				console.log("running axis phase", axis, index);
 
 				current.push(accel.raw().gravity);
 
@@ -309,6 +310,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			return phase_p/num_phases;
 		},
 		complete:function (index, axis) {
+
+			console.log("complete axis phase", axis, index);
 
 			reset();
 
