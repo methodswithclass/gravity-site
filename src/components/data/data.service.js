@@ -65,8 +65,27 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			stages:true,
 			game:false
 		},
+		settings:{
+			items:[
+				{
+					id:"session-factor",
+					title:"Session Factor",
+					view:"settings.session-factor.view.html"
+				},
+				{
+					id:"axes",
+					title:"Axes",
+					view:"settings.axes.view.html"
+				},
+				{
+					id:"obj-color",
+					title:"Object Color",
+					view:"settings.obj-color.view.html"
+				}
+			]
+		},
 		page:{
-			view:"settings.view.html",
+			view:"settings/settings.view.html",
 			back:"black-back",
 			fore:"white-back",
 			backButton:{
@@ -385,15 +404,11 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 
 	var getPageById = function (name) {
 
-		for (i in pages) {
 
-			if (pages[i].id == name) {
+		return pages.find(function (p) {
+			return p.id === name;
+		})
 
-				return pages[i];
-			}
-		}
-
-		return {};
 	}
 
 	var isPage = function (id) {

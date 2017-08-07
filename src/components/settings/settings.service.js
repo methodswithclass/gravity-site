@@ -85,32 +85,32 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
     			console.log("activate");
 
-		    	x = $("[name='setting-x-axis']");
-		    	y = $("[name='setting-y-axis']");
-
-		    	x.bootstrapSwitch({
-		    		state:getState(util.getAxis(util.const.x)),
-		    		animate:true,
-		    		handleWidth:"350px",
-		    		onSwitchChange:function (event, state) {
-		    			changeDirection(util.const.x, state);
-		    		}
-		    	});
-
-		    	y.bootstrapSwitch({
-		    		state:getState(util.getAxis(util.const.y)),
-		    		animate:true,
-		    		handleWidth:"350px",
-		    		onSwitchChange:function (event, state) {
-		    			changeDirection(util.const.y, state);
-		    		}
-
-		    	});
-
-		    	$(".bootstrap-switch").css({height:"80%", top:"10%"});
-		    	$(".bootstrap-switch-container").css({height:"100%"});
-		    	$(".bootstrap-switch-handle-on").html("<div class='absolute vcenter font-50'>switched</div>");
-		    	$(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
+		    	// x = $("[name='setting-x-axis']");
+		    	// y = $("[name='setting-y-axis']");
+                //
+		    	// x.bootstrapSwitch({
+		    	// 	state:getState(util.getAxis(util.const.x)),
+		    	// 	animate:true,
+		    	// 	handleWidth:"350px",
+		    	// 	onSwitchChange:function (event, state) {
+		    	// 		changeDirection(util.const.x, state);
+		    	// 	}
+		    	// });
+                //
+		    	// y.bootstrapSwitch({
+		    	// 	state:getState(util.getAxis(util.const.y)),
+		    	// 	animate:true,
+		    	// 	handleWidth:"350px",
+		    	// 	onSwitchChange:function (event, state) {
+		    	// 		changeDirection(util.const.y, state);
+		    	// 	}
+                //
+		    	// });
+                //
+		    	// $(".bootstrap-switch").css({height:"80%", top:"10%"});
+		    	// $(".bootstrap-switch-container").css({height:"100%"});
+		    	// $(".bootstrap-switch-handle-on").html("<div class='absolute vcenter font-50'>switched</div>");
+		    	// $(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
 
 			},
 			createRegistry:[

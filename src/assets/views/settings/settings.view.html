@@ -1,0 +1,24 @@
+
+<div class="absolute fill" id="settings-content" ng-controller="settings.controller">
+
+	<div class="absolute width height scrollY">
+		<div class="absolute width80 height80 center">
+			<div class="relative inline width50 height-400" ng-repeat="setting in settings.items" ng-click="openSetting(setting.id)">
+
+				<div class="absolute width-300 height-300 center border rounded50 pointer raised">
+					<div class="absolute width80 center font-40 text-center">
+						{{setting.title}}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="absolute width height" ng-if="visible()">
+		<setting-host setting="currentSetting()"></setting-host>
+	</div>
+
+	<back />
+
+</div>
