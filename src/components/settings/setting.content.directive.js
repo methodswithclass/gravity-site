@@ -7,7 +7,7 @@ settingsModule.directive("settingContent", [function () {
         template:'<div ng-include="getContentUrl()"></div>',
         link:function ($scope, element, attr) {
 
-            var setting = $scope.setting;
+            var setting = $scope.currentSetting();
 
             $scope.getContentUrl = function() {
                 return "assets/views/settings/" + setting.view;

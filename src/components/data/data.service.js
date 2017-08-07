@@ -70,17 +70,17 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 				{
 					id:"session-factor",
 					title:"Session Factor",
-					view:"settings.session-factor.view.html"
+					view:"setting.session-factor.view.html"
 				},
 				{
 					id:"axes",
 					title:"Axes",
-					view:"settings.axes.view.html"
+					view:"setting.axes.view.html"
 				},
 				{
 					id:"obj-color",
 					title:"Object Color",
-					view:"settings.obj-color.view.html"
+					view:"setting.obj-color.view.html"
 				}
 			]
 		},
