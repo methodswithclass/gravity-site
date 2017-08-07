@@ -62,10 +62,7 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-// app.use('/dist/bower_components',  express.static(path.join(__dirname, 'dist/bower_components')));
-app.use("/dist/assets/css", express.static(path.join(__dirname, "dist/assets/css")));
-app.use("/dist/assets/css/museo", express.static(path.join(__dirname, "dist/assets/css/museo")));
-app.use("/dist/assets/js", express.static(path.join(__dirname, "dist/assets/js")));
+
 app.use("/", express.static(path.join(__dirname, "dist")));
 
 
