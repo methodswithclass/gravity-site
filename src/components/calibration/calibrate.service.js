@@ -260,8 +260,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		complete:function (index) {
 
 			console.log("complete factor phase", index, ":", scheme.phases[index].id);
-			console.log("calibrate", "reached y boundary", obj)
-			console.log("acceleration", obj.acceleration);
+			console.log("calibrate", "reached y boundary")
+			// console.log("acceleration", obj.acceleration);
 			console.log("accel y", obj.acceleration.y);
 
 			var objaccel = Math.abs(obj.acceleration.y);
