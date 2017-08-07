@@ -4,15 +4,15 @@
 
     <div class="absolute width80 height80 center">
 
-        <div class="relative width height10 font-70">
+        <div class="relative width height10 font-50">
 
             <div class="absolute center">switch axes</div>
 
         </div>
 
-        <div class="relative width height40 border">
+        <div class="relative width height40 border-white">
 
-            <div class="relative width height30">
+            <div class="relative width height30 font-40">
 
                 <div class="absolute center">
                     device axes
@@ -24,7 +24,7 @@
 
                 <div class="relative width height50">
 
-                    <div class="absolute width10 height text-right">
+                    <div class="absolute width10 height text-right font-40">
                         <div class="absolute width vcenter">
                             x
                         </div>
@@ -36,12 +36,14 @@
                         </div>
                     </div>
 
+
+
                 </div>
 
                 <div class="relative width height50">
 
 
-                    <div class="absolute width10 height text-right">
+                    <div class="absolute width10 height text-right font-40">
                         <div class="absolute width vcenter">
                             y
                         </div>
@@ -52,6 +54,8 @@
                             {{yswitched.text}}
                         </div>
                     </div>
+
+
 
 
                 </div>
@@ -71,11 +75,35 @@
                     </div>
                 </div>
 
-                <div class="absolute width80 height80 vcenter right0">
-                    <div class="absolute height hcenter">
-                        <input type="checkbox" name="setting-x-axis" checked>
-                    </div>
-                </div>
+                <!--<div class="absolute width80 height80 vcenter right0">-->
+                    <!--<div class="absolute height hcenter">-->
+                        <!--<input type="checkbox" name="setting-x-axis" checked>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+                <!--<toggle-switch-->
+                        <!--ng-model="x-device-dir"-->
+                        <!--html="true"-->
+                        <!--class="switch-primary switch-large"-->
+                        <!--on-label="<i class='fa fa-arrow-up'></i>"-->
+                        <!--off-label="<i class='fa fa-arrow-down'></i>">-->
+                <!--</toggle-switch>-->
+
+
+                <!--<input-->
+                        <!--bs-switch-->
+                        <!--ng-model="x-device-dir"-->
+                        <!--type="checkbox"-->
+                        <!--switch-animate="true"-->
+                        <!--switch-on-text="standard"-->
+                        <!--switch-off-text="switched"-->
+                        <!--switch-label-width="300px"-->
+                        <!--switch-handle-width="0"-->
+                        <!--switch-change="setDirection('i')"-->
+                        <!--ng-true-value="1"-->
+                        <!--ng-false-value="-1">-->
+
 
             </div>
 
@@ -87,11 +115,33 @@
                     </div>
                 </div>
 
-                <div class="absolute width80 height80 vcenter right0">
-                    <div class="absolute height hcenter">
-                        <input type="checkbox" name="setting-y-axis" checked>
-                    </div>
-                </div>
+                <!--<div class="absolute width80 height80 vcenter right0">-->
+                    <!--<div class="absolute height hcenter">-->
+                        <!--<input type="checkbox" name="setting-y-axis" checked>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<toggle-switch-->
+                        <!--ng-model="y-device-dir"-->
+                        <!--html="true"-->
+                        <!--class="switch-primary switch-large"-->
+                        <!--on-label="<i class='fa fa-arrow-right'></i>"-->
+                        <!--off-label="<i class='fa fa-arrow-left'></i>">-->
+                <!--</toggle-switch>-->
+
+                <!--<input-->
+                    <!--bs-switch-->
+                    <!--ng-model="y-device-dir"-->
+                    <!--type="checkbox"-->
+                    <!--switch-animate="true"-->
+                    <!--switch-on-text="standard"-->
+                    <!--switch-off-text="switched"-->
+                    <!--switch-label-width="300px"-->
+                    <!--switch-handle-width="0"-->
+                    <!--switch-change="setDirection('j')"-->
+                    <!--ng-true-value="1"-->
+                    <!--ng-false-value="-1">-->
+
 
             </div>
 
