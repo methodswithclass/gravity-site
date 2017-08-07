@@ -1,23 +1,21 @@
 var gulp = require('gulp');
-var server = require('gulp-server-livereload');
 var autoprefixer = require('gulp-autoprefixer'),
-// cssnano = require('gulp-cssnano'),
-// jshint = require('gulp-jshint'),
-uglify = require('gulp-uglify'),
+shell = require("gulp-shell"),
 imagemin = require('gulp-imagemin'),
-rename = require('gulp-rename'),
 concat = require('gulp-concat'),
-// notify = require('gulp-notify'),
-cache = require('gulp-cache'),
 del = require('del'),
 inject = require('gulp-inject'),
-angularFilesort = require('gulp-angular-filesort'),
-order = require("order"),
 filter = require("gulp-filter"),
 merge = require("merge-stream"),
 mainBowerFiles = require("main-bower-files");
 
+gulp.task("serve", ["watch"], shell.task("node server.js"));
 
+gulp.task('watch', ["build"], function() {
+
+    gulp.watch(["./src/**/*.*", "./server/**/*.*"], ["build"]);
+
+});
 
 gulp.task('styles', function() {
 	return gulp.src('src/assets/css/**/*.css', { style: 'expanded' })

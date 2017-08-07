@@ -178,7 +178,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 	var begin = function (index) {
 
-		console.log("begin phase", index);
+		console.log("\nbegin phase", index, ":", scheme.phases[index].id);
 		
 		if (index + 1 >= num_phases) {
 			events.dispatch("tiltnone");
@@ -192,11 +192,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		var p;
 
 		if (running) {
-			console.log("running phase", index);
+			console.log("running phase", index, ":", scheme.phases[index].id);
 			p = 0.003;
 		}
 		else {
-			console.log("pausing phase", index);
+			console.log("pausing phase", index, ":", scheme.phases[index].id);
 			p = 0;
 		}
 
@@ -207,7 +207,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		reset();
 				
-		console.log("complete phase", index);	
+		console.log("complete phase", index, ":", scheme.phases[index].id, "\n");
 
 		phase_p = 0;
 
@@ -227,7 +227,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		start:function (index) {
 
-			console.log("begin factor phase", index);
+			console.log("\nbegin factor phase", index, ":", scheme.phases[index].id);
 				
 			time = (new Date()).getTime();
 
@@ -240,7 +240,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			if (running) {
 
-				console.log("running factor phase", index);
+				console.log("running factor phase", index, ":", scheme.phases[index].id);
 
 				time += interval;
 
@@ -259,7 +259,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		},
 		complete:function (index) {
 
-			console.log("complete factor phase", index);
+			console.log("complete factor phase", index, ":", scheme.phases[index].id);
 			console.log("calibrate", "reached y boundary", obj)
 			console.log("acceleration", obj.acceleration);
 			console.log("accel y", obj.acceleration.y);
@@ -280,7 +280,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		start:function (index, axis) {
 
-			console.log("begin axis phase", axis, index);
+			console.log("\nbegin axis phase", axis, index, ":", scheme.phases[index].id);
 
 			events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
 			toggleRunning();
@@ -293,7 +293,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			if (running) {
 
-				console.log("running axis phase", axis, index);
+				console.log("running axis phase", axis, index, ":", scheme.phases[index].id);
 
 				current.push(accel.raw().gravity);
 
@@ -311,7 +311,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		},
 		complete:function (index, axis) {
 
-			console.log("complete axis phase", axis, index);
+			console.log("complete axis phase", axis, index, ":", scheme.phases[index].id, "\n");
 
 			reset();
 

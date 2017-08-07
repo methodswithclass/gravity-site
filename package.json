@@ -41,6 +41,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.1.1",
     "gulp-server-livereload": "^1.9.2",
+    "gulp-shell": "^0.6.3",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^3.0.0",
     "jshint": "^2.9.4",
