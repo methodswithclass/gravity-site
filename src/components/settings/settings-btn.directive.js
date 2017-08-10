@@ -1,4 +1,4 @@
-settingsModule.directive("settingsBtn", ['state.service', function (states) {
+settingsModule.directive("settingsBtn", ['state.service', 'settings.service', function (states, settings) {
 
 	return {
 		restrict:'E',
@@ -8,6 +8,8 @@ settingsModule.directive("settingsBtn", ['state.service', function (states) {
 		link:function ($scope, element, attr) {
 
 			$scope.onPressup = function () {
+
+				settings.settings.init.init();
 
 				states.go("page.settings");
 			}

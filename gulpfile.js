@@ -81,11 +81,12 @@ gulp.task('scripts', ['vendor'], function() {
 
 gulp.task("vendor", function () {
 
-	var js = gulp.src(mainBowerFiles(), { base: __dirname + '/bower_components' })
+	var bower_comp = __dirname + "/bower_components";
+    var glob = [bower_comp + '/jquery/jquery.js'].concat(mainBowerFiles(['**/*.js', '!' + bower_comp + '/jquery/jquery.js']));
+
+    var js = gulp.src(glob, { base: bower_comp })
 	.pipe(filter("**/*.js"))
 	.pipe(concat("vendor.js"))
-	// .pipe(rename({suffix: '.min'}))
-	// .pipe(uglify())
 	.pipe(gulp.dest("dist/assets/js"));
 
 	var css = gulp.src(mainBowerFiles())

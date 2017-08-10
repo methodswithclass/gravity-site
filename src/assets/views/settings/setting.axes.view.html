@@ -90,19 +90,29 @@
                         <!--off-label="<i class='fa fa-arrow-down'></i>">-->
                 <!--</toggle-switch>-->
 
-
-                <!--<input-->
+                <div class="absolute width-600 vcenter right0">
+                    <!--<input-->
                         <!--bs-switch-->
-                        <!--ng-model="x-device-dir"-->
+                        <!--ng-model="xDeviceDir"-->
                         <!--type="checkbox"-->
                         <!--switch-animate="true"-->
-                        <!--switch-on-text="standard"-->
-                        <!--switch-off-text="switched"-->
-                        <!--switch-label-width="300px"-->
-                        <!--switch-handle-width="0"-->
-                        <!--switch-change="setDirection('i')"-->
-                        <!--ng-true-value="1"-->
-                        <!--ng-false-value="-1">-->
+                        <!--switch-on-text="switched"-->
+                        <!--switch-off-text="standard"-->
+                        <!--switch-change="setDirection('i')">-->
+
+                    <!--<md-switch-->
+                            <!--ng-model="axesDir.x"-->
+                            <!--ng-change="setDirection('i')"-->
+                            <!--ng-true-value="-1"-->
+                            <!--ng-false-value="1"-->
+                    <!--&gt;</md-switch>-->
+
+
+                    <label class="switch">
+                        <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
 
 
             </div>
@@ -129,18 +139,30 @@
                         <!--off-label="<i class='fa fa-arrow-left'></i>">-->
                 <!--</toggle-switch>-->
 
-                <!--<input-->
-                    <!--bs-switch-->
-                    <!--ng-model="y-device-dir"-->
-                    <!--type="checkbox"-->
-                    <!--switch-animate="true"-->
-                    <!--switch-on-text="standard"-->
-                    <!--switch-off-text="switched"-->
-                    <!--switch-label-width="300px"-->
-                    <!--switch-handle-width="0"-->
-                    <!--switch-change="setDirection('j')"-->
-                    <!--ng-true-value="1"-->
-                    <!--ng-false-value="-1">-->
+                <div class="absolute width-600 vcenter right0">
+                        <!--<input-->
+                            <!--bs-switch-->
+                            <!--ng-model="yDeviceDir"-->
+                            <!--type="checkbox"-->
+                            <!--switch-animate="true"-->
+                            <!--switch-on-text="switched"-->
+                            <!--switch-off-text="standard"-->
+                            <!--switch-change="setDirection('j')"-->
+                            <!--ng-true-value="'-1'"-->
+                            <!--ng-false-value="'1'">-->
+
+                    <!--<md-switch-->
+                            <!--ng-model="axesDir.y"-->
+                            <!--ng-change="setDirection('j')"-->
+                            <!--ng-true-value="-1"-->
+                            <!--ng-false-value="1"-->
+                    <!--&gt;</md-switch>-->
+
+                    <label class="switch">
+                        <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
 
 
             </div>

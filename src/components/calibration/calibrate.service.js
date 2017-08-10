@@ -32,6 +32,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var curr = 0;
 	var running = true;
 
+	var skipCalibrate = true;
+
 
 
 	/* =======================================================================================*/
@@ -211,7 +213,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 		phase_p = 0;
 
-		if (index + 1 < num_phases) {
+		if (index + 1 < num_phases && !skipCalibrate) {
 			progress.setIndex(index + 1);
 			progress.startPhase();
 		}

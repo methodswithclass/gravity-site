@@ -31,13 +31,21 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
     var changeDirection = function (dir, state) {
 
-		console.log("settings set direction", dir, "state", getDir(state));
+		console.log("change direction", dir, "state", state);
 
-		util.setAxis(dir, getDir(state));
+		util.setAxis(dir, state);
 	}
 
     var settings = {
 
+		init:{
+			init:function () {
+				console.log("old init")
+			},
+			registerInit:function (_init) {
+				settings.init = _init;
+			}
+		},
     	factor:{
     		setup:function () {
 
@@ -74,43 +82,14 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     		changeDirection:function (axis, dir) {
 
     			changeDirection(axis, getState(dir));
-
     		},
     		setDirection:function (axis, dir) {
 
     			console.log("old setDevice", axis, dir);
-
 			},
     		activate:function () {
 
     			console.log("activate");
-
-		    	// x = $("[name='setting-x-axis']");
-		    	// y = $("[name='setting-y-axis']");
-                //
-		    	// x.bootstrapSwitch({
-		    	// 	state:getState(util.getAxis(util.const.x)),
-		    	// 	animate:true,
-		    	// 	handleWidth:"350px",
-		    	// 	onSwitchChange:function (event, state) {
-		    	// 		changeDirection(util.const.x, state);
-		    	// 	}
-		    	// });
-                //
-		    	// y.bootstrapSwitch({
-		    	// 	state:getState(util.getAxis(util.const.y)),
-		    	// 	animate:true,
-		    	// 	handleWidth:"350px",
-		    	// 	onSwitchChange:function (event, state) {
-		    	// 		changeDirection(util.const.y, state);
-		    	// 	}
-                //
-		    	// });
-                //
-		    	// $(".bootstrap-switch").css({height:"80%", top:"10%"});
-		    	// $(".bootstrap-switch-container").css({height:"100%"});
-		    	// $(".bootstrap-switch-handle-on").html("<div class='absolute vcenter font-50'>switched</div>");
-		    	// $(".bootstrap-switch-handle-off").html("<div class='absolute vcenter font-50'>standard</div>");
 
 			},
 			createRegistry:[
@@ -200,6 +179,8 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 		onLeave:onLeave,
 		update:update,
 		reset:reset,
+		getDir:getDir,
+		getState:getState,
 		settings:settings
 	}
 
