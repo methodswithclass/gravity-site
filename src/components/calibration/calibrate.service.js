@@ -32,7 +32,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var curr = 0;
 	var running = true;
 
-	var skipCalibrate = true;
+	var skipCalibrate = false;
 
 
 
