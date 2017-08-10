@@ -4,52 +4,37 @@ controllerModule.controller("settings.controller", ['$scope', 'global.service', 
 
 	console.log("settings controller");
 
-    var currentSetting = null;
-    var settingOpened = false;
-
     $scope.settings = data.getPageById("settings").settings
     $scope.xswitched = utility.deviceStandard.standard;
     $scope.yswitched = utility.deviceStandard.standard;
 
     $scope.axesDir = {};
-    $scope.axesDir.x = util.getAxis(util.const.x);
-    $scope.axesDir.y = util.getAxis(util.const.y);
+    $scope.axesDir.x = settings.getState(util.getAxis(util.const.x));
+    $scope.axesDir.y = settings.getState(util.getAxis(util.const.y));
 
-    // var toggle = {}
+    $scope.switched = {};
 
-    // var axesInit = function () {
-    //
-    //     setTimeout(function () {
-    //         console.log("initialize");
-    //         toggle.x = $("#switch.x")[0];
-    //         toggle.y = $("#switch.y")[0];
-    //         if (toggle.x && toggle.y) {
-    //             toggle.x.checked = settings.getState($scope.axesDir.x);
-    //             toggle.y.checked = settings.getState($scope.axesDir.y);
-    //         }
-    //     },1000);
-    //
-    // }
+    var setSwitched = function() {
 
-    // var toggleDirection = function () {
-    //
-    //     toggle.x = document.getElementById("switch.x");
-    //     toggle.y = $("#switch.y")[0];
-    //     if (toggle.x && toggle.y) {
-    //         console.log("toggleX checked", toggle.x.checked);
-    //         $scope.axesDir.x = settings.getDir(toggle.x.checked);
-    //         $scope.axesDir.y = settings.getDir(toggle.y.checked);
-    //     }
-    // }
+        $scope.switched.x = $scope.axesDir.x ? "switched" : "standard";
+        $scope.switched.y = $scope.axesDir.y ? "switched" : "standard";
+
+    }
+
+    setSwitched();
 
     $scope.setDirection = function (axes) {
 
-        // toggleDirection();
-
         console.log("set direction for", axes, "where 'i' is", settings.getDir($scope.axesDir.x), "and 'j' is", settings.getDir($scope.axesDir.y));
+
+        setSwitched();
 
         settings.settings.direction.changeDirection(axes, settings.getDir(axes === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
+
+
+    var currentSetting = null;
+    var settingOpened = false;
 
     $scope.openSetting = function (id) {
 

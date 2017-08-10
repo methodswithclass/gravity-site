@@ -12,9 +12,9 @@
 
         <div class="relative width height40 border-white">
 
-            <div class="relative width height30 font-40">
+            <div class="relative width height30">
 
-                <div class="absolute center">
+                <div class="absolute center font-40">
                     device axes
                 </div>
 
@@ -36,12 +36,9 @@
                         </div>
                     </div>
 
-
-
                 </div>
 
                 <div class="relative width height50">
-
 
                     <div class="absolute width10 height text-right font-40">
                         <div class="absolute width vcenter">
@@ -55,9 +52,6 @@
                         </div>
                     </div>
 
-
-
-
                 </div>
 
             </div>
@@ -67,106 +61,72 @@
 
         <div class="relative width height50">
 
-            <div class="relative width height50">
-
-                <div class="absolute width10 height">
-                    <div class="absolute width vcenter text-right">
-                        x
-                    </div>
+            <div class="relative width height30">
+                <div class="absolute center font-40">
+                    override axes
                 </div>
-
-                <!--<div class="absolute width80 height80 vcenter right0">-->
-                    <!--<div class="absolute height hcenter">-->
-                        <!--<input type="checkbox" name="setting-x-axis" checked>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-
-                <!--<toggle-switch-->
-                        <!--ng-model="x-device-dir"-->
-                        <!--html="true"-->
-                        <!--class="switch-primary switch-large"-->
-                        <!--on-label="<i class='fa fa-arrow-up'></i>"-->
-                        <!--off-label="<i class='fa fa-arrow-down'></i>">-->
-                <!--</toggle-switch>-->
-
-                <div class="absolute width-600 vcenter right0">
-                    <!--<input-->
-                        <!--bs-switch-->
-                        <!--ng-model="xDeviceDir"-->
-                        <!--type="checkbox"-->
-                        <!--switch-animate="true"-->
-                        <!--switch-on-text="switched"-->
-                        <!--switch-off-text="standard"-->
-                        <!--switch-change="setDirection('i')">-->
-
-                    <!--<md-switch-->
-                            <!--ng-model="axesDir.x"-->
-                            <!--ng-change="setDirection('i')"-->
-                            <!--ng-true-value="-1"-->
-                            <!--ng-false-value="1"-->
-                    <!--&gt;</md-switch>-->
-
-
-                    <label class="switch">
-                        <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-
-
             </div>
 
-            <div class="relative width height50">
+            <div class="relative width height70">
+                <div class="relative width height50">
 
-                <div class="absolute width10 height">
-                    <div class="absolute width vcenter text-right">
-                        y
+                    <div class="absolute width10 height">
+                        <div class="absolute width vcenter text-right">
+                            x
+                        </div>
                     </div>
+
+                    <div class="absolute width-600 height right0">
+
+                        <div class="absolute width30 vcenter left0">
+                            <label class="switch">
+                                <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="absolute width70 vcenter right0">
+
+                            <div class="absolute center font-50">
+                                {{switched.x}}
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <!--<div class="absolute width80 height80 vcenter right0">-->
-                    <!--<div class="absolute height hcenter">-->
-                        <!--<input type="checkbox" name="setting-y-axis" checked>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="relative width height50">
 
-                <!--<toggle-switch-->
-                        <!--ng-model="y-device-dir"-->
-                        <!--html="true"-->
-                        <!--class="switch-primary switch-large"-->
-                        <!--on-label="<i class='fa fa-arrow-right'></i>"-->
-                        <!--off-label="<i class='fa fa-arrow-left'></i>">-->
-                <!--</toggle-switch>-->
+                    <div class="absolute width10 height">
+                        <div class="absolute width vcenter text-right">
+                            y
+                        </div>
+                    </div>
 
-                <div class="absolute width-600 vcenter right0">
-                        <!--<input-->
-                            <!--bs-switch-->
-                            <!--ng-model="yDeviceDir"-->
-                            <!--type="checkbox"-->
-                            <!--switch-animate="true"-->
-                            <!--switch-on-text="switched"-->
-                            <!--switch-off-text="standard"-->
-                            <!--switch-change="setDirection('j')"-->
-                            <!--ng-true-value="'-1'"-->
-                            <!--ng-false-value="'1'">-->
+                    <div class="absolute width-600 height right0">
 
-                    <!--<md-switch-->
-                            <!--ng-model="axesDir.y"-->
-                            <!--ng-change="setDirection('j')"-->
-                            <!--ng-true-value="-1"-->
-                            <!--ng-false-value="1"-->
-                    <!--&gt;</md-switch>-->
+                        <div class="absolute width30 vcenter left0">
+                            <label class="switch">
+                                <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
 
-                    <label class="switch">
-                        <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
-                        <span class="slider round"></span>
-                    </label>
+                        <div class="absolute width70 vcenter right0">
+
+                            <div class="absolute center font-50">
+                                {{switched.y}}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
                 </div>
-
 
             </div>
-
         </div>
 
     </div>
