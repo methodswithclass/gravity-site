@@ -29,11 +29,11 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     	return state ? -1 : 1;
     }
 
-    var changeDirection = function (dir, state) {
+    var changeDirection = function (axis, dir) {
 
-		console.log("change direction", dir, "state", state);
+		console.log("change axis", axis, "direction", dir);
 
-		util.setAxis(dir, state);
+		util.setAxis(axis, dir);
 	}
 
     var settings = {
@@ -81,7 +81,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     		},
     		changeDirection:function (axis, dir) {
 
-    			changeDirection(axis, getState(dir));
+    			changeDirection(axis, dir);
     		},
     		setDirection:function (axis, dir) {
 
