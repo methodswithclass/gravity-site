@@ -104,42 +104,24 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		self.moving = true;
 
-		var container;
-		var context;
-		var inner;
-		var innerContext;
-
-		var drawInner = function () {
-
-			inner = document.createElement("canvas");
-			innerContext = inner.getContext('2d');
-			innerContext.arc(self.radius, self.radius, self.radius, 2*Math.pi, false);
-			innerContext.fillStyle = 'rgb(' + color.red + ', ' + color.green + ', ' + color.blue + ')';
-			innerContext.fill();
-
-			$(container).append(inner);
-		}
-
-		var drawEnemy = function (changeinner) {
-
-			container = document.createElement("canvas");
-			container.position = "absolute";
-			context = container.getContext('2d');
-			context.beginPath();
-			context.rect(self.position.x, self.position.y, self.radius*2, self.radius*2);
-
-			if (changeinner) drawInner();
-
-		}
-
 		var numParts = 4;
 		var particles = [];
 		var specials;
 		var color = {red:Math.floor(Math.random()*255), green:Math.floor(Math.random()*255), blue:Math.floor(Math.random()*255)};
 		
-		drawEnemy(true);
+		var container = document.createElement("div");
+		container.style.position = "absolute";
+		container.style.width = 2*self.radius + "px";
+		container.style.height = 2*self.radius + "px";
 
 		$(input.arena).append(container);
+
+		var inner = document.createElement("div");
+		inner.classList.add("enemyInner");
+		inner.style.backgroundColor = this.type.color;
+		if (this.shape == g.c.circle)
+			inner.style.borderRadius = this.radius + "px";
+
 		
 		if (self.type.destroy == "standard") {
 			
@@ -156,7 +138,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		}
 
-		// $(container).append(inner);
+		$(container).append(inner);
 
 		self.el = function () {
 
@@ -168,13 +150,8 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 		}
 
 		self.setPosition = function () {
-
-			context.clearRect(0,0,self.radius*2, self.radius*2);
-
-			drawEnemy();
-
-			// container.style.top = self.position.y + "px";
-			// container.style.left = self.position.x + "px";	
+			container.style.top = self.position.y + "px";
+			container.style.left = self.position.x + "px";	
 		}
 
 		self.update = function () {
