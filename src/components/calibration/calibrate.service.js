@@ -228,7 +228,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			progress.startPhase();
 		}
 		else {
-			settings.settings.axesSet(false);
+			settings.settings.direction.axesSet(false);
 			progress.hardStop();
 			events.dispatch("gohome");
 			events.dispatch("calibrate-btn-hide");

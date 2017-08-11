@@ -3,8 +3,8 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 	var g = mcshared.utility;
 	var util = mcaccel.utility;
 
-   	var x;
-	var y;
+   	// var x;
+	// var y;
 
 	var axesSet = false;
 
@@ -39,14 +39,6 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 	}
 
     var settings = {
-		axesSet:function (value) {
-
-			if (!value) {
-				return axesSet;
-			}
-
-			axesSet = value;
-        },
     	factor:{
     		setup:function () {
 
@@ -76,6 +68,18 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     		]
     	},
     	direction:{
+            axesSet:function(value) {
+
+                if (!value) {
+                    return axesSet;
+                }
+
+                axesSet = value;
+
+            },
+            setOverride:function(dir, value) {
+                util.setAxis(dir, util.getAxis(dir)*value)
+            },
     		registerSetter:function (setter) {
 
     			settings.direction.setDirection = setter;
