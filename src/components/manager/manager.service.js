@@ -118,7 +118,7 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 			
 			accels[input.id].getMotion(input.id, function (id, pos, vel, acc) {
 
-				//console.log("set position", id, pos.x, pos.y);
+				console.log("set position", id, pos.x, pos.y);
 
 				objects[id].setPosition(pos);
 				objects[id].setVelocity(vel);
