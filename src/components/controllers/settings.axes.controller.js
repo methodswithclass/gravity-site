@@ -6,12 +6,16 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
     var util = mcaccel.utility;
 
     $scope.settings = data.getPageById("settings").settings
-    $scope.xswitched = settings.getState(util.getAxis(util.const.x)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
-    $scope.yswitched = settings.getState(util.getAxis(util.const.y)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+
+    if (!settings.settings.axesSet()) {
+        settings.settings.axesSet(true);
+        $scope.xswitched = settings.getDirState(util.getAxis(util.const.x)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+        $scope.yswitched = settings.getDirState(util.getAxis(util.const.y)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+    }
 
     $scope.axesDir = {};
-    $scope.axesDir.x = settings.getState(util.getAxis(util.const.x));
-    $scope.axesDir.y = settings.getState(util.getAxis(util.const.y));
+    $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x));
+    $scope.axesDir.y = settings.getDirState(util.getAxis(util.const.y));
 
     $scope.switched = {};
 
@@ -25,11 +29,11 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
 
     $scope.setDirection = function (axis) {
 
-        console.log("set direction for", axis, "where 'i' is", settings.getDir($scope.axesDir.x), "and 'j' is", settings.getDir($scope.axesDir.y));
+        console.log("set direction for", axis, "where 'i' is", settings.getStateDir($scope.axesDir.x), "and 'j' is", settings.getStateDir($scope.axesDir.y));
 
         setSwitched();
 
-        settings.settings.direction.changeDirection(axis, settings.getDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
+        settings.settings.direction.changeDirection(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
 
 

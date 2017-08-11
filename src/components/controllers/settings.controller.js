@@ -12,7 +12,6 @@ controllerModule.controller("settings.controller", ['$scope', 'global.service', 
         console.log("open settings", id);
         currentSetting = id;
         settingOpened = true;
-        // if (id == "axes") axesInit();
     }
 
     $scope.closeSetting = function () {

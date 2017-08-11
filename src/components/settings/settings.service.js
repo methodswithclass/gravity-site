@@ -6,7 +6,9 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
    	var x;
 	var y;
 
-	var setValue = function (val) {
+	var axesSet = false;
+
+	var setSliderValue = function (val) {
 
 		console.log("set value", val);
 
@@ -14,17 +16,17 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     	util.setFactor(util.const.factorS, val);
     }
 
-    var getValue = function () {
+    var getSliderValue = function () {
 
     	return $("#slider-vertical").slider("value");
     }
 
-	var getState = function (dir) {
+	var getDirState = function (dir) {
 
     	return dir < 0 ? true : false;
     }
 
-	var getDir = function (state) {
+	var getStateDir = function (state) {
 
     	return state ? -1 : 1;
     }
@@ -37,15 +39,14 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 	}
 
     var settings = {
+		axesSet:function (value) {
 
-		init:{
-			init:function () {
-				console.log("old init")
-			},
-			registerInit:function (_init) {
-				settings.init = _init;
+			if (!value) {
+				return axesSet;
 			}
-		},
+
+			axesSet = value;
+        },
     	factor:{
     		setup:function () {
 
@@ -57,14 +58,14 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 					animate:true,
 					value: util.getFactor(util.const.factorS),
 					slide: function( event, ui ) {
-						setValue(ui.value);
+						setSliderValue(ui.value);
 					}
 			    });
 
     		},
     		enter:function () {
 
-    			setValue(getValue());
+    			setSliderValue(getSliderValue());
     		},
     		createRegistry:[
     			"setup",
@@ -179,8 +180,8 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 		onLeave:onLeave,
 		update:update,
 		reset:reset,
-		getDir:getDir,
-		getState:getState,
+		getStateDir:getStateDir,
+		getDirState:getDirState,
 		settings:settings
 	}
 
