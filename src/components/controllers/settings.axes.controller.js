@@ -6,17 +6,20 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
     var util = mcaccel.utility;
 
     $scope.settings = data.getPageById("settings").settings
-    $scope.xswitched = settings.settings.getDeviceCalibration("x");
-    $scope.yswitched = settings.settings.getDeviceCalibration("y");
+    // $scope.xswitched = settings.getDirState(util.getAxis(util.const.x)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+    // $scope.yswitched = settings.getDirState(util.getAxis(util.const.y)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
 
+    var cacheCalibration = {};
 
-    if (!settings.settings.axesSet()) {
-        settings.settings.axesSet(true);
-       }
+    var cache = function () {
+
+        cacheCalibration.x = settings.getDirState(util.getAxis(util.const.x));
+        cacheCalibration.y = settings.getDirState(util.getAxis(util.const.y));
+    }
 
     $scope.axesDir = {};
-    $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x));
-    $scope.axesDir.y = settings.getDirState(util.getAxis(util.const.y));
+    $scope.axesDir.x = false;
+    $scope.axesDir.y = false;
 
     $scope.switched = {};
 
@@ -26,6 +29,10 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
         $scope.switched.y = $scope.axesDir.y ? "switched" : "standard";
     }
 
+    if (!settings.settings.axesSet()) {
+        settings.settings.axesSet(true);
+        cache();
+    }
     setSwitched();
 
     $scope.setDirection = function (axis) {
@@ -34,7 +41,11 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
 
         setSwitched();
 
-        settings.settings.direction.changeDirection(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
+        var cache = settings.getStateDir(axis === "i" ? cacheCalibration.x : cacheCalibration.y);
+        var calibration = settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y);
+        var direction = cache*calibration;
+
+        settings.settings.direction.changeDirection(axis, direction);
     }
 
 

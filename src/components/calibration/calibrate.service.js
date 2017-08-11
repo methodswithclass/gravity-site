@@ -335,7 +335,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 				settings.settings.direction.setDirection(axis, -1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
-				showToast(axis == yDir ? "yDir" : "xDir", "switched");
+				//showToast(axis == yDir ? "yDir" : "xDir", "switched");
 				
 			}
 			else {
@@ -345,7 +345,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 				settings.settings.direction.setDirection(axis, 1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
-				showToast(axis == yDir ? "yDir" : "xDir", "same");
+				//showToast(axis == yDir ? "yDir" : "xDir", "same");
 			}
 
 			current.length = 0;
