@@ -4,7 +4,7 @@ objectModule.directive("object", ['send.service', function (send) {
 		restrict:'E',
 		scope:false,
 		replace:true,
-		template:"<canvas class='absolute'></canvas>",
+		template:"<div class='absolute'></div>",
 		link:function ($scope, element, attr) {
 
 			var page = $scope.page;
