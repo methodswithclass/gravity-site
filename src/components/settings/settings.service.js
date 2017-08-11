@@ -6,6 +6,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
    	var x;
 	var y;
 
+	var status;
 	var axesSet = false;
 
 	var setSliderValue = function (val) {
@@ -39,6 +40,15 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 	}
 
     var settings = {
+		getDeviceCalibration:function(dir) {
+
+			if (!axesSet()) {
+				axesSet = true;
+                status = getDirState(util.getAxis(util.const[dir])) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+            }
+
+			return 	status;
+		},
 		axesSet:function (value) {
 
 			if (!value) {

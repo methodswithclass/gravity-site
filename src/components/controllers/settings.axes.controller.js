@@ -6,12 +6,13 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
     var util = mcaccel.utility;
 
     $scope.settings = data.getPageById("settings").settings
+    $scope.xswitched = settings.settings.getDeviceCalibration("x");
+    $scope.yswitched = settings.settings.getDeviceCalibration("y");
+
 
     if (!settings.settings.axesSet()) {
         settings.settings.axesSet(true);
-        $scope.xswitched = settings.getDirState(util.getAxis(util.const.x)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
-        $scope.yswitched = settings.getDirState(util.getAxis(util.const.y)) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
-    }
+       }
 
     $scope.axesDir = {};
     $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x));

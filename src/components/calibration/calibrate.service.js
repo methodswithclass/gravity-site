@@ -22,6 +22,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		}
 	}
 
+    var num_phases = 0;
+
 	var element;
 
 	var accelValue = 0.01;
@@ -33,6 +35,13 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var running = true;
 
 	var skipCalibrate = false;
+
+
+    var addPercentToPhases = function () {
+        for (var i in scheme.phases) {
+            scheme.phases[i].percent = i/scheme.phases.length;
+        }
+    };
 
 
 
@@ -58,6 +67,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		obj = input.object;
 		accel = input.accel;
 		parent = $(input.object.el()).parent();
+        num_phases = scheme.phases.length;
+
+        addPercentToPhases();
 
 		progress.loadScheme(scheme);
 
@@ -175,8 +187,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	/* =======================================================================================*/
 	/* ================================   Phase Functions   ==================================*/
 	/* =======================================================================================*/
-
-	var num_phases = 5;
 
 	var begin = function (index) {
 
@@ -357,13 +367,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 
 	var scheme = {
-		num:num_phases,
 		phases:[
 		{
 			index:0,
 			id:"loading",
 			message:"loading calibration",
-			percent:1/num_phases,
 			start:function() {
 				begin(0);
 			},
@@ -380,7 +388,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:1,
 			id:"checkY",
 			message:"checking y axis",
-			percent:2/num_phases,
 			start:function () {
 				
 				checkAxis.start(1, yDir);
@@ -398,7 +405,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:2,
 			id:"checkFactor",
 			message:"calibrating factor",
-			percent:3/num_phases,
 			start:function () {
 				
 				checkFactor.start(2);
@@ -417,7 +423,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:3,
 			id:"checkX",
 			message:"checking x axis",
-			percent:4/num_phases,
 			start:function () {
 				
 				checkAxis.start(3, xDir);
@@ -430,25 +435,25 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 				checkAxis.complete(3, xDir);
 			}
-		},
-		{
-			index:4,
-			id:"finish",
-			message:"finishing up calibration",
-			percent:5/num_phases,
-			start:function() {
-
-				begin(4);
-			},
-			update:function (interval, percent) {
-
-				return percent + loading(4);
-			},
-			complete:function () {
-
-				next(4);
-			}
 		}
+		// {
+		// 	index:4,
+		// 	id:"finish",
+		// 	message:"finishing up calibration",
+		// 	percent:5/scheme.phases.length,
+		// 	start:function() {
+        //
+		// 		begin(4);
+		// 	},
+		// 	update:function (interval, percent) {
+        //
+		// 		return percent + loading(4);
+		// 	},
+		// 	complete:function () {
+        //
+		// 		next(4);
+		// 	}
+		// }
 		]
 	}
 
