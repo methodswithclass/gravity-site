@@ -6,8 +6,10 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
    	var x;
 	var y;
 
-	var status;
-	var axesSet = false;
+	var status = {};
+	var axesSet = {};
+	axesSet.x = false;
+	axesSet.y = false;
 
 	var setSliderValue = function (val) {
 
@@ -42,20 +44,20 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     var settings = {
 		getDeviceCalibration:function(dir) {
 
-			if (!settings.axesSet()) {
-				axesSet = true;
-                status = getDirState(util.getAxis(util.const[dir])) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
+			if (!settings.axesSet(dir, null)) {
+				settings.axesSet(dir, true);
+                status[dir] = getDirState(util.getAxis(util.const[dir])) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
             }
 
-			return 	status;
+			return status[dir];
 		},
-		axesSet:function (value) {
+		axesSet:function (dir, value) {
 
 			if (!value) {
-				return axesSet;
+				return axesSet[dir];
 			}
 
-			axesSet = value;
+			axesSet[dir] = value;
         },
     	factor:{
     		setup:function () {
