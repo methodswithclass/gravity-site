@@ -42,7 +42,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     var settings = {
 		getDeviceCalibration:function(dir) {
 
-			if (!axesSet()) {
+			if (!settings.axesSet()) {
 				axesSet = true;
                 status = getDirState(util.getAxis(util.const[dir])) ? utility.deviceStandard.switched : utility.deviceStandard.standard;
             }
