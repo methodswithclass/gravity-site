@@ -9,8 +9,6 @@ settingsModule.directive("settingsBtn", ['state.service', 'settings.service', fu
 
 			$scope.onPressup = function () {
 
-				settings.settings.init.init();
-
 				states.go("page.settings");
 			}
 
