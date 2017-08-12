@@ -3,37 +3,27 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
 
     console.log("settings axes controller");
 
-    var util = mcaccel.utility;
+    // var util = mcaccel.utility;
 
     $scope.settings = data.getPageById("settings").settings;
 
     $scope.axesDir = {};
-    $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x)*settings.calibration.x);
-    $scope.axesDir.y = settings.getDirState(util.getAxis(util.const.y)*settings.calibration.y);
+    $scope.axesDir.x = settings.getDirState(settings.getCalibration("i"));
+    $scope.axesDir.y = settings.getDirState(settings.getCalibration("j"));
 
-    // if (!settings.settings.direction.axesSet()) {
-    //     settings.settings.direction.axesSet(true);
-    //     $scope.axesDir.x = false;
-    //     $scope.axesDir.y = false;
-    // }
     $scope.switched = {};
 
     var setSwitched = function() {
 
         $scope.switched.x = $scope.axesDir.x ? "switched" : "standard";
         $scope.switched.y = $scope.axesDir.y ? "switched" : "standard";
-
     }
 
     setSwitched();
 
     $scope.setDirection = function (axis) {
 
-        console.log("set direction for", axis, "where 'i' is", settings.getStateDir($scope.axesDir.x), "and 'j' is", settings.getStateDir($scope.axesDir.y));
-
         setSwitched();
-
-        // settings.settings.direction.setOverride(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
         settings.settings.direction.setOverride(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
 

@@ -13,6 +13,11 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
 	var axesSet = false;
 
+	var getCalibration = function(dir) {
+
+		return calibration[dir];
+	}
+
 	var setSliderValue = function (val) {
 
 		console.log("set value", val);
@@ -83,8 +88,10 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
             },
             setOverride:function(dir, value) {
-                //util.setAxis(dir, util.getAxis(dir)*value)
+                util.setAxis(dir, util.getAxis(dir)*(-1));
 				calibration[dir] = value;
+
+                // util.setAxis(dir, value);
             },
     		registerSetter:function (setter) {
 
@@ -193,7 +200,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 		getStateDir:getStateDir,
 		getDirState:getDirState,
 		settings:settings,
-		calibration:calibration
+		getCalibration:getCalibration
 	}
 
 }]);
