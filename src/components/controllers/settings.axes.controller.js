@@ -8,14 +8,14 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
     $scope.settings = data.getPageById("settings").settings;
 
     $scope.axesDir = {};
-    $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x));
-    $scope.axesDir.y = settings.getDirState(util.getAxis(util.const.y));
+    $scope.axesDir.x = settings.getDirState(util.getAxis(util.const.x)*settings.calibration.x);
+    $scope.axesDir.y = settings.getDirState(util.getAxis(util.const.y)*settings.calibration.y);
 
-    if (!settings.settings.direction.axesSet()) {
-        settings.settings.direction.axesSet(true);
-        $scope.axesDir.x = false;
-        $scope.axesDir.y = false;
-    }
+    // if (!settings.settings.direction.axesSet()) {
+    //     settings.settings.direction.axesSet(true);
+    //     $scope.axesDir.x = false;
+    //     $scope.axesDir.y = false;
+    // }
     $scope.switched = {};
 
     var setSwitched = function() {
@@ -34,7 +34,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
         setSwitched();
 
         // settings.settings.direction.setOverride(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
-        settings.settings.direction.setOverride(axis, -1);
+        settings.settings.direction.setOverride(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
 
 
