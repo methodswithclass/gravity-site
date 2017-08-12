@@ -3,13 +3,11 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
 
     console.log("settings axes controller");
 
-    // var util = mcaccel.utility;
-
     $scope.settings = data.getPageById("settings").settings;
 
     $scope.axesDir = {};
-    $scope.axesDir.x = settings.getDirState(settings.getCalibration("i"));
-    $scope.axesDir.y = settings.getDirState(settings.getCalibration("j"));
+    $scope.axesDir.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
+    $scope.axesDir.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
 
     $scope.switched = {};
 
@@ -24,7 +22,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
     $scope.setDirection = function (axis) {
 
         setSwitched();
-        settings.settings.direction.setOverride(axis, settings.getStateDir(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
+        settings.settings.axes.setOverride(axis, settings.settings.axes.getDirFromState(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
 
 

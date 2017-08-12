@@ -228,7 +228,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			progress.startPhase();
 		}
 		else {
-			settings.settings.direction.axesSet(false);
 			progress.hardStop();
 			events.dispatch("gohome");
 			events.dispatch("calibrate-btn-hide");
@@ -332,7 +331,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 				g.setAxis(axis == yDir ? yDir : xDir, -1);
 
-				settings.settings.direction.setDirection(axis, -1);
+				settings.settings.axes.setDirection(axis, -1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
 				//showToast(axis == yDir ? "yDir" : "xDir", "switched");
@@ -342,7 +341,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 				g.setAxis(axis == yDir ? yDir : xDir, 1);
 
-				settings.settings.direction.setDirection(axis, 1);
+				settings.settings.axes.setDirection(axis, 1);
 
 				console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
 				//showToast(axis == yDir ? "yDir" : "xDir", "same");

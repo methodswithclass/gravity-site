@@ -3,50 +3,10 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 	var g = mcshared.utility;
 	var util = mcaccel.utility;
 
-   	// var x;
-	// var y;
-
 	var calibration = {
-		x:1,
-		y:1
-	}
-
-	var axesSet = false;
-
-	var getCalibration = function(dir) {
-
-		return calibration[dir];
-	}
-
-	var setSliderValue = function (val) {
-
-		console.log("set value", val);
-
-    	$("#amount").html(g.truncate(val*100,0));
-    	util.setFactor(util.const.factorS, val);
+        i: 1,
+        j: 1
     }
-
-    var getSliderValue = function () {
-
-    	return $("#slider-vertical").slider("value");
-    }
-
-	var getDirState = function (dir) {
-
-    	return dir < 0 ? true : false;
-    }
-
-	var getStateDir = function (state) {
-
-    	return state ? -1 : 1;
-    }
-
-    var changeDirection = function (axis, dir) {
-
-		console.log("change axis", axis, "direction", dir);
-
-		util.setAxis(axis, dir);
-	}
 
     var settings = {
     	factor:{
@@ -65,9 +25,20 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 			    });
 
     		},
+            getSliderValue:function () {
+
+                return $("#slider-vertical").slider("value");
+            },
+            setSliderValue:function (val) {
+
+                console.log("set value", val);
+
+                $("#amount").html(g.truncate(val*100,0));
+                util.setFactor(util.const.factorS, val);
+            },
     		enter:function () {
 
-    			setSliderValue(getSliderValue());
+    			settings.factor.setSliderValue(settings.factor.getSliderValue());
     		},
     		createRegistry:[
     			"setup",
@@ -77,46 +48,33 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     			
     		]
     	},
-    	direction:{
-            axesSet:function(value) {
+    	axes:{
+    		getCalibration:function(dir) {
 
-                if (!value) {
-                    return axesSet;
-                }
-
-                axesSet = value;
-
+                return calibration[dir];
             },
             setOverride:function(dir, value) {
                 util.setAxis(dir, util.getAxis(dir)*(-1));
-				calibration[dir] = value;
-
-                // util.setAxis(dir, value);
+                calibration[dir] = value;
             },
-    		registerSetter:function (setter) {
+			setDirection:function (axis, dir) {
 
-    			settings.direction.setDirection = setter;
-    		},
-    		changeDirection:function (axis, dir) {
-
-    			changeDirection(axis, dir);
-    		},
-    		setDirection:function (axis, dir) {
-
-    			console.log("old setDevice", axis, dir);
+    			util.setAxis(axis, dir);
 			},
-    		activate:function () {
+            getStateFromDir:function (dir) {
 
-    			console.log("activate");
+                return dir < 0 ? true : false;
+            },
+			getDirFromState:function (state) {
 
-			},
+                return state ? -1 : 1;
+            },
 			createRegistry:[
-				
-    		],
-			enterRegistry:[
-				"activate"
-			]
 
+			],
+			enterRegistry:[
+
+			]
     	}
 
 
@@ -197,10 +155,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 		onLeave:onLeave,
 		update:update,
 		reset:reset,
-		getStateDir:getStateDir,
-		getDirState:getDirState,
-		settings:settings,
-		getCalibration:getCalibration
+		settings:settings
 	}
 
 }]);
