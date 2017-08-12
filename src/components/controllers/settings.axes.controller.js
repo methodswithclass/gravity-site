@@ -24,7 +24,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
         $scope.switched.y = $scope.axesDir.y ? "switched" : "standard";
 
     }
-    
+
     setSwitched();
 
     $scope.setDirection = function (axis) {
