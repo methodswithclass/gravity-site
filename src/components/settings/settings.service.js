@@ -12,34 +12,46 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     	factor:{
     		setup:function () {
 
-    			$("#slider-vertical").slider({
-					orientation: "vertical",
-					max: 2,
-					min: 0.01,
-					step:0.01,
-					animate:true,
-					value: util.getFactor(util.const.factorS),
-					slide: function( event, ui ) {
-						setSliderValue(ui.value);
-					}
-			    });
+    			// $("#slider-vertical").slider({
+					// orientation: "vertical",
+					// max: 2,
+					// min: 0.01,
+					// step:0.01,
+					// animate:true,
+					// value: util.getFactor(util.const.factorS),
+					// slide: function( event, ui ) {
+					// 	setSliderValue(ui.value);
+					// }
+			    // });
 
     		},
             getSliderValue:function () {
 
-                return $("#slider-vertical").slider("value");
+                // return $("#slider-vertical").slider("value");
             },
             setSliderValue:function (val) {
 
-                console.log("set value", val);
-
-                $("#amount").html(g.truncate(val*100,0));
-                util.setFactor(util.const.factorS, val);
+                // console.log("set value", val);
+                //
+                // $("#amount").html(g.truncate(val*100,0));
+                // util.setFactor(util.const.factorS, val);
             },
     		enter:function () {
 
-    			settings.factor.setSliderValue(settings.factor.getSliderValue());
+    			// settings.factor.setSliderValue(settings.factor.getSliderValue());
     		},
+            convert:function (amount) {
+
+                return amount < 1 ? amount*100 : (amount > 1 ? amount/100 : amount);
+            },
+			getSessionFactor:function() {
+
+    			return util.getFactor(util.const.factorS);
+			},
+			setSessionFactor:function (val) {
+
+    			util.setFactor(util.const.factorS, val)
+			},
     		createRegistry:[
     			"setup",
     			"enter"

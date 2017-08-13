@@ -9,7 +9,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var yDir = g.const.y;
 	var xDir = g.const.x;
 
-	var calDir = yDir;
+	// var calDir = yDir;
 
 	var sm = {
 		xDir:{
@@ -24,7 +24,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
     var num_phases = 0;
 
-	var element;
+	// var element;
 
 	var accelValue = 0.01;
 	var acc = {};
@@ -34,7 +34,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var curr = 0;
 	var running = true;
 
-	var skipCalibrate = false;
+	var skipCalibrate = true;
 
 
     var addPercentToPhases = function () {
