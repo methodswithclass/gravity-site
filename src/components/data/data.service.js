@@ -183,7 +183,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		params:{
 			interval:2,
 			filterSize:3,
-			factor:0.8,
+			factor:0.4,
 			mu:0.1,
 			damp:0.4,
 			gravity:true,
@@ -229,7 +229,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		params:{
 			interval:5,
 			filterSize:3,
-			factor:0.6,
+			factor:0.3,
 			mu:0.1,
 			damp:0.4,
 			gravity:false,
@@ -321,7 +321,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		params:{
 			interval:8,
 			filterSize:3,
-			factor:0.2,
+			factor:0.1,
 			mu:0.08,
 			damp:0.4,
 			gravity:true,
@@ -367,7 +367,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		params:{
 			interval:1,
 			filterSize:5,
-			factor:0.4,
+			factor:0.2,
 			mu:0.105,
 			damp:0.4,
 			gravity:true,
