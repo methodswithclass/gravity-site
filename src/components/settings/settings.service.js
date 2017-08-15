@@ -21,21 +21,6 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
             default:1,
             min:0.2,
             max: 2,
-            normalize:function (factor) {
-
-                var max = settings.factor.max;
-                var min = settings.factor.min;
-
-                var result = factor * (max - min) + min;
-
-                console.log("normalize", result);
-
-                return result;
-            },
-            convert:function (value, dir) {
-
-                return (dir == "up" && value < 1) ? value * 100 : ((dir == "down" && value > 1) ? value / 100 : value);
-            },
 			getSessionFactor:function() {
 
     			return util.getFactor(util.const.factorS);
