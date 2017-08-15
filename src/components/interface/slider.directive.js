@@ -70,10 +70,11 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             }
             var touchstart = function (e) {
                 var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+                console.log("touch down");
                 startEvent(touch);
             }
             var startEvent = function (event) {
-                //console.log("down", event.clientY, event.pageY, getSlide().offset().top, getSlide().position().top, slideTop());
+                console.log("down", event.clientY, event.pageY, getSlide().offset().top, getSlide().position().top, slideTop());
                 down = true;
             }
 
@@ -84,6 +85,7 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             var touchmove = function (e) {
                 e.preventDefault();
                 var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+                console.log("touch move", touch);
                 moveEvent(touch)
             }
             var moveEvent = function (event) {

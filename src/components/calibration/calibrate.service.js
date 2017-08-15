@@ -34,7 +34,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 	var curr = 0;
 	var running = true;
 
-	var skipCalibrate = false;
+	var skipCalibrate = true;
 
 
     var addPercentToPhases = function () {
