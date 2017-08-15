@@ -79,11 +79,11 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 					title:"Axes",
 					view:"setting.axes.view.html"
 				},
-				{
-					id:"obj-color",
-					title:"Object Color",
-					view:"setting.obj-color.view.html"
-				}
+				//{
+				//	id:"obj-color",
+				//	title:"Object Color",
+				//	view:"setting.obj-color.view.html"
+				//}
 			]
 		},
 		page:{
