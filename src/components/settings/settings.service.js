@@ -11,7 +11,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     var settings = {
     	factor:{
             default:100,
-            min:50,
+            min:20,
             max:200,
 			getSessionFactor:function() {
 

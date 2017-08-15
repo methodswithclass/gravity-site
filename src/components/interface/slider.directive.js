@@ -13,6 +13,13 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
 
             var min = settings.settings.factor.min;
             var max = settings.settings.factor.max;
+            //var min = 0;
+            //var max = 100;
+
+            var getPage = function () {
+
+                return $("#setting-sessionfactor");
+            }
 
             var getSlide = function () {
 
@@ -28,7 +35,9 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
 
                 var result = getSlide().offset().top;
 
-                console.log("slide top", result);
+                //var result = getSlide().offset().top + getPage()[0].scrollTop
+
+                //console.log("slide top", result);
 
                 return result;
             }
@@ -48,61 +57,6 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
                 return slideHeight() - (value ? value : getThumb().position().top) + getThumb().height()/2;
             }
 
-            // var setThumbRelativeToSlideTop = function (value) {
-
-            //     var result = slideTop() + slideHeight() - setThumbCenter(value);
-
-            //     console.log("thumb relative to slide top", result)
-
-            //     return result;
-            // }
-
-            // var setThumbRelativeToSlideBottom = function (value) {
-
-            //     return slideHeight() - (slideBottom() - setThumbCenter(value));
-            // }
-
-            // var getValueRelativeTopSlideTop = function (value) {
-
-            //     return slideHeight() - (value - slideTop());
-            // }
-
-            // var getValueRelativeToSlideBottom = function (value) {
-
-            //     return slideHeight() - (slideBottom() - value);
-            // }
-
-            // var getThumbRelativeToTop = function () {
-
-            //     return slideHeight() - (slideTop() + thumbCenter());
-            // }
-
-            // var getThumbRelativeToBottom = function () {
-
-            //     return slideBottom() - thumbCenter();
-            // }
-
-            // var getValuePosition = function (value) {
-
-            //     console.log("value", value);
-
-            //     return getSlide().offset().top + getSlide().height() - value - getThumb().height()/2;
-            // }
-
-
-            // var getSliderValue = function () {
-
-            //     return getThumbPosition()/getThumb().height();
-            // }
-
-            // var thumbValue = function (val) {
-
-            //     var top = (1-val)*getSlide().height();
-            //     var half = getThumb().height()/4;
-
-            //     return top - half;
-            // }
-
             var resolve = function (value) {
 
                 var topCheck = thumbCenter(value) >= slideTop();
@@ -111,14 +65,19 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
                 return !topCheck ? 1 : (topCheck && bottomCheck ? 0 : (topCheck && !bottomCheck ? -1 : 0));
             }
 
+            var resolveFactor = function (factor) {
+
+                return factor < 0.05 ? 0.05 : (factor > 1.0 ? 1.0 : factor);
+            }
+
             var convert = function (value, dir) {
 
                 return (dir == "up" && value < 1 ) ? value*100 : ((dir == "down" && value > 1) ? value/100 : value);
             }
 
-            var normalizeMinMax = function (value) {
+            var normalizeMinMax = function (factor) {
 
-                return (max-min)*(value-min)/100 + min;
+                return (max-min)*(factor-min)/100 + min;
             }
 
             var normalizePx = function (value) {
@@ -126,48 +85,36 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
                 return (slideTop() - slideBottom())*(value-slideBottom())/100 + slideBottom();
             }
 
-            var setThumbCenterFromTop = function (value) {
+            var setThumbCenterFromTop = function (factor) {
 
-                //var result = slideHeight() - normalizeMinMax(value);
+                var result = (1-factor) * slideHeight();
 
-                var result = value;
-
-                console.log("set thumb center, value: ", value, "result: ", result);
+                console.log("thumb top", result);
 
                 return result;
             }
 
-            var setThumbPosition = function (value) {
-
-                console.log("set thumb position", value);
-                // getThumb().css({top:thumbValue(convert(value, "down")) + "px"});
-                getThumb().css({top:setThumbCenterFromTop(value)});
+            var setThumbPosition = function (factor) {
+                
+                getThumb().css({top:setThumbCenterFromTop(factor)});
             }
 
-            //var processFor = function (value) {
+            var getFactorFromValue = function (value) {
 
-            //    var normal = normalizeMinMax(value);
-            //    console.log("normal", normal);
-            //    var converted = convert(normal, "up");
+                var result = value - slideTop();
 
-            //    console.log("convert", converted);
-            //    return converted;
-            //}
+                var factor = 1 - result / slideHeight();
 
-            var processValue = function (value) {
+                factor = resolveFactor(factor);
 
-                //$scope.displayFactor(value/slideHeight()*100);
+                $scope.displayFactor(factor);
 
-                //$scope.$apply();
+                $scope.$apply();
 
-                setThumbPosition(value);
-
-                console.log("temp amount", $scope.tempAmount);
+                return factor;
             }
 
-            console.log("set thumb position at temp amount", $scope.tempAmount);
-
-            setThumbPosition(processFor($scope.tempAmount));
+            setThumbPosition($scope.tempAmount/100);
 
 
 
@@ -187,16 +134,13 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
 
 
                 var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-                //CODE GOES HERE
-                console.log(touch.pageY+' '+touch.pageX);
-
                 startEvent(touch);
 
             }
 
             var startEvent = function (event) {
 
-                console.log("down", event.clientY, event.pageY);
+                //console.log("down", event.clientY, event.pageY, getSlide().offset().top, getSlide().position().top, slideTop());
 
                 down = true;
             }
@@ -219,23 +163,24 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             var moveEvent = function (event) {
 
                 if (down) {
-                    console.log("move", event.clientY);
 
-                    if (resolve(event.clientY) == 0) {
-                        //value = getValueRelativeToSlideBottom(event.pageY);
+                    //if (resolve(event.clientY) == 0) {
+                        console.log("clientY", event.clientY);
                         value = event.clientY;
-                    }
-                    else if (resolve(event.clientY) < 0) {
-                    
-                        value = 0;
-                    }
-                    else if (resolve(event.clientY) > 0) {
-                    
-                        value = 100;
-                    }
+                    //}
+                    //else if (resolve(event.clientY) < 0) {
+                    //    console.log("boundary 0");
+                    //    setThumbPosition(getFactorFromValue(slideTop() + 20));
+                    //    return;
+                    //}
+                    //else if (resolve(event.clientY) > 0) {
+                    //    console.log("boundary 100");
+                    //    setThumbPosition(getFactorFromValue(slideBottom() - 20));
+                    //    return;
+                    //}
 
                     
-                    processValue(value);
+                    setThumbPosition(getFactorFromValue(value));
                 }
 
             }
@@ -252,7 +197,6 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
 
 
                 var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-                //CODE GOES HERE
                 console.log(touch.pageY+' '+touch.pageX);
 
                 endEvent(touch);
@@ -260,8 +204,6 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             }
 
             var endEvent = function (event) {
-
-                console.log("up");
 
                 down = false;
             }
@@ -272,8 +214,8 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             //window.addEventListener("mousedown", mousedown);
             //window.addEventListener("touchstart", touchstart);
 
-            getSlide().bind("mousemove", mousemove);
-            getSlide().bind("touchmove", touchmove);
+            window.addEventListener("mousemove", mousemove);
+            window.addEventListener("touchmove", touchmove);
 
             window.addEventListener("mouseup", mouseup);
             window.addEventListener("touchend", touchend);

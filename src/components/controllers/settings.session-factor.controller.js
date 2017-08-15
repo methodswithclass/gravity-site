@@ -10,9 +10,9 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
     $scope.amount = settings.settings.factor.getSessionFactor();
 
     $scope.displayFactor = function (factor) {
-        console.log("display", factor);
-        $scope.tempAmount = mcshared.utility.truncate(factor < settings.settings.factor.min ? factor*100 : factor, 0);
-        console.log("display", $scope.tempAmount);
+        //console.log("display", factor);
+        $scope.tempAmount = mcshared.utility.truncate(factor*100, 0);
+        //console.log("display", $scope.tempAmount);
     }
 
     $scope.displayFactor($scope.amount);
