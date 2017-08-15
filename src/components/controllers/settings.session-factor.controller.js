@@ -7,21 +7,25 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
 
     $scope.settings = data.getPageById("settings").settings
 
-    $scope.amount = settings.settings.factor.getSessionFactor();
-
-    $scope.displayFactor = function (factor) {
-        //console.log("display", factor);
-        $scope.tempAmount = mcshared.utility.truncate(factor*100, 0);
-        //console.log("display", $scope.tempAmount);
+    $scope.displayFactor = function (_factor) {
+        $scope.percent = mcshared.utility.truncate(_factor * 100, 0);
     }
 
-    $scope.displayFactor($scope.amount);
+    var factor = settings.settings.factor.getSessionFactor();
+
+    console.log("session factor", factor);
+
+    $scope.displayFactor(factor);
 
     $scope.save = function () {
 
-        $scope.amount = $scope.tempAmount > settings.factor.max ? $scope.tempAmount/100 : $scope.tempAmount;
+        var p = $scope.percent;
+        var min = settings.settings.factor.min;
+        var max = settings.settings.factor.max;
 
-        settings.settings.factor.setFactor(util.const.factorS, $scope.amount);
+        var _factor = p > max ? p/100 : (p < min ? p*100 : p);
+
+        settings.settings.factor.setFactor(util.const.factorS, _factor);
     }
 
 

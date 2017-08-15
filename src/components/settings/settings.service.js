@@ -10,9 +10,31 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
     var settings = {
     	factor:{
-            default:100,
-            min:20,
-            max:200,
+            default:1,
+            min:0.2,
+            max: 2,
+            normalize:function (factor, which) {
+
+                var max = settings.factor.max;
+                var min = settings.factor.min;
+
+                var result;
+
+                if (which == "minmax") {
+                    result = (max-min)/factor;
+                }
+                else {
+                    result = factor / (max - min);
+                }
+
+                console.log("normalize", result);
+
+                return result;
+            },
+            convert:function (value, dir) {
+
+                return (dir == "up" && value < 1) ? value * 100 : ((dir == "down" && value > 1) ? value / 100 : value);
+            },
 			getSessionFactor:function() {
 
     			return util.getFactor(util.const.factorS);
