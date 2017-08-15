@@ -26,35 +26,26 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             }
 
             var slideHeight = function () {
-                return getSlide().height();
+                return getSlide().height()/(max-min);
             }
 
             var resolveFactor = function (factor) {
-
-                //var factor = settings.settings.factor.normalize(_factor, "minmax");
-
-                return factor < 0 ? 0 : (factor > 1 ? 1 : factor);
+                return factor < min ? min : (factor > max ? max : factor);
             }
 
             var getFactorFromValue = function (value) {
 
                 var result = value - slideTop();
-                //var normal = settings.settings.factor.normalize(result, "minmax")
-                var factor = 1 - result / slideHeight();
+                var factor = max - result / slideHeight();
                 factor = resolveFactor(factor);
 
                 $scope.displayFactor(factor);
                 $scope.$apply();
-
-                //return settings.settings.factor.normalize(factor);
                 return factor;
             }
 
             var setThumbCenterFromTop = function (factor) {
-                //console.log("set thumb top", factor, max, min, max - min, factor * (max - min), 1 - factor * (max - min));
-                //var normal = factor * (max - min);
-                //var normal = settings.settings.factor.normalize(factor, "minmax");
-                var result = (factor < 1 ? 1-factor : factor-1) * slideHeight() - getThumb().height()/2;
+                var result = (factor < max ? max-factor : factor-max) * slideHeight() - getThumb().height()/2;
                 return result;
             }
 
@@ -64,7 +55,6 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
 
             var initialFactor = settings.settings.factor.getSessionFactor();
             console.log("initial factor", initialFactor);
-            //setThumbPosition(settings.settings.factor.normalize(initialFactor));
             setThumbPosition(initialFactor);
 
 

@@ -13,19 +13,12 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
             default:1,
             min:0.2,
             max: 2,
-            normalize:function (factor, which) {
+            normalize:function (factor) {
 
                 var max = settings.factor.max;
                 var min = settings.factor.min;
 
-                var result;
-
-                if (which == "minmax") {
-                    result = (max-min)/factor;
-                }
-                else {
-                    result = factor / (max - min);
-                }
+                var result = factor * (max - min) + min;
 
                 console.log("normalize", result);
 

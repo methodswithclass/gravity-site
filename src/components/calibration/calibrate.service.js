@@ -86,7 +86,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 		console.log("calibrate start");
 
 		// g.setFactor(g.const.factorG, 1);
-		 //g.setFactor(g.const.factorS, settings.settings.factor.default);
+		 g.setFactor(g.const.factorS, settings.settings.factor.default);
 		// g.setAxis(g.const.y, 1);
 		// g.setAxis(g.const.x, 1);
 
