@@ -64,59 +64,70 @@ interfaceModule.directive("slider", ["settings.service", function (settings) {
             /////////////////////////////////////
 
 
-            var mousedown = function (e) {
-                e.preventDefault();
-                startEvent(e);
-            }
-            var touchstart = function (e) {
-                var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-                console.log("touch down");
-                startEvent(touch);
-            }
-            var startEvent = function (event) {
-                console.log("down", event.clientY, event.pageY, getSlide().offset().top, getSlide().position().top, slideTop());
-                down = true;
-            }
+            //var mousedown = function (e) {
+            //    e.preventDefault();
+            //    startEvent(e);
+            //}
+            //var touchstart = function (e) {
+            //    var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+            //    console.log("touch down");
+            //    startEvent(touch);
+            //}
+            //var startEvent = function (event) {
+            //    console.log("down", event.clientY, event.pageY, getSlide().offset().top, getSlide().position().top, slideTop());
+            //    down = true;
+            //}
 
-            var mousemove = function (e) {
-                e.preventDefault();
-                moveEvent(e);
-            }
-            var touchmove = function (e) {
-                e.preventDefault();
-                var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-                console.log("touch move", touch);
-                moveEvent(touch)
-            }
-            var moveEvent = function (event) {
-                if (down) {
-                    console.log("clientY", event.clientY);
-                    value = event.clientY;
-                    setThumbPosition(getFactorFromValue(value));
-                }
-            }
+            //var mousemove = function (e) {
+            //    e.preventDefault();
+            //    moveEvent(e);
+            //}
+            //var touchmove = function (e) {
+            //    e.preventDefault();
+            //    var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+            //    console.log("touch move", touch);
+            //    moveEvent(touch)
+            //}
+            //var moveEvent = function (event) {
+            //    if (down) {
+            //        console.log("clientY", event.clientY);
+            //        value = event.clientY;
+            //        setThumbPosition(getFactorFromValue(value));
+            //    }
+            //}
 
-            var mouseup = function (e) {
-                e.preventDefault();
-                endEvent(e);
-            }
-            var touchend = function (e) {
-                var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-                console.log(touch.pageY+' '+touch.pageX);
-                endEvent(touch);
-            }
-            var endEvent = function (event) {
-                down = false;
-            }
+            //var mouseup = function (e) {
+            //    e.preventDefault();
+            //    endEvent(e);
+            //}
+            //var touchend = function (e) {
+            //    var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+            //    console.log(touch.pageY+' '+touch.pageX);
+            //    endEvent(touch);
+            //}
+            //var endEvent = function (event) {
+            //    down = false;
+            //}
 
-            getThumb().bind("mousedown", mousedown);
-            getThumb().bind("touchstart", touchstart);
+            
+            var mc = new Hammer.Manager(getThumb()[0]);
+            var Pan = new Hammer.Pan();
+            mc.add(Pan);
+            mc.get('pan').set({ direction: Hammer.DIRECTION_VERTICAL });
+            mc.on('pan', function (e) {
+                console.log("clientY", e.center.y);
+                value = e.center.y;
+                setThumbPosition(getFactorFromValue(value));
+            });
 
-            window.addEventListener("mousemove", mousemove);
-            window.addEventListener("touchmove", touchmove);
+            //getThumb().bind("mousedown", mousedown);
+            //getThumb().bind("touchstart", touchstart);
 
-            window.addEventListener("mouseup", mouseup);
-            window.addEventListener("touchend", touchend);
+            //window.addEventListener("mousemove", mousemove);
+            //window.addEventListener("touchmove", touchmove);
+
+            //window.addEventListener("mouseup", mouseup);
+            //window.addEventListener("touchend", touchend);
         }
     }
 
