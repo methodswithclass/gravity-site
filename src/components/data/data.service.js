@@ -1,6 +1,8 @@
 dataModule.factory("data.service", ['utility.service', function (util) {
 
-	var g = mcshared.utility;
+    var g = mcshared.utility;
+
+    var stats = false;
 
 	var pages = [
 	{
@@ -533,6 +535,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		pages:pages,
 		enemydata:EnemyType,
 		getPageById:getPageById,
-		isPage:isPage
+        isPage: isPage,
+        stats:stats
 	}
 }]);

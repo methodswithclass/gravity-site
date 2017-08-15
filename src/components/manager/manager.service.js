@@ -49,7 +49,7 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 			
 			if (page.type.stages) games[id].update(objects[id], interval);
 
-			if (page.type.accel) setStats(id);
+			if (data.stats) setStats(id);
 
 			if (page.type.game) {
 				displays[id].time.html(games[id].clock());
@@ -141,7 +141,7 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
 		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
-		if (page.type.accel) setStats(id);
+		if (data.stats) setStats(id);
 
 		if (page.type.game) {
 			displays[id].time.html(games[id].clock());
