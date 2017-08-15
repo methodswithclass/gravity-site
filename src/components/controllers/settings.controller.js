@@ -31,5 +31,7 @@ controllerModule.controller("settings.controller", ['$scope', 'global.service', 
         return settingOpened;
     }
 
+    settings.settings.registerClose($scope.closeSetting);
+
 
 }]);

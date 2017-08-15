@@ -9,6 +9,14 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
     }
 
     var settings = {
+        closeSetting: function () {
+
+            console.log("old close setting");
+        },
+        registerClose: function (_close) {
+
+            settings.closeSetting = _close;
+        },
     	factor:{
             default:1,
             min:0.2,

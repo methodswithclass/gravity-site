@@ -21,7 +21,8 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
         var max = settings.settings.factor.max;
         var $factor = p > max ? p/100 : (p < min ? p*100 : p);
 
-        settings.settings.factor.setFactor(util.const.factorS, $factor);
+        settings.settings.factor.setSessionFactor($factor);
+        settings.settings.closeSetting();
     }
 
 
