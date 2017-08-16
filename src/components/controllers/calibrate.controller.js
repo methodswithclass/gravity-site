@@ -33,7 +33,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
                 },
                 continue:{
                     top:"bottom0",
-                    left: "right-minus-100",
+                    left: "right-minus-50",
                     rotate:"rotate-counter-90"
                 }
             }
