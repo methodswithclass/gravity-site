@@ -28,7 +28,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             instructions:"turn device horizontally",
             pos:{
                 image:{
-                    top:"top0",
+                    top:"bottom0",
                     left:"left0"
                 },
                 continue:{
