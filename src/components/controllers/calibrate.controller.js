@@ -13,11 +13,11 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             instructions:"hold device vertically",
             pos:{
                 image:{
-                    top:"bottom0",
+                    top:"top0",
                     left:"right0"
                 },
                 continue:{
-                    top:"top0",
+                    top:"bottom0",
                     left: "left0",
                     rotate:""
                 }
@@ -28,11 +28,11 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
             instructions:"turn device horizontally",
             pos:{
                 image:{
-                    top:"bottom0",
+                    top:"top0",
                     left:"left0"
                 },
                 continue:{
-                    top:"top0",
+                    top:"bottom0",
                     left: "right0",
                     rotate:"rotate-counter-90"
                 }
