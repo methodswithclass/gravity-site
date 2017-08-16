@@ -1,28 +1,13 @@
 controllerModule.controller("calibrate.controller", ['$scope', 'global.service', 'state.service', 'events.service', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
 
-	//console.log(" ");
+
 	console.log("calibrate controller");
-    
 
     var page = $scope.page;
 
     var timer;
 
     var phases = {
-        //over:{
-        //    src:"/assets/img/tilt-arrow-over.png",
-        //    instructions:"tilt down, away from you",
-        //    pos:{
-        //        image:{
-        //            top:"top0",
-        //            left:"right0"
-        //        },
-        //        continue:{
-        //            top:"bottom0",
-        //            left:"left0"
-        //        }
-        //    }
-        //},
         under:{
             src:"/assets/img/tilt-arrow-under.png",
             instructions:"hold device vertically",
@@ -52,35 +37,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
                     rotate:"rotate-counter-90"
                 }
             }
-        },
-        //left:{
-        //    src:"/assets/img/tilt-arrow-left.png",
-        //    instructions:"hold flat, tilt to the left",
-        //    pos:{
-        //        image:{
-        //            top:"top0",
-        //            left:"left0"
-        //        },
-        //        continue:{
-        //            top:"bottom0",
-        //            left:"right0"
-        //        }
-        //    }
-        //},
-        //none:{
-        //    src:"",
-        //    instructions:"continue",
-        //    pos:{
-        //        image:{
-        //            top:"top200",
-        //            left:"left0"
-        //        },
-        //        continue:{
-        //            top:"top0",
-        //            left:"right0"
-        //        }
-        //    }
-        //}
+        }
     }
 
     $scope.progress = "0%";
@@ -136,7 +93,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
         timer = setInterval(function() {
 
             $scope.message = calibrate.getMessage();
-            $scope.progress = calibrate.getProgress()*100 + "%";
+            $scope.progress = mcshared.utility.truncate(calibrate.getProgress() * 100, 1) + "%";
 
             $scope.$apply();
 
@@ -152,11 +109,6 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
     });
 
-    //events.on("tiltover", function () {
-
-    //    $scope.phase = phases.over;
-    //});
-
     events.on("tiltunder", function () {
 
         $scope.phase = phases.under;
@@ -166,15 +118,5 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
         $scope.phase = phases.right;
     });
-
-    //events.on("tiltleft", function () {
-
-    //    $scope.phase = phases.left;
-    //});
-
-    //events.on("tiltnone", function () {
-
-    //    $scope.phase = phases.none;
-    //})
 
 }])
