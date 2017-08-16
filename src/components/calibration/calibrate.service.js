@@ -371,7 +371,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:0,
 			id:"loading",
             message: "loading calibration",
-            instructions:"tap to continue",
 			start:function() {
 				begin(0);
 			},
@@ -388,7 +387,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:1,
 			id:"checkY",
             message: "checking y axis",
-            instructions: "hold device vertically",
 			start:function () {
 				
 				checkAxis.start(1, yDir);
@@ -406,7 +404,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:2,
 			id:"checkFactor",
             message: "calibrating factor",
-            instructions: "hold device vertically",
 			start:function () {
 				
 				checkFactor.start(2);
@@ -425,7 +422,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 			index:3,
 			id:"checkX",
             message: "checking x axis",
-            instructions: "turn device horizontally",
 			start:function () {
 				
 				checkAxis.start(3, xDir);

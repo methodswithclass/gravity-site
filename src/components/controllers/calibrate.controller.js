@@ -9,23 +9,23 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
     var timer;
 
     var phases = {
-        over:{
-            src:"/assets/img/tilt-arrow-over.png",
-            instructions:"tilt down, away from you",
-            pos:{
-                image:{
-                    top:"top0",
-                    left:"right0"
-                },
-                continue:{
-                    top:"bottom0",
-                    left:"left0"
-                }
-            }
-        },
+        //over:{
+        //    src:"/assets/img/tilt-arrow-over.png",
+        //    instructions:"tilt down, away from you",
+        //    pos:{
+        //        image:{
+        //            top:"top0",
+        //            left:"right0"
+        //        },
+        //        continue:{
+        //            top:"bottom0",
+        //            left:"left0"
+        //        }
+        //    }
+        //},
         under:{
             src:"/assets/img/tilt-arrow-under.png",
-            instructions:"tilt up, toward you",
+            instructions:"hold device vertically",
             pos:{
                 image:{
                     top:"bottom0",
@@ -39,7 +39,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
         },
         right:{
             src:"/assets/img/tilt-arrow-right.png",
-            instructions:"hold flat, tilt to the right",
+            instructions:"turn device horizontally",
             pos:{
                 image:{
                     top:"top0",
@@ -51,34 +51,34 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
                 }
             }
         },
-        left:{
-            src:"/assets/img/tilt-arrow-left.png",
-            instructions:"hold flat, tilt to the left",
-            pos:{
-                image:{
-                    top:"top0",
-                    left:"left0"
-                },
-                continue:{
-                    top:"bottom0",
-                    left:"right0"
-                }
-            }
-        },
-        none:{
-            src:"",
-            instructions:"continue",
-            pos:{
-                image:{
-                    top:"top200",
-                    left:"left0"
-                },
-                continue:{
-                    top:"top0",
-                    left:"right0"
-                }
-            }
-        }
+        //left:{
+        //    src:"/assets/img/tilt-arrow-left.png",
+        //    instructions:"hold flat, tilt to the left",
+        //    pos:{
+        //        image:{
+        //            top:"top0",
+        //            left:"left0"
+        //        },
+        //        continue:{
+        //            top:"bottom0",
+        //            left:"right0"
+        //        }
+        //    }
+        //},
+        //none:{
+        //    src:"",
+        //    instructions:"continue",
+        //    pos:{
+        //        image:{
+        //            top:"top200",
+        //            left:"left0"
+        //        },
+        //        continue:{
+        //            top:"top0",
+        //            left:"right0"
+        //        }
+        //    }
+        //}
     }
 
     $scope.progress = "0%";
@@ -150,10 +150,10 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
     });
 
-    events.on("tiltover", function () {
+    //events.on("tiltover", function () {
 
-        $scope.phase = phases.over;
-    });
+    //    $scope.phase = phases.over;
+    //});
 
     events.on("tiltunder", function () {
 
@@ -165,14 +165,14 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
         $scope.phase = phases.right;
     });
 
-    events.on("tiltleft", function () {
+    //events.on("tiltleft", function () {
 
-        $scope.phase = phases.left;
-    });
+    //    $scope.phase = phases.left;
+    //});
 
-    events.on("tiltnone", function () {
+    //events.on("tiltnone", function () {
 
-        $scope.phase = phases.none;
-    })
+    //    $scope.phase = phases.none;
+    //})
 
 }])
