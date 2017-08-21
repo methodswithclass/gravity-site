@@ -223,7 +223,19 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 	var getInstance = function (id) {
 
 		return {arena:arenas[id], object:objects[id], accel:accels[id]};
-	}
+    }
+
+    var changeObject = function (obj) {
+
+        obj.shape = "image";
+        obj.size = 100;
+
+        for (var i in objects) {
+
+            objects[i].changeShape(obj.shape, obj);
+        }
+
+    }
 
 	return {
 		setupReceivers:setupReceivers,
@@ -233,7 +245,8 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 		startInstance:startInstance,
 		stopInstance:stopInstance,
 		leaveInstance:leaveInstance,
-		resetInstance:resetInstance
+        resetInstance: resetInstance,
+        changeObject:changeObject
 	}
 
 }]);

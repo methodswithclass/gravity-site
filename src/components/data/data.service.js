@@ -71,19 +71,91 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			items:[
 				{
 					id:"session-factor",
-					title:"Session Factor",
+					title:"sensitivity",
 					view:"setting.session-factor.view.html"
 				},
 				{
 					id:"axes",
-					title:"Axes",
+					title:"switch axes",
 					view:"setting.axes.view.html"
 				},
-				//{
-				//	id:"obj-color",
-				//	title:"Object Color",
-				//	view:"setting.obj-color.view.html"
-				//}
+				{
+					id:"obj-color",
+					title:"object color",
+                    view: "setting.obj-color.view.html",
+                    getMarble: function (id) {
+                        return this.marbles.find(function (p) {
+                            return p.id == id;
+                        })
+                    },
+                    marbles: [
+                        {
+                            id: "marble1",
+                            shape:util.c.image,
+                            src: "../../assets/img/marbles/marble1.png"
+                        },
+                        {
+                            id: "marble2",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble2.png"
+                        },
+                        {
+                            id: "marble3",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble3.png"
+                        },
+                        {
+                            id: "marble4",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble4.png"
+                        },
+                        {
+                            id: "marble5",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble5.png"
+                        },
+                        {
+                            id: "marble6",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble6.png"
+                        },
+                        {
+                            id: "marble7",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble7.png"
+                        },
+                        {
+                            id: "marble8",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble8.png"
+                        },
+                        {
+                            id: "marble9",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble9.png"
+                        },
+                        {
+                            id: "marble10",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble10.png"
+                        },
+                        {
+                            id: "marble11",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble11.png"
+                        },
+                        {
+                            id: "marble12",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble12.png"
+                        },
+                        {
+                            id: "marble13",
+                            shape: util.c.image,
+                            src: "../../assets/img/marbles/marble13.png"
+                        }
+                    ]
+				}
 			]
 		},
 		page:{
@@ -411,7 +483,22 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			return p.id === name;
 		})
 
-	}
+    }
+
+    var getSetting = function (id) {
+
+        var settings = pages.find(function (p) {
+
+            return p.id == "settings"
+        });
+
+        //console.log("settings", settings);
+
+        return settings.settings.items.find(function (p) {
+
+            return p.id == id;
+        });
+    }
 
 	var isPage = function (id) {
 
@@ -534,7 +621,8 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 	return {
 		pages:pages,
 		enemydata:EnemyType,
-		getPageById:getPageById,
+        getPageById: getPageById,
+        getSetting:getSetting,
         isPage: isPage,
         stats:stats
 	}

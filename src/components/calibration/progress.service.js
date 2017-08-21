@@ -50,7 +50,7 @@ calibrateModule.factory("progress.service", ['events.service', function (events)
 
 		setMessage(scheme[index].message);
 	
-		if (percent - scheme[index].percent >= 0.01) { 
+		if (Math.abs(percent - scheme[index].percent) <= 0.01) { 
 
 			console.log("progress", "complete phase index", index);
 

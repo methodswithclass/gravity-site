@@ -39,7 +39,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
     var addPercentToPhases = function () {
         for (var i in scheme.phases) {
-            scheme.phases[i].percent = i/scheme.phases.length;
+            scheme.phases[i].percent = (parseInt(i) + 1) / num_phases;
         }
     };
 
@@ -418,41 +418,23 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
 
 			}
 		},
-		{
-			index:3,
-			id:"checkX",
+        {
+            index: 3,
+            id: "checkX",
             message: "checking x axis",
-			start:function () {
-				
-				checkAxis.start(3, xDir);
-			},
-			update:function (interval, percent) {
+            start: function () {
 
-				return percent + checkAxis.check(3, xDir);
-			},
-			complete:function () {
+                checkAxis.start(3, xDir);
+            },
+            update: function (interval, percent) {
 
-				checkAxis.complete(3, xDir);
-			}
-		}
-		// {
-		// 	index:4,
-		// 	id:"finish",
-		// 	message:"finishing up calibration",
-		// 	percent:5/scheme.phases.length,
-		// 	start:function() {
-        //
-		// 		begin(4);
-		// 	},
-		// 	update:function (interval, percent) {
-        //
-		// 		return percent + loading(4);
-		// 	},
-		// 	complete:function () {
-        //
-		// 		next(4);
-		// 	}
-		// }
+                return percent + checkAxis.check(3, xDir);
+            },
+            complete: function () {
+
+                checkAxis.complete(3, xDir);
+            }
+        }
 		]
 	}
 
