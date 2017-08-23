@@ -237,9 +237,9 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		}
 	},
 	{
-		id:"gravity",
+		id:"demo",
 		title:{
-			text:"gravity",
+			text:"demo",
 			class:"black"
 		},
 		index:util.c.gravIndex,
@@ -255,7 +255,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 			back:"color2-back",
 			fore:"white-back",
 			menu:{
-				title:"gravity",
+				title:"demo",
 				color:"color2-back"
 			},
 			backButton:{
@@ -269,7 +269,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:100,
+			size:200,
 			color:"black"
 		},
 		params:{
@@ -315,7 +315,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:100,
+			size:200,
 			color:"black"
 		},
 		params:{
@@ -361,7 +361,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		},
 		obj:{
 			shape:util.c.circle,
-			size:150,
+			size:200,
 			color:"black"
 		},
 		params:{

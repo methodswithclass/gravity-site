@@ -20,10 +20,10 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
         obj: {
             min: 50,
             max: 700,
-            size: 50,
+            size: 200,
             obj: {
                 id: "default",
-                size: 100,
+                size: 200,
                 color:"black"
             },
             currentObj: function () {

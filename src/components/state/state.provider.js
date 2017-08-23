@@ -67,12 +67,12 @@ stateModule.provider("state.provider", function ($stateProvider) {
         url:"/calibrate"
     },
     {
-        name:"page.gravity",
-        url:"/gravity"
+        name:"page.demo",
+        url:"/demo"
     },
     {
         name:"page.slide",
-        url:"/float"
+        url:"/slide"
     },
     {
         name:"page.enemy",

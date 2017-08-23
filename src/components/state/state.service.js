@@ -15,8 +15,6 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	var state;
 	var isPage = false;
 
-	// console.log("states", "setup body receiver");
-	// send.setup.receiver({name:"body", receiver:body});
 
 	var setupReceivers = function () {
 
@@ -128,9 +126,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 		pso = fso;
 
-		if (fso.page) {
-
-			//console.log("from state", fso.name, "is a page");
+        if (fso.page) {
 
 			var fp = data.getPageById(fso.name);
 	   		manager.stopInstance(fp.id);
@@ -144,16 +140,13 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	});
 
 	$transitions.onSuccess({}, function(trans)
-	{
-
-		//console.log("complete state change", "from state", fs.name, "to state", ts.name);
+    {
 
 		var fso = getStateParams(trans.$from().name);
 		var tso = getStateParams(trans.$to().name);
 		
 	   	if (tso.page) {
 
-	   		//console.log("to state", tso.name, "is a page");
 
 	   		var delay = 0;
 
@@ -184,74 +177,6 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	   	}
 
 	});
-
-	// $rootScope.$on('$stateChangeStart', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
-	// {
-
-	// 	console.log(" ");
-	// 	console.log("#######################################")
-	// 	console.log("START state change from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
-
-	// 	ps = fs;
-
-	// 	var fso = getStateParams(fs.name);
-
-	// 	if (fso.page) {
-
-	// 		//console.log("from state", fso.name, "is a page");
-
-	// 		var fp = data.getPageById(fso.name);
-	//    		manager.stopInstance(fp.id);
-	//    		manager.leaveInstance(fp.id);
-
-	//    	}
-	//    	else {
-	//    		//console.log("from state", fso.name, "is not a page");
-	//    	}
-
-	// });
-
-	// $rootScope.$on('$stateChangeSuccess', function(event, ts/*toState*/, tp/*toParams*/, fs/*fromState*/, fp/*fromParams*/)
-	// {
-
-	// 	//console.log("complete state change", "from state", fs.name, "to state", ts.name);
-
-	// 	var fso = getStateParams(fs.name);
-	// 	var tso = getStateParams(ts.name);
-		
-	//    	if (tso.page) {
-
-	//    		//console.log("to state", tso.name, "is a page");
-
-	//    		var delay = 0;
-
-	//    		if (tso.name == "calibrate" && fso.name != "home") {
-	//    			delay = 1000;
-	//    		}
-
-	//    		movePage({
- //                name:tso.name,
- //                delay:delay,
- //                duration:100,
- //                complete:function (input) {
-                    
- //                    console.log("END state change WITH MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
-	// 				console.log("#######################################");
-	// 				console.log(" ");
-                    
- //                    input.body.removeClass("scroll").addClass("cutoff");
- //                    if (tso.name == "calibrate") input.manager.startInstance(tso.name);
- //                }
- //            });
-
-	//    	}
-	//    	else {
-	//    		console.log("END state change WITHOUT MOVE from", fs.name.toUpperCase(), "to", ts.name.toUpperCase());
-	// 		console.log("#######################################");
-	// 		console.log(" ");
-	//    	}
-
-	// });
 	
 	angular.element($window).bind('resize', function () {
 		resize();
