@@ -2,24 +2,33 @@
 
 <div class="absolute fill white scrollY" id="setting-sessionfactor" ng-controller="settings.session-factor.controller">
 
-    <div class="fixed width-200 height-200 right-40 top-300 border-white rounded50 pointer" ng-click="save()">
+    <div class="relative width height20 font-70">
+        <div class="absolute center">{{settings.title}}</div>
+    </div>
 
-        <div class="absolute center font-70">
-            <div class="fa fa-check"></div>
+    <div class="relative width-200 height-200 hcenter">
+
+        <div class="absolute width-100 height-100 center border-white rounded30 pointer" ng-click="save(sliderValue)">
+
+            <div class="absolute center font-50">
+                <div class="fa fa-check"></div>
+            </div>
+
         </div>
 
     </div>
 
-    <div class="absolute width60 height90 center">
-
-        <div class="relative width height10 font-70 padding-bottom-50">
-            <div class="absolute center">sensitivity</div>
+    <div class="relative width50 height-200 hcenter font-50">
+        <div class="absolute width45 vcenter left0">
+            <div class="absolute width vcenter text-right">{{sliderValue}}</div>
         </div>
-
-        <div class="relative width height80 padding-top-20">
-            <slider></slider>
+        <div class="absolute width45 vcenter right0">
+            <div class="absolute width vcenter text-left">%</div>
         </div>
+    </div>
 
+    <div class="relative width">
+        <slider orientation="vertical" initial="initialValue" on-change="change"></slider>
     </div>
 
 </div>

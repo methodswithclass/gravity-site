@@ -227,15 +227,20 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
     var changeObject = function (obj) {
 
-        obj.shape = "image";
-        obj.size = 100;
+        if (obj.id == "default") {
+            obj.shape = "circle";
+        }
+        else {
+            obj.shape = "image";
+        }
 
         for (var i in objects) {
 
-            objects[i].changeShape(obj.shape, obj);
+            if (i !== "space") objects[i].changeShape(obj.shape, obj);
         }
 
     }
+
 
 	return {
 		setupReceivers:setupReceivers,
@@ -246,7 +251,7 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 		stopInstance:stopInstance,
 		leaveInstance:leaveInstance,
         resetInstance: resetInstance,
-        changeObject:changeObject
+        changeObject: changeObject
 	}
 
 }]);

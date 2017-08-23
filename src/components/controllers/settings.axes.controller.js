@@ -3,7 +3,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global.servi
 
     console.log("settings axes controller");
 
-    $scope.settings = data.getPageById("settings").settings;
+    $scope.settings = data.getSetting("axes");
 
     $scope.axesDir = {};
     $scope.axesDir.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));

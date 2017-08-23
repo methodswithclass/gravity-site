@@ -2,36 +2,56 @@
 
 <div class="absolute fill font-50 white scrollY" id="setting-objcolor" ng-controller="settings.obj-color.controller">
 
-    <div class="absolute width80 height-2000 hcenter">
+    <div class="relative width height20">
 
-        <div class="relative width height-100">
+        <div class="absolute width height50">
+            <div class="absolute center">{{settings.title}}</div>
+        </div>
 
-            <div class="absolute width height50">
-                <div class="absolute center">{{settings.title}}</div>
+    </div>
+
+    <div class="relative width-200 height-200 hcenter">
+
+        <div class="absolute width-100 height-100 center border-white rounded30 pointer" ng-click="save()">
+
+            <div class="absolute center font-50">
+                <div class="fa fa-check"></div>
             </div>
 
         </div>
 
-        <div class="relative width hcenter">
+    </div>
 
-            <div class="absolute width45 height-300 top0 left0">
+    <div class="relative width50 height-200 hcenter font-50">
+        <div class="absolute width45 vcenter left0">
+            <div class="absolute width vcenter text-right">{{sliderValue}}</div>
+        </div>
+        <div class="absolute width45 vcenter right0">
+            <div class="absolute width vcenter text-left">pixels</div>
+        </div>
+    </div>
 
-                <div class="absolute width-200 height-200 center pointer" ng-click="chooseObj()">
-                    <div class="absolute width80 height80 center">
-                        <div class="absolute width height center black-back border-white rounded50-perc"></div>
-                    </div>
+    <div class="relative width90 height-400 hcenter">
+        
+        <slider orientation="horizontal" on-change="change" initial="initialValue"></slider>
+
+    </div>
+
+    <div class="absolute width80 top-600 hcenter">
+
+        <div class="absolute width45 height-300" ng-repeat="marble in settings.marbles" ng-style="{top:($index - ($index%2-1))*150 + 'px'}" ng-class-odd="'left0'" ng-class-even="'right0'">
+
+            <div ng-if="$index == 0" class="absolute width-200 height-200 center pointer" ng-class="{'border-blue':marble.selected}" ng-click="selectObj(marble)">
+                <div class="absolute width80 height80 center">
+                    <div class="absolute width height center black-back border-white rounded50-perc"></div>
                 </div>
             </div>
 
-            <div class="absolute width45 height-300" ng-repeat="marble in settings.marbles" ng-style="{top:($index + $index%2)*150 + 'px'}" ng-class-odd="'right0'" ng-class-even="'left0'">
-                
-                <div class="absolute width-200 height-200 center pointer" ng-click="chooseObj(marble)">
-                    <div class="absolute width80 height80 center">
-                        <img class="absolute width height-auto center" src="{{marble.src}}" />
-                    </div>
+            <div ng-if="$index > 0" class="absolute width-200 height-200 center pointer" ng-class="{'border-blue':marble.selected}" ng-click="selectObj(marble)">
+                <div class="absolute width80 height80 center">
+                    <img class="absolute width height-auto center" src="{{marble.src}}" />
                 </div>
             </div>
-
         </div>
 
     </div>

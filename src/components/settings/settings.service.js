@@ -17,6 +17,29 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
 
             settings.closeSetting = _close;
         },
+        obj: {
+            min: 50,
+            max: 700,
+            size: 50,
+            obj: {
+                id: "default",
+                size: 100,
+                color:"black"
+            },
+            currentObj: function () {
+                return settings.obj.obj;
+            },
+            setObj: function (obj) {
+                settings.obj.obj = obj;
+            },
+            currentSize: function () {
+                return settings.obj.size;
+            },
+            setSize: function (size) {
+
+                settings.obj.size = size;
+            }
+        },
     	factor:{
             default:1,
             min:0.2,

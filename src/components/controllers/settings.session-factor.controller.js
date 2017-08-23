@@ -3,27 +3,38 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
 
     console.log("settings session factor controller");
 
-    var util = mcaccel.utility;
+    $scope.settings = data.getSetting("session-factor");
 
-    $scope.settings = data.getPageById("settings").settings
+    $scope.sliderValue = settings.settings.factor.getSessionFactor();
 
-    $scope.displayFactor = function (factor) {
-        $scope.percent = mcshared.utility.truncate(factor * 100, 0);
-    }
+    var min = settings.settings.factor.min;
+    var max = settings.settings.factor.max;
 
-    var factor = settings.settings.factor.getSessionFactor();
-    console.log("session factor", factor);
-    $scope.displayFactor(factor);
-
-    $scope.save = function () {
-        var p = $scope.percent;
-        var min = settings.settings.factor.min;
-        var max = settings.settings.factor.max;
-        var $factor = p > max ? p/100 : (p < min ? p*100 : p);
+    $scope.save = function (factor) {
+        var p = factor;
+        var $factor = p > max ? p / 100 : (p < min ? p * 100 : p);
 
         settings.settings.factor.setSessionFactor($factor);
         settings.settings.closeSetting();
     }
 
+    $scope.initialValue = function () {
+
+        return (settings.settings.factor.getSessionFactor()- min)/(max-min);
+    }
+
+    var displayFactor = function ($value) {
+
+        var value = ($value * (max - min) + min)* 100
+
+        $scope.sliderValue = mcshared.utility.truncate(value, 0);
+        $scope.$apply();
+    }
+
+    $scope.change = function (factor) {
+
+        displayFactor(factor);
+        
+    }
 
 }]);

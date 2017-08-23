@@ -90,69 +90,87 @@ dataModule.factory("data.service", ['utility.service', function (util) {
                     },
                     marbles: [
                         {
+                            id: "default",
+                            shape: util.c.circle,
+                            selected:true
+                        },
+                        {
                             id: "marble1",
                             shape:util.c.image,
-                            src: "../../assets/img/marbles/marble1.png"
+                            src: "../../assets/img/marbles/marble1.png",
+                            selected:false
                         },
                         {
                             id: "marble2",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble2.png"
+                            src: "../../assets/img/marbles/marble2.png",
+                            selected: false
                         },
                         {
                             id: "marble3",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble3.png"
+                            src: "../../assets/img/marbles/marble3.png",
+                            selected: false
                         },
                         {
                             id: "marble4",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble4.png"
+                            src: "../../assets/img/marbles/marble4.png",
+                            selected: false
                         },
                         {
                             id: "marble5",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble5.png"
+                            src: "../../assets/img/marbles/marble5.png",
+                            selected: false
                         },
                         {
                             id: "marble6",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble6.png"
+                            src: "../../assets/img/marbles/marble6.png",
+                            selected: false
                         },
                         {
                             id: "marble7",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble7.png"
+                            src: "../../assets/img/marbles/marble7.png",
+                            selected: false
                         },
                         {
                             id: "marble8",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble8.png"
+                            src: "../../assets/img/marbles/marble8.png",
+                            selected: false
                         },
                         {
                             id: "marble9",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble9.png"
+                            src: "../../assets/img/marbles/marble9.png",
+                            selected: false
                         },
                         {
                             id: "marble10",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble10.png"
+                            src: "../../assets/img/marbles/marble10.png",
+                            selected: false
                         },
                         {
                             id: "marble11",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble11.png"
+                            src: "../../assets/img/marbles/marble11.png",
+                            selected: false
                         },
                         {
                             id: "marble12",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble12.png"
+                            src: "../../assets/img/marbles/marble12.png",
+                            selected: false
                         },
                         {
                             id: "marble13",
                             shape: util.c.image,
-                            src: "../../assets/img/marbles/marble13.png"
+                            src: "../../assets/img/marbles/marble13.png",
+                            selected: false
                         }
                     ]
 				}

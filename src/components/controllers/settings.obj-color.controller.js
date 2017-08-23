@@ -11,19 +11,64 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
 
     console.log("marbles", $scope.settings.marbles);
 
-    $scope.chooseObj = function (marble) {
+    $scope.sliderValue = settings.settings.obj.currentSize();
+    $scope.selectedObj = settings.settings.obj.currentObj();
 
-        if (marble) {
-            console.log("marble", marble.id);
+    var min = settings.settings.obj.min;
+    var max = settings.settings.obj.max;
 
-            manager.changeObject(marble);
+    var deselectAll = function () {
+
+        for (var i in $scope.settings.marbles) {
+
+            $scope.settings.marbles[i].selected = false;
         }
-        else {
-            console.log("marble default");
-            manager.changeObject({ id: "default" });
-        }
+
+    }
+
+    var getMarble = function (id) {
+
+        return $scope.settings.marbles.find(function (p) {
+
+            return p.id == id;
+        });
+    }
+
+    $scope.selectObj = function (marble) {
+
+        deselectAll();
+        getMarble(marble.id).selected = true;
+        $scope.selectedObj = marble;
+        //$scope.$apply();
+    }
+
+    $scope.save = function () {
+        
+        $scope.selectedObj.size = $scope.sliderValue;
+
+        settings.settings.obj.setSize($scope.sliderValue);
+        settings.settings.obj.setObj($scope.selectedObj);
+        manager.changeObject($scope.selectedObj);
 
         settings.settings.closeSetting();
+    }
+
+    $scope.initialValue = function () {
+
+        return (settings.settings.obj.currentSize()-min)/(max-min);
+    }
+
+    var displayValue = function ($value) {
+
+        var value = $value * (max-min) + min;
+
+        $scope.sliderValue = mcshared.utility.truncate(value, 0);
+        $scope.$apply();
+    }
+
+    $scope.change = function (factor) {
+
+        displayValue(factor);
     }
 
 
