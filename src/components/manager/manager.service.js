@@ -227,6 +227,8 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
     var changeObject = function (obj) {
 
+        var setSize = obj.size;
+
         if (obj.id == "default") {
             obj.shape = "circle";
         }
@@ -236,7 +238,13 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
         for (var i in objects) {
 
+            if (i == "balance" && obj.size > 275) {
+                obj.size = 275;
+            }
+
             if (i !== "space") objects[i].changeShape(obj.shape, obj);
+
+            obj.size = setSize;
         }
 
     }
