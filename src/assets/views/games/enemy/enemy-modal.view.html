@@ -12,7 +12,7 @@
 
 		<div class="absolute width-500 height-500 rounded50 white-back center" id="{{'preview' + page.id}}">
 			<div class="absolute width90 height90 center border white-back rounded40 cutoff">
-                <div class="absolute width height center cutoff scrollX scroll-style-2 scroll-2-height" id="{{'preview' + page.id + 'inner'}}">
+                <div class="absolute width height center scrollX scroll-style-2 scroll-2-height cutoff" id="{{'preview' + page.id + 'inner'}}">
 				    <div class="absolute height" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" ng-click="toggleinfo('hide')">
 					
                         <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-repeat="type in enemyTypes">
