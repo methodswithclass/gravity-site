@@ -15,10 +15,10 @@ enemyModule.directive("enemyInfo", ['data.service', function (data) {
 
 			var enemy = document.createElement("div");
 			$(enemy).addClass("absolute bordered center");
-			enemy.style.width = type.size + "px";
-			enemy.style.height = type.size + "px";
+			enemy.style.width = type.size*0.6 + "px";
+			enemy.style.height = type.size*0.6 + "px";
 			enemy.style.backgroundColor = type.color;
-			enemy.style.borderRadius = type.size/2 + "px";
+			enemy.style.borderRadius = type.size*0.6/2 + "px";
 
 			$(element).append(enemy);
 		}
