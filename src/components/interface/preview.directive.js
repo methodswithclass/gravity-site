@@ -13,7 +13,7 @@ interfaceModule.directive("preview", ['data.service', "manager.service", 'events
 
             setTimeout(function () {
                 $scope.innerpaneWidth = $("#previewenemyinner").width();
-                $scope.enemyInfoWidth = $scope.innerpaneWidth * ($scope.enemyTypes.length + 1) + 100;
+                $scope.enemyInfoWidth = $scope.innerpaneWidth * ($scope.enemyTypes.length) + 100;
             }, 200);
 
 			$scope.getContentUrl = function() {

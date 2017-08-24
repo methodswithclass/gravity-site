@@ -11,29 +11,31 @@
 		<div class="absolute fill black-back opacity70"></div>
 
 		<div class="absolute width-500 height-500 rounded50 white-back center" id="{{'preview' + page.id}}">
-			<div class="absolute width90 height90 center border white-back rounded40 cutoff" id="{{'preview' + page.id + 'inner'}}">
-				<div class="absolute height" touch dir="x" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}">
+			<div class="absolute width90 height90 center border white-back rounded40 cutoff">
+                <div class="absolute width height center cutoff scrollX scroll-style-2 scroll-2-height" id="{{'preview' + page.id + 'inner'}}">
+				    <div class="absolute height" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" ng-click="toggleinfo('hide')">
 					
-                    <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-repeat="type in enemyTypes">
-						<enemy-info></enemy-info>
-					</div>
+                        <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-repeat="type in enemyTypes">
+						    <enemy-info></enemy-info>
+					    </div>
 
-                    <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-click="toggleinfo('hide')">
+                        <!--<div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}">
                         
-                        <div class="absolute width80 height70 center border rounded20">
-                            <div class="relative height30">
-                                <div class="absolute center font-30">
-                                    close
+                            <div class="absolute width80 height70 center border rounded20">
+                                <div class="relative height30">
+                                    <div class="absolute center font-30">
+                                        close
+                                    </div>
+                                </div>
+                                <div class="relative height70">
+                                    <div class="absolute center font-100">
+                                        <i class="fa fa-close"></i>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="relative height70">
-                                <div class="absolute center font-100">
-                                    <i class="fa fa-close"></i>
-                                </div>
-                            </div>
-                        </div>
 
-                    </div> 
+                        </div>--> 
+                    </div>
                 </div>
 			</div>
 			<div class="absolute width90 height90 center border white-back rounded40 cutoff" ng-class="{hidden:hidemessage}" ng-click="togglemessage('hide')">

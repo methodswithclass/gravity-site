@@ -229,13 +229,6 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 
         var setSize = obj.size;
 
-        if (obj.id == "default") {
-            obj.shape = "circle";
-        }
-        else {
-            obj.shape = "image";
-        }
-
         for (var i in objects) {
 
             if (i == "balance" && obj.size > 275) {
