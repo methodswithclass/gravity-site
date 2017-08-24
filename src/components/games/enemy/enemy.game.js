@@ -49,7 +49,7 @@ enemyModule.factory("enemy.game", ['enemy.service', 'time-keeper.service', funct
 
 			setTimeout(function () {
 
-				enemies[index].destroy({duration:600, reduce:0.5, radius:700});
+				if (enemies[index]) enemies[index].destroy({duration:600, reduce:0.5, radius:700});
 
 				animateDestroy(index+1);
 
@@ -119,16 +119,14 @@ enemyModule.factory("enemy.game", ['enemy.service', 'time-keeper.service', funct
 
 		keeper = new keeperFactory();
 
-		keeper.setTotalTime(30000);
-
-		createAll();
+        keeper.setTotalTime(30000);
 
 	}
 
 	var onEnter = function () {
 
-		
-
+        createAll();
+        
 	}
 
 	var onStart = function () {
