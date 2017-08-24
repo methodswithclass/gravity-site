@@ -4,7 +4,7 @@ enemyModule.directive("enemyInfo", ['data.service', function (data) {
 		restrict:"E",
 		scope:false,
 		replace:true,
-		templateUrl:"features/games/enemy/enemy-info.html",
+		templateUrl:"assets/views/games/enemy/enemy-info.view.html",
 		link:function ($scope, element, attr) {
 
 			var type = $scope.type;

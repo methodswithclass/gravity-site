@@ -8,8 +8,8 @@ var refreshPages = [
     "validity",
     "settings",
     "calibrate",
-    "gravity",
-    "float",
+    "demo",
+    "slide",
     "enemies",
     "balance",
     "space"
