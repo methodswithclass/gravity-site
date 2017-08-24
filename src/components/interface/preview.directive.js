@@ -14,7 +14,7 @@ interfaceModule.directive("preview", ['data.service', "manager.service", 'events
             setTimeout(function () {
                 $scope.innerpaneWidth = $("#previewenemyinner").width();
                 $scope.enemyInfoWidth = $scope.innerpaneWidth * ($scope.enemyTypes.length) + 100;
-            }, 200);
+            }, 500);
 
 			$scope.getContentUrl = function() {
                 return page.type.game ? "assets/views/games/" + page.id + "/" + page.id + "-modal.view.html" : "";

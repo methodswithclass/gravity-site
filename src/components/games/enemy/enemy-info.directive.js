@@ -9,16 +9,18 @@ enemyModule.directive("enemyInfo", ['data.service', function (data) {
 
 			var type = $scope.type;
 
+            var factor = 0.8;
+
 			//console.log("info " + type.name);
 
 			$(element).css({left:$scope.$index*$(element).width()});
 
 			var enemy = document.createElement("div");
-			$(enemy).addClass("absolute bordered center");
-			enemy.style.width = type.size*0.6 + "px";
-			enemy.style.height = type.size*0.6 + "px";
+			$(enemy).addClass("absolute center");
+			enemy.style.width = type.size*factor + "px";
+			enemy.style.height = type.size*factor + "px";
 			enemy.style.backgroundColor = type.color;
-			enemy.style.borderRadius = type.size*0.6/2 + "px";
+			enemy.style.borderRadius = type.size*factor/2 + "px";
 
 			$(element).append(enemy);
 		}
