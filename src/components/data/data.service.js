@@ -92,6 +92,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
                         {
                             id: "default",
                             shape: util.c.circle,
+                            color:"black",
                             selected:true
                         },
                         {
