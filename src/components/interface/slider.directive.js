@@ -88,7 +88,7 @@ interfaceModule.directive("slider", ["settings.service", 'data.service', functio
                     setThumbPosition(setThumbCenterFromMax(getFactorFromValue(value)));
                 });
 
-            }, 200);
+            }, 500);
 
         }
     }
