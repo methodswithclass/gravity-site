@@ -28,7 +28,9 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', ['vendor'], function() {
 	return gulp.src([
-					"src/components/utility/gravity.utility.module.js",
+                    "src/components/utility/utility.module.js",
+					"src/components/utility/utility.service.js",
+                    "src/components/utility/cookie.service.js",
 
 	                "src/components/data/data.module.js",
 					"src/components/data/**/*.js",

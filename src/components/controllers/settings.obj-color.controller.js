@@ -7,12 +7,9 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
 
     $scope.settings = data.getSetting("obj-color");
 
-    console.log("settings", $scope.settings);
-
-    console.log("marbles", $scope.settings.marbles);
-
     $scope.sliderValue = settings.settings.obj.currentSize();
     $scope.selectedObj = settings.settings.obj.currentObj();
+
 
     var min = settings.settings.obj.min;
     var max = settings.settings.obj.max;
@@ -25,22 +22,16 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
         }
 
     }
-
-    var getMarble = function (id) {
-
-        return $scope.settings.marbles.find(function (p) {
-
-            return p.id == id;
-        });
-    }
+    
 
     $scope.selectObj = function (marble) {
 
         deselectAll();
-        getMarble(marble.id).selected = true;
+        data.getMarble(marble.id).selected = true;
         $scope.selectedObj = marble;
-        //$scope.$apply();
     }
+
+    //$scope.selectObj($scope.selectedObj);
 
     $scope.save = function () {
         

@@ -1,4 +1,4 @@
-dataModule.factory("data.service", ['utility.service', function (util) {
+dataModule.factory("data.service", ['utility.service', 'cookie.service', function (util, cookie) {
 
     var g = mcshared.utility;
 
@@ -92,84 +92,98 @@ dataModule.factory("data.service", ['utility.service', function (util) {
                         {
                             id: "default",
                             shape: util.c.circle,
+                            size:200,
                             color:"black",
-                            selected:true
+                            selected:false
                         },
                         {
                             id: "marble1",
-                            shape:util.c.image,
+                            shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble1.png",
                             selected:false
                         },
                         {
                             id: "marble2",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble2.png",
                             selected: false
                         },
                         {
                             id: "marble3",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble3.png",
                             selected: false
                         },
                         {
                             id: "marble4",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble4.png",
                             selected: false
                         },
                         {
                             id: "marble5",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble5.png",
                             selected: false
                         },
                         {
                             id: "marble6",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble6.png",
                             selected: false
                         },
                         {
                             id: "marble7",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble7.png",
                             selected: false
                         },
                         {
                             id: "marble8",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble8.png",
                             selected: false
                         },
                         {
                             id: "marble9",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble9.png",
                             selected: false
                         },
                         {
                             id: "marble10",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble10.png",
                             selected: false
                         },
                         {
                             id: "marble11",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble11.png",
                             selected: false
                         },
                         {
                             id: "marble12",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble12.png",
                             selected: false
                         },
                         {
                             id: "marble13",
                             shape: util.c.image,
+                            size: 200,
                             src: "../../assets/img/marbles/marble13.png",
                             selected: false
                         }
@@ -519,6 +533,30 @@ dataModule.factory("data.service", ['utility.service', function (util) {
         });
     }
 
+    var getMarble = function (id) {
+
+        console.log("get marble", id);
+
+        if (id) {
+            return getSetting("obj-color").marbles.find(function (p) {
+
+                return p.id == id;
+            });
+        }
+        else {
+            return null;
+        }
+    }
+
+    var selectCookieMarble = function () {
+
+        var marble = getMarble(cookie.getCookie(util.c.objKey) || "default");
+
+        marble.selected = true;
+    }
+
+    selectCookieMarble();
+
 	var isPage = function (id) {
 
 		console.log("check if", id, "is page");
@@ -643,6 +681,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
         getPageById: getPageById,
         getSetting:getSetting,
         isPage: isPage,
-        stats:stats
+        stats: stats,
+        getMarble: getMarble
 	}
 }]);

@@ -1,11 +1,18 @@
-settingsModule.factory("settings.service", ['utility.service', function (utility) {
+settingsModule.factory("settings.service", ['utility.service', 'cookie.service', 'data.service', function (utility, cookie, data) {
 
 	var g = mcshared.utility;
-	var util = mcaccel.utility;
+    var util = mcaccel.utility;
+
 
 	var calibration = {
         i: 1,
         j: 1
+    }
+
+    var defaultObj = {
+        id: "default",
+        size: 200,
+        color: "black"
     }
 
     var settings = {
@@ -20,17 +27,18 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
         obj: {
             min: 50,
             max: 700,
-            size: 200,
-            obj: {
-                id: "default",
-                size: 200,
-                color:"black"
-            },
+            size: cookie.getCookie(utility.c.objSizeKey) || 200,
+            obj: cookie.getCookie(utility.c.objKey) || "default",
             currentObj: function () {
-                return settings.obj.obj;
+                return data.getMarble(settings.obj.obj);
             },
-            setObj: function (obj) {
-                settings.obj.obj = obj;
+            setObj: function (marble) {
+                settings.obj.obj = marble.id;
+                cookie.setCookie(utility.c.objKey, marble.id);
+
+                var marbleCookie = cookie.getCookie(utility.c.objKey);
+
+                console.log("marbleCookie", marbleCookie);
             },
             currentSize: function () {
                 return settings.obj.size;
@@ -38,6 +46,7 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
             setSize: function (size) {
 
                 settings.obj.size = size;
+                cookie.setCookie(utility.c.objSizeKey, size);
             }
         },
     	factor:{
@@ -46,11 +55,12 @@ settingsModule.factory("settings.service", ['utility.service', function (utility
             max: 2,
 			getSessionFactor:function() {
 
-    			return util.getFactor(util.const.factorS);
+    			return parseFloat(cookie.getCookie(utility.c.factorKey)) || util.getFactor(util.const.factorS);
 			},
 			setSessionFactor:function (val) {
 
-    			util.setFactor(util.const.factorS, val)
+                util.setFactor(util.const.factorS, val);
+                cookie.setCookie(utility.c.factorKey, val);
 			},
     		createRegistry:[
 

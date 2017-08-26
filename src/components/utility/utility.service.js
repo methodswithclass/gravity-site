@@ -1,7 +1,4 @@
-angular.module("utility.module", ['shared.module'])
-
-
-.factory("utility.service", [function () {
+utilityModule.factory("utility.service", [function () {
 
 	var vector = mcaccel.vector;
 
@@ -13,7 +10,10 @@ angular.module("utility.module", ['shared.module'])
         image:"image",
 		circle:"circle",
 		square:"square",
-		cross:"cross",
+        cross: "cross",
+        objKey: "objCookieKey",
+        objSizeKey: "objSizeCookieKey",
+        factorKey: "factorCookieKey",
 		annihilate:"annihilate",
 		remove:"remove",
 		homeIndex:0,

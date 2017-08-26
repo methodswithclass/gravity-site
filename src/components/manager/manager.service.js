@@ -1,4 +1,4 @@
-managerModule.factory("manager.service", ["data.service", 'send.service', 'settings.service', 'games.library', function (data, send, settings, games) {
+managerModule.factory("manager.service", ["utility.service", "data.service", 'send.service', 'settings.service', 'games.library', 'cookie.service', function (utility, data, send, settings, games, cookie) {
 
 	var util = mcaccel.utility;
 
@@ -84,7 +84,28 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 		var page = data.getPageById(id);
 		if (page.type.stages) games[id].onLeave();
 
-	}
+    }
+
+    var getObjCookie = function (obj) {
+
+        var cookieSize = cookie.getCookie(utility.c.objSizeKey) || 200;
+        var marbleID = cookie.getCookie(utility.c.objKey) || "default";
+        var marble = data.getMarble(marbleID);
+
+        console.log("getObj cookie ID", marbleID, "marble", marble);
+
+        obj.shape = marble.shape;
+        obj.src = marble.src || null;
+        obj.size = cookieSize;
+
+        return obj;
+
+    }
+
+    var validatePageObjects = function (id) {
+
+        return id !== "space" && id !== "calibrate"
+    }
 
 	var addInstance = function (input) {
 
@@ -95,15 +116,19 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
 		if (page.type.accel) {
 
 			// console.log("manager object", input.object);
-			
+
+            var objParams = page.obj;
+
+            if (validatePageObjects(input.id)) objParams = getObjCookie(objParams);
+
 			objects[input.id] = new mcaccel.object({
 				id:input.id,
 				arena:input.arena,
-				params:page.obj
-			});
+				params:objParams
+            });
 
-			arenas[input.id] = input.arena;
-
+            arenas[input.id] = input.arena;
+            
 			accels[input.id] = new mcaccel.accelerometer({
 				id:input.id,
 				object:objects[input.id],
@@ -235,7 +260,7 @@ managerModule.factory("manager.service", ["data.service", 'send.service', 'setti
                 obj.size = 275;
             }
 
-            if (i !== "space") objects[i].changeShape(obj.shape, obj);
+            if (validatePageObjects(i)) objects[i].changeShape(obj.shape, obj);
 
             obj.size = setSize;
         }
