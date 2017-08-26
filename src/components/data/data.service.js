@@ -547,9 +547,9 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		shape:util.c.circle,
 		size:30,
 		color:"red",
-		speed:0.3,
-		hit:-0.8,
-		miss:0.1,
+		speed:0.08,
+		hit:-0.4,
+		miss:0.05,
 		percentage:0.04,
 		destroy:{
 			color:"red",
@@ -566,7 +566,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		color:"yellow",
 		speed:0.05,
 		hit:0.2,
-		miss:0,
+		miss:-0.1,
 		percentage:0.04,
 		destroy:{
 			color:"yellow",
@@ -583,7 +583,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		color:"blue",
 		speed:0.1,
 		hit:83,
-		miss:-32,
+		miss:-22,
 		percentage:0.72,
 		destroy:"standard"
 	},
@@ -597,7 +597,7 @@ dataModule.factory("data.service", ['utility.service', function (util) {
 		color:"green",
 		speed:0.3,
 		hit:103,
-		miss:-64,
+		miss:-254,
 		percentage:0.2,
 		destroy:"standard"
 	}
