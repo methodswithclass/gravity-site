@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-const middle = require("./server/middleware");
+const middle = require("./server/middleware.js");
 
 const app = express();
 
