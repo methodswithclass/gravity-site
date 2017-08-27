@@ -55,12 +55,12 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             max: 2,
 			getSessionFactor:function() {
 
-    			return parseFloat(cookie.getCookie(utility.c.factorKey)) || util.getFactor(util.const.factorS);
+    			return parseFloat(cookie.getCookie(utility.c.sessionFactorKey) || util.getFactor(util.const.factorS));
 			},
 			setSessionFactor:function (val) {
 
                 util.setFactor(util.const.factorS, val);
-                cookie.setCookie(utility.c.factorKey, val);
+                cookie.setCookie(utility.c.sessionFactorKey, val);
 			},
     		createRegistry:[
 
@@ -72,11 +72,14 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
     	axes:{
     		getCalibration:function(dir) {
 
-                return calibration[dir];
+                return parseInt(cookie.getCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey)) || calibration[dir]);
             },
-            setOverride:function(dir, value) {
-                util.setAxis(dir, util.getAxis(dir)*(-1));
-                calibration[dir] = value;
+            setOverride: function (dir, value) {
+
+                var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
+                util.setAxis(dir, currValue * (-1));
+                cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey), currValue * -1);
+                //calibration[dir] = value;
             },
 			setDirection:function (axis, dir) {
 
