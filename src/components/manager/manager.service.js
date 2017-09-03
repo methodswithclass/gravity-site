@@ -86,17 +86,17 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 
     }
 
-    var getObjCookie = function (obj) {
+    var getObjSetting = function (obj) {
 
-        var cookieSize = cookie.getCookie(utility.c.objSizeKey) || 200;
-        var marbleID = cookie.getCookie(utility.c.objKey) || "default";
+        var settingSize = settings.settings.obj.size;
+        var marbleID = settings.settings.obj.obj;
         var marble = data.getMarble(marbleID);
 
         console.log("getObj cookie ID", marbleID, "marble", marble);
 
         obj.shape = marble.shape;
         obj.src = marble.src || null;
-        obj.size = cookieSize;
+        obj.size = settingSize;
 
         return obj;
 
@@ -119,7 +119,7 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 
             var objParams = page.obj;
 
-            if (validatePageObjects(input.id)) objParams = getObjCookie(objParams);
+            if (validatePageObjects(input.id)) objParams = getObjSetting(objParams);
 
 			objects[input.id] = new mcaccel.object({
 				id:input.id,

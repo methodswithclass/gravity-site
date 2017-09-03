@@ -31,7 +31,7 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
         $scope.selectedObj = marble;
     }
 
-    //$scope.selectObj($scope.selectedObj);
+    $scope.selectObj($scope.selectedObj);
 
     $scope.save = function () {
         
