@@ -27,8 +27,8 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
         obj: {
             min: 50,
             max: 700,
-            size: cookie.getCookie(utility.c.objSizeKey) || 200,
-            obj: cookie.getCookie(utility.c.objKey) || "default",
+            size: cookie.getCookie(utility.c.objSizeKey) || 350,
+            obj: cookie.getCookie(utility.c.objKey) || "marble6",
             currentObj: function () {
                 return data.getMarble(settings.obj.obj);
             },
