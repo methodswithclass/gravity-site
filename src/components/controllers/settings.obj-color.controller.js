@@ -22,13 +22,25 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
         }
 
     }
+
+
+    var changeObjAndSize = function () {
+
+        $scope.selectedObj.size = $scope.sliderValue;
+
+        settings.settings.obj.setSize($scope.sliderValue);
+        settings.settings.obj.setObj($scope.selectedObj);
+        manager.changeObject($scope.selectedObj);
+
+    }
     
 
     $scope.selectObj = function (marble) {
 
         deselectAll();
         data.getMarble(marble.id).selected = true;
-        $scope.selectedObj = marble;
+
+        changeObjAndSize();
     }
 
     $scope.selectObj($scope.selectedObj);
@@ -54,6 +66,9 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
         var value = $value * (max-min) + min;
 
         $scope.sliderValue = mcshared.utility.truncate(value, 0);
+        
+        changeObjAndSize();
+
         $scope.$apply();
     }
 

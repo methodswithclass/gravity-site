@@ -28,6 +28,8 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
         var value = ($value * (max - min) + min)* 100
 
         $scope.sliderValue = mcshared.utility.truncate(value, 0);
+        settings.settings.factor.setSessionFactor(value/100);
+
         $scope.$apply();
     }
 
