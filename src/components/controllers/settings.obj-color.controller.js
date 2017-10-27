@@ -7,6 +7,8 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
 
     $scope.settings = data.getSetting("obj-color");
 
+    var marbles = $scope.settings.marbles;
+
     $scope.sliderValue = settings.settings.obj.currentSize();
     $scope.selectedObj = settings.settings.obj.currentObj();
 
@@ -24,9 +26,15 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
     }
 
 
-    var changeObjAndSize = function () {
+    var changeObj = function () {
 
-        $scope.selectedObj.size = $scope.sliderValue;
+        for (var i in marbles) {
+
+            marbles[i].size = $scope.sliderValue;
+            $scope.selectedObj.size = $scope.sliderValue;
+        }
+
+        // $scope.selectedObj.size = $scope.sliderValue;
 
         settings.settings.obj.setSize($scope.sliderValue);
         settings.settings.obj.setObj($scope.selectedObj);
@@ -40,7 +48,9 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
         deselectAll();
         data.getMarble(marble.id).selected = true;
 
-        changeObjAndSize();
+        $scope.selectedObj = marble;
+
+        changeObj();
     }
 
     $scope.selectObj($scope.selectedObj);
@@ -67,7 +77,7 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.
 
         $scope.sliderValue = mcshared.utility.truncate(value, 0);
         
-        changeObjAndSize();
+        changeObj();
 
         $scope.$apply();
     }
