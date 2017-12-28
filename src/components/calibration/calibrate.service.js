@@ -37,86 +37,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
     var skipCalibrate = false;
 
 
-    var addPercentToPhases = function () {
-        for (var i in scheme.phases) {
-            scheme.phases[i].percent = (parseInt(i) + 1) / num_phases;
-        }
-    };
-
-
-
-    /* =======================================================================================*/
-    /* ================================   Stage Functions   ==================================*/
-    /* =======================================================================================*/
-
-    var update = function (object, interval) {
-
-
-    }
-
-    var reset = function () {
-
-        accel.stop();
-        accel.reset();
-    }
-
-    var onCreate = function (input) {
-
-        console.log("calibrate init");
-
-        obj = input.object;
-        accel = input.accel;
-        parent = $(input.object.el()).parent();
-        num_phases = scheme.phases.length;
-
-        addPercentToPhases();
-
-        progress.loadScheme(scheme);
-
-    }
-
-    var onEnter = function () {
-
-        //window.ondevicemotion = accel.motion;
-
-    }
-
-    var onStart = function () {
-
-        console.log("calibrate start");
-
-        // g.setFactor(g.const.factorG, 1);
-        g.setFactor(g.const.factorS, settings.settings.factor.default);
-        // g.setAxis(g.const.y, 1);
-        // g.setAxis(g.const.x, 1);
-
-        setTimeout(function () {
-
-            events.dispatch("calibrate-start");
-            progress.startProgress();
-
-        }, 500);
-
-    }
-
-    var onEnd = function () {
-
-    }
-
-    var onLeave = function () {
-
-        events.dispatch("calibrate-stop");
-
-    }
-
-    /* =======================================================================================*/
-    /* =======================================     End      ==================================*/
-    /* =======================================================================================*/
-
-
-
-
-
     var showToast = function (dir, type) {
 
         $mdToast.show({
@@ -465,6 +385,83 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
             }
         ]
     }
+
+
+    var addPercentToPhases = function () {
+        for (var i in scheme.phases) {
+            scheme.phases[i].percent = (parseInt(i) + 1) / num_phases;
+        }
+    };
+
+
+    /* =======================================================================================*/
+    /* ================================   Stage Functions   ==================================*/
+    /* =======================================================================================*/
+
+    var update = function (object, interval) {
+
+
+    }
+
+    var reset = function () {
+
+        accel.stop();
+        accel.reset();
+    }
+
+    var onCreate = function (input) {
+
+        console.log("calibrate init");
+
+        obj = input.object;
+        accel = input.accel;
+        parent = $(input.object.el()).parent();
+        num_phases = scheme.phases.length;
+
+        addPercentToPhases();
+
+        progress.loadScheme(scheme);
+
+    }
+
+    var onEnter = function () {
+
+        // window.ondevicemotion = accel.motion;
+
+    }
+
+    var onStart = function () {
+
+        console.log("calibrate start");
+
+        // g.setFactor(g.const.factorG, 1);
+        g.setFactor(g.const.factorS, settings.settings.factor.default);
+        // g.setAxis(g.const.y, 1);
+        // g.setAxis(g.const.x, 1);
+
+        setTimeout(function () {
+
+            events.dispatch("calibrate-start");
+            progress.startProgress();
+
+        }, 500);
+
+    }
+
+    var onEnd = function () {
+
+    }
+
+    var onLeave = function () {
+
+        events.dispatch("calibrate-stop");
+
+    }
+
+    /* =======================================================================================*/
+    /* =======================================     End      ==================================*/
+    /* =======================================================================================*/
+
 
     return {
         onCreate: onCreate,
