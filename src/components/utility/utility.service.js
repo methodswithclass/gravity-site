@@ -275,6 +275,7 @@ utilityModule.factory("utility.service", [function () {
             return null;
         }
 
+        
         var factor = input.factor >= 0 ? input.factor : 1;
         var aspect = input.aspect >= 0 ? input.aspect : ww/wh;
 
