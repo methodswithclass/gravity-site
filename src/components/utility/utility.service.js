@@ -2,6 +2,8 @@ utilityModule.factory("utility.service", [function () {
 
 	var vector = mcaccel.vector;
 
+
+
 	var con = {
 		valid:"valid",
 		invalid:"invalid",
@@ -22,15 +24,71 @@ utilityModule.factory("utility.service", [function () {
         done:"doneCookieValue",
 		annihilate:"annihilate",
 		remove:"remove",
-		homeIndex:0,
-		validIndex:8,
-		settingsIndex:7,
-		calibrateIndex:1,
-		gravIndex:2,
-		floatIndex:3,
-		enemiesIndex:4,
-		balanceIndex:5,
-		spaceIndex:6
+		indexes:{
+			home:0,
+			calibrate:1,
+			gravtiy:2,
+			float:3,
+			enemies:4,
+			balance:5,
+			space:6,
+			settings:7,
+			validate:8
+		},
+		colors:{
+			scheme1:{
+				color1:{
+					color:"color1",
+					back:"color1-back"
+				},
+				color2:{
+					color:"color2",
+					back:"color2-back"
+				},
+				color3:{
+					color:"color3",
+					back:"color3-back"
+				},
+				color4:{
+					color:"color4",
+					back:"color4-back"
+				},
+				color5:{
+					color:"color5",
+					back:"color5-back"
+				},
+				color6:{
+					color:"color6",
+					back:"color6-back"
+				},
+				color7:{
+					color:"color7",
+					back:"color7-back"
+				},
+			},
+			scheme2:{
+				color1:{
+					color:"color-2-1",
+					back:"color-2-1-back"
+				},
+				color2:{
+					color:"color-2-2",
+					back:"color-2-2-back"
+				},
+				color3:{
+					color:"color-2-3",
+					back:"color-2-3-back"
+				},
+				color4:{
+					color:"color-2-4",
+					back:"color-2-4-back"
+				},
+				color5:{
+					color:"color-2-5",
+					back:"color-2-5-back"
+				},
+			}
+		}
 	}
 
 	var deviceStandard = {
@@ -193,6 +251,66 @@ utilityModule.factory("utility.service", [function () {
 
 	}
 
+	var makeAspect = function (input) {
+
+
+        // the purpose of this function is to input outer boundary width and height limits, an optional aspect ratio, and an optional relative size factor 
+        
+        // this function will return a width and height that can be applied to an object 
+        // so that it can always be visible within the boundary limits, 
+        // and that it will maintain the intended aspect ratio and size factor relative to the boundary
+
+        // the boundary limits are required, if not given, the function returns null 
+        // the aspect ratio and factor are optional, if not given, the factor defaults to one, 
+        // the aspect ratio defaults to the aspect ratio of the width and height given 
+
+        var ww = input.width >= 0 ? input.width : null;
+        var wh = input.height >= 0 ? input.height : null;
+
+        var isWindow = input.window;
+
+        // console.log("\n\n\n\n\n\n\ncorrectForAspect", input.id, "\n\n\n\n\n", "mobile", checkMobile(), "window", isWindow, "input width", input.width, "result", ww, "input height", input.height, "result", wh, "\n\n\n\n\n\n\n");
+
+        if (ww instanceof Number || wh instanceof Number) {
+            return null;
+        }
+
+        var factor = input.factor >= 0 ? input.factor : 1;
+        var aspect = input.aspect >= 0 ? input.aspect : ww/wh;
+
+        var ew = ww*factor;
+        var eh = wh*factor;
+
+        // console.log("\n\n\n\n\n\n\n\neffective dimesion", input.id,"\n\n\n\n\n\n", "mobile", checkMobile(),  "window", isWindow, "width", ew, "height", eh, "\n\n\n\n\n\n\n\n");
+
+        // primary and alternate dimensions determined by device type, primary dimension does not receive an aspect ratio, alternate dimension does
+        var pd = isWindow ? (checkMobile() ? ew : eh) : ew;
+        var ad = isWindow ? (checkMobile() ? eh*aspect : ew*aspect) : eh;
+
+        // console.log("\n\n\n\n\n\n\n\ndimensions", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(), "window", isWindow,"primary", pd, "alternate", ad, "\n\n\n\n\n\n\n\n");
+
+        // if the alternate dimension is larger than primary dimension (it is considered bigger than the frame), then we want to adjust each dimension so that the width and height are less than the input width and height
+        if (ad != pd) {
+            ad = pd;
+            pd = ad/aspect;
+        }
+
+
+        // console.log("\n\n\n\n\n\n\n\ndimensions post", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(), "window", isWindow, "primamry", pd, "alternate", ad, "\n\n\n\n\n\n\n\n");
+
+        var _width = (isWindow ? (checkMobile() ? pd : ad) : pd);
+        var _height = (isWindow ? (checkMobile() ? ad : pd) : ad);
+
+        // console.log("\n\n\n\n\n\n\n\noutput", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(),  "window", isWindow, "width", _width, "height", _height, "\n\n\n\n\n\n\n\n");
+
+        return {
+            width:_width,
+            height:_height
+        }
+
+
+    }
+
 	return {
 		c:con,
 		deviceStandard:deviceStandard,
@@ -206,7 +324,8 @@ utilityModule.factory("utility.service", [function () {
 		getDestroyPosition:getDestroyPosition,
 		intersectShape:intersectShape,
 		intersectRect:intersectRect,
-		overlapShape:overlapShape
+		overlapShape:overlapShape,
+		correctForAspect:makeAspect
 	}
 
 }]);

@@ -1,4 +1,4 @@
-interfaceModule.directive("rotation", ['global.service', '$window', function (g, $window) {
+interfaceModule.directive("rotation", ['global.service', 'utility.service', '$window', function (g, u, $window) {
 
 	return {
 		scope:false,
@@ -15,6 +15,7 @@ interfaceModule.directive("rotation", ['global.service', '$window', function (g,
 
 			var added = false;
 
+
 			var resize = function () {
 
 				if (g.isMobile() && !g.isPortrait() && !added) {
@@ -27,11 +28,18 @@ interfaceModule.directive("rotation", ['global.service', '$window', function (g,
 				}
 			}
 
-			resize();
 
-			angular.element($window).bind('resize', function () {
+			setTimeout(function () {
+				
 				resize();
-			});
+
+				angular.element($window).bind('resize', function () {
+
+					resize();
+				});
+
+
+			}, 500);
 
 
 		}

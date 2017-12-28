@@ -11,7 +11,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"home",
 			class:"black"
 		},
-		index:util.c.homeIndex,
+		index:util.c.indexes.home,
 		type:{
 			option:false,
 			motion:false,
@@ -35,7 +35,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"validity",
 			class:"black"
 		},
-		index:util.c.validIndex,
+		index:util.c.indexes.validate,
 		type:{
 			option:false,
 			motion:false,
@@ -59,7 +59,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"settings",
 			class:"black"
 		},
-		index:util.c.settingsIndex,
+		index:util.c.indexes.settings,
 		type:{
 			option:false,
 			motion:false,
@@ -211,7 +211,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"calibrate",
 			class:"black"
 		},
-		index:util.c.calibrateIndex,
+		index:util.c.indexes.calibrate,
 		type:{
 			option:true,
 			motion:false,
@@ -221,11 +221,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"calibrate.view.html",
-			back:"color1-back",
+			back:util.c.colors.scheme2.color1.back,
 			fore:"white-back",
 			menu:{
 				title:"re-calibrate",
-				color:"color1-back"
+				color:"white",
+				background:util.c.colors.scheme2.color1.back
 			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
@@ -257,7 +258,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"demo",
 			class:"black"
 		},
-		index:util.c.gravIndex,
+		index:util.c.indexes.gravity,
 		type:{
 			option:true,
 			motion:true,
@@ -267,11 +268,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"motion.view.html",
-			back:"color2-back",
+			back:util.c.colors.scheme2.color2.back,
 			fore:"white-back",
 			menu:{
 				title:"demo",
-				color:"color2-back"
+				color:"white",
+				background:util.c.colors.scheme2.color2.back
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -303,7 +305,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"slide",
 			class:"black"
 		},
-		index:util.c.floatIndex,
+		index:util.c.indexes.float,
 		type:{
 			option:true,
 			motion:true,
@@ -313,11 +315,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"motion.view.html",
-			back:"color3-back",
+			back:util.c.colors.scheme2.color3.back,
 			fore:"white-back",
 			menu:{
 				title:"slide",
-				color:"color3-back"
+				color:"white",
+				background:util.c.colors.scheme2.color3.back
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -349,7 +352,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"enemy",
 			class:"black"
 		},
-		index:util.c.enemiesIndex,
+		index:util.c.indexes.enemies,
 		type:{
 			option:true,
 			motion:true,
@@ -359,11 +362,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"game.view.html",
-			back:"color4-back",
+			back:util.c.colors.scheme2.color4.back,
 			fore:"white-back",
 			menu:{
 				title:"enemy",
-				color:"color4-back"
+				color:"white",
+				background:util.c.colors.scheme2.color4.back
 			},
 			backButton:{
 				loc:{top:"10px", right:"10px"},
@@ -395,7 +399,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"balance",
 			class:"black"
 		},
-		index:util.c.balanceIndex,
+		index:util.c.indexes.balance,
 		type:{
 			option:true,
 			motion:true,
@@ -405,11 +409,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"game.view.html",
-			back:"color5-back",
+			back:util.c.colors.scheme2.color5.back,
 			fore:"white-back",
 			menu:{
 				title:"balance",
-				color:"color5-back"
+				color:"white",
+				background:util.c.colors.scheme2.color5.back
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},
@@ -441,7 +446,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			text:"space",
 			class:"white"
 		},
-		index:util.c.spaceIndex,
+		index:util.c.indexes.space,
 		type:{
 			option:true,
 			motion:true,
@@ -451,11 +456,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		},
 		page:{
 			view:"game.view.html",
-			back:"color6-back",
+			back:util.c.colors.scheme1.color6.back,
 			fore:"black-back",
 			menu:{
 				title:"space",
-				color:"color6-back"
+				color:"white",
+				background:util.c.colors.scheme1.color6.back
 			},
 			backButton:{
 				loc:{top:"10px", left:"10px"},

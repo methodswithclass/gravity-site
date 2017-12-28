@@ -1,1 +1,1 @@
-var interfaceModule = angular.module("interface.module", ['shared.module', 'state.module', 'manager.module', 'calibrate.module', 'data.module', 'touch.module']);
+var interfaceModule = angular.module("interface.module", ['shared.module', 'utility.module', 'state.module', 'manager.module', 'calibrate.module', 'data.module', 'touch.module']);

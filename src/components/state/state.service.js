@@ -85,7 +85,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 			elem = $(elements["page" + input.name]);
 			bodyElem = $(body["body"]);
 
-			bodyElem.removeClass("cutoff").addClass("scroll");
+			// bodyElem.removeClass("cutoff").addClass("scroll");
 
 			bodyElem.scrollTo(elem[0], {
 				duration:input.duration,
@@ -164,7 +164,11 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 					console.log("#######################################");
 					console.log(" ");
                     
-                    input.body.removeClass("scroll").addClass("cutoff");
+                    // setTimeout(function () {
+
+                    // 	// input.body.removeClass("scroll").addClass("cutoffX cutoffY");
+                    // }, 500)
+
                     if (tso.name == "calibrate") input.manager.startInstance(tso.name);
                 }
             });

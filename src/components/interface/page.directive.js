@@ -1,4 +1,4 @@
-interfaceModule.directive("page", ["manager.service", function (manager) {
+interfaceModule.directive("page", ["manager.service", 'utility.service', function (manager, u) {
 
 	return {
 		restrict:'E',
@@ -9,15 +9,39 @@ interfaceModule.directive("page", ["manager.service", function (manager) {
 
 			var page = $scope.page;
 
+			var ed;
+
 			console.log("in page, name:", page.id, "view:", page.page.view);
 
 			$scope.getContentUrl = function() {
                 return "assets/views/" + page.page.view;
             }
 
+            $pageBack = $("#page-back-" + page.id);
+            $pageFore = $("#page-fore-" + page.id);
+
+            var setSize = function () {
+
+				ed = u.correctForAspect({
+					id:"arena" + page.id,
+					factor:0.9, 
+					width:$pageBack.width(), 
+					height:$pageBack.height(),
+					window:false
+				})
+
+				$pageFore.css({width:ed.width, height:ed.height});
+
+			}
+
         	setTimeout(function() {
 	            
-        		// console.log("object", $("#object" + page.id)[0]);
+        		setSize();
+
+        		$(window).resize(function () {
+
+        			setSize();
+        		})
 
 	            manager.addInstance({
 	            	id:page.id,
