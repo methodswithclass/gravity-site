@@ -23,6 +23,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"home.view.html",
 			back:"black-back",
 			fore:"white-back",
+			border:util.c.borders.scheme1.black,
 			rect:{
 				top:"25%",
 				left:"25%"
@@ -195,6 +196,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"settings/settings.view.html",
 			back:"black-back",
 			fore:"white-back",
+			border:util.c.borders.scheme1.black,
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:"down"
@@ -223,6 +225,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"calibrate.view.html",
 			back:util.c.colors.scheme2.color1.back,
 			fore:"white-back",
+			border:util.c.borders.scheme2.color1,
 			menu:{
 				title:"re-calibrate",
 				color:"white",
@@ -270,6 +273,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"motion.view.html",
 			back:util.c.colors.scheme2.color2.back,
 			fore:"white-back",
+			border:util.c.borders.scheme2.color2,	
 			menu:{
 				title:"demo",
 				color:"white",
@@ -317,6 +321,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"motion.view.html",
 			back:util.c.colors.scheme2.color3.back,
 			fore:"white-back",
+			border:util.c.borders.scheme2.color3,
 			menu:{
 				title:"slide",
 				color:"white",
@@ -364,6 +369,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme2.color4.back,
 			fore:"white-back",
+			border:util.c.borders.scheme2.color4,
 			menu:{
 				title:"enemy",
 				color:"white",
@@ -411,6 +417,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme2.color5.back,
 			fore:"white-back",
+			border:util.c.borders.scheme2.color5,
 			menu:{
 				title:"balance",
 				color:"white",
@@ -458,6 +465,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme1.color6.back,
 			fore:"black-back",
+			border:util.c.borders.scheme1.color6,
 			menu:{
 				title:"space",
 				color:"white",

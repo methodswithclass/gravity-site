@@ -9,9 +9,9 @@
 				<div class="absolute width25 height25 cutoff" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
 
 
-					<div class="absolute width height center {{page.page.back}} border-white" id="{{'page-back-' + page.id}}">
+					<div class="absolute width height center white-back border-white" id="{{'page-back-' + page.id}}">
 						
-						<div class="absolute width90 height90 center lowered-dark {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
+						<div class="box absolute width height center lowered-dark border-width-20 {{page.page.border}} {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
 
 							<div class="absolute fill" id="{{'arena' + page.id}}" rotation>
 

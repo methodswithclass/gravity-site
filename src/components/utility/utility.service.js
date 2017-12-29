@@ -88,6 +88,20 @@ utilityModule.factory("utility.service", [function () {
 					back:"color-2-5-back"
 				},
 			}
+		},
+		borders:{
+			scheme1:{
+				black:"border-color-black",
+				white:"border-color-white",
+				color6:"border-color-1-6"
+			},
+			scheme2:{
+				color1:"border-color-2-1",
+				color2:"border-color-2-2",
+				color3:"border-color-2-3",
+				color4:"border-color-2-4",
+				color5:"border-color-2-5"
+			}
 		}
 	}
 
@@ -275,7 +289,7 @@ utilityModule.factory("utility.service", [function () {
             return null;
         }
 
-        
+
         var factor = input.factor >= 0 ? input.factor : 1;
         var aspect = input.aspect >= 0 ? input.aspect : ww/wh;
 
@@ -286,7 +300,7 @@ utilityModule.factory("utility.service", [function () {
 
         // primary and alternate dimensions determined by device type, primary dimension does not receive an aspect ratio, alternate dimension does
         var pd = isWindow ? (checkMobile() ? ew : eh) : ew;
-        var ad = isWindow ? (checkMobile() ? eh*aspect : ew*aspect) : eh;
+        var ad = isWindow ? (checkMobile() ? eh*aspect : ew/aspect) : eh;
 
         // console.log("\n\n\n\n\n\n\n\ndimensions", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(), "window", isWindow,"primary", pd, "alternate", ad, "\n\n\n\n\n\n\n\n");
 
@@ -299,8 +313,8 @@ utilityModule.factory("utility.service", [function () {
 
         // console.log("\n\n\n\n\n\n\n\ndimensions post", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(), "window", isWindow, "primamry", pd, "alternate", ad, "\n\n\n\n\n\n\n\n");
 
-        var _width = (isWindow ? (checkMobile() ? pd : ad) : pd);
-        var _height = (isWindow ? (checkMobile() ? ad : pd) : ad);
+        var _width = isWindow ? (checkMobile() ? ad : pd) : ad;
+        var _height = isWindow ? (checkMobile() ? pd : ad) : pd;
 
         // console.log("\n\n\n\n\n\n\n\noutput", input.id,"\n\n\n\n\n\n\n", "mobile", checkMobile(),  "window", isWindow, "width", _width, "height", _height, "\n\n\n\n\n\n\n\n");
 
