@@ -1,9 +1,17 @@
 utilityModule.factory("cookie.service", ["utility.service", function (utility) {
 
     var cookies = [
-        utility.c.objSizeKey,
         utility.c.objKey,
-        utility.c.factorKey
+        utility.c.objSizeKey,
+        utility.c.factorKey,
+        utility.c.sessionFactorKey,
+        utility.c.axisYKey,
+        utility.c.axisXKey
+    ]
+
+    var clearCookieKeys = [
+        utility.c.factorDoneKey,
+        utility.c.axisDoneKey
     ]
 
     var exdays = 2;
@@ -64,20 +72,19 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
         return substr_value;
     }
 
+    var clearCookies = function () {
+        
+        for (var i in clearCookieKeys) {
+            setCookie(clearCookieKeys[i], "", getExpireTime(0));
+        }
+    }
+
 
     return {
 
         setCookie:setCookie,
-        getCookie:getCookie
-    }
-
-    if (resetCookies) {
-
-        (function () {
-            for (var i in cookies) {
-                setCookie(cookies[i], "", getExpireTime(0));
-            }
-        }())
+        getCookie:getCookie,
+        clearCookies:clearCookies
     }
 
 

@@ -1,4 +1,4 @@
-interfaceModule.directive("option", ['state.service', function (states) {
+interfaceModule.directive("option", ['state.service', 'calibrate.service', function (states, calibrate) {
 
 	return {
 		restrict:'E',
@@ -10,6 +10,10 @@ interfaceModule.directive("option", ['state.service', function (states) {
 			var self = this;
 
 			$scope.onPressup = function () {
+
+				if ($scope.page.id == "calibrate") {
+					calibrate.clearCalibration();
+				}
 
 				states.go("page." + $scope.page.id);
 			}

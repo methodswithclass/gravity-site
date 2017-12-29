@@ -45,9 +45,12 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
     $scope.accel;
 
     var $btn;
+    var $img;
     var showing = true;
 
     var toggleBtn = function (_showing) {
+
+        $btn = $("#btn" + page.id);
 
         if (_showing) {
 
@@ -64,10 +67,29 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
     }
 
+    var toggleImg = function (_toggle) {
+
+        $img = $("#flip-image");
+
+        if (_toggle) {
+
+            // showing = true;
+            $img.show();
+            $img.removeClass("hidden");
+        }
+        else {
+            
+            // showing = false;
+            $img.hide();
+            $img.addClass("hidden");
+        }
+
+    }
+
     setTimeout(function () {
 
-        $btn = $("#btn" + page.id);
         toggleBtn(false);
+        toggleImg(false);
 
     }, 500);
 
@@ -75,6 +97,7 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
 
         calibrate.toggleRunning();
         toggleBtn(false);
+        // toggleImg(false);
     }
 
     events.on("calibrate-btn-show", function () {
@@ -85,6 +108,18 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global.service',
     events.on("calibrate-btn-hide", function () {
 
         toggleBtn(false);
+    })
+
+
+    events.on("calibrate-img-show", function () {
+
+        toggleImg(true);
+    })
+
+
+    events.on("calibrate-img-hide", function () {
+
+        toggleImg(false);
     })
 
     events.on("calibrate-start", function () {

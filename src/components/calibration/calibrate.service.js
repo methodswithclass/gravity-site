@@ -37,6 +37,12 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
     var skipCalibrate = false;
 
 
+    var clearCalibration = function () {
+
+        cookie.clearCookies();
+    }
+
+
     var showToast = function (dir, type) {
 
         $mdToast.show({
@@ -221,6 +227,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
             toggleRunning();
 
             events.dispatch("calibrate-btn-show");
+            events.dispatch("calibrate-img-show");
 
             accel.start();
         },
@@ -275,6 +282,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
             current = [];
 
             events.dispatch("calibrate-btn-hide");
+            events.dispatch("calibrate-img-hide");
 
             next(index);
         }
@@ -303,10 +311,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
                 },
                 complete: function () {
 
+                    skipCalibrate = false;
+
                     var checkFactor = cookie.getCookie(utility.c.factorDoneKey);
                     var checkAxis = cookie.getCookie(utility.c.axisDoneKey);
 
+                    console.log("skipcalibrate \n\n\n\n\n\n\n", skipCalibrate);
+
                     if (checkFactor == utility.c.done && checkAxis == utility.c.done) {
+
+                        console.log("cookies match \n\n\n\n\n\n");
 
                         var factor = cookie.getCookie(utility.c.factorKey);
                         var axisY = cookie.getCookie(utility.c.axisYKey);
@@ -378,7 +392,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
                 complete: function () {
 
                     checkAxis.complete(3, xDir);
-
 
                     cookie.setCookie(utility.c.axisDoneKey, utility.c.done);
                 }
@@ -475,7 +488,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events.servic
         getMessage: getMessage,
         getPhasePercent: getPhasePercent,
         getAccel: getAccel,
-        toggleRunning: toggleRunning
+        toggleRunning: toggleRunning,
+        clearCalibration:clearCalibration
     }
 
 }]);
