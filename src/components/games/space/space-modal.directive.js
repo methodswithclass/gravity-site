@@ -1,4 +1,4 @@
-spaceModule.directive("spaceModal", ['data.service', 'events.service', function (data, events) {
+spaceModule.directive("spaceModal", ['data.service', 'events', function (data, events) {
 		
 	return {
 		restrict:"E",

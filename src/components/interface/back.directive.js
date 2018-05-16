@@ -1,4 +1,4 @@
-interfaceModule.directive("back", ['state.service', 'send.service', 'events.service', 'manager.service', function (states, send, events, manager) {
+interfaceModule.directive("back", ['state.service', 'send', 'events', 'manager.service', function (states, send, events, manager) {
 
 	return {
 		scope:false,

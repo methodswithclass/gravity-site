@@ -1,4 +1,4 @@
-validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'events.service', 'utility.service', function ($q, validate, events, g) {
+validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'events', 'utility.service', function ($q, validate, events, g) {
 
 
 	var isRegistered = false;

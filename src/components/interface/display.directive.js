@@ -1,4 +1,4 @@
-interfaceModule.directive("display", ['send.service', function (send) {
+interfaceModule.directive("display", ['send', function (send) {
 
 	return {
 

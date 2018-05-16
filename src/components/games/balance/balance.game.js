@@ -1,4 +1,4 @@
-balanceModule.factory("balance.game", ['target.service', 'time-keeper.service', 'global.service', 'meter.service', function (Target, keeperFactory, g, meterFactory) {
+balanceModule.factory("balance.game", ['target.service', 'time-keeper.service', 'global', 'meter.service', function (Target, keeperFactory, g, meterFactory) {
 
 	var vector = mcaccel.vector;
 

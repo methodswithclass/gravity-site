@@ -1,4 +1,4 @@
-interfaceModule.directive("body", ['send.service', function (send) {
+interfaceModule.directive("body", ['send', function (send) {
 
 	return function ($scope, element, attr) {
 

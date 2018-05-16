@@ -1,4 +1,4 @@
-stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send.service', 'events.service', 'global.service', 'calibrate.service', 'manager.service', '$transitions', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager, $transitions) {
+stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send', 'events', 'global', 'calibrate.service', 'manager.service', '$transitions', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager, $transitions) {
 
 	var modalTime = 1000;
 

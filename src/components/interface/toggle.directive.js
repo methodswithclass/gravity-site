@@ -1,4 +1,4 @@
-interfaceModule.directive("toggle", ["manager.service", 'send.service',function (manager, send) {
+interfaceModule.directive("toggle", ["manager.service", 'send',function (manager, send) {
 
 	return {
 		scope:false,

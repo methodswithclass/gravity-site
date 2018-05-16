@@ -1,4 +1,4 @@
-interfaceModule.directive("repeat", ['send.service', function (send) {
+interfaceModule.directive("repeat", ['send', function (send) {
 
 	return function (scope, element, attr) {
 

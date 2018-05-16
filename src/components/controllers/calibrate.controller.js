@@ -1,4 +1,4 @@
-controllerModule.controller("calibrate.controller", ['$scope', 'global.service', 'state.service', 'events.service', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
+controllerModule.controller("calibrate.controller", ['$scope', 'global', 'state.service', 'events', 'data.service', "calibrate.service", function ($scope, g, states, events, data, calibrate) {
 
 
 	console.log("calibrate controller");

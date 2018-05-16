@@ -1,4 +1,4 @@
-interfaceModule.directive("preview", ['data.service', "manager.service", 'events.service', 'state.service', function (data, manager, events, state) {
+interfaceModule.directive("preview", ['data.service', "manager.service", 'events', 'state.service', function (data, manager, events, state) {
 
 	return {
 		restrict:'E',

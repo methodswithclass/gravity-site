@@ -1,4 +1,4 @@
-controllerModule.controller("settings.obj-color.controller", ['$scope', 'global.service', 'state.service', 'data.service', 'settings.service', 'utility.service', 'manager.service', function ($scope, g, states, data, settings, utility, manager) {
+controllerModule.controller("settings.obj-color.controller", ['$scope', 'global', 'state.service', 'data.service', 'settings.service', 'utility.service', 'manager.service', function ($scope, g, states, data, settings, utility, manager) {
 
 
     console.log("settings object color controller");

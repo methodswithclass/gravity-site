@@ -1,4 +1,4 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'events.service', '$mdToast', 'settings.service', 'utility.service', 'cookie.service', function (progress, events, $mdToast, settings, utility, cookie) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$mdToast', 'settings.service', 'utility.service', 'cookie.service', function (progress, events, $mdToast, settings, utility, cookie) {
 
     var g = mcaccel.utility;
 
