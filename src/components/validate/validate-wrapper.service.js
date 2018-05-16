@@ -5,19 +5,24 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 	var checkRegistered = function (resolve, reject, complete) {
 
+
+		var i = 0;
+
 		var timer = setInterval(function () {
 
 			isRegistered = events.dispatch("console");
 
-			console.log("valid wrapper", "console registered", isRegistered);
+			console.log("valid wrapper", "console registered", isRegistered, i);
 
-			if (isRegistered) {
+			if (isRegistered || i > 500) {
 
 				clearInterval(timer);
 				timer = null;
 
 				complete(resolve, reject);
 			}
+
+			i++;
 
 		}, 10);
 
@@ -69,6 +74,7 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 		
 			checkRegistered(resolve, reject, runValidation);
 
+			// runValidation(resolve, reject);
 		});
 	}
 
@@ -79,6 +85,8 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 		return $q(function (resolve, reject) {
 		
 			checkRegistered(resolve, reject, forceValidation);
+
+			// forceValidation(resolve, reject);
 
 		});
 	}
