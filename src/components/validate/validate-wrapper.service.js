@@ -14,7 +14,7 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 			console.log("valid wrapper", "console registered", isRegistered, i);
 
-			if (isRegistered || i > 500) {
+			if (isRegistered || i > 200) {
 
 				clearInterval(timer);
 				timer = null;
