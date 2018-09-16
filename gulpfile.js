@@ -1,41 +1,248 @@
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer'),
+path = require("path"),
 shell = require("gulp-shell"),
+uglify = require('gulp-uglify'),
 imagemin = require('gulp-imagemin'),
+rename = require('gulp-rename'),
 concat = require('gulp-concat'),
 del = require('del'),
 inject = require('gulp-inject'),
 filter = require("gulp-filter"),
 merge = require("merge-stream"),
-mainBowerFiles = require("main-bower-files"),
+mainBowerFiles = require("gulp-main-bower-files"),
 nodemon = require('gulp-nodemon'),
 livereload = require('gulp-livereload');
+sass = require("gulp-sass"),
+babel = require("gulp-babel");
 
 const config = require("./config.js");
 
-// var minify = process.env.NODE_ENV == "production";
-var minify = false;
 
-// var injectMin = process.env.NODE_ENV == "production";
-var injectMin = false;
 
-gulp.task("serve", ["build"], function () {
+var minify = config.gulp.minify;
+var shimFile = config.gulp.shimFile;
+var mainScripts = config.gulp.mainScripts;
+var vendorScripts = config.gulp.vendorScripts;
+var miscSrc = config.gulp.miscSrc;
+var htmlDest = config.gulp.htmlDest;
+var sassStyles = config.gulp.sassStyles;
+var cssStyles = config.gulp.cssStyles;
 
- 	livereload.listen({port:config.livereloadPort})
+
+
+var injectJS = function () {
+
+	var important = gulp.src('dist/assets/js/vendor' + (!minify.vendor.full.make && minify.vendor.min.make && minify.vendor.min.inject ? ".min" : "") + '.js', {read: false});
+	var standard = gulp.src(["dist/assets/js/main" + (!minify.main.full.make && minify.main.min.make && minify.main.min.inject ? ".min" : "") + ".js", 'dist/assets/**/*.css'], {read:false});
+
+	return gulp.src('src/index.html')
+	.pipe(inject(important, {ignorePath:"dist", starttag: '<!-- inject:head:{{ext}} -->'}))
+	.pipe(inject(standard, {ignorePath:"dist"}))
+	.pipe(gulp.dest('dist'));
+
+}
+
+
+var scripts = function() {
+
+
+    var mainSrc = gulp.src(mainScripts)
+	.pipe(concat('main.js'))
+	.pipe(babel({
+        presets: ["@babel/env"]
+    }))
+
+    if (minify.main.full.make) {
+    	mainSrc.pipe(gulp.dest("dist/assets/js"))
+	}
+
+    var mainMin;
+
+	if (minify.main.min.make) {
+		mainMin = mainSrc
+		.pipe(rename({suffix: '.min'}))
+		.pipe(uglify())
+		.pipe(gulp.dest("dist/assets/js"))
+	}
+
+	
+	return minify.main.min.make ? mainMin : mainSrc;
+
+};
+
+var tempVendor = function () {
+
+
+	var shim = gulp.src(shimFile)
+		.pipe(concat("shim.js"))
+		.pipe(gulp.dest("temp/vendor"));
+
+	var bowerSrc = gulp.src("bower.json")
+		.pipe(mainBowerFiles({base:"bower_components"}))
+		.pipe(filter("**/*.js"))
+		.pipe(concat("bower.js"))
+		.pipe(gulp.dest("temp/vendor"));
+
+	var npmSrc = gulp.src(vendorScripts)
+		.pipe(concat("npm.js"))
+		.pipe(gulp.dest("temp/vendor"))
+
+
+	return merge(shim, npmSrc, bowerSrc);
+}
+
+var vendor = function () {
+
+
+	var js = gulp.src([
+	                  "temp/vendor/shim.js",
+	                  "temp/vendor/bower.js",
+	                  "temp/vendor/**/*.js"
+	                  ])
+	.pipe(concat("vendor.js"))
+
+	if (minify.vendor.full.make) {
+		js.pipe(gulp.dest("dist/assets/js"))
+	}
+
+	var jsMin;
+
+	if (minify.vendor.min.make) {
+		jsMin = js
+		.pipe(rename({suffix: '.min'}))
+		.pipe(uglify())
+		.pipe(gulp.dest("dist/assets/js"))
+	}
+
+	// var css = gulp.src("./bower.json")
+	// .pipe(mainBowerFiles())
+	// .pipe(filter("**/*.css"))
+	// .pipe(concat("vendor.css"))
+	// .pipe(gulp.dest("dist/assets/css"));
+
+
+	// if (minify) {
+	// 	return merge(js, jsMin, css);
+	// }
+	// else {
+	// 	return merge(js, css);
+	// }
+
+	return minify.vendor.min.make ? jsMin : js;
+
+};
+
+var apiSass = function () {
+  return gulp.src(sassStyles)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('temp/'));
+}
+
+
+var styles = function() {
+
+
+	// middleware.compileSass();
+
+
+	var cssSrc = gulp.src(cssStyles)
+	.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'));
+
+	
+	var css = cssSrc
+	.pipe(concat("styles.css"))
+	.pipe(gulp.dest('dist/assets/css'));
+
+	return css;
+};
+
+
+
+var html = function () {
+
+	return gulp.src('src/**/*.html')
+	.pipe(gulp.dest(htmlDest))
+};
+
+var images = function() {
+	return gulp.src('src/assets/img/**/*')
+	.pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+	.pipe(gulp.dest('dist/assets/img'));
+};
+
+
+var fonts = function () {
+
+	var mainFonts = gulp.src("src/assets/fonts/**/*.*")
+	.pipe(gulp.dest("dist/assets/fonts"))
+
+	var vendorFonts = gulp.src("node_modules/@fortawesome/fontawesome-free/webfonts/*.*")
+	.pipe(gulp.dest("dist/assets/webfonts"))
+
+	return merge(mainFonts, vendorFonts);
+};
+
+var index = function () {
+
+	return gulp.src([ 
+    "./favicon.ico"
+    ]).pipe(gulp.dest("dist"));
+}
+
+var misc = function() {
+	// return gulp.src(miscSrc)
+	// .pipe(gulp.dest('dist/assets'));
+
+	// return merge(miscSrc);
+
+	if (typeof miscSrc === "function") {
+		return miscSrc();
+	}
+	else if (miscSrc) {
+		return gulp.src(miscSrc)
+		.pipe(gulp.dest('dist/assets'));
+	}
+	else return new Promise(function (resolve) {
+		resolve();
+	})
+};
+
+var clean = function() {
+	return del(['dist', "temp"]);
+}
+
+
+var serveFunc = function (done) {
+
+
+	livereload.listen({port:config.livereloadPort});
 
 	var stream = nodemon({ 
-		script: './server.js',
-		ext:"js html css json",
-		watch:["./src", "./backend", "./server.js"],
+		script: path.join(__dirname, "server.js"),
+		ext:"js html css scss json",
+		watch:["./src", "config.js"],
 		tasks:["build"]
 	});
-	
+
+
+	stream.on("start", function () {
+
+		done();
+	})
 
 	stream.on("restart", function () {
 
 		setTimeout(function () {
 
-			livereload.reload();
+			try {
+				livereload.reload();
+			}
+			catch (err) {
+				console.log("cannot livreload at this time", err);
+			}
+
+			done();
 
 		}, 2000);
 
@@ -46,139 +253,26 @@ gulp.task("serve", ["build"], function () {
 		stream.emit('restart', 10);
 	})
 
+	return stream;
 	
-})
+}
 
-gulp.task("build", ["clean"], function () {
+var copy = gulp.parallel(misc, index, html, images, fonts)
 
+var compile = gulp.parallel(gulp.series(tempVendor, vendor), scripts);
 
-	gulp.start("compile");
-})
+var buildTask = gulp.series(compile, gulp.parallel(gulp.series(apiSass, styles), copy), injectJS);
 
-
-gulp.task('compile', ["js", "styles", "copy"], function () {
-
-
-});
-
-gulp.task("js", ["scripts"], function () {
-
-	var important = gulp.src('dist/assets/js/vendor' + (minify && injectMin ? ".min" : "") + '.js', {read: false});
-	var standard = gulp.src(["dist/assets/js/main" + (minify && injectMin ? ".min" : "") + ".js", 'dist/assets/**/*.css'], {read:false});
-
-	return gulp.src('src/index.html')
-	.pipe(inject(important, {ignorePath:"dist", starttag: '<!-- inject:head:{{ext}} -->'}))
-	.pipe(inject(standard, {ignorePath:"dist"}))
-	.pipe(gulp.dest('dist'));
-
-})
-
-gulp.task('styles', function() {
-	return gulp.src('src/assets/css/**/*.css', { style: 'expanded' })
-	.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-	// .pipe(concat("styles.css"))
-	// .pipe(rename({suffix: '.min'}))
-	// .pipe(uglify())
-	.pipe(gulp.dest('dist/assets/css'));
-});
+var serveTask = gulp.series(clean, buildTask, serveFunc);
 
 
 
-gulp.task('scripts', ['vendor'], function() {
-	return gulp.src([
-					"src/components/interface/touch/touch.module.js",
-                    "src/components/utility/utility.module.js",
-	                "src/components/data/data.module.js",
-					"src/components/validate/validate.module.js",
-					"src/components/games/games.module.js",
-					"src/components/games/balance/balance.module.js",
-					"src/components/games/enemy/enemy.module.js",
-					"src/components/games/space/space.module.js",
-					"src/components/manager/manager.module.js",
-					"src/components/state/state.module.js",
-					"src/components/interface/interface.module.js",
-					"src/components/settings/settings.module.js",
-					"src/components/calibration/calibrate.module.js",
-					"src/components/controllers/controller.module.js",
-					"src/components/main.js",
-					"src/components/**/*.js"
-	            ])
-	// .pipe(jshint('.jshintrc'))
-	// .pipe(jshint.reporter('default'))
-	.pipe(concat('main.js'))
-	// .pipe(rename({suffix: '.min'}))
-	// .pipe(uglify())
-	.pipe(gulp.dest('dist/assets/js'));
-});
+gulp.task("build", buildTask);
 
-gulp.task("vendor", function () {
-
-	var bower_comp = __dirname + "/bower_components";
-    var glob = [bower_comp + '/jquery/jquery.js'].concat(mainBowerFiles(['**/*.js', '!' + bower_comp + '/jquery/jquery.js']));
-
-    var js = gulp.src(glob, { base: bower_comp })
-	.pipe(filter("**/*.js"))
-	.pipe(concat("vendor.js"))
-	.pipe(gulp.dest("dist/assets/js"));
-
-	var css = gulp.src(mainBowerFiles())
-	.pipe(filter("**/*.css"))
-	.pipe(concat("vendor.css"))
-	// .pipe(rename({suffix: '.min'}))
-	// .pipe(uglify())
-	.pipe(gulp.dest("dist/assets/css"));
-
-	return merge(js, css);
-});
-
-gulp.task("html", function () {
-
-	return gulp.src('src/assets/**/*.html')
-	.pipe(gulp.dest("dist/assets/"))
-});
-
-gulp.task('images', function() {
-	return gulp.src('src/assets/img/**/*')
-	.pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-	.pipe(gulp.dest('dist/assets/img'));
-});
-
-gulp.task('fonts', function () {
-
-	return gulp.src("src/assets/css/**/*.*")
-	.pipe(gulp.dest("dist/assets/css"))
-});
-
-gulp.task("root", function () {
-
-	return gulp.src(["./favicon.ico"])
-	.pipe(gulp.dest("dist"));
-})
-
-gulp.task("copy", ["root", "html", "images", "fonts"], function () {
+gulp.task("serve", serveTask);
 
 
-})
 
-// gulp.task('index', ["styles", "scripts", 'html', "fonts", "images", "misc"], function () {
-
-// 	// It's not necessary to read the files (will speed up things), we're only after their paths: 
-// 	var important = gulp.src('dist/assets/js/vendor.js', {read: false});
-// 	var standard = gulp.src(["dist/assets/js/main.js", 'dist/assets/**/*.css'], {read:false});
-
-// 	return gulp.src('src/index.html')
-// 	.pipe(inject(important, {ignorePath:"dist", starttag: '<!-- inject:head:{{ext}} -->'}))
-// 	.pipe(inject(standard, {ignorePath:"dist"}))
-// 	.pipe(gulp.dest('dist'));
-// });
-
-gulp.task('clean', function() {
-	return del('dist');
-});
-
-// gulp.task('build', ['clean'], function() {
-// 	gulp.start("index");
-// });
 
 
 

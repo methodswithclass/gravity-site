@@ -503,7 +503,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		var options = [];
 		var j = 0;
 
-		for (i in pages) {
+		for (var i in pages) {
 
 			if (pages[i].type.option) {
 				options[j++] = {
@@ -575,7 +575,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 
 		console.log("check if", id, "is page");
 
-		for (i in pages) {
+		for (var i in pages) {
 
 			//console.log("page", pages[i], " ", id);
 
@@ -657,7 +657,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 
 	EnemyType.sort(function (a,b) {
 
-		return a.percentage > b.percentage;
+		return parseFloat(a.percentage) > parseFloat(b.percentage);
 	});
 
 	EnemyType.forEach(function(value, index, array) {

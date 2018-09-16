@@ -1,4 +1,4 @@
-stateModule.provider("state.provider", function ($stateProvider) {
+stateModule.provider("state.provider", ["$stateProvider", function ($stateProvider) {
   // runtime dependencies for the service can be injected here, at the provider.$get() function.
 
     var provider = {};
@@ -116,4 +116,4 @@ stateModule.provider("state.provider", function ($stateProvider) {
     provider.states = states;
 
     return provider;
-});
+}]);
