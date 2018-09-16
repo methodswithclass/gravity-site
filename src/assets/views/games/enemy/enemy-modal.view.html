@@ -1,6 +1,6 @@
 <div class="absolute width height">
 
-    <div class="absolute width-100 height-100 z-100 white-back rounded50-perc border right-50 bottom30 pointer" ng-click="toggleinfo()">
+    <div class="absolute width-100 height-100 z-100 white-back rounded50-perc border right-50 bottom30 pointer" on-tap="toggleinfo()">
         <div class="absolute center font-50">
             <i class="fa fa-info"></i>
         </div>
@@ -13,7 +13,7 @@
 		<div class="absolute width-700 height-700 rounded50 white-back center" id="{{'preview' + page.id}}">
 			<div class="absolute width90 height90 center border white-back rounded40 cutoff">
                 <div class="absolute width height center scrollX scroll-style-2 scroll-2-height cutoff" id="{{'preview' + page.id + 'inner'}}">
-				    <div class="absolute height" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" ng-click="toggleinfo('hide')">
+				    <div class="absolute height" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" on-tap="toggleinfo('hide')">
 					
                         <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-repeat="type in enemyTypes">
 						    <enemy-info></enemy-info>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 			</div>
-			<div class="absolute width90 height90 center border white-back rounded40 cutoff" ng-class="{hidden:hidemessage}" ng-click="togglemessage('hide')">
+			<div class="absolute width90 height90 center border white-back rounded40 cutoff" ng-class="{hidden:hidemessage}" on-tap="togglemessage('hide')">
 				<div class="absolute width80 center font-30">
 					tilt your device to collide with the targets<br><br>tap here for a game guide<br>this guide can be opened anytime
 				</div>

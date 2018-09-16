@@ -1,13 +1,13 @@
 <div class="absolute width height">
 
 
-    <div class="absolute width-100 height-100 z-100 white-back rounded50 border right-50 bottom30 pointer" ng-click="toggleinfo()">
+    <div class="absolute width-100 height-100 z-100 white-back rounded50 border right-50 bottom30 pointer" on-tap="toggleinfo()">
         <div class="absolute center font-50">
             <i class="fa fa-info"></i>
         </div>
     </div>
 
-	<div class="absolute fill z-100" ng-class="{hidden:hidemessage}" ng-click="togglemessage('hide')">
+	<div class="absolute fill z-100" ng-class="{hidden:hidemessage}" on-tap="togglemessage('hide')">
 		
 		<div class="absolute fill black-back opacity70"></div>
 		<div class="absolute width-500 height-500 rounded50 white-back center pointer" id="{{'preview' + page.id}}">

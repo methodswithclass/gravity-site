@@ -1,19 +1,19 @@
 
-<div class="absolute width height black-back deselect">
+<div class="absolute width height black-back">
 
 	<div class="absolute width height cutoff" id="body" body>
 
-		<div class="absolute left0 top0 nuplaeSize deselect">
+		<div class="absolute left0 top0 nuplaeSize">
 
 			<div ng-repeat="page in main.pages">
-				<div class="absolute width25 height25 cutoff deselect" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
+				<div class="absolute width25 height25 cutoff" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
 
 
 					<div class="absolute width height center white-back border-white deselect" id="{{'page-back-' + page.id}}">
 						
 						<div class="box absolute width height center lowered-dark border-width-20 {{page.page.border}} {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
 
-							<div class="absolute fill deselect" id="{{'arena' + page.id}}" rotation>
+							<div class="absolute fill" id="{{'arena' + page.id}}" rotation>
 
 								<div id="{{'pagetitle' + page.id}}" class="absolute height20 width text-center font-60">
 									<div class="absolute center">{{page.title.text}}</div>
