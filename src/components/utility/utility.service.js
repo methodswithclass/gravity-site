@@ -119,7 +119,7 @@ utilityModule.factory("utility.service", [function () {
     }
 
 	var forced = false;
-	var valid = false;
+	var valid = true;
 	var status = con.invalid;
 
 	var forceValidity = function (_valid) {
