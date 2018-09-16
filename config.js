@@ -44,7 +44,8 @@ var shimFile = "node_modules/@babel/polyfill/dist/polyfill.js";
 
 
 var vendorScripts = [
-	//npm packages for front end use
+	//npm packages for front end use,
+	"node_modules/jquery.scrollto/jquery.scrollTo.min.js",
 	"node_modules/mc-shared/shared.js"
 ]
 

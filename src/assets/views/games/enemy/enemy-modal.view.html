@@ -12,8 +12,8 @@
 
 		<div class="absolute width-700 height-700 rounded50 white-back center" id="{{'preview' + page.id}}">
 			<div class="absolute width90 height90 center border white-back rounded40 cutoff">
-                <div class="absolute width height center scrollX scroll-horizontal-dark-narrow touch cutoff" id="{{'preview' + page.id + 'inner'}}">
-				    <div class="absolute height" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" on-tap="toggleinfo('hide')">
+                <div class="absolute width height center scrollX scroll-horizontal-dark-narrow cutoff" id="{{'preview' + page.id + 'inner'}}">
+				    <div class="absolute height" touch scroll="{{'preview' + page.id + 'inner'}}" ng-style="{'width':enemyInfoWidth + 'px'}" id="{{'info' + page.id}}" on-tap="toggleinfo('hide')">
 					
                         <div class="relative inline height" ng-style="{'width':innerpaneWidth + 'px'}" ng-repeat="type in enemyTypes">
 						    <enemy-info></enemy-info>
