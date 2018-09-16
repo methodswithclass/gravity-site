@@ -25,7 +25,9 @@ touchModule.directive("touch", function () {
                     value = -1 * end;
                 }
 
-                $scope.dir == "y" ? element.css({ top: value }) : $(element).css({ left:value });
+                var prop = $scope.dir == "y" ? "top" : "left";
+
+                element.css({ prop: value });
             }
 
             var mc;
