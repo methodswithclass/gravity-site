@@ -9,6 +9,7 @@ var imagemin = require('gulp-imagemin');
 var htmlDest = "dist/";
 
 var mainScripts = [
+	"src/assets/js/supporting-code.js",
 	"src/components/interface/touch/touch.module.js",
     "src/components/utility/utility.module.js",
     "src/components/data/data.module.js",

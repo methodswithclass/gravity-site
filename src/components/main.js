@@ -27,3 +27,7 @@ app.config(['state.providerProvider', '$locationProvider', function (stateProvid
     //3. route to next state (calibrate) if valid, stop progression through app if invalid
 
 }]);
+
+
+
+getAngularModules(app);
