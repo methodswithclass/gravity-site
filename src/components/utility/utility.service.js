@@ -118,7 +118,7 @@ utilityModule.factory("utility.service", [function () {
         }
     }
 
-	var forced = false;
+	var forced = true;
 	var valid = true;
 	var status = con.invalid;
 

@@ -33,6 +33,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
     var current = [];
     var curr = 0;
     var running = true;
+    var phase_p;
 
     var skipCalibrate = false;
 

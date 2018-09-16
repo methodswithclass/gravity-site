@@ -1,6 +1,6 @@
 enemyModule.factory("enemy.game", ['enemy.service', 'time-keeper.service', function(Enemy, keeperFactory) {
 
-	var total = 8;
+	var total = 4;
 	var enemies = [];
 	var keeper;
 	var timer;
@@ -30,11 +30,13 @@ enemyModule.factory("enemy.game", ['enemy.service', 'time-keeper.service', funct
 
 		//console.log("destroy index: " + index);
 
-		enemies[index].remove();
-		enemies.splice(index,1);
+		if (enemies[index]) {
+			enemies[index].remove();
+			enemies.splice(index,1);
 
-		if (replace) {
-			createEnemy(index);
+			if (replace) {
+				createEnemy(index);
+			}
 		}
 
 	}
