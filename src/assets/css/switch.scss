@@ -1,15 +1,15 @@
 
 
-$sizeX: 400px;
-$sizeY: 200px;
+$sizeX: 30vw;
+$sizeY: 150px;
 
 
 $buffer: 4px;
 
-$sliderX:$sizeY - $buffer*2;
-$sliderY:$sizeY - $buffer*2;
+$sliderX:calc(#{$sizeY} - #{$buffer*2});
+$sliderY:calc(#{$sizeY} - #{$buffer*2});
 
-$translate: $sliderX + $buffer*2;
+$translate: calc(#{$sizeX} - #{$sizeY});
 
 .switch {
   position: relative;

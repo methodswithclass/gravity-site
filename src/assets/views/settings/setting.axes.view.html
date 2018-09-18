@@ -10,31 +10,25 @@
 
         </div>
 
-        <div class="relative width80 height80 center">
+        <div class="relative width height80 center">
 
-            <div class="relative width margin-bottom-100">
+            <div class="relative width margin-top-100 margin-bottom-200">
 
-                <div class="flex flex-row flex-align-center">
+                <div class="flex flex-row flex-align-center flex-justify-center">
 
-                    <div class="width20">
-                        <div class="relative center">
-                            <i class="fas fa-arrows-alt-h font-100"></i>
-                        </div>
+                    <div class="width20 text-center">
+                        <i class="fas fa-arrows-alt-h font-100"></i>
                     </div>
 
-                    <div class="width30">
-                        <label class="switch" on-tap="changeDir('i')">
+                    <div class="width40">
+                        <label class="switch hcenter" on-tap="changeDir('i')">
                             <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
                             <span class="slider round"></span>
                         </label>
                     </div>
 
-                    <div class="width50">
-
-                        <div class="relative center font-50 text-right">
-                            {{switched.x}}
-                        </div>
-
+                    <div class="width30 text-right font-50">
+                        {{switched.x}}
                     </div>
 
                 </div>
@@ -44,29 +38,23 @@
 
             <div class="relative width">
 
-                <div class="flex flex-row flex-align-center">
+                <div class="flex flex-row flex-align-center flex-justify-center">
 
-                    <div class="width20">
-                        <div class="relative center">
-                            <i class="fas fa-arrows-alt-v font-100"></i>
-                        </div>
+                    <div class="width20 text-center">
+                        <i class="fas fa-arrows-alt-v font-100"></i>
                     </div>
 
                    
 
-                    <div class="width30">
-                        <label class="switch" on-tap="changeDir('j')">
+                    <div class="width40">
+                        <label class="switch hcenter" on-tap="changeDir('j')">
                             <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
                             <span class="slider round"></span>
                         </label>
                     </div>
 
-                    <div class="width50">
-
-                        <div class="relative center font-50 text-right">
-                            {{switched.y}}
-                        </div>
-
+                    <div class="width30 text-right font-50">
+                        {{switched.y}}
                     </div>
 
                 </div>
