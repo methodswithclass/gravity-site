@@ -35,7 +35,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         factor:{
             message:"sensitivity set",
             duration:800,
-            delay:1000
+            delay:1500
         },
         axis:{
             message:"axis set",
