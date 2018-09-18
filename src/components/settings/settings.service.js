@@ -1,4 +1,4 @@
-settingsModule.factory("settings.service", ['utility.service', 'cookie.service', 'data.service', function (utility, cookie, data) {
+settingsModule.factory("settings.service", ['utility.service', 'cookie.service', 'data.service', 'toast.service', function (utility, cookie, data, $toast) {
 
 	var g = mcshared.utility;
     var util = mcaccel.utility;
@@ -20,31 +20,35 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 
             console.log("display feedback");
 
-            var $elem = "#settingssavedfeedback";
+            // var $elem = "#settingssavedfeedback";
 
-            $($elem).css({display:"block", opacity:0});
+            // $($elem).css({display:"block", opacity:0});
 
-            setTimeout(function () {
+            // setTimeout(function () {
                 
-                $($elem).animate({opacity:1}, {
-                    duration:300,
-                    complete:function () {
+            //     $($elem).animate({opacity:1}, {
+            //         duration:300,
+            //         complete:function () {
 
-                        setTimeout(function () {
+            //             setTimeout(function () {
                             
-                            $($elem).animate({opacity:0}, {
-                                duration:600,
-                                complete:function () {
+            //                 $($elem).animate({opacity:0}, {
+            //                     duration:600,
+            //                     complete:function () {
 
-                                    $($elem).css({display:"none"});
-                                }
-                            })
+            //                         $($elem).css({display:"none"});
+            //                     }
+            //                 })
 
-                        }, 800);
-                    }
-                });
+            //             }, 800);
+            //         }
+            //     });
 
-            }, 100);
+            // }, 100);
+
+
+            $toast.showToast({message:"settings saved", duration:1500, delay:600});
+
         },
         closeSetting: function () {
 

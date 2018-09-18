@@ -1,4 +1,4 @@
-calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$mdToast', 'settings.service', 'utility.service', 'cookie.service', function (progress, events, $mdToast, settings, utility, cookie) {
+calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toast.service', 'settings.service', 'utility.service', 'cookie.service', function (progress, events, $toast, settings, utility, cookie) {
 
     var g = mcaccel.utility;
 
@@ -26,7 +26,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
     var running = true;
     var phase_p;
 
-
+    var forceCalibrate = true;
     var skipCalibrate = false;
 
     var toast = {
@@ -54,14 +54,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         cookie.clearCookies();
     }
 
-
     var showToast = function (options) {
 
-        var $message = options.message;
-        var duration = options.duration;
         var dir = options.dir;
         var type = options.type;
-        var delay = options.delay;
 
         var toastmessage = {
             xDir: {
@@ -79,63 +75,17 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         
         if (toast.showSwitch) {
             if (dir && type) {
-                $message = toastmessage[dir][type];;
+                $message = toastmessage[dir][type];
+                options.message = $message;
             }
             else {
                 toast.show = false;
             }
         }
 
-        // console.log("show toast", toast.show, "\n\n\n\n");
-
-        var html = `
-
-            <md-toast class="absolute width height">
-                    
-                <div class='md-toast-content'>
-                    
-                    <div class="absolute width height-200 bottom0 black-back opacity70 z-100"></div>
-
-                    <div class='absolute width height-200 bottom0 white font-50 z-100'>
-                        <div class="absolute center">
-                            ${$message}
-                        </div>
-                    </div>
-                </div>
-
-            </md-toast>
-
-        `
-
-
-        var $showToastFunction = function () {
-
-            console.log("show toast", toast.show, $message);
-
-             if (toast.show) {
-                    
-                $mdToast.show(
-
-                    $mdToast.build()
-                    .template(html)
-                    .hideDelay(duration)
-                    .position("top")
-
-                ).then(function () {
-
-                    console.log("toast closed")
-                });
-
-            }
+        if (toast.show) {
+            $toast.showToast(options)
         }
-
-
-        setTimeout(function () {
-
-            $showToastFunction();
-
-        }, delay)
-        
     }
 
     var getProgress = function () {
@@ -420,7 +370,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                         g.setAxis(yDir, axisY);
                         g.setAxis(xDir, axisX);
 
-                        skipCalibrate = true;
+                        skipCalibrate = forceCalibrate;
 
                         console.log("skipcalibrate \n\n");
                     }
