@@ -94,7 +94,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                     
                 <div class='md-toast-content'>
                     
-                    <div class="absolute width height-200 bottom0 black-back opacity90 z-100"></div>
+                    <div class="absolute width height-200 bottom0 black-back opacity70 z-100"></div>
 
                     <div class='absolute width height-200 bottom0 white font-50 z-100'>
                         <div class="absolute center">
