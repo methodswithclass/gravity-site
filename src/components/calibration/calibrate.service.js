@@ -11,16 +11,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
     // var calDir = yDir;
 
-    var sm = {
-        xDir: {
-            same: "x axis unchanged",
-            switched: "x axis switched"
-        },
-        yDir: {
-            same: "y axis unchanged",
-            switched: "y axis switched"
-        }
-    }
+    
 
     var num_phases = 0;
 
@@ -35,7 +26,27 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
     var running = true;
     var phase_p;
 
+
     var skipCalibrate = false;
+
+    var toast = {
+        show:true,
+        showSwitch:false,
+        factor:{
+            message:"sensitivity set",
+            duration:800,
+            delay:1000
+        },
+        axis:{
+            message:"axis set",
+            x:{
+                duration:2500
+            },
+            y:{
+                duration:600
+            }
+        }
+    }
 
 
     var clearCalibration = function () {
@@ -44,30 +55,40 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
     }
 
 
-    var showToast = function (dir, type) {
+    var showToast = function (options) {
+
+        var $message = options.message;
+        var duration = options.duration;
+        var dir = options.dir;
+        var type = options.type;
+        var delay = options.delay;
+
+        var toastmessage = {
+            xDir: {
+                same: "x axis unchanged",
+                switched: "x axis switched"
+            },
+            yDir: {
+                same: "y axis unchanged",
+                switched: "y axis switched"
+            }
+        }
 
 
-        var message = sm[dir][type];
+        // console.log("toastmessage", $message);
+        
+        if (toast.showSwitch) {
+            if (dir && type) {
+                $message = toastmessage[dir][type];;
+            }
+            else {
+                toast.show = false;
+            }
+        }
 
-        var html1 = " " + 
+        // console.log("show toast", toast.show, "\n\n\n\n");
 
-        "<md-toast class='absolute width height-200 padding0 margin0 bottom0'>" +
-            
-            "<div class='absolute width height'>" +
-                
-                "<div class='absolute width height md-toast-content bottom0'>" +
-                    
-                    "<div class='absolute vcenter font-50'> " +
-                        message +
-                    "</div>" +
-                
-                "</div>" +
-            
-            "</div>" +
-
-        "</md-toast>"
-
-        var html2 = `
+        var html = `
 
             <md-toast class="absolute width height">
                     
@@ -77,7 +98,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
                     <div class='absolute width height-200 bottom0 white font-50 z-100'>
                         <div class="absolute center">
-                            ${message}
+                            ${$message}
                         </div>
                     </div>
                 </div>
@@ -87,20 +108,33 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         `
 
 
-        console.log("show toast", message, "\n\n\n\n");
+        var $showToastFunction = function () {
+
+            console.log("show toast", toast.show, $message);
+
+             if (toast.show) {
+                    
+                $mdToast.show(
+
+                    $mdToast.build()
+                    .template(html)
+                    .hideDelay(duration)
+                    .position("top")
+
+                ).then(function () {
+
+                    console.log("toast closed")
+                });
+
+            }
+        }
 
 
-        $mdToast.show(
+        setTimeout(function () {
 
-            $mdToast.build()
-            .template(html2)
-            .hideDelay(2000)
-            .position("top")
+            $showToastFunction();
 
-        ).then(function () {
-
-            console.log("toast closed \n\n\n\n")
-        });
+        }, delay)
         
     }
 
@@ -254,6 +288,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
             g.setFactor(g.const.factorG, factor);
             cookie.setCookie(utility.c.factorKey, factor);
 
+            
+            if (!toast.showSwitch) {
+                console.log("show factor toast", toast.factor.message);
+                showToast({message:toast.factor.message, duration:toast.factor.duration, delay:toast.factor.delay});
+            }
             // console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.const.factorG));
 
             next(index);
@@ -307,7 +346,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                 settings.settings.axes.setDirection(axis, -1);
                 cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), -1);
                 console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
-                showToast(axis == yDir ? "yDir" : "xDir", "switched");
+                
             }
             else {
 
@@ -315,9 +354,16 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                 settings.settings.axes.setDirection(axis, 1);
                 cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), 1);
                 console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
-                showToast(axis == yDir ? "yDir" : "xDir", "same");
             }
 
+            var direction = (axis == yDir ? "y" : "x")
+
+            if (toast.showSwitch) {
+                showToast({duration:toast.axis[direction].duration, dir:axis == yDir ? "yDir" : "xDir", type:curr < 0 ? "switched" : "same", delay:0});
+            }
+            else {
+                showToast({message:direction + " " + toast.axis.message, duration:toast.axis[direction].duration, delay:0});
+            }
 
             cookie.setCookie(utility.c.axisDoneKey, utility.c.done);
 
@@ -328,9 +374,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
             events.dispatch("calibrate-btn-hide");
             events.dispatch("calibrate-img-hide");
 
-            // setTimeout(function () {
-                next(index);
-            // }, 1000);   
+            next(index);  
         }
     }
 
