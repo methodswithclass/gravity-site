@@ -26,7 +26,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
     var running = true;
     var phase_p;
 
-    var forceCalibrate = true;
+    var forceSkip = false;
     var skipCalibrate = false;
 
     var toast = {
@@ -290,23 +290,15 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
             reset();
 
-            if (curr < 0) {
-
-                g.setAxis(axis == yDir ? yDir : xDir, -1);
-                settings.settings.axes.setDirection(axis, -1);
-                cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), -1);
-                console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
-                
-            }
-            else {
-
-                g.setAxis(axis == yDir ? yDir : xDir, 1);
-                settings.settings.axes.setDirection(axis, 1);
-                cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), 1);
-                console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
-            }
+            console.log("calibrate", axis == yDir ? "y" : "x", "direction", curr < 0 ? "SWITCHED" : "SAME");
+            
 
             var direction = (axis == yDir ? "y" : "x")
+            var value = curr < 0 ? -1 : 1;
+            
+            g.setAxis(axis == yDir ? yDir : xDir, value);
+            settings.settings.axes.setDirection(axis, value);
+            
 
             if (toast.showSwitch) {
                 showToast({duration:toast.axis[direction].duration, dir:axis == yDir ? "yDir" : "xDir", type:curr < 0 ? "switched" : "same", delay:0});
@@ -315,6 +307,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
                 showToast({message:direction + " " + toast.axis.message, duration:toast.axis[direction].duration, delay:0});
             }
 
+
+            cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), value);
             cookie.setCookie(utility.c.axisDoneKey, utility.c.done);
 
             current.length = 0;
@@ -370,7 +364,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
                         g.setAxis(yDir, axisY);
                         g.setAxis(xDir, axisX);
 
-                        skipCalibrate = forceCalibrate;
+                        skipCalibrate = forceSkip;
 
                         console.log("skipcalibrate \n\n");
                     }
