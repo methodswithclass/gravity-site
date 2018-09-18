@@ -6,8 +6,8 @@ $sizeY: 150px;
 
 $buffer: 4px;
 
-$sliderX:calc(#{$sizeY} - #{$buffer*2});
-$sliderY:calc(#{$sizeY} - #{$buffer*2});
+$sliderX: calc(#{$sizeY} - #{$buffer*2});
+$sliderY: calc(#{$sizeY} - #{$buffer*2});
 
 $translate: calc(#{$sizeX} - #{$sizeY});
 
