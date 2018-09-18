@@ -1,15 +1,28 @@
+
+
+$sizeX: 400px;
+$sizeY: 200px;
+
+
+$buffer: 4px;
+
+$sliderX:$sizeY - $buffer*2;
+$sliderY:$sizeY - $buffer*2;
+
+$translate: $sliderX + $buffer*2;
+
 .switch {
   position: relative;
   display: inline-block;
-  width: 200px;
-  height: 100px;
+  width: $sizeX;
+  height: $sizeY;
+  cursor: pointer;
 }
 
 .switch input {display:none;}
 
 .slider {
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
@@ -23,17 +36,17 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 92px;
-  width: 92px;
-  left: 4px;
-  bottom: 4px;
+  height: $sliderY;
+  width: $sliderX;
+  left: $buffer;
+  bottom: $buffer;
   background-color: white;
   -webkit-transition: .2s;
   -ms-transition: .2s;
   transition: .2s;
 }
 
-input:checked + .slider {
+input:checked  + .slider {
   background-color: #2196F3;
 }
 
@@ -42,14 +55,14 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(100px);
-  -ms-transform: translateX(100px);
-  transform: translateX(100px);
+  -webkit-transform: translateX($translate);
+  -ms-transform: translateX($translate);
+  transform: translateX($translate);
 }
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 50px;
+  border-radius: $sliderX;
 }
 
 .slider.round:before {

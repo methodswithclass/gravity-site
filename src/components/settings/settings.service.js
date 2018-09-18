@@ -123,7 +123,7 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 
                 var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
                 util.setAxis(dir, currValue * (-1));
-                cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey), currValue * -1);
+                cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey), currValue * (-1));
                 //calibration[dir] = value;
             },
 			setDirection:function (axis, dir) {

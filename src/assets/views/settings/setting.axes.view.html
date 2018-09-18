@@ -10,67 +10,70 @@
 
         </div>
 
-        <div class="relative width height80">
+        <div class="relative width80 height80 center">
 
-                <div class="relative width height50">
+            <div class="relative width margin-bottom-100">
 
-                    <div class="absolute width30 height left0">
-                        <div class="absolute center font-70">
-                            <div class="fa fa-arrows-h"></div>
+                <div class="flex flex-row flex-align-center">
+
+                    <div class="width20">
+                        <div class="relative center">
+                            <i class="fas fa-arrows-alt-h font-100"></i>
                         </div>
                     </div>
 
-                    <div class="absolute width70 height right0">
-
-                        <div class="absolute width30 vcenter left0">
-                            <label class="switch">
-                                <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        <div class="absolute width70 vcenter right0">
-
-                            <div class="absolute center font-50">
-                                {{switched.x}}
-                            </div>
-
-                        </div>
+                    <div class="width30">
+                        <label class="switch" on-tap="changeDir('i')">
+                            <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </div>
 
+                    <div class="width50">
+
+                        <div class="relative center font-50 text-right">
+                            {{switched.x}}
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div class="relative width height50">
-
-                    <div class="absolute width30 height left0">
-                        <div class="absolute center font-70">
-                            <div class="fa fa-arrows-v"></div>
-                        </div>
-                    </div>
-
-                    <div class="absolute width70 height right0">
-
-                        <div class="absolute width30 vcenter left0">
-                            <label class="switch">
-                                <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        <div class="absolute width70 vcenter right0">
-
-                            <div class="absolute center font-50">
-                                {{switched.y}}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
 
             </div>
+
+            <div class="relative width">
+
+                <div class="flex flex-row flex-align-center">
+
+                    <div class="width20">
+                        <div class="relative center">
+                            <i class="fas fa-arrows-alt-v font-100"></i>
+                        </div>
+                    </div>
+
+                   
+
+                    <div class="width30">
+                        <label class="switch" on-tap="changeDir('j')">
+                            <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="width50">
+
+                        <div class="relative center font-50 text-right">
+                            {{switched.y}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
         </div>
 
     </div>

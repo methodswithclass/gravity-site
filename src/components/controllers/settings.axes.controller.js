@@ -19,10 +19,16 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
     setSwitched();
 
+    $scope.changeDir = function (axis) {
+
+        var $state = axis === "i" ? $scope.axesDir.x : $scope.axesDir.y;
+
+        settings.settings.axes.setOverride(axis, settings.settings.axes.getDirFromState($state));
+    }
+
     $scope.setDirection = function (axis) {
 
         setSwitched();
-        settings.settings.axes.setOverride(axis, settings.settings.axes.getDirFromState(axis === "i" ? $scope.axesDir.x : $scope.axesDir.y));
     }
 
 
