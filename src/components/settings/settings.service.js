@@ -16,13 +16,54 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
     }
 
     var settings = {
+        displayFeedback:function () {
+
+            console.log("display feedback");
+
+            var $elem = "#settingssavedfeedback";
+
+            $($elem).css({display:"block", opacity:0});
+
+            setTimeout(function () {
+                
+                $($elem).animate({opacity:1}, {
+                    duration:300,
+                    complete:function () {
+
+                        setTimeout(function () {
+                            
+                            $($elem).animate({opacity:0}, {
+                                duration:600,
+                                complete:function () {
+
+                                    $($elem).css({display:"none"});
+                                }
+                            })
+
+                        }, 1000);
+                    }
+                });
+
+            }, 300);
+        },
         closeSetting: function () {
 
             console.log("old close setting");
         },
         registerClose: function (_close) {
 
-            settings.closeSetting = _close;
+            console.log("register close")
+
+            settings.closeSetting = function () {
+
+                console.log("close settings");
+
+                _close();
+
+                settings.displayFeedback();
+
+
+            }
         },
         obj: {
             min: 50,

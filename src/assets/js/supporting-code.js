@@ -1,5 +1,10 @@
 
+var captureError = function (err) {
 
+	console.log(err);
+
+	return true;
+}
 
 
 var getAngularModules = function (application) {

@@ -13,6 +13,7 @@ interfaceModule.directive("slider", ["settings.service", 'data.service', functio
 
             var util = mcaccel.utility;
             
+
             var o = {
                 input:$scope.orientation,
                 v: "vertical",
@@ -84,8 +85,8 @@ interfaceModule.directive("slider", ["settings.service", 'data.service', functio
                 mc.add(Pan);
                 mc.get('pan').set({ direction: o.input == o.v ? Hammer.DIRECTION_VERTICAL : Hammer.DIRECTION_HORIZONTAL });
                 mc.on('pan', function (e) {
-                    value = o.input == o.v ? e.center.y : e.center.x;
-                    setThumbPosition(setThumbCenterFromMax(getFactorFromValue(value)));
+                    var $value = o.input == o.v ? e.center.y : e.center.x;
+                    setThumbPosition(setThumbCenterFromMax(getFactorFromValue($value)));
                 });
 
             }, 500);

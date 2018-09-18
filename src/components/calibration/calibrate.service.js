@@ -46,19 +46,62 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
     var showToast = function (dir, type) {
 
-        $mdToast.show({
-            template: "<md-toast class='absolute width height-200 padding0 margin0 bottom0'>" +
+
+        var message = sm[dir][type];
+
+        var html1 = " " + 
+
+        "<md-toast class='absolute width height-200 padding0 margin0 bottom0'>" +
+            
             "<div class='absolute width height'>" +
-            "<div class='absolute width height md-toast-content bottom0'>" +
-            "<div class='absolute vcenter font-50'>" +
-            sm[dir][type] +
+                
+                "<div class='absolute width height md-toast-content bottom0'>" +
+                    
+                    "<div class='absolute vcenter font-50'> " +
+                        message +
+                    "</div>" +
+                
+                "</div>" +
+            
             "</div>" +
-            "</div>" +
-            "</div>" +
-            "</md-toast>",
-            autoWrap: false,
-            hideDelay: 100
+
+        "</md-toast>"
+
+        var html2 = `
+
+            <md-toast class="absolute width height">
+                    
+                <div class='md-toast-content'>
+                    
+                    <div class="absolute width height-200 bottom0 black-back opacity90 z-100"></div>
+
+                    <div class='absolute width height-200 bottom0 white font-50 z-100'>
+                        <div class="absolute center">
+                            ${message}
+                        </div>
+                    </div>
+                </div>
+
+            </md-toast>
+
+        `
+
+
+        console.log("show toast", message, "\n\n\n\n");
+
+
+        $mdToast.show(
+
+            $mdToast.build()
+            .template(html2)
+            .hideDelay(2000)
+            .position("top")
+
+        ).then(function () {
+
+            console.log("toast closed \n\n\n\n")
         });
+        
     }
 
     var getProgress = function () {
@@ -117,7 +160,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
     var begin = function (index) {
 
-        console.log("\nbegin phase", index, ":", scheme.phases[index].id);
+        // console.log("\nbegin phase", index, ":", scheme.phases[index].id);
 
         if (index + 1 >= num_phases) {
             events.dispatch("tiltnone");
@@ -131,11 +174,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         var p;
 
         if (running) {
-            console.log("running phase", index, ":", scheme.phases[index].id);
+            // console.log("running phase", index, ":", scheme.phases[index].id);
             p = 0.003;
         }
         else {
-            console.log("pausing phase", index, ":", scheme.phases[index].id);
+            // console.log("pausing phase", index, ":", scheme.phases[index].id);
             p = 0;
         }
 
@@ -146,7 +189,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
         reset();
 
-        console.log("complete phase", index, ":", scheme.phases[index].id, "\n");
+        // console.log("complete phase", index, ":", scheme.phases[index].id, "\n");
 
         phase_p = 0;
 
@@ -166,7 +209,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
         start: function (index) {
 
-            console.log("\nbegin factor phase", index, ":", scheme.phases[index].id);
+            // console.log("\nbegin factor phase", index, ":", scheme.phases[index].id);
 
             time = (new Date()).getTime();
 
@@ -179,7 +222,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
             if (running) {
 
-                console.log("running factor phase", index, ":", scheme.phases[index].id);
+                // console.log("running factor phase", index, ":", scheme.phases[index].id);
 
                 time += interval;
 
@@ -198,10 +241,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         },
         complete: function (index) {
 
-            console.log("complete factor phase", index, ":", scheme.phases[index].id);
-            console.log("calibrate", "reached y boundary")
-            // console.log("acceleration", obj.acceleration);
-            console.log("accel y", obj.acceleration.y);
+            // console.log("complete factor phase", index, ":", scheme.phases[index].id);
+            // console.log("calibrate", "reached y boundary")
+            // // console.log("acceleration", obj.acceleration);
+            // console.log("accel y", obj.acceleration.y);
 
             var objaccel = Math.abs(obj.acceleration.y);
             objaccel = objaccel != 0 ? objaccel : 1;
@@ -211,7 +254,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
             g.setFactor(g.const.factorG, factor);
             cookie.setCookie(utility.c.factorKey, factor);
 
-            console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.const.factorG));
+            // console.log("calibrate", "time", time, "accel", objaccel, "factor", g.getFactor(g.const.factorG));
 
             next(index);
 
@@ -222,7 +265,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
         start: function (index, axis) {
 
-            console.log("\nbegin axis phase", axis, index, ":", scheme.phases[index].id);
+            // console.log("\nbegin axis phase", axis, index, ":", scheme.phases[index].id);
 
             events.dispatch(axis == yDir ? "tiltunder" : "tiltright");
             toggleRunning();
@@ -236,7 +279,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
 
             if (running) {
 
-                console.log("running axis phase", axis, index, ":", scheme.phases[index].id);
+                // console.log("running axis phase", axis, index, ":", scheme.phases[index].id);
 
                 current.push(accel.raw().gravity);
 
@@ -254,7 +297,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
         },
         complete: function (index, axis) {
 
-            console.log("complete axis phase", axis, index, ":", scheme.phases[index].id, "\n");
+            // console.log("complete axis phase", axis, index, ":", scheme.phases[index].id, "\n");
 
             reset();
 
@@ -264,7 +307,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                 settings.settings.axes.setDirection(axis, -1);
                 cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), -1);
                 console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SWITCHED");
-                //showToast(axis == yDir ? "yDir" : "xDir", "switched");
+                showToast(axis == yDir ? "yDir" : "xDir", "switched");
             }
             else {
 
@@ -272,7 +315,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                 settings.settings.axes.setDirection(axis, 1);
                 cookie.setCookie((axis == yDir ? utility.c.axisYKey : utility.c.axisXKey), 1);
                 console.log("calibrate", axis == yDir ? "y" : "x", "direction", "SAME");
-                //showToast(axis == yDir ? "yDir" : "xDir", "same");
+                showToast(axis == yDir ? "yDir" : "xDir", "same");
             }
 
 
@@ -285,7 +328,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
             events.dispatch("calibrate-btn-hide");
             events.dispatch("calibrate-img-hide");
 
-            next(index);
+            // setTimeout(function () {
+                next(index);
+            // }, 1000);   
         }
     }
 
@@ -317,11 +362,11 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                     var checkFactor = cookie.getCookie(utility.c.factorDoneKey);
                     var checkAxis = cookie.getCookie(utility.c.axisDoneKey);
 
-                    console.log("skipcalibrate \n\n\n\n\n\n\n", skipCalibrate);
+                    // console.log("skipcalibrate", skipCalibrate);
 
                     if (checkFactor == utility.c.done && checkAxis == utility.c.done) {
 
-                        console.log("cookies match \n\n\n\n\n\n");
+                        // console.log("cookies match");
 
                         var factor = cookie.getCookie(utility.c.factorKey);
                         var axisY = cookie.getCookie(utility.c.axisYKey);
@@ -331,7 +376,9 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                         g.setAxis(yDir, axisY);
                         g.setAxis(xDir, axisX);
 
-                        skipCalibrate = true;
+                        skipCalibrate = false;
+
+                        console.log("skipcalibrate \n\n");
                     }
 
                     next(0);

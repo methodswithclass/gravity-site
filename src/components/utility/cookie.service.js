@@ -33,7 +33,7 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
         
         document.cookie = key + "=" + value + ";" + expires + ";";
 
-        console.log("set cookie", document.cookie);
+        // console.log("set cookie", document.cookie);
 
     }
 
@@ -50,11 +50,11 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
 
         if (indexKey >= 0) {
 
-            console.log("indexKey", indexKey);
+            // console.log("indexKey", indexKey);
 
             substr_cookie = cookie.substring(indexKey);
 
-            console.log("substr_key", substr_cookie);
+            // console.log("substr_key", substr_cookie);
             indexValue = substr_cookie.indexOf("=") + 1;
             indexEnd = substr_cookie.indexOf(";");
 
@@ -67,7 +67,7 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
             
         }
 
-        console.log("get cookie: key:", key, "value:", substr_value);
+        // console.log("get cookie: key:", key, "value:", substr_value);
 
         return substr_value;
     }

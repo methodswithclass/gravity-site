@@ -49,7 +49,7 @@
 
             <div ng-if="$index > 0" class="absolute width-200 height-200 center pointer" ng-class="{'border-blue':marble.selected}" on-tap="selectObj(marble)">
                 <div class="absolute width80 height80 center">
-                    <img class="absolute width height-auto center" src="{{marble.src}}" />
+                    <img class="absolute width height-auto center" ng-src="{{marble.src}}" />
                 </div>
             </div>
         </div>

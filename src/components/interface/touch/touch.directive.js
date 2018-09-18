@@ -9,7 +9,7 @@ touchModule.directive("touch", function () {
 
             var start = 0;
 
-            var $scroll = $("#" + $scope.scroll);
+            var $scroll = $scope.scroll ? ("#" + $scope.scroll) : element;
 
             var setPosition = function (diff) {
 
@@ -17,7 +17,7 @@ touchModule.directive("touch", function () {
 
                 var value = start + diff;
                 var begin = 0;
-                var end = $scope.dir == "y" ? $(element).height() - $scroll.height() : $(element).width() - $scroll.width();
+                var end = ($scope.dir == "y" ? ($(element).height() - $($scroll).height()) : ($(element).width() - $($scroll).width()));
 
                 if (value < begin) {
                     value = begin;
@@ -34,9 +34,14 @@ touchModule.directive("touch", function () {
                 var prop = $scope.dir == "y" ? "top" : "left";
 
 
-                // $(element).css({prop:value});
+               	if ($scope.scroll) {
 
-                $scroll.scrollTo(value, {axis:$scope.dir == "y" ? $scope.dir : "x"});
+               		$($scroll).scrollTo(value, {axis:$scope.dir == "y" ? $scope.dir : "x"});
+            	}
+            	else {
+            		$(element).css({prop:value});
+            	}
+                
 
             }
 
@@ -52,9 +57,12 @@ touchModule.directive("touch", function () {
                 mc.get('pan').set({ direction: $scope.dir == "y" ? Hammer.DIRECTION_VERTICAL : Hammer.DIRECTION_HORIZONTAL });
                 mc.on("press", function (e) {
 
-                    // start = $scope.dir == "y" ? $(element).position().top : $(element).position().left;
-                
-                    start = $scope.dir == "y" ? $scroll.scrollTop() : $scroll.scrollLeft();
+                	if ($scope.scroll) {
+                		start = $scope.dir == "y" ? $($scroll).scrollTop() : $($scroll).scrollLeft();
+                	}
+                	else {
+                    	start = $scope.dir == "y" ? $(element).position().top : $(element).position().left;
+                	}
                 })
                 mc.on('pan', function (e) {
                     var $value = (-1)*($scope.dir == "y" ? e.deltaY : e.deltaX);

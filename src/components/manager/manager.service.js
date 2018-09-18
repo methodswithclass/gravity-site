@@ -92,7 +92,7 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
         var marbleID = settings.settings.obj.obj;
         var marble = data.getMarble(marbleID);
 
-        console.log("getObj cookie ID", marbleID, "marble", marble);
+        // console.log("getObj cookie ID", marbleID, "marble", marble);
 
         obj.shape = marble.shape;
         obj.src = marble.src || null;
