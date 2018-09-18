@@ -1,70 +1,70 @@
 
 
-$sizeX: 30vw;
-$sizeY: 150px;
+// $sizeX: 30vw;
+// $sizeY: 150px;
 
 
-$buffer: 4px;
+// $buffer: 4px;
 
-$sliderX: calc(#{$sizeY} - #{$buffer*2});
-$sliderY: calc(#{$sizeY} - #{$buffer*2});
+// $sliderX: calc(#{$sizeY} - #{$buffer*2});
+// $sliderY: calc(#{$sizeY} - #{$buffer*2});
 
-$translate: calc(#{$sizeX} - #{$sizeY});
+// $translate: calc(#{$sizeX} - #{$sizeY});
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: $sizeX;
-  height: $sizeY;
-  cursor: pointer;
-}
+// .switch {
+//   position: relative;
+//   display: inline-block;
+//   width: $sizeX;
+//   height: $sizeY;
+//   cursor: pointer;
+// }
 
-.switch input {display:none;}
+// .switch input {display:none;}
 
-.slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .2s;
-  -ms-transition: .2s;
-  transition: .2s;
-}
+// .slider {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background-color: #ccc;
+//   -webkit-transition: .2s;
+//   -ms-transition: .2s;
+//   transition: .2s;
+// }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: $sliderY;
-  width: $sliderX;
-  left: $buffer;
-  bottom: $buffer;
-  background-color: white;
-  -webkit-transition: .2s;
-  -ms-transition: .2s;
-  transition: .2s;
-}
+// .slider:before {
+//   position: absolute;
+//   content: "";
+//   height: $sliderY;
+//   width: $sliderX;
+//   left: $buffer;
+//   bottom: $buffer;
+//   background-color: white;
+//   -webkit-transition: .2s;
+//   -ms-transition: .2s;
+//   transition: .2s;
+// }
 
-input:checked  + .slider {
-  background-color: #2196F3;
-}
+// input:checked  + .slider {
+//   background-color: #2196F3;
+// }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
+// input:focus + .slider {
+//   box-shadow: 0 0 1px #2196F3;
+// }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX($translate);
-  -ms-transform: translateX($translate);
-  transform: translateX($translate);
-}
+// input:checked + .slider:before {
+//   -webkit-transform: translateX($translate);
+//   -ms-transform: translateX($translate);
+//   transform: translateX($translate);
+// }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: $sliderX;
-}
+// /* Rounded sliders */
+// .slider.round {
+//   border-radius: $sliderX;
+// }
 
-.slider.round:before {
-  border-radius: 50%;
-}
+// .slider.round:before {
+//   border-radius: 50%;
+// }

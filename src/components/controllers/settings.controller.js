@@ -31,7 +31,14 @@ controllerModule.controller("settings.controller", ['$scope', 'global', 'state.s
         return settingOpened;
     }
 
-    settings.settings.registerClose($scope.closeSetting);
+    settings.settings.registerClose(function () {
+
+
+        settings.settings[currentSetting].save();
+
+        $scope.closeSetting()
+
+    });
 
 
 }]);

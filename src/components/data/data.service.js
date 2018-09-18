@@ -71,7 +71,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		settings:{
 			items:[
 				{
-					id:"session-factor",
+					id:"factor",
 					title:"sensitivity",
 					view:"setting.session-factor.view.html"
 				},
@@ -81,7 +81,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 					view:"setting.axes.view.html"
 				},
 				{
-					id:"obj-color",
+					id:"obj",
 					title:"object color",
                     view: "setting.obj-color.view.html",
                     getMarble: function (id) {
@@ -552,7 +552,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
         console.log("get marble", id);
 
         if (id) {
-            return getSetting("obj-color").marbles.find(function (p) {
+            return getSetting("obj").marbles.find(function (p) {
 
                 return p.id == id;
             });

@@ -36,6 +36,7 @@ var sassStyles = [
 
 var cssStyles = [
 	'temp/**/*.css',
+	"node_modules/css-toggle-switch/dist/toggle-switch.css",
 	"node_modules/@fortawesome/fontawesome-free/css/all.css"
 ]
 

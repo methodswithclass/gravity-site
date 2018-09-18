@@ -3,6 +3,8 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
     console.log("settings axes controller");
 
+    var prevDir = null;
+
     $scope.settings = data.getSetting("axes");
 
     $scope.axesDir = {};
@@ -17,19 +19,37 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
         $scope.switched.y = $scope.axesDir.y ? "switched" : "standard";
     }
 
-    setSwitched();
+    // setSwitched();
 
-    $scope.changeDir = function (axis) {
+    $scope.setDir = function (axis, value) {
 
-        var $state = axis === "i" ? $scope.axesDir.x : $scope.axesDir.y;
 
-        settings.settings.axes.setOverride(axis, settings.settings.axes.getDirFromState($state));
+        settings.settings.axes.setOverride(axis, value);
+
     }
 
     $scope.setDirection = function (axis) {
 
         setSwitched();
     }
+
+
+
+    var initial = function () {
+
+        console.log("checked", $("#standard.x")[0], $scope.axesDir);
+
+        $("#standard.x").prop("checked", $scope.axesDir.x);
+        $("#standard.y").prop("checked", $scope.axesDir.y);
+
+        $("#switched.x").prop("checked", $scope.axesDir.x);
+        $("#switched.y").prop("checked", $scope.axesDir.y);
+
+    }
+
+    setTimeout(function () {
+        initial();
+    }, 1000)
 
 
 }]);

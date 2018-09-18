@@ -67,7 +67,7 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
             
         }
 
-        // console.log("get cookie: key:", key, "value:", substr_value);
+        console.log("get cookie: key:", key, "value:", substr_value);
 
         return substr_value;
     }

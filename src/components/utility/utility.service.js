@@ -105,6 +105,31 @@ utilityModule.factory("utility.service", [function () {
 		}
 	}
 
+	var $marble = {
+		id:"marble6",
+		size:350
+	}
+
+
+	var marble = {
+    	set:{
+    		id:function (id) {
+    			$marble.id = id;
+    		},
+    		size:function (size) {
+    			$marble.size = size;
+    		}
+    	},
+    	get:{
+    		id:function () {
+    			return $marble.id;
+    		},
+    		size:function () {
+    			return $marble.size;
+    		}
+    	}
+    }
+
 	var deviceStandard = {
         standard:{
             text:"standard",
@@ -328,6 +353,7 @@ utilityModule.factory("utility.service", [function () {
 
 	return {
 		c:con,
+		marble:marble,
 		deviceStandard:deviceStandard,
     	forceValidity:forceValidity,
     	setValidity:setValidity,

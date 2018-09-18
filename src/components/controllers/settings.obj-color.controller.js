@@ -5,7 +5,7 @@ controllerModule.controller("settings.obj-color.controller", ['$scope', 'global'
 
     var util = mcaccel.utility;
 
-    $scope.settings = data.getSetting("obj-color");
+    $scope.settings = data.getSetting("obj");
 
     var marbles = $scope.settings.marbles;
 

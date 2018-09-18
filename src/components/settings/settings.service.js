@@ -20,32 +20,6 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 
             console.log("display feedback");
 
-            // var $elem = "#settingssavedfeedback";
-
-            // $($elem).css({display:"block", opacity:0});
-
-            // setTimeout(function () {
-                
-            //     $($elem).animate({opacity:1}, {
-            //         duration:300,
-            //         complete:function () {
-
-            //             setTimeout(function () {
-                            
-            //                 $($elem).animate({opacity:0}, {
-            //                     duration:600,
-            //                     complete:function () {
-
-            //                         $($elem).css({display:"none"});
-            //                     }
-            //                 })
-
-            //             }, 800);
-            //         }
-            //     });
-
-            // }, 100);
-
 
             $toast.showToast({message:"settings saved", duration:1500, delay:600});
 
@@ -72,18 +46,27 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
         obj: {
             min: 50,
             max: 700,
-            size: cookie.getCookie(utility.c.objSizeKey) || 350,
-            obj: cookie.getCookie(utility.c.objKey) || "marble6",
+            size: cookie.getCookie(utility.c.objSizeKey) || utility.marble.get.size(),
+            obj: cookie.getCookie(utility.c.objKey) || utility.marble.get.id(),
             currentObj: function () {
                 return data.getMarble(settings.obj.obj);
             },
             setObj: function (marble) {
                 settings.obj.obj = marble.id;
-                cookie.setCookie(utility.c.objKey, marble.id);
+                // cookie.setCookie(utility.c.objKey, marble.id);
+                utility.marble.set.id(marble.id);
 
-                var marbleCookie = cookie.getCookie(utility.c.objKey);
+                // var marbleCookie = cookie.getCookie(utility.c.objKey);
 
-                console.log("marbleCookie", marbleCookie);
+                // console.log("marbleCookie", marbleCookie);
+            },
+            save:function () {
+
+                console.log("save obj \n\n\n");
+
+                cookie.setCookie(utility.c.objKey, utility.marble.get.id());
+                cookie.setCookie(utility.c.objSizeKey, utility.marble.get.size());
+
             },
             currentSize: function () {
                 return settings.obj.size;
@@ -91,7 +74,8 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             setSize: function (size) {
 
                 settings.obj.size = size;
-                cookie.setCookie(utility.c.objSizeKey, size);
+                // cookie.setCookie(utility.c.objSizeKey, size);
+                utility.marble.set.size(size);
             }
         },
     	factor:{
@@ -105,8 +89,14 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 			setSessionFactor:function (val) {
 
                 util.setFactor(util.const.factorS, val);
-                cookie.setCookie(utility.c.sessionFactorKey, val);
+                // cookie.setCookie(utility.c.sessionFactorKey, val);
 			},
+            save:function () {
+
+                console.log("save factor \n\n\n");
+
+                cookie.setCookie(utility.c.sessionFactorKey, util.getFactor(util.const.factorS));
+            },
     		createRegistry:[
 
     		],
@@ -121,10 +111,17 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             },
             setOverride: function (dir, value) {
 
-                var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
-                util.setAxis(dir, currValue * (-1));
-                cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey), currValue * (-1));
-                //calibration[dir] = value;
+                // var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
+                util.setAxis(dir, value);
+                // cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisYKey), value);
+
+            },
+            save:function () {
+
+                console.log("save axes \n\n\n");
+
+                cookie.setCookie(utility.c.axisYKey, util.getAxis("j"));
+                cookie.setCookie(utility.c.axisXKey, util.getAxis("i"));
             },
 			setDirection:function (axis, dir) {
 

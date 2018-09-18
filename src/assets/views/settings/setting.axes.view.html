@@ -20,16 +20,25 @@
                         <i class="fas fa-arrows-alt-h font-100"></i>
                     </div>
 
-                    <div class="width40">
-                        <label class="switch hcenter">
-                            <input id="switch.x" ng-model="axesDir.x" ng-change="setDirection('i')" type="checkbox">
-                            <span class="slider round" on-tap="changeDir('i')"></span>
-                        </label>
+                    <div class="width60 font-30">
+
+                        <fieldset>
+
+                            <div class="switch-toggle switch-candy-blue">
+                                
+                                <input id="standard.x" name="view" type="radio">
+                                <label for="standard.x" on-tap="setDir('i', 1)">standard</label>
+
+                                <input id="switch.x" name="view" type="radio">
+                                <label for="switch.x" on-tap="setDir('i', -1)">switched</label>
+
+                                <a></a>
+                            </div>
+
+                        </fieldset>
+
                     </div>
 
-                    <div class="width30 text-right font-50">
-                        {{switched.x}}
-                    </div>
 
                 </div>
 
@@ -44,17 +53,26 @@
                         <i class="fas fa-arrows-alt-v font-100"></i>
                     </div>
 
-                   
 
-                    <div class="width40">
-                        <label class="switch hcenter" on-tap="changeDir('j')">
-                            <input id="switch.y" ng-model="axesDir.y" ng-change="setDirection('j')" type="checkbox">
-                            <span class="slider round"></span>
-                        </label>
-                    </div>
+                    <div class="width60 font-30">
 
-                    <div class="width30 text-right font-50">
-                        {{switched.y}}
+                        <fieldset>
+
+                            <div class="switch-toggle switch-candy-blue">
+                                
+                                <input id="standard.y" name="view" type="radio">
+                                <label for="standard.y" on-tap="setDir('j', 1)">standard</label>
+
+                                <input id="switch.y" name="view" type="radio">
+                                <label for="switch.y" on-tap="setDir('j', -1)">switched</label>
+
+                                <a></a>
+                            
+                            </div>
+
+
+                        </fieldset>
+
                     </div>
 
                 </div>
