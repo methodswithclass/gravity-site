@@ -5,7 +5,9 @@ controllerModule.controller("settings.session-factor.controller", ['$scope', 'gl
 
     $scope.settings = data.getSetting("session-factor");
 
-    $scope.sliderValue = settings.settings.factor.getSessionFactor();
+    // $scope.sliderValue = settings.settings.factor.getSessionFactor();
+
+    $scope.sliderValue = "";
 
     var min = settings.settings.factor.min;
     var max = settings.settings.factor.max;

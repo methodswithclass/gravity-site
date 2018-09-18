@@ -12,7 +12,7 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 			isRegistered = events.dispatch("console");
 
-			console.log("valid wrapper", "console registered", isRegistered, i);
+			// console.log("valid wrapper", "console registered", isRegistered, i);
 
 			if (isRegistered || i > 200) {
 

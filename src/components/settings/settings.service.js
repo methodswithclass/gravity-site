@@ -40,11 +40,11 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
                                 }
                             })
 
-                        }, 1000);
+                        }, 800);
                     }
                 });
 
-            }, 300);
+            }, 100);
         },
         closeSetting: function () {
 
@@ -96,7 +96,7 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             max: 2,
 			getSessionFactor:function() {
 
-    			return parseFloat(cookie.getCookie(utility.c.sessionFactorKey) || util.getFactor(util.const.factorS));
+    			return parseFloat(cookie.getCookie(utility.c.sessionFactorKey) || util.getFactor(util.const.factorS)); 
 			},
 			setSessionFactor:function (val) {
 

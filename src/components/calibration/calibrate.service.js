@@ -420,7 +420,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', '$md
                         g.setAxis(yDir, axisY);
                         g.setAxis(xDir, axisX);
 
-                        skipCalibrate = false;
+                        skipCalibrate = true;
 
                         console.log("skipcalibrate \n\n");
                     }
