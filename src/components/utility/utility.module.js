@@ -1,1 +1,1 @@
-var utilityModule = angular.module("utility.module", ["shared.module"]);
+var utilityModule = angular.module("utility.module", ["shared.module", "ngMaterial"]);

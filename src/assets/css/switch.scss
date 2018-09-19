@@ -1,70 +1,76 @@
 
 
-// $sizeX: 30vw;
-// $sizeY: 150px;
 
 
-// $buffer: 4px;
 
-// $sliderX: calc(#{$sizeY} - #{$buffer*2});
-// $sliderY: calc(#{$sizeY} - #{$buffer*2});
+$sizeX: 30vw;
+$sizeY: 150px;
 
-// $translate: calc(#{$sizeX} - #{$sizeY});
 
-// .switch {
-//   position: relative;
-//   display: inline-block;
-//   width: $sizeX;
-//   height: $sizeY;
-//   cursor: pointer;
-// }
+$buffer: 4px;
 
-// .switch input {display:none;}
+$sliderX: calc(#{$sizeY} - #{$buffer*2});
+$sliderY: calc(#{$sizeY} - #{$buffer*2});
 
-// .slider {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   background-color: #ccc;
-//   -webkit-transition: .2s;
-//   -ms-transition: .2s;
-//   transition: .2s;
-// }
+$translate: calc(#{$sizeX} - #{$sizeY});
 
-// .slider:before {
-//   position: absolute;
-//   content: "";
-//   height: $sliderY;
-//   width: $sliderX;
-//   left: $buffer;
-//   bottom: $buffer;
-//   background-color: white;
-//   -webkit-transition: .2s;
-//   -ms-transition: .2s;
-//   transition: .2s;
-// }
 
-// input:checked  + .slider {
-//   background-color: #2196F3;
-// }
 
-// input:focus + .slider {
-//   box-shadow: 0 0 1px #2196F3;
-// }
+.switch {
+  position: relative;
+  display: inline-block;
+  width: $sizeX;
+  height: $sizeY;
+  cursor: pointer;
+}
 
-// input:checked + .slider:before {
-//   -webkit-transform: translateX($translate);
-//   -ms-transform: translateX($translate);
-//   transform: translateX($translate);
-// }
+.switch input {display:none;}
 
-// /* Rounded sliders */
-// .slider.round {
-//   border-radius: $sliderX;
-// }
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .2s;
+  -ms-transition: .2s;
+  transition: .2s;
+}
 
-// .slider.round:before {
-//   border-radius: 50%;
-// }
+.slider:before {
+  position: absolute;
+  content: "";
+  height: $sliderY;
+  width: $sliderX;
+  left: $buffer;
+  bottom: $buffer;
+  background-color: white;
+  -webkit-transition: .2s;
+  -ms-transition: .2s;
+  transition: .2s;
+}
+
+input:checked  + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX($translate);
+  -ms-transform: translateX($translate);
+  transform: translateX($translate);
+}
+
+
+.slider.round {
+  border-radius: $sliderX;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+

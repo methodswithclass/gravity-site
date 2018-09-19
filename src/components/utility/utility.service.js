@@ -143,7 +143,7 @@ utilityModule.factory("utility.service", [function () {
         }
     }
 
-	var forced = true;
+	var forced = false;
 	var valid = false;
 	var status = con.invalid;
 

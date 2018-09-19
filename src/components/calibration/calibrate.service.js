@@ -26,7 +26,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
     var running = true;
     var phase_p;
 
-    var forceSkip = false;
+    var forceSkip = true;
     var skipCalibrate = false;
 
     var toast = {
@@ -291,7 +291,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
             reset();
 
             console.log("calibrate", axis == yDir ? "y" : "x", "direction", curr < 0 ? "SWITCHED" : "SAME");
-            
+
 
             var direction = (axis == yDir ? "y" : "x")
             var value = curr < 0 ? -1 : 1;

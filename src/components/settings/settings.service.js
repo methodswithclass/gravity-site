@@ -53,12 +53,7 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             },
             setObj: function (marble) {
                 settings.obj.obj = marble.id;
-                // cookie.setCookie(utility.c.objKey, marble.id);
                 utility.marble.set.id(marble.id);
-
-                // var marbleCookie = cookie.getCookie(utility.c.objKey);
-
-                // console.log("marbleCookie", marbleCookie);
             },
             save:function () {
 
@@ -74,7 +69,6 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             setSize: function (size) {
 
                 settings.obj.size = size;
-                // cookie.setCookie(utility.c.objSizeKey, size);
                 utility.marble.set.size(size);
             }
         },
@@ -89,7 +83,6 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 			setSessionFactor:function (val) {
 
                 util.setFactor(util.const.factorS, val);
-                // cookie.setCookie(utility.c.sessionFactorKey, val);
 			},
             save:function () {
 
@@ -112,8 +105,10 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
             setOverride: function (dir, value) {
 
                 // var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
+                
+
+                console.log("set setOverride", dir, value);
                 util.setAxis(dir, value);
-                // cookie.setCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisYKey), value);
 
             },
             save:function () {

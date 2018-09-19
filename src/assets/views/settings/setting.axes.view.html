@@ -20,22 +20,15 @@
                         <i class="fas fa-arrows-alt-h font-100"></i>
                     </div>
 
-                    <div class="width60 font-30">
+                    <div class="width60 height-100 font-30">
 
-                        <fieldset>
 
-                            <div class="switch-toggle switch-candy-blue">
-                                
-                                <input id="standard-x" name="view" type="radio">
-                                <label for="standard-x" on-tap="setDir('i', 1)">standard</label>
+                        <!-- <axes-toggle dir="i" setDir="setDir"></axes-toggle> -->
 
-                                <input id="switch-x" name="view" type="radio">
-                                <label for="switch-x" on-tap="setDir('i', -1)">switched</label>
 
-                                <a></a>
-                            </div>
-
-                        </fieldset>
+                        <md-switch ng-model="axes.x" id="x-axis" aria-label="x-axis" ng-true-value="'standard'" ng-false-value="'switch'" class="md-primary width height">
+                            <!-- {{getMessage(axes.x)}} -->
+                        </md-switch>
 
                     </div>
 
@@ -54,24 +47,15 @@
                     </div>
 
 
-                    <div class="width60 font-30">
-
-                        <fieldset>
-
-                            <div class="switch-toggle switch-candy-blue">
-                                
-                                <input id="standard-y" name="view" type="radio">
-                                <label for="standard-y" on-tap="setDir('j', 1)">standard</label>
-
-                                <input id="switch-y" name="view" type="radio">
-                                <label for="switch-y" on-tap="setDir('j', -1)">switched</label>
-
-                                <a></a>
-                            
-                            </div>
+                    <div class="width60 height-100 font-30">
 
 
-                        </fieldset>
+                        <!-- <axes-toggle dir="j" setDir="setDir"></axes-toggle> -->
+
+
+                        <md-switch ng-model="axes.y" id="y-axis" aria-label="y-axis" ng-true-value="'standard'" ng-false-value="'switch'" class="md-primary">
+                            <!-- {{getMessage(axes.y)}} -->
+                        </md-switch>
 
                     </div>
 
