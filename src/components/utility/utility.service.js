@@ -5,6 +5,7 @@ utilityModule.factory("utility.service", [function () {
 
 
 	var con = {
+		nextState:"page.calibrate",
 		valid:"valid",
 		invalid:"invalid",
 		portrait:"portrait",
@@ -173,6 +174,11 @@ utilityModule.factory("utility.service", [function () {
 		forced = false;
 		valid = _valid;
 		status = _valid ? con.valid : con.invalid;
+	}
+
+	var setState = function (state) {
+
+		con.nextState = state;
 	}
 
 	var isForced = function () {
@@ -375,6 +381,7 @@ utilityModule.factory("utility.service", [function () {
     	isForced:isForced,
     	deviceStatus:deviceStatus,
     	isValid:isValid,
+		setState:setState,
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
 		getDestroyPosition:getDestroyPosition,

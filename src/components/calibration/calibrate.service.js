@@ -28,6 +28,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
     var forceSkip = true;
     var skipCalibrate = false;
+    var calibrateStart = true;
 
     var toast = {
         show:true,
@@ -332,106 +333,106 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
     var scheme = {
         phases: [
-            {
-                index: 0,
-                id: "loading",
-                message: "loading calibration",
-                start: function () {
-                    begin(0);
-                },
-                update: function (interval, percent) {
-
-                    return percent + loading(0);
-                },
-                complete: function () {
-
-                    skipCalibrate = false;
-
-                    var checkFactor = cookie.getCookie(utility.c.factorDoneKey);
-                    var checkAxis = cookie.getCookie(utility.c.axisDoneKey);
-
-                    // console.log("skipcalibrate", skipCalibrate);
-
-                    if (checkFactor == utility.c.done && checkAxis == utility.c.done) {
-
-                        // console.log("cookies match");
-
-                        var factor = cookie.getCookie(utility.c.factorKey);
-                        var axisY = cookie.getCookie(utility.c.axisYKey);
-                        var axisX = cookie.getCookie(utility.c.axisXKey);
-
-                        g.setFactor(g.const.factorG, factor);
-                        g.setAxis(yDir, axisY);
-                        g.setAxis(xDir, axisX);
-
-                        skipCalibrate = forceSkip;
-
-                        console.log("skipcalibrate \n\n");
-                    }
-
-                    next(0);
-
-                }
+        {
+            index: 0,
+            id: "loading",
+            message: "loading calibration",
+            start: function () {
+                begin(0);
             },
-            {
-                index: 1,
-                id: "checkY",
-                message: "checking y axis",
-                complete:false,
-                start: function () {
+            update: function (interval, percent) {
 
-                    checkAxis.start(1, yDir);
-                },
-                update: function (interval, percent) {
-
-                    return percent + checkAxis.check(1, yDir);
-                },
-                complete: function () {
-
-                    checkAxis.complete(1, yDir);
-                }
+                return percent + loading(0);
             },
-            {
-                index: 2,
-                id: "checkFactor",
-                message: "calibrating factor",
-                complete:false,
-                start: function () {
+            complete: function () {
 
-                    checkFactor.start(2);
-                },
-                update: function (interval, percent) {
+                skipCalibrate = false;
 
-                    return percent + checkFactor.check(2, interval);
-                },
-                complete: function () {
+                var checkFactor = cookie.getCookie(utility.c.factorDoneKey);
+                var checkAxis = cookie.getCookie(utility.c.axisDoneKey);
 
-                    checkFactor.complete(2);
+                // console.log("skipcalibrate", skipCalibrate);
 
-                    cookie.setCookie(utility.c.factorDoneKey, utility.c.done);
+                if (checkFactor == utility.c.done && checkAxis == utility.c.done) {
 
+                    // console.log("cookies match");
+
+                    var factor = cookie.getCookie(utility.c.factorKey);
+                    var axisY = cookie.getCookie(utility.c.axisYKey);
+                    var axisX = cookie.getCookie(utility.c.axisXKey);
+
+                    g.setFactor(g.const.factorG, factor);
+                    g.setAxis(yDir, axisY);
+                    g.setAxis(xDir, axisX);
+
+                    skipCalibrate = forceSkip;
+
+                    console.log("skipcalibrate \n\n");
                 }
-            },
-            {
-                index: 3,
-                id: "checkX",
-                message: "checking x axis",
-                complete:false,
-                start: function () {
 
-                    checkAxis.start(3, xDir);
-                },
-                update: function (interval, percent) {
+                next(0);
 
-                    return percent + checkAxis.check(3, xDir);
-                },
-                complete: function () {
-
-                    checkAxis.complete(3, xDir);
-
-                    cookie.setCookie(utility.c.axisDoneKey, utility.c.done);
-                }
             }
+        },
+        {
+            index: 1,
+            id: "checkY",
+            message: "checking y axis",
+            complete:false,
+            start: function () {
+
+                checkAxis.start(1, yDir);
+            },
+            update: function (interval, percent) {
+
+                return percent + checkAxis.check(1, yDir);
+            },
+            complete: function () {
+
+                checkAxis.complete(1, yDir);
+            }
+        },
+        {
+            index: 2,
+            id: "checkFactor",
+            message: "calibrating factor",
+            complete:false,
+            start: function () {
+
+                checkFactor.start(2);
+            },
+            update: function (interval, percent) {
+
+                return percent + checkFactor.check(2, interval);
+            },
+            complete: function () {
+
+                checkFactor.complete(2);
+
+                cookie.setCookie(utility.c.factorDoneKey, utility.c.done);
+
+            }
+        },
+        {
+            index: 3,
+            id: "checkX",
+            message: "checking x axis",
+            complete:false,
+            start: function () {
+
+                checkAxis.start(3, xDir);
+            },
+            update: function (interval, percent) {
+
+                return percent + checkAxis.check(3, xDir);
+            },
+            complete: function () {
+
+                checkAxis.complete(3, xDir);
+
+                cookie.setCookie(utility.c.axisDoneKey, utility.c.done);
+            }
+        }
         ]
     }
 
@@ -490,9 +491,10 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
         setTimeout(function () {
 
-            events.dispatch("calibrate-start");
-            progress.startProgress();
-
+            if (calibrateStart) {
+                events.dispatch("calibrate-start");
+                progress.startProgress();
+            }
         }, 500);
 
     }

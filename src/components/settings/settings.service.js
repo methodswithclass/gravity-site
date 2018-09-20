@@ -102,17 +102,9 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 
                 return parseInt(cookie.getCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey)) || util.getAxis(dir));
             },
-            setOverride: function (dir, state) {
+            reverseCalibration: function (dir) {
                 
-
-                var factor = 1;
-                if (state) factor = -1;
-                utility.calibration.set(dir, factor);
-
-
-
-                var currValue = settings.axes.getCalibration(dir);
-                util.setAxis(dir, currValue*(-1));
+                util.setAxis(dir, settings.axes.getCalibration(dir)*(-1));
 
             },
             save:function () {

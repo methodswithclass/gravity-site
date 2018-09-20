@@ -14,8 +14,11 @@ app.config(['state.providerProvider', '$locationProvider', function (stateProvid
 
 }]).run(["state.service", "utility.service", function (states, utility) {
 
-	//for desktop debugging when no accelerometer is present, comment out this line for production
-    // utility.forceValidity(true);
+	//for desktop debugging when no accelerometer is present, comment out the next line for production
+
+
+    utility.forceValidity(true);
+    utility.setState("page.settings");
     
 
     //1. check existence of device accelerometer

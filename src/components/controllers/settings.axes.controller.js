@@ -7,10 +7,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
     var getAxes = function () {
 
         var axes = {}
-
-        // axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
-        // axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
-
+        
         axes.x = settings.settings.axes.getStateFromDir(utility.calibration.get("i"));
         axes.y = settings.settings.axes.getStateFromDir(utility.calibration.get("j"));
 
@@ -47,7 +44,10 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
         console.log("set dir", axis, value);
 
         if (!haveClass(axis, state)) {
-            settings.settings.axes.setOverride(axis, state);
+
+            utility.calibration.set(axis, state ? -1 : 1);
+
+            settings.settings.axes.reverseCalibration(axis);
 
             setBackground(axis, state);
         }

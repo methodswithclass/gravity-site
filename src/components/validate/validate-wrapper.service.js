@@ -1,7 +1,9 @@
-validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'events', 'utility.service', function ($q, validate, events, g) {
+validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'events', 'utility.service', "state.service", function ($q, validate, events, g, states) {
 
 
 	var isRegistered = false;
+
+	var nextState = g.c.nextState;
 
 	var checkRegistered = function (resolve, reject, complete) {
 
@@ -28,17 +30,28 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 	}
 
+	var goToNextState = function () {
+
+		setTimeout(function () {
+
+			states.go(nextState);
+		}, 2000);
+	}
+
 	var runValidation = function (resolve, reject) {
 
 		console.log("valid wrapper", "run validation");
 
-		validate.run().then( 
-		function (path) { //valid
-			resolve(path);
+		validate.run().then(
+		function () { //valid
+
+			goToNextState();
+
+			resolve();
 		},
-		function (path) { //invalid
-			reject(path);
-		});
+		function () { //invalid
+			reject();
+		})
 	}
 
 	var forceValidation = function (resolve, reject) {
@@ -47,21 +60,21 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 		if (g.isValid()) {
 
-			validate.validate().then( 
-			function (path) { //valid
-				resolve(path);
-			},
-			function (path) { //invalid
-				reject(path);
-			});
+			validate.validate()
+			.then(function () { //valid
+				
+				goToNextState();
+
+				resolve();
+			})
 		}
 		else {
 			validate.invalidate().then( 
-			function (path) { //valid
-				resolve(path);
+			function () { //valid
+				// resolve();
 			},
-			function (path) { //invalid
-				reject(path);
+			function () {
+				reject(); //invalid
 			});
 		}
 	}
