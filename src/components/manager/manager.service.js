@@ -164,6 +164,11 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 			accels[id].reset();
 		}
 
+		if (input.id == "slide") {
+			util.setAxis("i", utility.calibration.getSlide("i")*util.getAxis("i"));
+			util.setAxis("j", utility.calibration.getSlide("j")*util.getAxis("j"));
+		}
+
 		if (page.type.stages) games[id].onEnter({arena:arenas[id]});
 
 		if (page.type.accel && data.stats) setStats(id);
@@ -227,6 +232,12 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 		console.log("manager", "leave instance:", id);
 
 		var page = data.getPageById(id);
+
+		if (input.id == "slide") {
+			util.setAxis("i", utility.calibration.getSlide("i")*util.getAxis("i"));
+			util.setAxis("j", utility.calibration.getSlide("j")*util.getAxis("j"));
+		}
+
 		leaveStage(id);
 
 	}
