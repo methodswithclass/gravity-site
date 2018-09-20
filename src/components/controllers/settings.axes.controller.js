@@ -8,8 +8,11 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
         var axes = {}
 
-        axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
-        axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
+        // axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
+        // axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
+
+        axes.x = settings.settings.axes.getStateFromDir(utility.calibration.get("i"));
+        axes.y = settings.settings.axes.getStateFromDir(utility.calibration.get("j"));
 
         return axes;
     }
@@ -44,7 +47,7 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
         console.log("set dir", axis, value);
 
         if (!haveClass(axis, state)) {
-            settings.settings.axes.setOverride(axis, true);
+            settings.settings.axes.setOverride(axis, state);
 
             setBackground(axis, state);
         }
