@@ -12,7 +12,7 @@ interfaceModule.directive("option", ['state.service', 'calibrate.service', "util
 			$scope.onPressup = function () {
 
 				if ($scope.page.id == "calibrate") {
-					utility.calibrate.reset();
+					utility.calibration.reset();
 					calibrate.clearCalibration();
 				}
 
