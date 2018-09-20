@@ -2,6 +2,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
     var g = mcaccel.utility;
 
+    g.setDist(20);
+
     var accel;
     var obj;
     var parent;
@@ -10,8 +12,6 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
     var xDir = g.const.x;
 
     // var calDir = yDir;
-
-    
 
     var num_phases = 0;
 
