@@ -35,6 +35,8 @@ utilityModule.factory("cookie.service", ["utility.service", function (utility) {
 
         // console.log("set cookie", document.cookie);
 
+        console.log("set cookie, key:", key, "value:", value);
+
     }
 
     var getCookie = function (key) {

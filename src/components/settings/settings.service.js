@@ -100,15 +100,22 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
     	axes:{
     		getCalibration:function(dir) {
 
-                return parseInt(cookie.getCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey)) || calibration[dir]);
+                return parseInt(cookie.getCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey)) || utility.calibration.get(dir)*util.getAxis(dir));
             },
-            setOverride: function (dir, value) {
+            setOverride: function (dir, state) {
 
                 // var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
                 
 
-                // console.log("set setOverride", dir, value);
-                util.setAxis(dir, value);
+                var factor = 1;
+
+                var currValue = settings.axes.getCalibration(dir);
+
+                if (state) factor = -1;
+
+                utility.calibration.set(dir, factor);
+
+                util.setAxis(dir, utility.calibration.get(dir)*currValue);
 
             },
             save:function () {

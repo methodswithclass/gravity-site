@@ -105,6 +105,20 @@ utilityModule.factory("utility.service", [function () {
 		}
 	}
 
+	var $calibration = {
+		i:1,
+		j:1
+	}
+
+	var calibration = {
+		set:function (dir, value) {
+			$calibration[dir] = value
+		},
+		get:function (dir) {
+			return $calibration[dir];
+		}
+	}
+
 	var $marble = {
 		id:"marble6",
 		size:350
@@ -354,6 +368,7 @@ utilityModule.factory("utility.service", [function () {
 	return {
 		c:con,
 		marble:marble,
+		calibration:calibration,
 		deviceStandard:deviceStandard,
     	forceValidity:forceValidity,
     	setValidity:setValidity,
