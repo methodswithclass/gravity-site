@@ -11,17 +11,17 @@ var getAngularModules = function (application) {
 
 	// console.log("application is", application);
 
-	application.directive('onTap', function () {
-		return function (scope, element, attrs) {
-			return $(element).hammer({
-				    prevent_default: true,
-				    time:1
-				})
-				.bind("tap", function (ev) {
-				    return scope.$apply(attrs['onTap']);
-				});
-		};
-	});
+	// application.directive('onTap', function () {
+	// 	return function (scope, element, attrs) {
+	// 		return $(element).hammer({
+	// 			    prevent_default: true,
+	// 			    time:1
+	// 			})
+	// 			.bind("tap", function (ev) {
+	// 			    return scope.$apply(attrs['onTap']);
+	// 			});
+	// 	};
+	// });
 
 
 
