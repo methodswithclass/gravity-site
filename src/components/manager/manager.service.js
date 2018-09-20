@@ -164,7 +164,7 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 			accels[id].reset();
 		}
 
-		if (input.id == "slide") {
+		if (page.id == "slide") {
 			util.setAxis("i", utility.calibration.getSlide("i")*util.getAxis("i"));
 			util.setAxis("j", utility.calibration.getSlide("j")*util.getAxis("j"));
 		}
@@ -233,7 +233,7 @@ managerModule.factory("manager.service", ["utility.service", "data.service", 'se
 
 		var page = data.getPageById(id);
 
-		if (input.id == "slide") {
+		if (page.id == "slide") {
 			util.setAxis("i", utility.calibration.getSlide("i")*util.getAxis("i"));
 			util.setAxis("j", utility.calibration.getSlide("j")*util.getAxis("j"));
 		}
