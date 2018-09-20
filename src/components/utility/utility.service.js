@@ -117,6 +117,13 @@ utilityModule.factory("utility.service", [function () {
 		},
 		get:function (dir) {
 			return $calibration[dir];
+		},
+		reset:function () {
+
+			$calibration = {
+				i:1,
+				j:1
+			}
 		}
 	}
 
