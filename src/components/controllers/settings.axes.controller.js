@@ -3,12 +3,17 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
     console.log("settings axes controller");
 
+    
+    var getAxes = function () {
 
-    $scope.settings = data.getSetting("axes");
+        var axes = {}
 
-    $scope.axes = {};
-    $scope.axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
-    $scope.axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
+        axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
+        axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
+
+        return axes;
+    }
+
 
     var setBackground = function (axis, state) {
 
@@ -21,6 +26,13 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
         return $("#" + axis + "-" + (state ? "switch" : "stand")).hasClass("toggleSwitch");
     }
+
+
+    $scope.settings = data.getSetting("axes");
+
+    $scope.axes = {};
+
+    $scope.axes = getAxes();
 
 
     $scope.setDir = function (axis, state) {
@@ -42,8 +54,10 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
     var initial = function () {
 
 
-        setBackground("i", settings.settings.axes.getStateFromDir(utility.calibration.get("i")));
-        setBackground("j", settings.settings.axes.getStateFromDir(utility.calibration.get("j")));
+        var axes = getAxes();
+
+        setBackground("i", axes.x);
+        setBackground("j", axes.y);
 
 
         console.log("checked", $(":input").length, $scope.axes);
