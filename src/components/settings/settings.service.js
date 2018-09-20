@@ -107,7 +107,7 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
                 // var currValue = cookie.getCookie(dir == "j" ? utility.c.axisYKey : utility.c.axisXKey) || util.getAxis(dir);
                 
 
-                console.log("set setOverride", dir, value);
+                // console.log("set setOverride", dir, value);
                 util.setAxis(dir, value);
 
             },

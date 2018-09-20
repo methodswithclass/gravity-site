@@ -20,15 +20,28 @@
                         <i class="fas fa-arrows-alt-h font-100"></i>
                     </div>
 
-                    <div class="width60 height-100 font-30">
+                    <div class="width60 font-30">
 
+                        <div class="flex flex-row flex-align-center flex-justify-space">
 
-                        <!-- <axes-toggle dir="i" setDir="setDir"></axes-toggle> -->
+                            <div class="width40 height-100 text-center rounded10 border-white pointer" id="i-stand" on-tap="setDir('i', 1)">
+                                <!-- <input type="radio" name="x-axis" id="x-axis-stand" class="none"> -->
+                                <!-- <label for="x-axis-stand">Standard</label> -->
+                                <div class="relative vcenter">
+                                    standard
+                                </div>
+                            </div>
 
+                            <div class="width40 height-100 text-center rounded10 border-white pointer" id="i-switch" on-tap="setDir('i', -1)">
+                                <!-- <input type="radio" name="x-axis" id="x-axis-switch" class="none"> -->
+                                <!-- <label for="x-axis-switch">Switch</label> -->
+                                <div class="relative vcenter">
+                                    switch
+                                </div>
+                            </div>
 
-                        <md-switch ng-model="axes.x" id="x-axis" aria-label="x-axis" ng-true-value="'standard'" ng-false-value="'switch'" class="md-primary width height">
-                            <!-- {{getMessage(axes.x)}} -->
-                        </md-switch>
+                        </div>
+
 
                     </div>
 
@@ -47,15 +60,28 @@
                     </div>
 
 
-                    <div class="width60 height-100 font-30">
+                    <div class="width60 font-30">
 
 
-                        <!-- <axes-toggle dir="j" setDir="setDir"></axes-toggle> -->
+                        <div class="flex flex-row flex-align-center flex-justify-space">
 
+                            <div class="width40 height-100 text-center rounded10 border-white pointer" id="j-stand" on-tap="setDir('j', 1)">
+                                <!-- <input type="radio" name="y-axis" id="y-axis-stand" class="none"> -->
+                                <!-- <label for="y-axis-stand">Standard</label> -->
+                                <div class="relative vcenter">
+                                    standard
+                                </div>
+                            </div>
 
-                        <md-switch ng-model="axes.y" id="y-axis" aria-label="y-axis" ng-true-value="'standard'" ng-false-value="'switch'" class="md-primary">
-                            <!-- {{getMessage(axes.y)}} -->
-                        </md-switch>
+                            <div class="width40 height-100 text-center rounded10 border-white pointer" id="j-switch" on-tap="setDir('j', -1)">
+                                <!-- <input type="radio" name="y-axis" id="y-axis-switch" class="none"> -->
+                                <!-- <label for="y-axis-switch">Switch</label> -->
+                                <div class="relative vcenter">
+                                    switch
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
 

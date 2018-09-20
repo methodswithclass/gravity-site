@@ -1,1 +1,1 @@
-var settingsModule = angular.module("settings.module", ['shared.module', 'state.module', 'data.module', 'ng']);
+var settingsModule = angular.module("settings.module", ['shared.module', 'state.module', 'data.module', 'ng', "ngMaterial"]);

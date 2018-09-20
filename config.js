@@ -36,7 +36,6 @@ var sassStyles = [
 
 var cssStyles = [
 	'temp/**/*.css',
-	"node_modules/css-toggle-switch/dist/toggle-switch.css",
 	"node_modules/@fortawesome/fontawesome-free/css/all.css"
 ]
 
@@ -46,7 +45,6 @@ var shimFile = "node_modules/@babel/polyfill/dist/polyfill.js";
 
 var vendorScripts = [
 	//npm packages for front end use,
-	"node_modules/angular-material/angular-material.js",
 	"node_modules/jquery.scrollto/jquery.scrollTo.min.js",
 	"node_modules/mc-shared/shared.js"
 ]

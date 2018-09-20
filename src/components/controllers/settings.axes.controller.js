@@ -10,32 +10,31 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
     $scope.axes.x = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("i"));
     $scope.axes.y = settings.settings.axes.getStateFromDir(settings.settings.axes.getCalibration("j"));
 
+    var setBackground = function (axis, value) {
+
+        $("#" + axis + "-" + (value == -1 ? "stand" : "switch")).removeClass("toggleSwitch");
+        $("#" + axis + "-" + (value == -1 ? "switch" : "stand")).addClass("toggleSwitch");
+    }
+
 
     $scope.setDir = function (axis, value) {
 
         console.log("set dir", axis, value);
 
         settings.settings.axes.setOverride(axis, value);
-    }
 
-
-    $scope.getMessage = function (toggle) {
-
-
-        if (toggle) {
-
-            return "standard";
-        }
-        else {
-            return "switched";
-        }
+        setBackground(axis, value);
     }
 
 
     var initial = function () {
 
-        console.log("checked", $(":input").length, $scope.axes);
 
+        setBackground("i", settings.settings.axes.getDirFromState($scope.axes.x));
+        setBackground("j", settings.settings.axes.getDirFromState($scope.axes.y));
+
+
+        console.log("checked", $(":input").length, $scope.axes);
 
         $(":input").each(function (index) {
 
@@ -51,9 +50,8 @@ controllerModule.controller("settings.axes.controller", ['$scope', 'global', 'st
 
     }
 
-    // setTimeout(function () {
-    //     initial();
-    // }, 1000);
+   initial();
+
 
 
 }]);
