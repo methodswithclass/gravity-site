@@ -2,7 +2,7 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
     var g = mcaccel.utility;
 
-    g.setDist(20);
+    g.setDist(100);
 
     var accel;
     var obj;
