@@ -103,16 +103,16 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
                 return parseInt(cookie.getCookie((dir == "j" ? utility.c.axisYKey : utility.c.axisXKey)) || util.getAxis(dir));
             },
             setOverride: function (dir, state) {
+                
 
                 var factor = 1;
-
-                var currValue = settings.axes.getCalibration();
-
                 if (state) factor = -1;
-
                 utility.calibration.set(dir, factor);
 
-                util.setAxis(dir, utility.calibration.get(dir)*currValue);
+                
+
+                var currValue = settings.axes.getCalibration();
+                util.setAxis(dir, currValue*(-1));
 
             },
             save:function () {
