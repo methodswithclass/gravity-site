@@ -111,9 +111,14 @@ utilityModule.factory("utility.service", [function () {
 		j:1
 	}
 
+	var $slideCalibration = {
+		i:1,
+		j:1
+	}
+
 	var calibration = {
 		set:function (dir, value) {
-			$calibration[dir] = value
+			$calibration[dir] = value;
 		},
 		get:function (dir) {
 			return $calibration[dir];
@@ -124,6 +129,23 @@ utilityModule.factory("utility.service", [function () {
 				i:1,
 				j:1
 			}
+		},
+		setSlide:function(dir, value) {
+			$slideCalibration[dir] = value;
+		},
+		getSlide:function(dir) {
+			return $slideCalibration[dir];
+		},
+		resetSlide:function () {
+			$slideCalibration = {
+				i:1,
+				j:1
+			}
+		},
+		resetBoth:function () {
+
+			calibration.reset();
+			calibration.resetSlide();
 		}
 	}
 

@@ -300,6 +300,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
             g.setAxis(axis == yDir ? yDir : xDir, value);
             settings.settings.axes.setDirection(axis, value);
             
+            utility.calibration.setSlide("i", -1);
+            utility.calibration.setSlide("j", -1);
 
             if (toast.showSwitch) {
                 showToast({duration:toast.axis[direction].duration, dir:axis == yDir ? "yDir" : "xDir", type:curr < 0 ? "switched" : "same", delay:0});
