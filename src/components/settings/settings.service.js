@@ -109,9 +109,9 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
                 if (state) factor = -1;
                 utility.calibration.set(dir, factor);
 
-                
 
-                var currValue = settings.axes.getCalibration();
+
+                var currValue = settings.axes.getCalibration(dir);
                 util.setAxis(dir, currValue*(-1));
 
             },
