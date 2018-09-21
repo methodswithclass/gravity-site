@@ -71,16 +71,6 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 		settings:{
 			items:[
 				{
-					id:"factor",
-					title:"sensitivity",
-					view:"setting.session-factor.view.html"
-				},
-				{
-					id:"axes",
-					title:"switch axes",
-					view:"setting.axes.view.html"
-				},
-				{
 					id:"obj",
 					title:"object color",
                     view: "setting.obj-color.view.html",
@@ -189,6 +179,16 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
                             selected: false
                         }
                     ]
+				},
+				{
+					id:"axes",
+					title:"switch axes",
+					view:"setting.axes.view.html"
+				},
+				{
+					id:"factor",
+					title:"sensitivity",
+					view:"setting.session-factor.view.html"
 				}
 			]
 		},

@@ -1,28 +1,33 @@
 
 <div class="absolute fill" id="settings-content" ng-controller="settings.controller">
 
-	<div class="absolute width height scrollY scroll-vertical-dark-narrow">
-		<div class="absolute width80 height70 center">
-			<div class="relative inline width50 height-400" ng-repeat="setting in settings.items" on-tap="openSetting(setting.id)">
 
-				<div class="absolute width-300 height-300 center white-back border rounded50 pointer shadow">
-					<div class="absolute width80 center font-40 text-center">
-						{{setting.title}}
+	<div class="absolute fill rounded20 cutoff">
+
+		<div class="absolute width height scrollY scroll-vertical-dark-narrow">
+			<div class="absolute width80 height70 center">
+				<div class="relative inline width50 height-400" ng-repeat="setting in settings.items" on-tap="openSetting(setting.id)">
+
+					<div class="absolute width-300 height-300 center white-back border rounded50 pointer shadow">
+						<div class="absolute width80 center font-40 text-center">
+							{{setting.title}}
+						</div>
 					</div>
-				</div>
 
+				</div>
 			</div>
 		</div>
+
+		<back></back>
+
+		<div class="absolute width height" ng-if="visible()">
+			<setting-host></setting-host>
+		</div>
+
 	</div>
 
-	<back></back>
 
-	<div class="absolute width height" ng-if="visible()">
-		<setting-host></setting-host>
-	</div>
-
-
-	<div class="absolute width height opacity0 none" id="settingssavedfeedback">
+	<!-- <div class="absolute width height opacity0 none" id="settingssavedfeedback">
 
     	<div class="absolute width40 height-200 hcenter golden rounded40 green-back opacity90"></div>
 
@@ -34,6 +39,6 @@
     		</div>
     	</div>
 
-    </div>
+    </div> -->
 
 </div>
