@@ -4,7 +4,7 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 	var isRegistered = false;
 
 	var nextState = g.c.nextState;
-	var proceedToNextState = true;
+	var proceedToNextState = g.c.proceedToNextState;
 
 	var checkRegistered = function (resolve, reject, complete) {
 

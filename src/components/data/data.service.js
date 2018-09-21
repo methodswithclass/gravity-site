@@ -45,7 +45,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			game:false
 		},
 		page:{
-			view:"validity.view.html",
+			view:"valid.wrapper.view.html",
 			back:"black-back",
 			fore:"black-back",
 			rect:{

@@ -1,0 +1,25 @@
+
+
+<div class="absolute width80 center">
+
+	<div class="relative">
+
+		<div class="relative">
+
+		<div class="relative rounded20 {{getMessage(isValid, 'background')}} margin-v-20 white padding-v-50 text-center font-50">
+			{{getMessage(isValid, 'news')}}<br><br>
+			<div class="font-30">
+				{{getMessage(isValid, 'supported')}}
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+	<div class="relative">
+
+		<div class="relative rounded20 gray-back white">
+			<div class="relative width80 hcenter text-center padding-v-50 {{getMessage(isValid, 'font')}}" ng-bind-html="trustHtml(getMessage(isValid, 'message'))"></div>
+		</div>
+	</div>
+</div>
