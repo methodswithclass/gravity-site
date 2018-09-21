@@ -6,6 +6,37 @@ html, body {
 	padding:0;
 }
 
+/*
+.box {
+  background: tan;
+  border-radius: .8em;
+  box-shadow: 0 0 0 .6em #655;
+  display: inline-block;
+  height: 400px;
+  outline: .65em solid #655;
+  padding: 20px;
+  width: 800px;
+}*/
+
+$pageMargin: 20px;
+$pagePadding: 30px;
+$pageOutline: 20px;
+
+$pageBuffer: $pageMargin + $pagePadding - 10;
+
+
+.pageBorder {
+  position:absolute;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 0 10px black;
+  height: calc(100vh - #{$pageBuffer});
+  outline: $pageOutline solid black;
+  padding: $pagePadding;
+  margin: $pageMargin;
+  width: calc(100vw - #{$pageBuffer});
+}
+
 .nuplaeSize {
 
 	width:400%;

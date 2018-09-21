@@ -6,7 +6,7 @@ utilityModule.factory("utility.service", [function () {
 
 	var con = {
 		nextState:"page.calibrate",
-		proceedToNextState:false,
+		proceedToNextState:true,
 		valid:"valid",
 		invalid:"invalid",
 		portrait:"portrait",

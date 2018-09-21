@@ -4,6 +4,28 @@ html, body {
   margin: 0;
   padding: 0; }
 
+/*
+.box {
+  background: tan;
+  border-radius: .8em;
+  box-shadow: 0 0 0 .6em #655;
+  display: inline-block;
+  height: 400px;
+  outline: .65em solid #655;
+  padding: 20px;
+  width: 800px;
+}*/
+.pageBorder {
+  position: absolute;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 0 10px black;
+  height: calc(100vh - 40px);
+  outline: 20px solid black;
+  padding: 30px;
+  margin: 20px;
+  width: calc(100vw - 40px); }
+
 .nuplaeSize {
   width: 400%;
   height: 400%; }
