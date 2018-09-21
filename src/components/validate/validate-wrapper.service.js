@@ -4,6 +4,7 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 	var isRegistered = false;
 
 	var nextState = g.c.nextState;
+	var proceedToNextState = true;
 
 	var checkRegistered = function (resolve, reject, complete) {
 
@@ -34,7 +35,9 @@ validateModule.factory("validate-wrapper.service", ['$q', 'validate.service', 'e
 
 		setTimeout(function () {
 
-			states.go(nextState);
+			if (proceedToNextState) {
+				states.go(nextState);
+			}
 		}, 2000);
 	}
 
