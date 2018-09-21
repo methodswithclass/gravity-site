@@ -1,20 +1,23 @@
 
-<div class="absolute fill lowered-dark" ng-controller="home.controller">
+<div class="absolute fill" ng-controller="home.controller">
 
-	<div class="absolute corner width height scrollY scroll-vertical-dark-narrow cutoffX" id="home-scroll">
 
-		<div class="absolute width">
+	<div class="absolute fill rounded20 cutoff">
+		<div class="absolute width height scrollY scroll-vertical-dark-narrow" id="home-scroll">
 
-			<settings-btn></settings-btn>
+			<div class="absolute width">
 
-			<div class="absolute top-300 width">
+				<settings-btn></settings-btn>
 
-				<div ng-repeat="page in page.pages">
-					<option on-tap="onPressup()"></option>
+				<div class="absolute top-300 width">
+
+					<div ng-repeat="page in page.pages">
+						<option on-tap="onPressup()"></option>
+					</div>
+
 				</div>
 
 			</div>
-
 		</div>
 
 	</div>

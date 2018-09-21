@@ -13,12 +13,14 @@
 						
 						<div class="absolute width height {{page.page.border}} {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
 
-							<div class="absolute pageBorder" id="{{'arena' + page.id}}" rotation>
+							<div class="absolute pageBorder" id="{{'arena' + page.id}}">
 
-								<div id="{{'pagetitle' + page.id}}" class="absolute height20 width text-center font-60">
-									<div class="absolute center">{{page.title.text}}</div>
+								<div id="{{'pagetitle' + page.id}}" class="absolute height20 width80 hcenter font-60">
+									<div class="absolute center text-center">{{page.title.text}}</div>
 								</div>
-								<page></page>
+								<div class="absolute fill lowered-dark" rotation>
+									<page></page>
+								</div>
 
 							</div>
 
