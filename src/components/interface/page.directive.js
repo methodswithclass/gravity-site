@@ -18,14 +18,6 @@ interfaceModule.directive("page", ["manager.service", 'utility.service', functio
             }
 
 
-            if (isChrome()) {
-
-            	$("arena" + page.id).addClass(u.c.pageHeights.chrome);
-            }
-            else {
-            	$("arena" + page.id).addClass(u.c.pageHeights.regular);
-            }
-
             var $pageBack = $("#page-back-" + page.id);
             var $pageFore = $("#page-fore-" + page.id);
 
@@ -49,6 +41,20 @@ interfaceModule.directive("page", ["manager.service", 'utility.service', functio
 				$pageFore.css({width:ed.width + "px", height:ed.height + "px"});
 
 			}
+
+			var addPageHeight = function () {
+
+            	if (isChrome()) {
+
+	            	$("#arena" + page.id).addClass(u.c.pageHeights.chrome);
+	            }
+	            else {
+	            	$("#arena" + page.id).addClass(u.c.pageHeights.regular);
+	            }
+
+	        }
+
+	        addPageHeight();
 
         	setTimeout(function() {
 
