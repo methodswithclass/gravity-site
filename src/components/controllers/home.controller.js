@@ -17,13 +17,13 @@ controllerModule.controller("home.controller", ["$scope", "data.service", "cooki
 
     var setCookie = function () {
 
-    	
+
 
 	    var homeCookie = cookie.getCookie(u.c.hmKey);
 
 	    console.log("home cookie", homeCookie);
 
-	    u.homeMessage.set(homeCookie == cookieValues.f ? false : true);
+	    u.homeMessage.set(homeCookie == cookieValues.t ? true : false);
 
 	    var utilityValue = u.homeMessage.get();
 
