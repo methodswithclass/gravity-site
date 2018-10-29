@@ -1,4 +1,8 @@
-stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send', 'events', 'global', 'calibrate.service', 'manager.service', '$transitions', function ($q, stateProvider, $state, $rootScope, $window, data, send, events, g, calibrate, manager, $transitions) {
+stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootScope', '$window', 'data.service', 'send', 'calibrate.service', 'manager.service', '$transitions', function ($q, stateProvider, $state, $rootScope, $window, data, send, calibrate, manager, $transitions) {
+
+	var shared = window.shared;
+	var events = shared.events_service;
+	var g = shared.utility_service;
 
 	var modalTime = 1000;
 
@@ -126,6 +130,12 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 
 		pso = fso;
 
+		if (tso.name == "home") {
+
+			
+   			events.dispatch("homeMessage");
+   		}
+
         if (fso.page) {
 
 			var fp = data.getPageById(fso.name);
@@ -135,6 +145,8 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	   	}
 	   	else {
 	   		//console.log("from state", fso.name, "is not a page");
+
+	   		
 	   	}
 
 	});

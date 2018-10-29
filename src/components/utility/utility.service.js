@@ -15,6 +15,7 @@ utilityModule.factory("utility.service", [function () {
 		circle:"circle",
 		square:"square",
         cross: "cross",
+        hmKey:"homeMessageKey",
         objKey: "objCookieKey",
         objSizeKey: "objSizeCookieKey",
         factorKey: "factorCookieKey",
@@ -143,6 +144,8 @@ utilityModule.factory("utility.service", [function () {
 		}
 	}
 
+	var $homeMessage = true;
+
 	var $calibration = {
 		i:1,
 		j:1
@@ -151,6 +154,16 @@ utilityModule.factory("utility.service", [function () {
 	var $slideCalibration = {
 		i:1,
 		j:1
+	}
+
+	var homeMessage = {
+		get:function () {
+			return $homeMessage;
+		},
+		set:function (toggle) {
+
+			$homeMessage = toggle === false || toggle === "false" ? false : true;
+		}
 	}
 
 	var calibration = {
@@ -282,12 +295,12 @@ utilityModule.factory("utility.service", [function () {
 		
 	}
 
-	var getRandomVelocity = function (arena, pos, speed) {
+	var getRandomVelocity = function (arena, pos, $speed) {
 		
 		var width = $(arena).width();
 		var height = $(arena).width();
 		var spread = 20;
-		var minimum = 20*speed;
+		var minimum = 20*$speed;
 		
 		var box = {top:height*(1-0.8)/2, left:width*(1-0.8)/2, width:width*0.8, height:height*0.8};
 		
@@ -440,6 +453,7 @@ utilityModule.factory("utility.service", [function () {
 
 	return {
 		c:con,
+		homeMessage:homeMessage,
 		marble:marble,
 		calibration:calibration,
 		deviceStandard:deviceStandard,

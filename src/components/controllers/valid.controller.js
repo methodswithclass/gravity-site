@@ -20,10 +20,10 @@ controllerModule.controller("valid.controller", ['$scope', 'global', 'state.serv
             supported:"this device is not supported",
             message:`
 
-                this game requires an accelerometer <br>
-                laptops usually don't have them these days <br>
+                this game requires an accelerometer to work <br>
+                laptops generally don't have them anymore <br>
                 this device in particular doesn't appear to have one <br><br>
-                <span><i class="fas fa-arrow-right"></i></span> try out on a mobile device, and enjoy!
+                <span><i class="fas fa-arrow-right"></i></span> try this game out on a mobile device, and enjoy! :)
 
             `
         }

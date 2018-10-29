@@ -17,7 +17,7 @@ interfaceModule.directive("preview", ['data.service', "manager.service", 'events
             }, 500);
 
 			$scope.getContentUrl = function() {
-                return page.type.game ? "assets/views/games/" + page.id + "/" + page.id + "-modal.view.html" : "";
+                return "assets/views/games/" + page.id + "/" + page.id + "-modal.view.html";
             }
 
             $scope.togglemessage = function (action) {

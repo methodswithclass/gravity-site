@@ -3,7 +3,6 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
 	var g = mcshared.utility;
     var util = mcaccel.utility;
 
-
 	var calibration = {
         i: 1,
         j: 1
@@ -89,6 +88,7 @@ settingsModule.factory("settings.service", ['utility.service', 'cookie.service',
                 console.log("save factor \n\n\n");
 
                 cookie.setCookie(utility.c.sessionFactorKey, util.getFactor(util.const.factorS));
+
             },
     		createRegistry:[
 

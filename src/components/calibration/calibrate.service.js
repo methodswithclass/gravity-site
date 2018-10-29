@@ -4,6 +4,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
 
     g.setDist(15);
 
+    var resetMessage = true;
+
     var accel;
     var obj;
     var parent;
@@ -239,6 +241,8 @@ calibrateModule.factory("calibrate.service", ['progress.service', 'events', 'toa
             g.setFactor(g.const.factorG, factor);
             cookie.setCookie(utility.c.factorKey, factor);
 
+
+            if (resetMessage) cookie.setCookie(utility.c.hmKey, "false");
             
             if (!toast.showSwitch) {
                 console.log("show factor toast", toast.factor.message);
