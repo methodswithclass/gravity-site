@@ -38,7 +38,7 @@ $pageBuffer: $pageMargin + $pagePadding - 10;
 .pageHeight-chrome {
 
 
-  height: calc(90vh - #{$pageBuffer});
+  height: calc(100vh - #{$pageBuffer});
 }
 
 .pageHeight {
