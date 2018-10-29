@@ -7,6 +7,10 @@ interfaceModule.directive("page", ["manager.service", 'utility.service', functio
 		template:'<div ng-include="getContentUrl()"></div>',
 		link:function ($scope, element, attr) {
 
+
+			var shared = window.shared;
+			var g = shared.utility_service;
+
 			var page = $scope.page;
 
 			var ed;
@@ -44,13 +48,20 @@ interfaceModule.directive("page", ["manager.service", 'utility.service', functio
 
 			var addPageHeight = function () {
 
-            	if (isChrome()) {
+				console.log("check height", u.c.pageHeights.regular);
 
-	            	$("#arena" + page.id).addClass(u.c.pageHeights.chrome);
-	            }
-	            else {
-	            	$("#arena" + page.id).addClass(u.c.pageHeights.regular);
-	            }
+
+				g.waitForElem({elems:"#arena" + page.id}, function (options) {
+
+					if (g.isMobile() && isChrome()) {
+
+		            	$(options.elems).addClass(u.c.pageHeights.chrome);
+		            }
+		            else {
+		            	$(options.elems).addClass(u.c.pageHeights.regular);
+		            }
+
+				})
 
 	        }
 
