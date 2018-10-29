@@ -28,13 +28,23 @@ $pageBuffer: $pageMargin + $pagePadding - 10;
 .pageBorder {
   position:absolute;
   /*border-radius:$pageOutline;*/
-  height: calc(80vh - #{$pageBuffer});
   
   padding: $pagePadding;
   margin: $pageMargin;
   width: calc(100vw - #{$pageBuffer});
 }
 
+
+.pageHeight-chrome {
+
+
+  height: calc(80vh - #{$pageBuffer});
+}
+
+.pageHeight {
+
+  height: calc(100vh - #{$pageBuffer});
+}
 
 $colorBlack: black;
 $color21: #510000;

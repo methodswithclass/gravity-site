@@ -91,6 +91,10 @@ utilityModule.factory("utility.service", [function () {
 				},
 			}
 		},
+		pageHeights:{
+			chrome:"pageHeight-chrome",
+			regular:"pageHeight"
+		},
 		borders:{
 			scheme1:{
 				black:{

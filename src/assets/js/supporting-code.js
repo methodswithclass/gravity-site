@@ -6,6 +6,18 @@ var captureError = function (err) {
 	return true;
 }
 
+// distinguish between a few popular mobile user agents, desktop agents, and IE
+var ifChrome = function (forceChrome) {
+
+	if (navigator.userAgent.indexOf('Chrome') != -1) {
+
+		return forceChrome || true;
+	}
+
+	return false;
+
+}
+
 
 var getAngularModules = function (application) {
 

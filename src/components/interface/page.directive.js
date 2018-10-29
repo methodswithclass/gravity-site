@@ -17,6 +17,15 @@ interfaceModule.directive("page", ["manager.service", 'utility.service', functio
                 return "assets/views/" + page.page.view;
             }
 
+
+            if (isChrome()) {
+
+            	$("arena" + page.id).addClass(u.c.pageHeights.chrome);
+            }
+            else {
+            	$("arena" + page.id).addClass(u.c.pageHeights.regular);
+            }
+
             var $pageBack = $("#page-back-" + page.id);
             var $pageFore = $("#page-fore-" + page.id);
 
