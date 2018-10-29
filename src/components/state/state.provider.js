@@ -43,6 +43,13 @@ stateModule.provider("state.provider", ["$stateProvider", function ($stateProvid
         controllerAs:"main"
     },
     {
+        name:"validity",
+        url:"/validity",
+        templateUrl:"assets/views/valid.wrapper.view.html",
+        controller:"valid.controller",
+        controllerAs:"main"
+    },
+    {
         name:"page",
         url:"",
         templateUrl:"assets/views/content.view.html",
@@ -50,10 +57,7 @@ stateModule.provider("state.provider", ["$stateProvider", function ($stateProvid
         controllerAs:"main",
         abstract:true
     },
-    {
-        name:"page.validity",
-        url:"/validity"
-    },
+    
     {
         name:"page.home",
         url:"/home"

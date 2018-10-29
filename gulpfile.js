@@ -14,10 +14,44 @@ mainBowerFiles = require("gulp-main-bower-files"),
 nodemon = require('gulp-nodemon'),
 livereload = require('gulp-livereload');
 sass = require("gulp-sass"),
-babel = require("gulp-babel");
+babel = require("gulp-babel"),
+jsHint = require('gulp-jshint'),
+stylish = require('jshint-stylish'),
+map = require('map-stream');
 
 const config = require("./config.js");
 
+
+const myLintReporter = map(function (file, cb) {
+	
+	if (file.jshint.success) return cb(null, file);
+
+	console.log('JSHINT fail in', file.path);
+	
+	file.jshint.results.forEach(function (result) {
+		
+		if (!result.error) return;
+
+		const err = result.error
+		console.log(`  line ${err.line}, col ${err.character}, code ${err.code}, ${err.reason}`);
+	});
+
+	return cb(null, file);
+});
+
+
+var gulpReporters = [
+{
+	index:0,
+	name:"custom",
+	reporter:myLintReporter
+},
+{
+	index:1,
+	name:"stylish",
+	reporter:stylish
+}
+]
 
 
 var minify = config.gulp.minify;
@@ -41,6 +75,21 @@ var injectJS = function () {
 	.pipe(inject(standard, {ignorePath:"dist"}))
 	.pipe(gulp.dest('dist'));
 
+}
+
+var lint = function () {
+
+
+	var gulpReporter = gulpReporters.find(function (p) {
+
+		return p.index == config.gulp.reporter;
+	})
+
+	console.log("reporter", gulpReporter.name)
+
+	return gulp.src(mainScripts)
+	.pipe(jsHint())
+	.pipe(jsHint(gulpReporter.reporter, { verbose: true }))
 }
 
 
@@ -221,7 +270,7 @@ var serveFunc = function (done) {
 	var stream = nodemon({ 
 		script: path.join(__dirname, "server.js"),
 		ext:"js html css scss json",
-		watch:["./src", "config.js"],
+		watch:["./src", "config.js", "./backend"],
 		tasks:["build"]
 	});
 
@@ -259,9 +308,9 @@ var serveFunc = function (done) {
 
 var copy = gulp.parallel(misc, index, html, images, fonts)
 
-var compile = gulp.parallel(gulp.series(tempVendor, vendor), scripts);
+var compile = gulp.parallel(gulp.series(tempVendor, vendor), gulp.series(lint, scripts));
 
-var buildTask = gulp.series(compile, gulp.parallel(gulp.series(apiSass, styles), copy), injectJS);
+var buildTask = gulp.series(compile, gulp.parallel(copy, gulp.series(apiSass, styles)), injectJS);
 
 var serveTask = gulp.series(clean, buildTask, serveFunc);
 

@@ -1,5 +1,5 @@
 
-<div class="absolute fill lowered-dark" ng-controller="calibrate.controller">
+<div class="absolute fill" ng-controller="calibrate.controller">
 
 	<div class="absolute width90 height80 center">
 
@@ -24,7 +24,7 @@
 			    <img class="absolute width-auto height center" ng-src="{{phase.src}}" />
 		    </div>
 
-		    <div class="absolute width80 height60 {{phase.pos.continue.top}} {{phase.pos.continue.left}} {{phase.pos.continue.rotate}} pointer" on-tap="continue()" id="{{'btn' + page.id}}">
+		    <div class="absolute width80 height60 {{phase.pos.continue.top}} {{phase.pos.continue.left}} {{phase.pos.continue.rotate}} pointer hidden" on-tap="continue()" id="{{'btn' + page.id}}">
 
 			    <div class="absolute width height black-back opacity60 rounded40"></div>
 

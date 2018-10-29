@@ -100,20 +100,23 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global', 'state.
         // toggleImg(false);
     }
 
+
+
     events.on("calibrate-btn-show", function () {
 
         toggleBtn(true);
     })
 
-    events.on("calibrate-btn-hide", function () {
-
-        toggleBtn(false);
-    })
-
-
     events.on("calibrate-img-show", function () {
 
         toggleImg(true);
+    })
+
+
+
+    events.on("calibrate-btn-hide", function () {
+
+        toggleBtn(false);
     })
 
 
@@ -123,6 +126,10 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global', 'state.
     })
 
     events.on("calibrate-start", function () {
+
+        events.dispatch("tiltunder");
+        events.dispatch("calibrate-btn-hide");
+        events.dispatch("calibrate-img-hide");
 
         clearInterval(timer);
         timer = setInterval(function() {
@@ -141,6 +148,10 @@ controllerModule.controller("calibrate.controller", ['$scope', 'global', 'state.
         clearInterval(timer);
         timer = {};
         timer = null;
+
+        events.dispatch("calibrate-btn-hide");
+        events.dispatch("calibrate-img-hide");
+        events.dispatch("tiltunder");
 
     });
 

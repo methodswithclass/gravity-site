@@ -1,0 +1,9 @@
+{
+	"strict":false,
+	"undef":false,
+	"unused":false,
+	"globals":{
+		"app":true
+	},
+	"asi":true	
+}

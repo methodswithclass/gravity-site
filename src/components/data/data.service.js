@@ -23,34 +23,12 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"home.view.html",
 			back:"black-back",
 			fore:"white-back",
-			border:util.c.borders.scheme1.black,
+			outline:util.c.borders.scheme1.black.outline,
+			border:util.c.borders.scheme1.black.border,
+			corner:util.c.borders.scheme1.black.corner,
 			rect:{
 				top:"25%",
 				left:"25%"
-			}
-		}
-	},
-	{
-		id:"validity",
-		title:{
-			text:"validity",
-			class:"black"
-		},
-		index:util.c.indexes.validate,
-		type:{
-			option:false,
-			motion:false,
-			accel:false,
-			stages:false,
-			game:false
-		},
-		page:{
-			view:"valid.wrapper.view.html",
-			back:"black-back",
-			fore:"black-back",
-			rect:{
-				top:0,
-				left:0
 			}
 		}
 	},
@@ -196,7 +174,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"settings/settings.view.html",
 			back:"black-back",
 			fore:"white-back",
-			border:util.c.borders.scheme1.black,
+			outline:util.c.borders.scheme1.black.outline,
+			border:util.c.borders.scheme1.black.border,
+			corner:util.c.borders.scheme1.black.corner,
 			backButton:{
 				loc:{top:"10px", left:"10px"},
 				icon:"down"
@@ -225,7 +205,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"calibrate.view.html",
 			back:util.c.colors.scheme2.color1.back,
 			fore:"white-back",
-			border:util.c.borders.scheme2.color1,
+			outline:util.c.borders.scheme2.color1.outline,
+			border:util.c.borders.scheme2.color1.border,
+			corner:util.c.borders.scheme2.color1.corner,
 			menu:{
 				title:"re-calibrate",
 				color:"white",
@@ -236,7 +218,7 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 				icon:"right"
 			},
 			rect:{
-				top:"25%",
+				top:0,
 				left:0
 			}
 		},
@@ -273,7 +255,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"motion.view.html",
 			back:util.c.colors.scheme2.color2.back,
 			fore:"white-back",
-			border:util.c.borders.scheme2.color2,	
+			outline:util.c.borders.scheme2.color2.outline,
+			border:util.c.borders.scheme2.color2.border,
+			corner:util.c.borders.scheme2.color2.corner,	
 			menu:{
 				title:"demo",
 				color:"white",
@@ -321,7 +305,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"motion.view.html",
 			back:util.c.colors.scheme2.color3.back,
 			fore:"white-back",
-			border:util.c.borders.scheme2.color3,
+			outline:util.c.borders.scheme2.color3.outline,
+			border:util.c.borders.scheme2.color3.border,
+			corner:util.c.borders.scheme2.color3.corner,
 			menu:{
 				title:"slide",
 				color:"white",
@@ -369,7 +355,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme2.color4.back,
 			fore:"white-back",
-			border:util.c.borders.scheme2.color4,
+			outline:util.c.borders.scheme2.color4.outline,
+			border:util.c.borders.scheme2.color4.border,
+			corner:util.c.borders.scheme2.color4.corner,
 			menu:{
 				title:"enemy",
 				color:"white",
@@ -417,7 +405,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme2.color5.back,
 			fore:"white-back",
-			border:util.c.borders.scheme2.color5,
+			outline:util.c.borders.scheme2.color5.outline,
+			border:util.c.borders.scheme2.color5.border,
+			corner:util.c.borders.scheme2.color5.corner,
 			menu:{
 				title:"balance",
 				color:"white",
@@ -465,7 +455,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			view:"game.view.html",
 			back:util.c.colors.scheme1.color6.back,
 			fore:"black-back",
-			border:util.c.borders.scheme1.color6,
+			outline:util.c.borders.scheme1.color6.outline,
+			border:util.c.borders.scheme1.color6.border,
+			corner:util.c.borders.scheme1.color6.corner,
 			menu:{
 				title:"space",
 				color:"white",

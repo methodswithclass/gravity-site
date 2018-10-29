@@ -27,14 +27,125 @@ $pageBuffer: $pageMargin + $pagePadding - 10;
 
 .pageBorder {
   position:absolute;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 0 0 10px black;
+  /*border-radius:$pageOutline;*/
   height: calc(100vh - #{$pageBuffer});
-  outline: $pageOutline solid black;
+  
   padding: $pagePadding;
   margin: $pageMargin;
   width: calc(100vw - #{$pageBuffer});
+}
+
+
+$colorBlack: black;
+$color21: #510000;
+$color22: #002c55;
+$color23: #135100;
+$color24: #510026;
+$color25: #004f5d;
+$color16: #a0a15f;
+
+.black-corner {
+
+  box-shadow: 0 0 0 10px $colorBlack;
+}
+
+
+.color-2-1-corner {
+
+  box-shadow: 0 0 0 10px $color21;
+}
+
+.color-2-2-corner {
+
+  box-shadow: 0 0 0 10px $color22;
+}
+
+.color-2-3-corner {
+
+  box-shadow: 0 0 0 10px $color23;
+}
+
+.color-2-4-corner {
+
+  box-shadow: 0 0 0 10px $color24;
+}
+
+.color-2-5-corner {
+
+  box-shadow: 0 0 0 10px $color25;
+}
+
+
+.color-1-6-corner {
+
+  box-shadow: 0 0 0 10px $color16;
+}
+
+
+.black-outline {
+	outline: $pageOutline solid $colorBlack;
+}
+
+.color-2-1-outline {
+	outline: $pageOutline solid $color21;
+}
+
+
+.color-2-2-outline {
+	outline: $pageOutline solid $color22;
+}
+
+
+.color-2-3-outline {
+	outline: $pageOutline solid $color23;
+}
+
+.color-2-4-outline {
+	outline: $pageOutline solid $color24;
+}
+
+
+.color-2-5-outline {
+	outline: $pageOutline solid $color25;
+}
+
+
+.color-1-6-outline {
+	outline: $pageOutline solid $color16;
+}
+
+
+
+.black-background {
+	background: $colorBlack;
+}
+
+.color-2-1-background {
+	background: $color21;
+}
+
+
+.color-2-2-background {
+	background: $color22;
+}
+
+
+.color-2-3-background {
+	background: $color23;
+}
+
+.color-2-4-background {
+	background: $color24;
+}
+
+
+.color-2-5-background {
+	background: $color25;
+}
+
+
+.color-1-6-background {
+	background: $color16;
 }
 
 .nuplaeSize {

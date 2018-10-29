@@ -17,14 +17,74 @@ html, body {
 }*/
 .pageBorder {
   position: absolute;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 0 0 10px black;
+  /*border-radius:$pageOutline;*/
   height: calc(100vh - 40px);
-  outline: 20px solid black;
   padding: 30px;
   margin: 20px;
   width: calc(100vw - 40px); }
+
+.black-corner {
+  box-shadow: 0 0 0 10px black; }
+
+.color-2-1-corner {
+  box-shadow: 0 0 0 10px #510000; }
+
+.color-2-2-corner {
+  box-shadow: 0 0 0 10px #002c55; }
+
+.color-2-3-corner {
+  box-shadow: 0 0 0 10px #135100; }
+
+.color-2-4-corner {
+  box-shadow: 0 0 0 10px #510026; }
+
+.color-2-5-corner {
+  box-shadow: 0 0 0 10px #004f5d; }
+
+.color-1-6-corner {
+  box-shadow: 0 0 0 10px #a0a15f; }
+
+.black-outline {
+  outline: 20px solid black; }
+
+.color-2-1-outline {
+  outline: 20px solid #510000; }
+
+.color-2-2-outline {
+  outline: 20px solid #002c55; }
+
+.color-2-3-outline {
+  outline: 20px solid #135100; }
+
+.color-2-4-outline {
+  outline: 20px solid #510026; }
+
+.color-2-5-outline {
+  outline: 20px solid #004f5d; }
+
+.color-1-6-outline {
+  outline: 20px solid #a0a15f; }
+
+.black-background {
+  background: black; }
+
+.color-2-1-background {
+  background: #510000; }
+
+.color-2-2-background {
+  background: #002c55; }
+
+.color-2-3-background {
+  background: #135100; }
+
+.color-2-4-background {
+  background: #510026; }
+
+.color-2-5-background {
+  background: #004f5d; }
+
+.color-1-6-background {
+  background: #a0a15f; }
 
 .nuplaeSize {
   width: 400%;

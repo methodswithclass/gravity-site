@@ -5,6 +5,19 @@ var merge = require("merge-stream");
 var imagemin = require('gulp-imagemin');
 
 
+var reporters = [
+{
+	index:0,
+	name:"custom"
+},
+{
+	index:1,
+	name:"stylish"
+}
+]
+
+var whichReporter = 1;
+
 
 var htmlDest = "dist/";
 
@@ -35,7 +48,7 @@ var sassStyles = [
 ]
 
 var cssStyles = [
-	'temp/**/*.css',
+	"temp/**/*.css",
 	"node_modules/@fortawesome/fontawesome-free/css/all.css"
 ]
 
@@ -93,7 +106,9 @@ module.exports = {
 		sassStyles:sassStyles,
 		cssStyles:cssStyles,
 		miscSrc:miscSrc,
-		minify:minify
+		minify:minify,
+		reporters:reporters,
+		reporter:whichReporter
 	},
 	livereloadPort:livereloadPort
 }

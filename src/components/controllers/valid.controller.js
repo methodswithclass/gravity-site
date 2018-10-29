@@ -9,20 +9,21 @@ controllerModule.controller("valid.controller", ['$scope', 'global', 'state.serv
         valid:{
             background:"green3-back",
             font:"font-30", //font for message text
-            news:"good news :)",
+            news:"good news! :)",
             supported:"this device is supported",
             message:"please wait while the application loads..."
         },
         invalid:{
             background:"red-back",
             font:"font-20", // font for message text
-            news:"bad news :(",
+            news:"sad news :(",
             supported:"this device is not supported",
             message:`
 
                 this game requires an accelerometer <br>
-                this device does not appear to have one <br><br>
-                try on a mobile device
+                laptops usually don't have them these days <br>
+                this device in particular doesn't appear to have one <br><br>
+                <span><i class="fas fa-arrow-right"></i></span> try out on a mobile device, and enjoy!
 
             `
         }

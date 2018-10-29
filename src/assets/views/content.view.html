@@ -9,11 +9,11 @@
 				<div class="absolute width25 height25 cutoff" ng-attr-id="{{'page' + page.id}}" ng-style="{top:'' + page.page.rect.top, left:'' + page.page.rect.left }" ng-attr-dir="pages" repeat>
 
 
-					<div class="absolute width height center white-back border-white deselect" id="{{'page-back-' + page.id}}">
+					<div class="absolute width height center deselect" id="{{'page-back-' + page.id}}">
 						
-						<div class="absolute width height {{page.page.border}} {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
+						<div class="absolute width height {{page.page.fore}} {{page.title.class}} cutoff" id="{{'page-fore-' + page.id}}">
 
-							<div class="absolute pageBorder" id="{{'arena' + page.id}}">
+							<div class="absolute pageBorder {{page.page.outline}}" id="{{'arena' + page.id}}">
 
 								<div id="{{'pagetitle' + page.id}}" class="absolute height20 width80 hcenter font-60">
 									<div class="absolute center text-center">{{page.title.text}}</div>

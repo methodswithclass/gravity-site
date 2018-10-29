@@ -93,16 +93,48 @@ utilityModule.factory("utility.service", [function () {
 		},
 		borders:{
 			scheme1:{
-				black:"border-color-black",
-				white:"border-color-white",
-				color6:"border-color-1-6"
+				black:{
+					outline:"black-outline black-corner",
+					border:"black-outline",
+					corner:"black-corner"
+				},
+				white:{
+					outline:"border-color-white black-corner",
+					border:"border-color-white",
+					corner:"black-corner"
+				},
+				color6:{
+					outline:"color-1-6-outline color-1-6-corner",
+					border:"color-1-6-outline",
+					corner:"color-1-6-corner"
+				}
 			},
 			scheme2:{
-				color1:"border-color-2-1",
-				color2:"border-color-2-2",
-				color3:"border-color-2-3",
-				color4:"border-color-2-4",
-				color5:"border-color-2-5"
+				color1:{
+					outline:"color-2-1-outline color-2-1-corner",
+					border:"color-2-1-outline",
+					corner:"color-2-1-corner"
+				},
+				color2:{
+					outline:"color-2-2-outline color-2-2-corner",
+					border:"color-2-2-outline",
+					corner:"color-2-2-corner"
+				},
+				color3:{
+					outline:"color-2-3-outline color-2-3-corner",
+					border:"color-2-3-outline",
+					corner:"color-2-3-corner"
+				},
+				color4:{
+					outline:"color-2-4-outline color-2-4-corner",
+					border:"color-2-4-outline",
+					corner:"color-2-4-corner"
+				},
+				color5:{
+					outline:"color-2-5-outline color-2-5-corner",
+					border:"color-2-5-outline",
+					corner:"color-2-5-corner"
+				}
 			}
 		}
 	}
@@ -201,7 +233,6 @@ utilityModule.factory("utility.service", [function () {
 
 	var setValidity = function (_valid) {
 
-		forced = false;
 		valid = _valid;
 		status = _valid ? con.valid : con.invalid;
 	}
@@ -217,6 +248,8 @@ utilityModule.factory("utility.service", [function () {
 	}
 
 	var isValid = function () {
+
+		// console.log("called is valid", forced, valid, "\n\n\n\n\n\n")
 
 		return forced ? true : valid;
 	}

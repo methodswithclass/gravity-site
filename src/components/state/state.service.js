@@ -145,7 +145,7 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 		var fso = getStateParams(trans.$from().name);
 		var tso = getStateParams(trans.$to().name);
 		
-	   	if (tso.page) {
+	   	if (tso.page && fso.name != "validity") {
 
 
 	   		var delay = 0;
@@ -178,7 +178,14 @@ stateModule.factory("state.service", ['$q', 'state.provider', '$state', '$rootSc
 	   		console.log("END state change WITHOUT MOVE from", fso.name.toUpperCase(), "to", tso.name.toUpperCase());
 			console.log("#######################################");
 			console.log(" ");
-	   	}
+
+			
+			setTimeout(function () {
+
+				if (fso.name == "validity" && tso.name == "calibrate") manager.startInstance(tso.name);
+			
+			}, 2000);
+		}
 
 	});
 	
