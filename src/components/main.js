@@ -17,7 +17,7 @@ app.config(['state.providerProvider', '$locationProvider', function (stateProvid
 	//for desktop debugging when no accelerometer is present, comment out the next line for production
 
 
-    utility.forceValidity(true);
+    // utility.forceValidity(true);
     // utility.setState("page.settings");
     
 
