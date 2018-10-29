@@ -28,7 +28,7 @@ $pageBuffer: $pageMargin + $pagePadding - 10;
 .pageBorder {
   position:absolute;
   /*border-radius:$pageOutline;*/
-  height: calc(100vh - #{$pageBuffer});
+  height: calc(80vh - #{$pageBuffer});
   
   padding: $pagePadding;
   margin: $pageMargin;
