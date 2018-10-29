@@ -7,7 +7,7 @@ var captureError = function (err) {
 }
 
 // distinguish between a few popular mobile user agents, desktop agents, and IE
-var ifChrome = function (forceChrome) {
+var isChrome = function (forceChrome) {
 
 	if (navigator.userAgent.indexOf('Chrome') != -1) {
 
