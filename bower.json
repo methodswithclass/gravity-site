@@ -23,7 +23,6 @@
     "jquery-ui": "^1.12.1",
     "hammerjs": "^2.0.8",
     "jquery-hammerjs": "^2.0.0",
-    "accelerometer": "1.2.7",
     "angular-material": "^1.1.10"
   }
 }

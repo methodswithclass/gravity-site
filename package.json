@@ -10,7 +10,7 @@
     "start": "NODE_ENV=production node server.js",
     "build": "gulp build",
     "watch": "gulp serve",
-    "postinstall": "bower install && gulp build",
+    "postinstall": "bower install",
     "commit-deploy-dev": "git add * && git commit -m update && git push development master",
     "commit-deploy": "git add * && git commit -m update && git push heroku master",
     "deploy-dev": "git push development master",
@@ -53,7 +53,8 @@
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
     "map-stream": "0.0.7",
-    "mc-shared": "4.6.1",
+    "@methodswithclass/shared": "1.0.1",
+    "@methodswithclass/accelerometer": "1.0.0",
     "merge-stream": "^1.0.1",
     "mongoose": "^4.13.14",
     "node-sass": "^4.9.2"
