@@ -124,7 +124,7 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 
 	var update = function (object, interval) {
 
-		keeper.tick(interval*3);
+		keeper.tick(interval);
 
 		var i = 0;
 		var length = targets.length;
