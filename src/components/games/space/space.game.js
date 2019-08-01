@@ -13,7 +13,7 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 			index:index,
 			arena:arena
 		})
-
+	
 
 		targets.splice(index, 0, target);
 	}
@@ -21,28 +21,67 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 
 	var createAll = function () {
 
+		targets = [];
+
 		for (var i = 0; i < total; i++) {
 			createTarget(i);
 		}
 
 	}
 
+	var recycle = function () {
+
+
+		var allD = true;
+
+		for (var i in targets) {
+
+			var item = targets[i];
+
+			if (!item.destroyed) {
+
+				allD = false;
+			}
+		}
+
+
+		// console.log("recycle", allD);
+
+		if (allD) {
+
+			// console.log("destroy all", targets);
+
+			while (targets.length > 0) {
+
+				targets.splice(0, 1);
+			}
+
+			// console.log("targets", targets);
+
+			targets = [];
+
+			createAll();
+		}
+	}
+
 	var destroy = function (index, replace) {
 
 		//console.log("destroy index: " + index);
 
-		if (targets[index]) {
-			targets[index].remove();
-			targets.splice(index,1);
 
-			// if (replace) {
-			// 	createTarget(index);
-			// }
+		
 
-			if (targets.length == 0) {
+		for (var i in targets) {
 
-				createAll();
+			var item = targets[i];
+
+			if (item && item.index == index) {
+
+				item.remove();
+				// targets.splice(i, 1);
+
 			}
+
 		}
 
 	}
@@ -129,32 +168,52 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 		var i = 0;
 		var length = targets.length;
 		var enemy;
+
 		//var duration = Math.random()*500 + 700;
-		
+
 		while (i < length) {
+
+			
 
 			enemy = targets[i];
 
-			enemy.update();
 
-			if (enemy.moving && enemy.aimed(object)) {
-				//console.log("hit", enemy.type.reward);
-				keeper.addPoints(enemy.type.hit);
-				enemy.destroy({
-					index:i, 
-					complete:function (index) {
-						destroy(index, true);
-					}
-				});
+
+			if (enemy) {
+
+				enemy.update();
+
+				if (enemy.moving && enemy.aimed(object)) {
+					//console.log("hit", enemy.type.reward);
+					keeper.addPoints(enemy.type.hit);
+					enemy.destroy({
+						index:i, 
+						complete:function (index) {
+							destroy(index, true);
+						}
+					});
+				}
+				else if (enemy.moving && enemy.lost()) {
+					//console.log("miss", enemy.type.punish);
+					keeper.addPoints(enemy.type.miss);
+					destroy(i, true);
+				}
+				// else if (enemy.destroyed) {
+
+				// 	destroy(i, true);
+				// }
+
 			}
-			else if (enemy.moving && enemy.lost()) {
-				//console.log("miss", enemy.type.punish);
-				keeper.addPoints(enemy.type.miss);
-				destroy(i, true);
-			}
+
+			// console.log("i", i, "old length", length, "length", targets.length, "targets", targets);
 
 			i++;
+
+
 		}
+
+
+		recycle();
 	}
 
 
