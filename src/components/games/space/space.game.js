@@ -3,7 +3,7 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 	var keeper;
 	var arena;
 	var targets = [];
-	var total = 1;
+	var total = 3;
 
 
 	var createTarget = function (index) {
