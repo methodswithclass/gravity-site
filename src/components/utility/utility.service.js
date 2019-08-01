@@ -358,7 +358,7 @@ utilityModule.factory("utility.service", [function () {
 			
 			var diff = onevector.subtract(twovector);
 			
-			if (diff.len() < one.radius) {
+			if (diff.len() < one.radius + 0.3*two.radius) {
 				return true;	
 			}
 			else {
