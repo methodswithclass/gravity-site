@@ -93,6 +93,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 		var self = this;
 
+		self.index = input.index;
 		self.id = input.id;
 		self.type = data.enemydata[getType()];
 		self.shape = self.type.shape;
@@ -114,6 +115,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 
 
 		self.moving = true;
+		self.destroyed = false;
 
 		var numParts = 4;
 		var particles = [];
@@ -157,6 +159,7 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 		}
 
 		this.remove = function () {
+			self.destroyed = true;
 			$(self.el()).remove();	
 		}
 
@@ -224,6 +227,8 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 		}
 
 		self.destroy = function (params) {
+
+			self.destroyed = true;
 
 			$(inner).remove();
 
