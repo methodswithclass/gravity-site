@@ -1,1 +1,1 @@
-var spaceModule = angular.module("space.module", ['shared.module', "games.module"]);
+var spaceModule = angular.module("space.module", ['shared.module', "games.module", "enemy.module"]);

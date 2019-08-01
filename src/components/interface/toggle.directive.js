@@ -38,6 +38,20 @@ interfaceModule.directive("toggle", ["manager.service", 'send',function (manager
 
 			}
 
+
+			$scope.play = function () {
+
+				playing = true;
+				manager.startInstance(page.id);
+			}
+
+			$scope.stop = function () {
+
+				playing = false;
+				manager.stopInstance(page.id);
+				manager.resetInstance(page.id);
+			}
+
 		}
 	}
 
