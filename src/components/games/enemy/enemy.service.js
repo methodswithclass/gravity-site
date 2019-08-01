@@ -100,7 +100,18 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 		self.bounds = {x:$(input.arena).width(), y:$(input.arena).height()};
 		var distance = 350;
 		self.position = g.getRandomPosition(input.arena, distance);
-		self.velocity = g.getRandomVelocity(input.arena, self.position, self.type.speed);
+		
+
+		if (self.id == "space") {
+			self.velocity = g.getRandomVelocity(input.arena, self.position, self.type.speed, {spread:5, factor:5});
+			console.log("space velocity");
+		}
+		else {
+			self.velocity = g.getRandomVelocity(input.arena, self.position, self.type.speed, {spread:20, factor:20});
+			console.log("enemy velocity");
+		}
+
+
 
 		self.moving = true;
 
@@ -161,6 +172,16 @@ enemyModule.factory("enemy.service", ['utility.service', 'data.service', functio
 				
 				self.setPosition();
 			}
+		}
+
+		self.aimed = function (object) {
+
+			var result = g.aimedShape(self, object);
+
+			self.moving = !result;
+
+			return result;
+
 		}
 
 		self.intersect = function (object) {

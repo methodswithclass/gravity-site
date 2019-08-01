@@ -295,12 +295,13 @@ utilityModule.factory("utility.service", [function () {
 		
 	}
 
-	var getRandomVelocity = function (arena, pos, $speed) {
+	var getRandomVelocity = function (arena, pos, $speed, options) {
 		
 		var width = $(arena).width();
 		var height = $(arena).width();
-		var spread = 20;
-		var minimum = 20*$speed;
+		var spread = options ? options.spread : 20;
+		var factor = options ? options.factor : 20;
+		var minimum = factor*$speed;
 		
 		var box = {top:height*(1-0.8)/2, left:width*(1-0.8)/2, width:width*0.8, height:height*0.8};
 		
@@ -343,6 +344,31 @@ utilityModule.factory("utility.service", [function () {
 	           r2.bottom <= r1.top);
 		
 	  return result;
+	}
+
+	var aimedShape = function (one, two) {
+
+		if (one.shape == con.square || two.shape == con.square) {
+			return intersectRect(one.el(), two.el());	
+		}
+		else {
+			
+			var onevector = new vector(one.position.x + one.radius, one.position.y + one.radius, 0);
+			var twovector = new vector(two.position.x + two.radius, two.position.y + two.radius, 0);
+			
+			var diff = onevector.subtract(twovector);
+			
+			if (diff.len() < one.radius + 0.3*two.radius) {
+				return true;	
+			}
+			else {
+				
+				return false;	
+			}
+				
+		}
+		
+		
 	}
 
 	var intersectShape = function (one, two) {
@@ -466,6 +492,7 @@ utilityModule.factory("utility.service", [function () {
 		getRandomPosition:getRandomPosition,
 		getRandomVelocity:getRandomVelocity,
 		getDestroyPosition:getDestroyPosition,
+		aimedShape:aimedShape,
 		intersectShape:intersectShape,
 		intersectRect:intersectRect,
 		overlapShape:overlapShape,

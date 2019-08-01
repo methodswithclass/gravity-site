@@ -478,9 +478,9 @@ dataModule.factory("data.service", ['utility.service', 'cookie.service', functio
 			color:"red"
 		},
 		params:{
-			interval:1,
-			filterSize:5,
-			factor:0.2,
+			interval:2,
+			filterSize:3,
+			factor:0.4,
 			mu:0.105,
 			damp:0.4,
 			gravity:true,
