@@ -58,9 +58,14 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 
 			// console.log("targets", targets);
 
-			targets = [];
+			setTimeout(function () {
 
-			createAll();
+
+				targets = [];
+
+				createAll();
+
+			}, 500);
 		}
 	}
 
@@ -213,7 +218,11 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 		}
 
 
-		recycle();
+		// setTimeout(function () {
+
+			recycle();
+
+		// }, 500);
 	}
 
 
