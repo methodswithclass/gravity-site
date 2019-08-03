@@ -44,9 +44,6 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 			}
 		}
 
-
-		// console.log("recycle", allD);
-
 		if (allD) {
 
 			// console.log("destroy all", targets);
@@ -56,16 +53,11 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 				targets.splice(0, 1);
 			}
 
-			// console.log("targets", targets);
 
-			setTimeout(function () {
+			targets = [];
 
+			createAll();
 
-				targets = [];
-
-				createAll();
-
-			}, 500);
 		}
 	}
 
@@ -83,7 +75,13 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 			if (item && item.index == index) {
 
 				item.remove();
-				// targets.splice(i, 1);
+				targets.splice(i, 1);
+
+
+				if (replace) {
+
+					createTarget(index);
+				}
 
 			}
 
@@ -203,10 +201,6 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 					keeper.addPoints(enemy.type.miss);
 					destroy(i, true);
 				}
-				// else if (enemy.destroyed) {
-
-				// 	destroy(i, true);
-				// }
 
 			}
 
@@ -218,11 +212,7 @@ spaceModule.factory("space.game", ['time-keeper.service', 'enemy.service', funct
 		}
 
 
-		// setTimeout(function () {
-
-			recycle();
-
-		// }, 500);
+		// recycle();
 	}
 
 
