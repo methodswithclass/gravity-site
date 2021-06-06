@@ -1,36 +1,44 @@
-var app = angular.module('gravity', ['shared.module', 'state.module', 'interface.module', 'utility.module', 'ui.router']);
+var app = angular.module('gravity', [
+  'shared.module',
+  'state.module',
+  'interface.module',
+  'utility.module',
+  'ui.router',
+]);
 
-app.config(['state.providerProvider', '$locationProvider', function (stateProviderProvider, $locationProvider) {
-  
-	console.log("config", "define states");
+app
+  .config([
+    'state.providerProvider',
+    '$locationProvider',
+    function (stateProviderProvider, $locationProvider) {
+      console.log('config', 'define states');
 
-	$locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
 
-	var states = stateProviderProvider.states;
+      var states = stateProviderProvider.states;
 
-	for (var i = 0; i < states.length; i++) {
-		stateProviderProvider.addState(states[i]);
-	}
+      for (var i = 0; i < states.length; i++) {
+        stateProviderProvider.addState(states[i]);
+      }
+    },
+  ])
+  .run([
+    'state.service',
+    'utility.service',
+    function (states, utility) {
+      //for desktop debugging when no accelerometer is present, comment out the next line for production
 
-}]).run(["state.service", "utility.service", function (states, utility) {
+      // utility.forceValidity(true);
+      // utility.setState("page.settings");
 
-	//for desktop debugging when no accelerometer is present, comment out the next line for production
+      //1. check existence of device accelerometer
+      console.log('go to checking');
+      states.go('checking');
 
+      //2. route to validController and display results of accelerometer check
 
-    utility.forceValidity(true);
-    // utility.setState("page.settings");
-    
-
-    //1. check existence of device accelerometer
-    console.log("go to checking");
-    states.go("checking");
-
-    //2. route to validController and display results of accelerometer check
-
-    //3. route to next state (calibrate) if valid, stop progression through app if invalid
-
-}]);
-
-
+      //3. route to next state (calibrate) if valid, stop progression through app if invalid
+    },
+  ]);
 
 getAngularModules(app);
