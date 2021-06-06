@@ -1,58 +1,55 @@
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer'),
-path = require("path"),
-shell = require("gulp-shell"),
-uglify = require('gulp-uglify'),
-imagemin = require('gulp-imagemin'),
-rename = require('gulp-rename'),
-concat = require('gulp-concat'),
-del = require('del'),
-inject = require('gulp-inject'),
-filter = require("gulp-filter"),
-merge = require("merge-stream"),
-mainBowerFiles = require("gulp-main-bower-files"),
-nodemon = require('gulp-nodemon'),
-livereload = require('gulp-livereload');
-sass = require("gulp-sass"),
-babel = require("gulp-babel"),
-jsHint = require('gulp-jshint'),
-stylish = require('jshint-stylish'),
-map = require('map-stream');
+  path = require('path'),
+  shell = require('gulp-shell'),
+  uglify = require('gulp-uglify'),
+  imagemin = require('gulp-imagemin'),
+  rename = require('gulp-rename'),
+  concat = require('gulp-concat'),
+  del = require('del'),
+  inject = require('gulp-inject'),
+  filter = require('gulp-filter'),
+  merge = require('merge-stream'),
+  mainBowerFiles = require('gulp-main-bower-files'),
+  nodemon = require('gulp-nodemon'),
+  livereload = require('gulp-livereload');
+(sass = require('gulp-sass')),
+  (babel = require('gulp-babel')),
+  (jsHint = require('gulp-jshint')),
+  (stylish = require('jshint-stylish')),
+  (map = require('map-stream'));
 
-const config = require("./config.js");
-
+const config = require('./config.js');
 
 const myLintReporter = map(function (file, cb) {
-	
-	if (file.jshint.success) return cb(null, file);
+  if (file.jshint.success) return cb(null, file);
 
-	console.log('JSHINT fail in', file.path);
-	
-	file.jshint.results.forEach(function (result) {
-		
-		if (!result.error) return;
+  console.log('JSHINT fail in', file.path);
 
-		const err = result.error
-		console.log(`  line ${err.line}, col ${err.character}, code ${err.code}, ${err.reason}`);
-	});
+  file.jshint.results.forEach(function (result) {
+    if (!result.error) return;
 
-	return cb(null, file);
+    const err = result.error;
+    console.log(
+      `  line ${err.line}, col ${err.character}, code ${err.code}, ${err.reason}`
+    );
+  });
+
+  return cb(null, file);
 });
 
-
 var gulpReporters = [
-{
-	index:0,
-	name:"custom",
-	reporter:myLintReporter
-},
-{
-	index:1,
-	name:"stylish",
-	reporter:stylish
-}
-]
-
+  {
+    index: 0,
+    name: 'custom',
+    reporter: myLintReporter,
+  },
+  {
+    index: 1,
+    name: 'stylish',
+    reporter: stylish,
+  },
+];
 
 var minify = config.gulp.minify;
 var shimFile = config.gulp.shimFile;
@@ -63,268 +60,263 @@ var htmlDest = config.gulp.htmlDest;
 var sassStyles = config.gulp.sassStyles;
 var cssStyles = config.gulp.cssStyles;
 
-
-
 var injectJS = function () {
+  var important = gulp.src(
+    'dist/assets/js/vendor' +
+      (!minify.vendor.full.make &&
+      minify.vendor.min.make &&
+      minify.vendor.min.inject
+        ? '.min'
+        : '') +
+      '.js',
+    { read: false }
+  );
+  var standard = gulp.src(
+    [
+      'dist/assets/js/main' +
+        (!minify.main.full.make &&
+        minify.main.min.make &&
+        minify.main.min.inject
+          ? '.min'
+          : '') +
+        '.js',
+      'dist/assets/**/*.css',
+    ],
+    { read: false }
+  );
 
-	var important = gulp.src('dist/assets/js/vendor' + (!minify.vendor.full.make && minify.vendor.min.make && minify.vendor.min.inject ? ".min" : "") + '.js', {read: false});
-	var standard = gulp.src(["dist/assets/js/main" + (!minify.main.full.make && minify.main.min.make && minify.main.min.inject ? ".min" : "") + ".js", 'dist/assets/**/*.css'], {read:false});
-
-	return gulp.src('src/index.html')
-	.pipe(inject(important, {ignorePath:"dist", starttag: '<!-- inject:head:{{ext}} -->'}))
-	.pipe(inject(standard, {ignorePath:"dist"}))
-	.pipe(gulp.dest('dist'));
-
-}
+  return gulp
+    .src('src/index.html')
+    .pipe(
+      inject(important, {
+        ignorePath: 'dist',
+        starttag: '<!-- inject:head:{{ext}} -->',
+      })
+    )
+    .pipe(inject(standard, { ignorePath: 'dist' }))
+    .pipe(gulp.dest('dist'));
+};
 
 var lint = function () {
+  var gulpReporter = gulpReporters.find(function (p) {
+    return p.index == config.gulp.reporter;
+  });
 
+  console.log('reporter', gulpReporter.name);
 
-	var gulpReporter = gulpReporters.find(function (p) {
+  return gulp
+    .src(mainScripts)
+    .pipe(jsHint())
+    .pipe(jsHint(gulpReporter.reporter, { verbose: true }));
+};
 
-		return p.index == config.gulp.reporter;
-	})
+var scripts = function () {
+  var mainSrc = gulp
+    .src(mainScripts)
+    .pipe(concat('main.js'))
+    .pipe(
+      babel({
+        presets: ['@babel/env'],
+      })
+    );
 
-	console.log("reporter", gulpReporter.name)
+  if (minify.main.full.make) {
+    mainSrc.pipe(gulp.dest('dist/assets/js'));
+  }
 
-	return gulp.src(mainScripts)
-	.pipe(jsHint())
-	.pipe(jsHint(gulpReporter.reporter, { verbose: true }))
-}
+  var mainMin;
 
+  if (minify.main.min.make) {
+    mainMin = mainSrc
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(uglify())
+      .pipe(gulp.dest('dist/assets/js'));
+  }
 
-var scripts = function() {
-
-
-    var mainSrc = gulp.src(mainScripts)
-	.pipe(concat('main.js'))
-	.pipe(babel({
-        presets: ["@babel/env"]
-    }))
-
-    if (minify.main.full.make) {
-    	mainSrc.pipe(gulp.dest("dist/assets/js"))
-	}
-
-    var mainMin;
-
-	if (minify.main.min.make) {
-		mainMin = mainSrc
-		.pipe(rename({suffix: '.min'}))
-		.pipe(uglify())
-		.pipe(gulp.dest("dist/assets/js"))
-	}
-
-	
-	return minify.main.min.make ? mainMin : mainSrc;
-
+  return minify.main.min.make ? mainMin : mainSrc;
 };
 
 var tempVendor = function () {
+  var shim = gulp
+    .src(shimFile)
+    .pipe(concat('shim.js'))
+    .pipe(gulp.dest('temp/vendor'));
 
+  var bowerSrc = gulp
+    .src('bower.json')
+    .pipe(mainBowerFiles({ base: 'bower_components' }))
+    .pipe(filter('**/*.js'))
+    .pipe(concat('bower.js'))
+    .pipe(gulp.dest('temp/vendor'));
 
-	var shim = gulp.src(shimFile)
-		.pipe(concat("shim.js"))
-		.pipe(gulp.dest("temp/vendor"));
+  var npmSrc = gulp
+    .src(vendorScripts)
+    .pipe(concat('npm.js'))
+    .pipe(gulp.dest('temp/vendor'));
 
-	var bowerSrc = gulp.src("bower.json")
-		.pipe(mainBowerFiles({base:"bower_components"}))
-		.pipe(filter("**/*.js"))
-		.pipe(concat("bower.js"))
-		.pipe(gulp.dest("temp/vendor"));
-
-	var npmSrc = gulp.src(vendorScripts)
-		.pipe(concat("npm.js"))
-		.pipe(gulp.dest("temp/vendor"))
-
-
-	return merge(shim, npmSrc, bowerSrc);
-}
+  return merge(shim, npmSrc, bowerSrc);
+};
 
 var vendor = function () {
+  var js = gulp
+    .src(['temp/vendor/shim.js', 'temp/vendor/bower.js', 'temp/vendor/**/*.js'])
+    .pipe(concat('vendor.js'));
 
+  if (minify.vendor.full.make) {
+    js.pipe(gulp.dest('dist/assets/js'));
+  }
 
-	var js = gulp.src([
-	                  "temp/vendor/shim.js",
-	                  "temp/vendor/bower.js",
-	                  "temp/vendor/**/*.js"
-	                  ])
-	.pipe(concat("vendor.js"))
+  var jsMin;
 
-	if (minify.vendor.full.make) {
-		js.pipe(gulp.dest("dist/assets/js"))
-	}
+  if (minify.vendor.min.make) {
+    jsMin = js
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(uglify())
+      .pipe(gulp.dest('dist/assets/js'));
+  }
 
-	var jsMin;
+  // var css = gulp.src("./bower.json")
+  // .pipe(mainBowerFiles())
+  // .pipe(filter("**/*.css"))
+  // .pipe(concat("vendor.css"))
+  // .pipe(gulp.dest("dist/assets/css"));
 
-	if (minify.vendor.min.make) {
-		jsMin = js
-		.pipe(rename({suffix: '.min'}))
-		.pipe(uglify())
-		.pipe(gulp.dest("dist/assets/js"))
-	}
+  // if (minify) {
+  // 	return merge(js, jsMin, css);
+  // }
+  // else {
+  // 	return merge(js, css);
+  // }
 
-	// var css = gulp.src("./bower.json")
-	// .pipe(mainBowerFiles())
-	// .pipe(filter("**/*.css"))
-	// .pipe(concat("vendor.css"))
-	// .pipe(gulp.dest("dist/assets/css"));
-
-
-	// if (minify) {
-	// 	return merge(js, jsMin, css);
-	// }
-	// else {
-	// 	return merge(js, css);
-	// }
-
-	return minify.vendor.min.make ? jsMin : js;
-
+  return minify.vendor.min.make ? jsMin : js;
 };
 
 var apiSass = function () {
-  return gulp.src(sassStyles)
+  return gulp
+    .src(sassStyles)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('temp/'));
-}
-
-
-var styles = function() {
-
-
-	// middleware.compileSass();
-
-
-	var cssSrc = gulp.src(cssStyles)
-	.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'));
-
-	
-	var css = cssSrc
-	.pipe(concat("styles.css"))
-	.pipe(gulp.dest('dist/assets/css'));
-
-	return css;
 };
 
+var styles = function () {
+  // middleware.compileSass();
 
+  var cssSrc = gulp
+    .src(cssStyles)
+    .pipe(
+      autoprefixer(
+        'last 2 version',
+        'safari 5',
+        'ie 8',
+        'ie 9',
+        'opera 12.1',
+        'ios 6',
+        'android 4'
+      )
+    );
+
+  var css = cssSrc
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('dist/assets/css'));
+
+  return css;
+};
 
 var html = function () {
-
-	return gulp.src('src/**/*.html')
-	.pipe(gulp.dest(htmlDest))
+  return gulp.src('src/**/*.html').pipe(gulp.dest(htmlDest));
 };
 
-var images = function() {
-	return gulp.src('src/assets/img/**/*')
-	.pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
-	.pipe(gulp.dest('dist/assets/img'));
+var images = function () {
+  return gulp
+    .src('src/assets/img/**/*.*')
+    .pipe(imagemin([imagemin.optipng({ optimizationLevel: 3 })]))
+    .pipe(gulp.dest('dist/assets/img'));
 };
-
 
 var fonts = function () {
+  var mainFonts = gulp
+    .src('src/assets/fonts/**/*.*')
+    .pipe(gulp.dest('dist/assets/fonts'));
 
-	var mainFonts = gulp.src("src/assets/fonts/**/*.*")
-	.pipe(gulp.dest("dist/assets/fonts"))
+  var vendorFonts = gulp
+    .src('node_modules/@fortawesome/fontawesome-free/webfonts/*.*')
+    .pipe(gulp.dest('dist/assets/webfonts'));
 
-	var vendorFonts = gulp.src("node_modules/@fortawesome/fontawesome-free/webfonts/*.*")
-	.pipe(gulp.dest("dist/assets/webfonts"))
-
-	return merge(mainFonts, vendorFonts);
+  return merge(mainFonts, vendorFonts);
 };
 
 var index = function () {
-
-	return gulp.src([ 
-    "./favicon.ico"
-    ]).pipe(gulp.dest("dist"));
-}
-
-var misc = function() {
-	// return gulp.src(miscSrc)
-	// .pipe(gulp.dest('dist/assets'));
-
-	// return merge(miscSrc);
-
-	if (typeof miscSrc === "function") {
-		return miscSrc();
-	}
-	else if (miscSrc) {
-		return gulp.src(miscSrc)
-		.pipe(gulp.dest('dist/assets'));
-	}
-	else return new Promise(function (resolve) {
-		resolve();
-	})
+  return gulp.src(['./favicon.ico']).pipe(gulp.dest('dist'));
 };
 
-var clean = function() {
-	return del(['dist', "temp"]);
-}
+var misc = function () {
+  // return gulp.src(miscSrc)
+  // .pipe(gulp.dest('dist/assets'));
 
+  // return merge(miscSrc);
+
+  if (typeof miscSrc === 'function') {
+    return miscSrc();
+  } else if (miscSrc) {
+    return gulp.src(miscSrc).pipe(gulp.dest('dist/assets'));
+  } else
+    return new Promise(function (resolve) {
+      resolve();
+    });
+};
+
+var clean = function () {
+  return del(['dist', 'temp']);
+};
 
 var serveFunc = function (done) {
+  livereload.listen({ port: config.livereloadPort });
 
+  var stream = nodemon({
+    script: path.join(__dirname, 'server.js'),
+    ext: 'js html css scss json',
+    watch: ['./src', 'config.js', './backend'],
+    tasks: ['build'],
+  });
 
-	livereload.listen({port:config.livereloadPort});
+  stream.on('start', function () {
+    done();
+  });
 
-	var stream = nodemon({ 
-		script: path.join(__dirname, "server.js"),
-		ext:"js html css scss json",
-		watch:["./src", "config.js", "./backend"],
-		tasks:["build"]
-	});
+  stream.on('restart', function () {
+    setTimeout(function () {
+      try {
+        livereload.reload();
+      } catch (err) {
+        console.log('cannot livreload at this time', err);
+      }
 
+      done();
+    }, 2000);
+  });
 
-	stream.on("start", function () {
+  stream.on('crash', function () {
+    stream.emit('restart', 10);
+  });
 
-		done();
-	})
+  return stream;
+};
 
-	stream.on("restart", function () {
+var copy = gulp.parallel(misc, index, html, images, fonts);
 
-		setTimeout(function () {
+var compile = gulp.parallel(
+  gulp.series(tempVendor, vendor),
+  gulp.series(lint, scripts)
+);
 
-			try {
-				livereload.reload();
-			}
-			catch (err) {
-				console.log("cannot livreload at this time", err);
-			}
-
-			done();
-
-		}, 2000);
-
-	})
-
-	stream.on("crash", function () {
-		
-		stream.emit('restart', 10);
-	})
-
-	return stream;
-	
-}
-
-var copy = gulp.parallel(misc, index, html, images, fonts)
-
-var compile = gulp.parallel(gulp.series(tempVendor, vendor), gulp.series(lint, scripts));
-
-var buildTask = gulp.series(compile, gulp.parallel(copy, gulp.series(apiSass, styles)), injectJS);
+var buildTask = gulp.series(
+  compile,
+  gulp.parallel(copy, gulp.series(apiSass, styles)),
+  injectJS
+);
 
 var serveTask = gulp.series(clean, buildTask, serveFunc);
 
+gulp.task('build', buildTask);
 
-
-gulp.task("build", buildTask);
-
-gulp.task("serve", serveTask);
-
-
-
-
-
-
-
-
-
+gulp.task('serve', serveTask);
