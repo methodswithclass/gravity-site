@@ -56,7 +56,7 @@
     "@methodswithclass/shared": "1.0.1",
     "@methodswithclass/accelerometer": "1.0.0",
     "merge-stream": "^1.0.1",
-    "mongoose": "^4.13.14",
+    "mongoose": "^5.7.5",
     "node-sass": "^4.9.2"
   }
 }
