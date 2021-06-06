@@ -1,97 +1,88 @@
-validateModule.factory("validate.service", ['$q', 'utility.service', function ($q, g) {
+validateModule.factory('validate.service', [
+  '$q',
+  'utility.service',
+  function ($q, g) {
+    var self = this;
 
-	var self = this;
+    var check = 0;
+    var minCheck = 10;
+    this.motion = false;
+    this.checkMotion = true;
+    this.hasDeviceMotion = false;
 
-	var check = 0;
-	var minCheck = 10;
-	this.motion = false;
-	this.checkMotion = true;
+    var setMotion = function (motion) {
+      console.log('validation ' + motion);
 
-	var setMotion = function (motion) {
+      self.motion = motion;
+    };
 
-		console.log("validation " + motion);;
+    var isMotion = function () {
+      return self.motion;
+    };
 
-		self.motion = motion;
-	}
+    var checkSupported = function (resolve, reject) {
+      self.checkMotion = false;
 
-	var isMotion = function () {
+      if (isMotion()) {
+        resolve(g.c.valid);
+      } else {
+        reject(g.c.invalid);
+      }
+    };
 
-		return self.motion;
-	}
+    var invalidate = function () {
+      console.log('valid service', 'invalidate');
 
-	var checkSupported = function (resolve, reject) {
+      return $q(function (resolve, reject) {
+        reject(g.c.invalid);
+      });
+    };
 
-		self.checkMotion = false;
+    var validate = function () {
+      console.log('valid service', 'validate');
 
-		if(isMotion()) {
-			resolve(g.c.valid);
-		}
-		else {
-			reject(g.c.invalid);
-		}
-		
-	}
+      return $q(function (resolve, reject) {
+        resolve(g.c.valid);
+      });
+    };
 
-	var invalidate = function () {
+    var run = function () {
+      check = 0;
+      self.checkMotion = true;
+      self.hasDeviceMotion = false;
 
-		console.log("valid service", "invalidate");
+      console.log('run validate service');
 
-		return $q(function (resolve, reject) {
-			reject(g.c.invalid);
-		});
-	}
+      return $q(function (resolve, reject) {
+        window.addEventListener('devicemotion', function (e) {
+          self.hasDeviceMotion = true;
+          if (self.checkMotion) {
+            if (e.accelerationIncludingGravity.x || e.acceleration.x) {
+              setMotion(true);
+              check++;
+              if (check > minCheck) {
+                checkSupported(resolve, reject);
+              }
+            } else {
+              setMotion(false);
 
-	var validate = function () {
+              checkSupported(resolve, reject);
+            }
+          }
+        });
+        setTimeout(function () {
+          if (!self.hasDeviceMotion) {
+            setMotion(false);
+            checkSupported(resolve, reject);
+          }
+        }, 2000);
+      });
+    };
 
-		console.log("valid service", "validate");
-
-		return $q(function (resolve, reject) {
-			resolve(g.c.valid);
-		});
-
-	}
-
-	var run = function() {
-
-		check = 0;
-		self.checkMotion = true;
-
-		console.log("run validate service");
-
-		return $q(function (resolve, reject) {
-
-			window.addEventListener("devicemotion", function (e) {
-
-				if (self.checkMotion) {
-					
-					if (e.accelerationIncludingGravity.x || e.acceleration.x) {
-						setMotion(true);
-						check++;
-						if (check > minCheck) {
-							checkSupported(resolve, reject);
-						}
-					}
-					else {
-						setMotion(false);
-
-						checkSupported(resolve, reject);
-					}
-
-				}
-			
-			});
-
-		});
-
-	}
-
-	
-	return {
-
-		run:run,
-		validate:validate,
-		invalidate:invalidate
-	}
-
-
-}]);
+    return {
+      run: run,
+      validate: validate,
+      invalidate: invalidate,
+    };
+  },
+]);
